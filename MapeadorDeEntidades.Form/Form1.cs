@@ -87,7 +87,35 @@ namespace MapeadorDeEntidades.Form
 
         }
 
+        private void btnProcSql_Click(object sender, EventArgs e)
+        {
+            if (String.IsNullOrEmpty(ddlTabelas.SelectedItem?.ToString()))
+            {
+                MessageBox.Show("Selecione uma tabela");
+                return;
+            }
+
+            var instancia = new MapeadorProcSQL(ddlTabelas.SelectedItem.ToString());
+            var body = instancia.GerarPackageBody().ToString();
+            salvar.AddExtension = true;
+            salvar.FileName = ddlTabelas.SelectedItem.ToString().Replace("MAG_T_PDL", "").Replace("_", "").ToLower() + "Body.sql";
+
+            if (salvar.ShowDialog() == DialogResult.OK)
+            {
+                var local = salvar.FileName;
+                File.WriteAllText(local, body);
+            }
+
+            var interfacename = instancia.GerarPackageHeader().ToString();
+            salvar.FileName = "I" + ddlTabelas.SelectedItem.ToString().Replace("MAG_T_PDL", "").Replace("_", "").ToLower() + "Header.sql";
 
 
+            if (salvar.ShowDialog() == DialogResult.OK)
+            {
+                var local = salvar.FileName;
+                File.WriteAllText(local, interfacename);
+            }
+
+        }
     }
 }
