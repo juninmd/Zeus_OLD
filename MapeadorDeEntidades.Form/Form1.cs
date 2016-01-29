@@ -24,31 +24,12 @@ namespace MapeadorDeEntidades.Form
         }
 
         private List<string> InstanciaListaTabelas() { return new Query().ListaTabelas(); }
-
-        private List<EntidadeTabela> InstanciaAtributos(string nomeTabela)
-        {
-            return new Query().ListarAtributos(nomeTabela);
-        }
-
-        private string GetTypeAtribute(string tipoOracle)
-        {
-            switch (tipoOracle)
-            {
-                case "DATE":
-                    return "DateTime";
-                case "VARCHAR2":
-                    return "string";
-                case "NUMBER":
-                    return "long";
-                default:
-                    return "String";
-            }
-        }
-        private string IsNullabe(string tipo, string aceitaNull)
-        {
-            return tipo != "VARCHAR2" && aceitaNull == "Y" ? "?" : "";
-        }
-
+       
+        /// <summary>
+        /// Geração da Entidade
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnGerar_Click(object sender, EventArgs e)
         {
             if (String.IsNullOrEmpty(ddlTabelas.SelectedItem?.ToString()))
@@ -57,7 +38,7 @@ namespace MapeadorDeEntidades.Form
                 return;
             }
 
-            var classe = GerarBody(ddlTabelas.SelectedItem.ToString()).ToString();
+            var classe = new MapeadorEntidade().GerarBody(ddlTabelas.SelectedItem.ToString()).ToString();
             salvar.AddExtension = true;
             salvar.FileName = ddlTabelas.SelectedItem.ToString() + ".cs";
             salvar.DefaultExt = "cs";
@@ -71,31 +52,42 @@ namespace MapeadorDeEntidades.Form
             }
         }
 
-        public StringBuilder GerarBody(string nomeTabela)
+      
+
+        private void btnProcSharp_Click(object sender, EventArgs e)
         {
-            var classe = new StringBuilder();
-            classe.Append("using System;" + Environment.NewLine + Environment.NewLine);
-            classe.Append("namespace MapeadorDeEntidades.Form" + Environment.NewLine);
-            classe.Append("{" + Environment.NewLine);
-            classe.Append($"    public class {nomeTabela}" + Environment.NewLine);
-            classe.Append("    {" + Environment.NewLine + Environment.NewLine);
-
-            var atributos = InstanciaAtributos(nomeTabela);
-            foreach (var item in atributos)
+            if (String.IsNullOrEmpty(ddlTabelas.SelectedItem?.ToString()))
             {
-
-                var corpo = new StringBuilder();
-                corpo.Append("         /// <summary>" + Environment.NewLine);
-                corpo.Append($"         /// {item.COMMENTS}" + Environment.NewLine);
-                corpo.Append("         /// </summary>" + Environment.NewLine);
-                corpo.Append($"         public {GetTypeAtribute(item.DATA_TYPE)+ IsNullabe(item.DATA_TYPE,item.NULLABLE)} {item.COLUMN_NAME} {{ get; set; }}" + Environment.NewLine);
-                corpo.Append(Environment.NewLine);
-                classe.Append(corpo);
+                MessageBox.Show("Selecione uma tabela");
+                return;
             }
-            classe.Append("    }" + Environment.NewLine);
-            classe.Append("}" + Environment.NewLine);
 
-            return classe;
+            var instancia = new MapeadorProcSharp(ddlTabelas.SelectedItem.ToString());
+            var classe = instancia.GerarBodyCSharpProc().ToString();
+            salvar.AddExtension = true;
+            salvar.FileName = ddlTabelas.SelectedItem.ToString().Replace("MAG_T_PDL", "").Replace("_", "").ToLower()+"RequestRepository.cs";
+
+            if (salvar.ShowDialog() == DialogResult.OK)
+            {
+                var local = salvar.FileName;
+                File.WriteAllText(local, classe);
+            }
+
+            var interfacename = instancia.GerarInterfaceSharProc().ToString();
+            salvar.FileName = "I"+ddlTabelas.SelectedItem.ToString().Replace("MAG_T_PDL", "").Replace("_", "").ToLower() + "RequestRepository.cs";
+
+
+            if (salvar.ShowDialog() == DialogResult.OK)
+            {
+                var local = salvar.FileName;
+                File.WriteAllText(local, interfacename);
+            }
+
+
+
         }
+
+
+
     }
 }
