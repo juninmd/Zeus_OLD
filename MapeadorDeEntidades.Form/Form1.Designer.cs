@@ -94,6 +94,7 @@
             this.btnProcSql.TabIndex = 5;
             this.btnProcSql.Text = "Gerar Procedure SQL";
             this.btnProcSql.UseVisualStyleBackColor = true;
+            this.btnProcSql.Click += new System.EventHandler(this.btnProcSql_Click);
             // 
             // Form1
             // 
