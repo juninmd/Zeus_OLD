@@ -34,6 +34,8 @@
             this.salvar = new System.Windows.Forms.SaveFileDialog();
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.btnProcSharp = new System.Windows.Forms.Button();
+            this.btnProcSql = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -47,7 +49,7 @@
             // 
             // btnGerar
             // 
-            this.btnGerar.Location = new System.Drawing.Point(164, 181);
+            this.btnGerar.Location = new System.Drawing.Point(80, 115);
             this.btnGerar.Name = "btnGerar";
             this.btnGerar.Size = new System.Drawing.Size(163, 23);
             this.btnGerar.TabIndex = 1;
@@ -74,11 +76,32 @@
             this.pictureBox1.TabIndex = 3;
             this.pictureBox1.TabStop = false;
             // 
+            // btnProcSharp
+            // 
+            this.btnProcSharp.Location = new System.Drawing.Point(80, 144);
+            this.btnProcSharp.Name = "btnProcSharp";
+            this.btnProcSharp.Size = new System.Drawing.Size(163, 23);
+            this.btnProcSharp.TabIndex = 4;
+            this.btnProcSharp.Text = "Gerar Procedure c#";
+            this.btnProcSharp.UseVisualStyleBackColor = true;
+            this.btnProcSharp.Click += new System.EventHandler(this.btnProcSharp_Click);
+            // 
+            // btnProcSql
+            // 
+            this.btnProcSql.Location = new System.Drawing.Point(80, 173);
+            this.btnProcSql.Name = "btnProcSql";
+            this.btnProcSql.Size = new System.Drawing.Size(163, 23);
+            this.btnProcSql.TabIndex = 5;
+            this.btnProcSql.Text = "Gerar Procedure SQL";
+            this.btnProcSql.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(490, 230);
+            this.Controls.Add(this.btnProcSql);
+            this.Controls.Add(this.btnProcSharp);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnGerar);
             this.Controls.Add(this.ddlTabelas);
@@ -98,6 +121,8 @@
         private System.Windows.Forms.SaveFileDialog salvar;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button btnProcSharp;
+        private System.Windows.Forms.Button btnProcSql;
     }
 }
 
