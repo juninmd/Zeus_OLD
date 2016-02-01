@@ -8,11 +8,12 @@ namespace MapeadorDeEntidades.Form
     {
         public string NomeTabela { get; set; }
 
-        public List<EntidadeTabela> ListaAtributosTabela => new Query().ListarAtributos(NomeTabela);
+        public List<EntidadeTabela> ListaAtributosTabela { get; set; }
 
-        public MapeadorProcSQL(string nomeTabela)
+        public MapeadorProcSQL(string nomeTabela, List<EntidadeTabela> atributosTabela)
         {
             NomeTabela = nomeTabela;
+            ListaAtributosTabela = atributosTabela;
         }
 
         #region PRIVATE 
@@ -43,33 +44,38 @@ namespace MapeadorDeEntidades.Form
             return espaco;
         }
 
-        private StringBuilder MontaTodosParametrosHeader(string nomeProcedure, bool isCursor, bool isHeader)
+        private StringBuilder MontaTodosParametrosHeader(string nomeProcedure, bool isCursor, bool isHeader, bool onlyFirst = false, bool semparametros = false)
         {
 
             var parametro = new StringBuilder();
             parametro.Append($"  PROCEDURE {nomeProcedure}(");
 
 
-            if (isCursor)
-                parametro.Append("P_CURSORSELECT  OUT TP_CURSOR, " + Environment.NewLine);
-            else
-            {
-                parametro.Append("P_RESULT               OUT STRING," + Environment.NewLine);
+            parametro.Append(isCursor ? "P_CURSORSELECT               OUT TP_CURSOR" : "P_RESULT               OUT STRING");
 
-            }
-
-            for (var i = 0; i < ListaAtributosTabela.Count; i++)
+            if (semparametros == false)
             {
-                if (i == ListaAtributosTabela.Count - 1)
+                parametro.Append("," +Environment.NewLine);
+                if (onlyFirst == false)
                 {
-                    parametro.Append(EspacoMontadoParametros(nomeProcedure) + $"P_{ListaAtributosTabela[i].COLUMN_NAME}        IN {NomeTabela}.{ListaAtributosTabela[i].COLUMN_NAME}%TYPE ");
+                    for (var i = 0; i < ListaAtributosTabela.Count; i++)
+                    {
+                        if (i == ListaAtributosTabela.Count - 1)
+                        {
+                            parametro.Append(EspacoMontadoParametros(nomeProcedure) + $"P_{ListaAtributosTabela[i].COLUMN_NAME}        IN {NomeTabela}.{ListaAtributosTabela[i].COLUMN_NAME}%TYPE ");
+                        }
+                        else
+                        {
+                            parametro.Append(EspacoMontadoParametros(nomeProcedure) + $"P_{ListaAtributosTabela[i].COLUMN_NAME}        IN {NomeTabela}.{ListaAtributosTabela[i].COLUMN_NAME}%TYPE, " + Environment.NewLine);
+                        }
+                    }
                 }
                 else
                 {
-                    parametro.Append(EspacoMontadoParametros(nomeProcedure) + $"P_{ListaAtributosTabela[i].COLUMN_NAME}        IN {NomeTabela}.{ListaAtributosTabela[i].COLUMN_NAME}%TYPE " + Environment.NewLine);
+                    parametro.Append(EspacoMontadoParametros(nomeProcedure) + $"P_{ListaAtributosTabela[0].COLUMN_NAME}        IN {NomeTabela}.{ListaAtributosTabela[0].COLUMN_NAME}%TYPE");
                 }
-            }
 
+            }
             parametro.Append(")");
 
             parametro.Append(isHeader ? ";" : " IS");
@@ -110,7 +116,7 @@ namespace MapeadorDeEntidades.Form
                 }
                 else if (i == 0)
                 {
-                    parametro.Append($"{ListaAtributosTabela[i].COLUMN_NAME}," + Environment.NewLine);
+                    parametro.Append($"P_{ListaAtributosTabela[i].COLUMN_NAME}," + Environment.NewLine);
                 }
                 else
                 {
@@ -128,7 +134,7 @@ namespace MapeadorDeEntidades.Form
             parametro.Append($"      UPDATE {NomeTabela}" + Environment.NewLine);
             parametro.Append(Environment.NewLine);
 
-            parametro.Append("SET ");
+            parametro.Append("         SET ");
 
             for (var i = 0; i < ListaAtributosTabela.Count; i++)
             {
@@ -136,16 +142,16 @@ namespace MapeadorDeEntidades.Form
                 {
                     parametro.Append($"         {ListaAtributosTabela[i].COLUMN_NAME}        = P_{ListaAtributosTabela[i].COLUMN_NAME}" + Environment.NewLine);
                 }
-                else if (i == 0 )
+                else if (i == 0)
                 {
-                    parametro.Append($"{ListaAtributosTabela[i].COLUMN_NAME}        = P_{ListaAtributosTabela[i].COLUMN_NAME}" + Environment.NewLine);
+                    parametro.Append($"{ListaAtributosTabela[i].COLUMN_NAME}        = P_{ListaAtributosTabela[i].COLUMN_NAME}," + Environment.NewLine);
                 }
                 else
                 {
                     parametro.Append($"         {ListaAtributosTabela[i].COLUMN_NAME}        = P_{ListaAtributosTabela[i].COLUMN_NAME}," + Environment.NewLine);
                 }
             }
-            parametro.Append($"         WHERE {ListaAtributosTabela[0].COLUMN_NAME}        = P_{ListaAtributosTabela[0].COLUMN_NAME}," + Environment.NewLine);
+            parametro.Append($"         WHERE {ListaAtributosTabela[0].COLUMN_NAME}        = P_{ListaAtributosTabela[0].COLUMN_NAME};" + Environment.NewLine);
 
             return parametro;
         }
@@ -153,8 +159,8 @@ namespace MapeadorDeEntidades.Form
         private StringBuilder MontaTodosParametrosDelete()
         {
             var parametro = new StringBuilder();
-            parametro.Append($"DELETE  FROM {NomeTabela};" + Environment.NewLine);
-            parametro.Append($"WHERE {ListaAtributosTabela[0].COLUMN_NAME}        = P_{ListaAtributosTabela[0].COLUMN_NAME}," + Environment.NewLine);
+            parametro.Append($"      DELETE  FROM {NomeTabela}" + Environment.NewLine);
+            parametro.Append($"      WHERE {ListaAtributosTabela[0].COLUMN_NAME}        = P_{ListaAtributosTabela[0].COLUMN_NAME};" + Environment.NewLine);
             return parametro;
         }
 
@@ -167,49 +173,63 @@ namespace MapeadorDeEntidades.Form
             {
                 if (i == ListaAtributosTabela.Count - 1)
                 {
-                    parametro.Append($"{ListaAtributosTabela[i].COLUMN_NAME}" + Environment.NewLine);
+                    parametro.Append($"      {ListaAtributosTabela[i].COLUMN_NAME}" + Environment.NewLine);
                 }
-                else
+                else if (i == 0)
                 {
                     parametro.Append($"{ListaAtributosTabela[i].COLUMN_NAME}," + Environment.NewLine);
                 }
+                else
+                {
+                    parametro.Append($"             {ListaAtributosTabela[i].COLUMN_NAME}," + Environment.NewLine);
+                }
             }
 
-            parametro.Append($"FROM {NomeTabela}" + Environment.NewLine);
+            parametro.Append($"      FROM {NomeTabela}" + (isAll ? ";" : "") + Environment.NewLine);
 
 
             if (!isAll)
-                parametro.Append($"WHERE {ListaAtributosTabela[0].COLUMN_NAME}        = P_{ListaAtributosTabela[0].COLUMN_NAME}," + Environment.NewLine);
-            else
-            {
-                parametro.Append(";" + Environment.NewLine);
-            }
+                parametro.Append($"      WHERE {ListaAtributosTabela[0].COLUMN_NAME}        = P_{ListaAtributosTabela[0].COLUMN_NAME};" + Environment.NewLine);
 
             return parametro;
         }
 
-        public StringBuilder AdicionaCabecalho(string nomeProcedure, bool isHeader = false, bool isCursor = false)
+        public StringBuilder AdicionaCabecalho(string nomeProcedure, bool isHeader = false, bool isCursor = false, bool onlyFirst = false, bool semParametros = false)
         {
             var cabecalho = new StringBuilder();
             cabecalho.Append(MontarSumario(nomeProcedure));
-            cabecalho.Append(MontaTodosParametrosHeader(nomeProcedure, isCursor, isHeader));
+            cabecalho.Append(MontaTodosParametrosHeader(nomeProcedure, isCursor, isHeader, onlyFirst, semParametros));
             return cabecalho;
         }
 
         #endregion
 
+        private StringBuilder Adiciona_P_Result()
+        {
+            var body = new StringBuilder();
+            body.Append(Environment.NewLine + "  BEGIN" + Environment.NewLine);
+            body.Append("    P_RESULT := '1';" + Environment.NewLine + Environment.NewLine);
+            return body;
+        }
+
+        private StringBuilder Adiciona_TratamentoException()
+        {
+            var body = new StringBuilder();
+            body.Append(Environment.NewLine + "           EXCEPTION" + Environment.NewLine);
+            body.Append("           WHEN OTHERS THEN" + Environment.NewLine);
+            body.Append("           P_RESULT:= SQLERRM;" + Environment.NewLine);
+            return body;
+        }
+
         #region Insert 
         private StringBuilder InsertBodyInside()
         {
             var body = new StringBuilder();
-            body.Append(Environment.NewLine+"  BEGIN" + Environment.NewLine);
-            body.Append("    P_RESULT := '1';" + Environment.NewLine);
-            body.Append(Environment.NewLine + "  BEGIN" + Environment.NewLine);
+            body.Append(Adiciona_P_Result());
+            body.Append("  BEGIN" + Environment.NewLine);
             body.Append(MontaTodosParametrosInsert());
-            body.Append(Environment.NewLine + "         EXCEPTION" + Environment.NewLine);
-            body.Append("         WHEN OTHERS THEN" + Environment.NewLine);
-            body.Append("         P_RESULT:= SQLERRM;" + Environment.NewLine);
-            body.Append("     END;" + Environment.NewLine);
+            body.Append(Adiciona_TratamentoException());
+            body.Append(" END;" + Environment.NewLine);
             return body;
         }
 
@@ -231,14 +251,11 @@ namespace MapeadorDeEntidades.Form
         private StringBuilder UpdateBodyInside()
         {
             var body = new StringBuilder();
-            body.Append(Environment.NewLine + "  BEGIN" + Environment.NewLine);
-            body.Append("    P_RESULT := '1';" + Environment.NewLine);
-            body.Append(Environment.NewLine + "  BEGIN" + Environment.NewLine);
+            body.Append(Adiciona_P_Result());
+            body.Append("  BEGIN" + Environment.NewLine);
             body.Append(MontaTodosParametrosUpdate());
-            body.Append(Environment.NewLine + "         EXCEPTION" + Environment.NewLine);
-            body.Append("         WHEN OTHERS THEN" + Environment.NewLine);
-            body.Append("         P_RESULT:= SQLERRM;" + Environment.NewLine);
-            body.Append("     END;" + Environment.NewLine);
+            body.Append(Adiciona_TratamentoException());
+            body.Append(" END;" + Environment.NewLine);
             return body;
         }
 
@@ -260,13 +277,10 @@ namespace MapeadorDeEntidades.Form
         private StringBuilder SelectBodyInside(bool Isall)
         {
             var body = new StringBuilder();
+            body.Append(Environment.NewLine);
             body.Append("  BEGIN" + Environment.NewLine);
             body.Append("     OPEN P_CURSORSELECT FOR" + Environment.NewLine);
             body.Append(MontaTodosParametrosSelect(Isall));
-            body.Append(Environment.NewLine + "         EXCEPTION" + Environment.NewLine);
-            body.Append("         WHEN OTHERS THEN" + Environment.NewLine);
-            body.Append("         P_RESULT:= SQLERRM;" + Environment.NewLine);
-            body.Append("     END;" + Environment.NewLine);
             return body;
         }
 
@@ -275,7 +289,7 @@ namespace MapeadorDeEntidades.Form
             var body = new StringBuilder();
             body.Append(Environment.NewLine);
             var nomeProc = "MAG_SP_PDL_S_" + NomeTabela.Replace("MAG_T_PDL", "").Replace("_", "") + (Isall ? "" : "_ID");
-            body.Append(AdicionaCabecalho(nomeProc, false, true));
+            body.Append(AdicionaCabecalho(nomeProc, false, true, true, Isall));
             body.Append(SelectBodyInside(Isall));
             body.Append($"END {nomeProc};" + Environment.NewLine);
             body.Append(Environment.NewLine);
@@ -288,12 +302,10 @@ namespace MapeadorDeEntidades.Form
         private StringBuilder DeleteBodyInside()
         {
             var body = new StringBuilder();
+            body.Append(Adiciona_P_Result());
             body.Append("  BEGIN" + Environment.NewLine);
-            body.Append("    P_RESULT := '1';" + Environment.NewLine);
             body.Append(MontaTodosParametrosDelete());
-            body.Append(Environment.NewLine + "         EXCEPTION" + Environment.NewLine);
-            body.Append("         WHEN OTHERS THEN" + Environment.NewLine);
-            body.Append("         P_RESULT:= SQLERRM;" + Environment.NewLine);
+            body.Append(Adiciona_TratamentoException());
             body.Append("     END;" + Environment.NewLine);
             return body;
         }
@@ -303,7 +315,7 @@ namespace MapeadorDeEntidades.Form
             var body = new StringBuilder();
             body.Append(Environment.NewLine);
             var nomeProc = "MAG_SP_PDL_D_" + NomeTabela.Replace("MAG_T_PDL", "").Replace("_", "");
-            body.Append(AdicionaCabecalho(nomeProc));
+            body.Append(AdicionaCabecalho(nomeProc, false, false, true));
             body.Append(DeleteBodyInside());
             body.Append($"END {nomeProc};" + Environment.NewLine);
             body.Append(Environment.NewLine);
@@ -315,14 +327,14 @@ namespace MapeadorDeEntidades.Form
         public StringBuilder GerarPackageHeader()
         {
             var header = new StringBuilder();
-            header.Append($"create or replace package {NomeTabela.Replace("_PG_", "_PD")} is" + Environment.NewLine + Environment.NewLine);
+            header.Append($"create or replace package {NomeTabela.Replace("_T_", "_PG_")} is" + Environment.NewLine + Environment.NewLine);
             header.Append("  TYPE TP_CURSOR IS REF CURSOR;" + Environment.NewLine + Environment.NewLine);
-            header.Append(AdicionaCabecalho("MAG_SP_PDL_I_" + NomeTabela.Replace("MAG_T_PDL", "").Replace("_", "")));
-            header.Append(AdicionaCabecalho("MAG_SP_PDL_U_" + NomeTabela.Replace("MAG_T_PDL", "").Replace("_", "")));
-            header.Append(AdicionaCabecalho("MAG_SP_PDL_D_" + NomeTabela.Replace("MAG_T_PDL", "").Replace("_", "")));
-            header.Append(AdicionaCabecalho("MAG_SP_PDL_S_" + NomeTabela.Replace("MAG_T_PDL", "").Replace("_", "")));
-            header.Append(AdicionaCabecalho("MAG_SP_PDL_S_" + NomeTabela.Replace("MAG_T_PDL", "").Replace("_", "")) + "_ID");
-            header.Append($"end {NomeTabela.Replace("_PG_", "_PD")};" + Environment.NewLine);
+            header.Append(AdicionaCabecalho("MAG_SP_PDL_I_" + NomeTabela.Replace("MAG_T_PDL", "").Replace("_", ""), true, false, false));
+            header.Append(AdicionaCabecalho("MAG_SP_PDL_U_" + NomeTabela.Replace("MAG_T_PDL", "").Replace("_", ""), true, false, false));
+            header.Append(AdicionaCabecalho("MAG_SP_PDL_D_" + NomeTabela.Replace("MAG_T_PDL", "").Replace("_", ""), true, false, true));
+            header.Append(AdicionaCabecalho("MAG_SP_PDL_S_" + NomeTabela.Replace("MAG_T_PDL", "").Replace("_", ""), true, true, true, true));
+            header.Append(AdicionaCabecalho("MAG_SP_PDL_S_" + NomeTabela.Replace("MAG_T_PDL", "").Replace("_", "") + "_ID", true, true, true));
+            header.Append(Environment.NewLine + Environment.NewLine + $"end {NomeTabela.Replace("_T_", "_PG_")};" + Environment.NewLine);
 
             return header;
         }
@@ -330,13 +342,13 @@ namespace MapeadorDeEntidades.Form
         public StringBuilder GerarPackageBody()
         {
             var header = new StringBuilder();
-            header.Append($"create or replace package BODY {NomeTabela.Replace("_PG_", "_PD")} is" + Environment.NewLine + Environment.NewLine);
+            header.Append($"create or replace package BODY {NomeTabela.Replace("_T_", "_PG_")} is" + Environment.NewLine + Environment.NewLine);
             header.Append(BodyInsert());
             header.Append(BodyUpdate());
             header.Append(BodyDelete());
             header.Append(BodySelect());
             header.Append(BodySelect(true));
-            header.Append($"end {NomeTabela.Replace("_PG_", "_PD")};" + Environment.NewLine);
+            header.Append($"end {NomeTabela.Replace("_T_", "_PG_")};" + Environment.NewLine);
             return header;
         }
 
