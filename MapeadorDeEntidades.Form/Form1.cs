@@ -94,17 +94,7 @@ namespace MapeadorDeEntidades.Form
                 MessageBox.Show("Selecione uma tabela");
                 return;
             }
-
-            var instancia = new MapeadorProcSQL(ddlTabelas.SelectedItem.ToString());
-            var body = instancia.GerarPackageBody().ToString();
-            salvar.AddExtension = true;
-            salvar.FileName = ddlTabelas.SelectedItem.ToString().Replace("MAG_T_PDL", "").Replace("_", "").ToLower() + "Body.sql";
-
-            if (salvar.ShowDialog() == DialogResult.OK)
-            {
-                var local = salvar.FileName;
-                File.WriteAllText(local, body);
-            }
+            var instancia = new MapeadorProcSQL(ddlTabelas.SelectedItem.ToString(), new Query().ListarAtributos(ddlTabelas.SelectedItem.ToString()));
 
             var interfacename = instancia.GerarPackageHeader().ToString();
             salvar.FileName = "I" + ddlTabelas.SelectedItem.ToString().Replace("MAG_T_PDL", "").Replace("_", "").ToLower() + "Header.sql";
@@ -115,6 +105,18 @@ namespace MapeadorDeEntidades.Form
                 var local = salvar.FileName;
                 File.WriteAllText(local, interfacename);
             }
+
+            var body = instancia.GerarPackageBody().ToString();
+            salvar.AddExtension = true;
+            salvar.FileName = ddlTabelas.SelectedItem.ToString().Replace("MAG_T_PDL", "").Replace("_", "").ToLower() + "Body.sql";
+
+            if (salvar.ShowDialog() == DialogResult.OK)
+            {
+                var local = salvar.FileName;
+                File.WriteAllText(local, body);
+            }
+
+        
 
         }
     }
