@@ -5,6 +5,22 @@ namespace MapeadorDeEntidades.Form
 {
     public class CSharpEntity
     {
+        public string IsNullabe(string aceitaNull)
+        {
+            return aceitaNull == "Y" ? "?" : "";
+        }
+        public string GetTypeAtribute(string tipoAttr, string aceitaNull)
+        {
+            switch (tipoAttr)
+            {
+                case "DATE":
+                    return "DateTime" + IsNullabe(aceitaNull);
+                case "NUMBER":
+                    return "long" + IsNullabe(aceitaNull);
+                default:
+                    return "string";
+            }
+        }
         public StringBuilder GerarBody(string nomeTabela)
         {
             var classe = new StringBuilder();
@@ -22,7 +38,7 @@ namespace MapeadorDeEntidades.Form
                 corpo.Append("         /// <summary>" + Environment.NewLine);
                 corpo.Append($"         /// {item.COMMENTS}" + Environment.NewLine);
                 corpo.Append("         /// </summary>" + Environment.NewLine);
-                corpo.Append($"         public {item.DATA_TYPE.GetTypeAtribute(item.NULLABLE)} {item.COLUMN_NAME} {{ get; set; }}" + Environment.NewLine);
+                corpo.Append($"         public {GetTypeAtribute(item.DATA_TYPE, item.NULLABLE)} {item.COLUMN_NAME} {{ get; set; }}" + Environment.NewLine);
                 corpo.Append(Environment.NewLine);
                 classe.Append(corpo);
             }
@@ -31,7 +47,7 @@ namespace MapeadorDeEntidades.Form
 
             return classe;
         }
-       
-     
+
+
     }
 }

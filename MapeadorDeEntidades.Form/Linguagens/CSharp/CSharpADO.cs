@@ -6,6 +6,23 @@ namespace MapeadorDeEntidades.Form
 {
     public class CSharpADO
     {
+        public string IsNullabe(string aceitaNull)
+        {
+            return aceitaNull == "Y" ? "?" : "";
+        }
+        public string GetTypeAtribute(string tipoAttr, string aceitaNull)
+        {
+            switch (tipoAttr)
+            {
+                case "DATE":
+                    return "DateTime" + IsNullabe(aceitaNull);
+                case "NUMBER":
+                    return "long" + IsNullabe(aceitaNull);
+                default:
+                    return "string";
+            }
+        }
+
         public string NomeTabela { get; set; }
 
         public List<EntidadeTabela> ListaAtributosTabela => new OracleTables().ListarAtributos(NomeTabela);
@@ -103,7 +120,7 @@ namespace MapeadorDeEntidades.Form
             var atributoText = new StringBuilder();
             foreach (var item in ListaAtributosTabela)
             {
-                atributoText.Append($"                        {item.COLUMN_NAME} = \"{item.COLUMN_NAME}\".GetValueOrDefault<{item.DATA_TYPE.GetTypeAtribute(item.NULLABLE)}>(reader)," + Environment.NewLine);
+                atributoText.Append($"                        {item.COLUMN_NAME} = \"{item.COLUMN_NAME}\".GetValueOrDefault<{GetTypeAtribute(item.DATA_TYPE, item.NULLABLE)}>(reader)," + Environment.NewLine);
             }
             return atributoText;
         }
@@ -153,7 +170,7 @@ namespace MapeadorDeEntidades.Form
             methodo.Append(Environment.NewLine);
             methodo.Append("            AddResult();" + Environment.NewLine);
             methodo.Append(GetListaItensAdd());
-            methodo.Append(Environment.NewLine+ "            return RequestProc(GetClass.GetMethod(), commit);" + Environment.NewLine);
+            methodo.Append(Environment.NewLine + "            return RequestProc(GetClass.GetMethod(), commit);" + Environment.NewLine);
             methodo.Append("        }" + Environment.NewLine);
             methodo.Append(Environment.NewLine);
             return methodo;
