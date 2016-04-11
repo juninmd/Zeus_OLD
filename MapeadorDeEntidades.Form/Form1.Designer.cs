@@ -89,7 +89,7 @@
             this.btnChamadaProc.TabIndex = 4;
             this.btnChamadaProc.Text = "Chamada Procedure";
             this.btnChamadaProc.UseVisualStyleBackColor = true;
-            this.btnChamadaProc.Click += new System.EventHandler(this.btnProcSharp_Click);
+            this.btnChamadaProc.Click += new System.EventHandler(this.btnChamadaProc_Click);
             // 
             // btnProc
             // 

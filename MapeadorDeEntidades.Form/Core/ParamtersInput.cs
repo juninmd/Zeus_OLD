@@ -1,8 +1,10 @@
-﻿namespace MapeadorDeEntidades.Form.Core
+﻿using System.Collections.Generic;
+
+namespace MapeadorDeEntidades.Form.Core
 {
     public static class ParamtersInput
     {
-        public static string NomeTabela { get; set; }
+        public static List<string> NomeTabelas { get; set; }
 
         /// <summary>
         /// 1 - C#
@@ -18,5 +20,7 @@
         /// </summary>
         public static int SGBD { get; set; }
         public static string ConnectionString { get; set; }
+
+        public static bool TodasTabelas { get; set; }
     }
 }

@@ -7,7 +7,6 @@ namespace MapeadorDeEntidades.Form
     public class CSharpADO
     {
         public string NomeTabela { get; set; }
-        public string NomeClasse { get; set; }
 
         public List<EntidadeTabela> ListaAtributosTabela => new OracleTables().ListarAtributos(NomeTabela);
 
