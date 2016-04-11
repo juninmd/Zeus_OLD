@@ -15,6 +15,7 @@ namespace MapeadorDeEntidades.Form
         public Form1()
         {
             InitializeComponent();
+            ParamtersInput.NomeTabelas = new List<string>();
         }
 
 
@@ -30,53 +31,17 @@ namespace MapeadorDeEntidades.Form
                 MessageBox.Show("Selecione uma tabela");
                 return;
             }
+            var md_mapeamento = new MD_MapeamentoEntidade().Generate(salvar);
 
-            var classe = new CSharpEntity().GerarBody(ddlTabelas.SelectedItem.ToString()).ToString();
-            salvar.AddExtension = true;
-            salvar.FileName = ddlTabelas.SelectedItem.ToString() + ".cs";
-            salvar.DefaultExt = "cs";
-
-            var funcao = salvar.ShowDialog();
-
-            if (funcao == DialogResult.OK)
-            {
-                var local = salvar.FileName;
-                File.WriteAllText(local, classe);
-            }
         }
 
 
 
-        private void btnProcSharp_Click(object sender, EventArgs e)
+        private void btnChamadaProc_Click(object sender, EventArgs e)
         {
-            if (String.IsNullOrEmpty(ddlTabelas.SelectedItem?.ToString()))
-            {
-                MessageBox.Show("Selecione uma tabela");
-                return;
-            }
+            SetParamters();
 
-            var instancia = new CSharpADO(ddlTabelas.SelectedItem.ToString());
-            var classe = instancia.GerarBodyCSharpProc().ToString();
-            salvar.AddExtension = true;
-            salvar.FileName = ddlTabelas.SelectedItem.ToString().Replace("MAG_T_PDL", "").Replace("_", "").ToLower() + "RequestRepository.cs";
-
-            if (salvar.ShowDialog() == DialogResult.OK)
-            {
-                var local = salvar.FileName;
-                File.WriteAllText(local, classe);
-            }
-
-            var interfacename = instancia.GerarInterfaceSharProc().ToString();
-            salvar.FileName = "I" + ddlTabelas.SelectedItem.ToString().Replace("MAG_T_PDL", "").Replace("_", "").ToLower() + "RequestRepository.cs";
-
-
-            if (salvar.ShowDialog() == DialogResult.OK)
-            {
-                var local = salvar.FileName;
-                File.WriteAllText(local, interfacename);
-            }
-
-
+            var mdChamdaProc = new MD_ChamadaProc().Generate(salvar);
 
         }
 
@@ -130,11 +95,25 @@ namespace MapeadorDeEntidades.Form
         }
         private void SetParamters()
         {
+            ParamtersInput.NomeTabelas.Clear();
             ParamtersInput.ConnectionString = txtConnectionString.Text;
             ParamtersInput.Linguagem = radioCsharp.Checked ? 1 : 2;
-            ParamtersInput.NomeTabela = ddlTabelas.SelectedItem?.ToString();
             ParamtersInput.SGBD = 1;
-        }
+            ParamtersInput.TodasTabelas = btnChkTabela.Enabled;
 
+            if (ParamtersInput.TodasTabelas)
+            {
+                foreach (var item in ddlTabelas.Items)
+                {
+                    ParamtersInput.NomeTabelas.Add(item.ToString());
+                }
+            }
+            else if (ddlTabelas.SelectedItem != null)
+            {
+                ParamtersInput.NomeTabelas.Add(ddlTabelas.SelectedItem.ToString());
+            }
+
+
+        }
     }
 }

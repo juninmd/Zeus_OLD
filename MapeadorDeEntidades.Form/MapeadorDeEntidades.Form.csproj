@@ -63,7 +63,9 @@
     </Compile>
     <Compile Include="Linguagens\CSharp\CSharpEntity.cs" />
     <Compile Include="Linguagens\CSharp\CSharpADO.cs" />
+    <Compile Include="Middleware\MD_ChamadaProc.cs" />
     <Compile Include="Middleware\MD_ConnectionString.cs" />
+    <Compile Include="Middleware\MD_MapeamentoEntidade.cs" />
     <Compile Include="Proc\ProcOracle.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
