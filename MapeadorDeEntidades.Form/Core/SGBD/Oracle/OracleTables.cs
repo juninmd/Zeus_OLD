@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
-using System.Runtime.InteropServices;
 
 namespace MapeadorDeEntidades.Form
 {
-    public class Query : ADORepository
+    public class OracleTables : OracleRepository
     {
         public List<string> ListaTabelas()
         {

@@ -8,22 +8,21 @@
 #pragma warning restore 1587
 
 using System;
-using System.Configuration;
 using System.Data;
 using System.Net;
 using System.Runtime.CompilerServices;
-using System.Text;
 using Oracle.DataAccess.Client;
+using MapeadorDeEntidades.Form.Core;
 
 namespace MapeadorDeEntidades.Form
 {
-    public abstract class ADORepository
+    public abstract class OracleRepository
     {
         /// <summary>
         /// Parametriza qual é o nome do parametro de Resposta
         /// </summary>
         public string P_RESULT { get; set; }
-
+       
         #region ••• Propriedades •••
 
         private readonly OracleCommand _command;
@@ -35,7 +34,7 @@ namespace MapeadorDeEntidades.Form
 
         #region ••• Construtor •••
 
-        protected ADORepository()
+        protected OracleRepository()
         {
             P_RESULT = "P_RESULT";
             _command = new OracleCommand();
@@ -67,7 +66,7 @@ namespace MapeadorDeEntidades.Form
             _command.Parameters.Clear();
 
         }
-     
+
 
         public OracleConnection Connection()
         {
@@ -119,7 +118,7 @@ namespace MapeadorDeEntidades.Form
         {
 
             if (_connection == null)
-                _connection = new OracleConnection(Credentials().ToString());
+                _connection = new OracleConnection(ParamtersInput.ConnectionString);
 
             if (_connection.State == ConnectionState.Broken && _connection.State == ConnectionState.Closed)
                 throw new Exception("Falha na conexão com o banco de dados:" + _connection.State + _connection.ConnectionString);
@@ -130,16 +129,7 @@ namespace MapeadorDeEntidades.Form
             _closeConnectionAfterExecution = closeAfterExecution && _transaction == null;
             _command.Connection = _connection;
         }
-        protected StringBuilder Credentials()
-        {
-            return new StringBuilder()
-                .Append("User Id=")
-                .Append(ConfigurationManager.AppSettings["USER"])
-                .Append(";Data Source=")
-                .Append(ConfigurationManager.AppSettings["DATABASE"])
-                .Append(";Password=")
-                .Append(ConfigurationManager.AppSettings["PASSWORD"]);
-        }
+       
 
         public void BeginTransaction()
         {
@@ -200,7 +190,7 @@ namespace MapeadorDeEntidades.Form
             }
             catch (Exception ex)
             {
-                throw new Exception("Falha na conexão com o banco de dados" + "\n" + _command.CommandText + "\n" +  ex.Message + "\n" + _connection.ConnectionString);
+                throw new Exception("Falha na conexão com o banco de dados" + "\n" + _command.CommandText + "\n" + ex.Message + "\n" + _connection.ConnectionString);
             }
         }
 
@@ -287,25 +277,5 @@ namespace MapeadorDeEntidades.Form
             }
         }
 
-        public static T GetValueOrDefault<T>(this string columnName, IDataRecord r, [CallerFilePath]string sourceFilePath = "")
-        {
-            try
-            {
-                return r[columnName] == DBNull.Value ? default(T) : (T)r[columnName];
-            }
-            catch (Exception ex) when (ex.Message == "Unable to find specified column in result set")
-            {
-                throw new Exception($"{ex.Message}\nNão foi possível encontrar o paramêtro: [{columnName}] da procedure\nClasse: {sourceFilePath}");
-            }
-            catch (Exception ex)
-            {
-                if (default(T) == null)
-                {
-                    throw new Exception($"{ex.Message}\nFalha ao converter parametro: [{columnName}] da procedure. onde deveria ser: {r[columnName].GetType().Name}\nClasse: {sourceFilePath}");
-
-                }
-                throw new Exception($"{ex.Message}\nFalha ao converter parametro: [{columnName }] da procedure, para o tipo: {default(T).GetType().Name} / Onde deveria ser: {r[columnName].GetType().Name}\nClasse: {sourceFilePath}");
-            }
-        }
     }
 }

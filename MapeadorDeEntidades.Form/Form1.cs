@@ -1,8 +1,9 @@
-﻿using System;
+﻿using MapeadorDeEntidades.Form.Core;
+using MapeadorDeEntidades.Form.Middleware;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace MapeadorDeEntidades.Form
@@ -14,23 +15,15 @@ namespace MapeadorDeEntidades.Form
         public Form1()
         {
             InitializeComponent();
-
-            var tabelas = InstanciaListaTabelas().OrderBy(x => x);
-            foreach (var item in tabelas)
-            {
-                ddlTabelas.Items.Add(item);
-            }
-
         }
 
-        private List<string> InstanciaListaTabelas() { return new Query().ListaTabelas(); }
-       
+
         /// <summary>
         /// Geração da Entidade
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnGerar_Click(object sender, EventArgs e)
+        private void btnEntidade_Click(object sender, EventArgs e)
         {
             if (String.IsNullOrEmpty(ddlTabelas.SelectedItem?.ToString()))
             {
@@ -38,7 +31,7 @@ namespace MapeadorDeEntidades.Form
                 return;
             }
 
-            var classe = new MapeadorEntidade().GerarBody(ddlTabelas.SelectedItem.ToString()).ToString();
+            var classe = new CSharpEntity().GerarBody(ddlTabelas.SelectedItem.ToString()).ToString();
             salvar.AddExtension = true;
             salvar.FileName = ddlTabelas.SelectedItem.ToString() + ".cs";
             salvar.DefaultExt = "cs";
@@ -52,7 +45,7 @@ namespace MapeadorDeEntidades.Form
             }
         }
 
-      
+
 
         private void btnProcSharp_Click(object sender, EventArgs e)
         {
@@ -62,10 +55,10 @@ namespace MapeadorDeEntidades.Form
                 return;
             }
 
-            var instancia = new MapeadorProcSharp(ddlTabelas.SelectedItem.ToString());
+            var instancia = new CSharpADO(ddlTabelas.SelectedItem.ToString());
             var classe = instancia.GerarBodyCSharpProc().ToString();
             salvar.AddExtension = true;
-            salvar.FileName = ddlTabelas.SelectedItem.ToString().Replace("MAG_T_PDL", "").Replace("_", "").ToLower()+"RequestRepository.cs";
+            salvar.FileName = ddlTabelas.SelectedItem.ToString().Replace("MAG_T_PDL", "").Replace("_", "").ToLower() + "RequestRepository.cs";
 
             if (salvar.ShowDialog() == DialogResult.OK)
             {
@@ -74,7 +67,7 @@ namespace MapeadorDeEntidades.Form
             }
 
             var interfacename = instancia.GerarInterfaceSharProc().ToString();
-            salvar.FileName = "I"+ddlTabelas.SelectedItem.ToString().Replace("MAG_T_PDL", "").Replace("_", "").ToLower() + "RequestRepository.cs";
+            salvar.FileName = "I" + ddlTabelas.SelectedItem.ToString().Replace("MAG_T_PDL", "").Replace("_", "").ToLower() + "RequestRepository.cs";
 
 
             if (salvar.ShowDialog() == DialogResult.OK)
@@ -94,7 +87,7 @@ namespace MapeadorDeEntidades.Form
                 MessageBox.Show("Selecione uma tabela");
                 return;
             }
-            var instancia = new MapeadorProcSQL(ddlTabelas.SelectedItem.ToString(), new Query().ListarAtributos(ddlTabelas.SelectedItem.ToString()));
+            var instancia = new ProcOracle(ddlTabelas.SelectedItem.ToString(), new OracleTables().ListarAtributos(ddlTabelas.SelectedItem.ToString()));
 
             var interfacename = instancia.GerarPackageHeader().ToString();
             salvar.FileName = "I" + ddlTabelas.SelectedItem.ToString().Replace("MAG_T_PDL", "").Replace("_", "").ToLower() + "Header.sql";
@@ -115,9 +108,33 @@ namespace MapeadorDeEntidades.Form
                 var local = salvar.FileName;
                 File.WriteAllText(local, body);
             }
+        }
 
-        
+        private void btnConnection_Click(object sender, EventArgs e)
+        {
+            SetParamters();
+            var md_connection = new MD_ConnectionString().Connect();
+            MessageBox.Show(md_connection.Message);
+
+            if (!md_connection.IsError)
+            {
+                ddlTabelas.Items.Clear();
+                ddlTabelas.Items.AddRange(md_connection.Content.ToArray());
+            }
 
         }
+
+        private void btnChkTabela_CheckedChanged(object sender, EventArgs e)
+        {
+            ddlTabelas.Enabled = (btnChkTabela.Checked == false);
+        }
+        private void SetParamters()
+        {
+            ParamtersInput.ConnectionString = txtConnectionString.Text;
+            ParamtersInput.Linguagem = radioCsharp.Checked ? 1 : 2;
+            ParamtersInput.NomeTabela = ddlTabelas.SelectedItem?.ToString();
+            ParamtersInput.SGBD = 1;
+        }
+
     }
 }
