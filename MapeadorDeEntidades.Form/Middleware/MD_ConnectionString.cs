@@ -24,7 +24,8 @@ namespace MapeadorDeEntidades.Form.Middleware
             {
                 return new RequestMessage<List<string>>
                 {
-                    Message = "Preencha o campo 'Connection String'"
+                    Message = "Preencha o campo 'Connection String'",
+                    StatusCode = System.Net.HttpStatusCode.InternalServerError
                 };
             };
 

@@ -77,7 +77,7 @@ namespace MapeadorDeEntidades.Form
         {
             var methodo = new StringBuilder();
             methodo.Append(N);
-            methodo.Append($"        public RequestMessage<{NomeTabela}> GetById(long idProcesso)" + N);
+            methodo.Append($"        public RequestMessage<{NomeTabela}> GetById(long ID)" + N);
             methodo.Append("        {" + N);
             methodo.Append($"            var result = new RequestMessage<{NomeTabela}>" + N);
             methodo.Append("            {" + N);
@@ -86,7 +86,7 @@ namespace MapeadorDeEntidades.Form
             methodo.Append("            };" + N);
             methodo.Append(N);
             methodo.Append("            BeginNewStatement(result.Procedure);" + N);
-            methodo.Append("            AddParameter(\"ID\", idProcesso);" + N);
+            methodo.Append("            AddParameter(\"ID\", ID);" + N);
             methodo.Append(N);
             methodo.Append("            OpenConnection();" + N);
             methodo.Append("            using (var reader = ExecuteReader())" + N);
@@ -101,7 +101,7 @@ namespace MapeadorDeEntidades.Form
             methodo.Append($"               }}" + N);
             methodo.Append("            }" + N);
             methodo.Append(N);
-            methodo.Append("            result.Message = $\"A solicitação {idProcesso} não foi encontrada.\";" + N);
+            methodo.Append("            result.Message = $\"O request de {ID} não foi encontrada.\";" + N);
             methodo.Append("            result.StatusCode = HttpStatusCode.NoContent;" + N);
             methodo.Append($"            result.Content = new {NomeTabela}();" + N);
             methodo.Append(N);
@@ -196,7 +196,7 @@ namespace MapeadorDeEntidades.Form
         private StringBuilder GetInterfacesMethod()
         {
             var assinatura = new StringBuilder();
-            assinatura.Append($"        RequestMessage<{NomeTabela}> GetById(long idProcesso);" + N + N);
+            assinatura.Append($"        RequestMessage<{NomeTabela}> GetById(long ID);" + N + N);
             assinatura.Append($"        RequestMessage<string> Add({NomeTabela} entidade, bool commit = false);" + N + N);
             assinatura.Append($"        RequestMessage<string> Update({NomeTabela} entidade, bool commit = false);" + N + N);
             return assinatura;
