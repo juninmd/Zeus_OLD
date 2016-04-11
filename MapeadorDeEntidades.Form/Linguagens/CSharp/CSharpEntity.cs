@@ -3,7 +3,7 @@ using System.Text;
 
 namespace MapeadorDeEntidades.Form
 {
-    public class MapeadorEntidade
+    public class CSharpEntity
     {
         public StringBuilder GerarBody(string nomeTabela)
         {
@@ -14,7 +14,7 @@ namespace MapeadorDeEntidades.Form
             classe.Append($"    public class {nomeTabela}" + Environment.NewLine);
             classe.Append("    {" + Environment.NewLine + Environment.NewLine);
 
-            var atributos = new Query().ListarAtributos(nomeTabela);
+            var atributos = new OracleTables().ListarAtributos(nomeTabela);
             foreach (var item in atributos)
             {
 

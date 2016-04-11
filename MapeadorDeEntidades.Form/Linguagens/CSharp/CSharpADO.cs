@@ -4,14 +4,14 @@ using System.Text;
 
 namespace MapeadorDeEntidades.Form
 {
-    public class MapeadorProcSharp
+    public class CSharpADO
     {
         public string NomeTabela { get; set; }
         public string NomeClasse { get; set; }
 
-        public List<EntidadeTabela> ListaAtributosTabela => new Query().ListarAtributos(NomeTabela);
+        public List<EntidadeTabela> ListaAtributosTabela => new OracleTables().ListarAtributos(NomeTabela);
 
-        public MapeadorProcSharp(string nomeTabela)
+        public CSharpADO(string nomeTabela)
         {
             NomeTabela = nomeTabela;
         }

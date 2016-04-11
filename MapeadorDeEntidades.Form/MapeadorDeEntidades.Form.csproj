@@ -51,7 +51,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ADORepository.cs" />
+    <Compile Include="Core\SGBD\Oracle\OraclePing.cs" />
+    <Compile Include="Core\SGBD\Oracle\OracleRepository.cs" />
+    <Compile Include="Core\ParamtersInput.cs" />
     <Compile Include="EntidadeTabela.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -59,14 +61,15 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="MapeadorEntidade.cs" />
-    <Compile Include="MapeadorProcSharp.cs" />
-    <Compile Include="MapeadorProcSQL.cs" />
+    <Compile Include="Linguagens\CSharp\CSharpEntity.cs" />
+    <Compile Include="Linguagens\CSharp\CSharpADO.cs" />
+    <Compile Include="Middleware\MD_ConnectionString.cs" />
+    <Compile Include="Proc\ProcOracle.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Query.cs" />
-    <Compile Include="RequestMessage.cs" />
-    <Compile Include="Util.cs" />
+    <Compile Include="Core\SGBD\Oracle\OracleTables.cs" />
+    <Compile Include="Core\RequestMessage.cs" />
+    <Compile Include="Core\SGBD\Oracle\OracleAtributtes.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -91,6 +94,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Linguagens\Java\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

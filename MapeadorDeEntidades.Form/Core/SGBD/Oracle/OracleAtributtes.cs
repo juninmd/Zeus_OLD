@@ -1,6 +1,6 @@
 ﻿namespace MapeadorDeEntidades.Form
 {
-    public static class Util
+    public static class OracleAtributtes
     {
         public static string IsNullabe(string aceitaNull)
         {
