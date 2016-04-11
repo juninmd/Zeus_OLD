@@ -1,11 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using MapeadorDeEntidades.Form.Linguagens;
+using System;
 using System.Text;
 
 namespace MapeadorDeEntidades.Form
 {
-    public class CSharpADO
+    public class CSharpADO : BaseDAO
     {
+        public CSharpADO(string nomeTabela) : base(nomeTabela)
+        {
+        }
+
         public string IsNullabe(string aceitaNull)
         {
             return aceitaNull == "Y" ? "?" : "";
@@ -22,15 +26,7 @@ namespace MapeadorDeEntidades.Form
                     return "string";
             }
         }
-
-        public string NomeTabela { get; set; }
-
-        public List<EntidadeTabela> ListaAtributosTabela => new OracleTables().ListarAtributos(NomeTabela);
-
-        public CSharpADO(string nomeTabela)
-        {
-            NomeTabela = nomeTabela;
-        }
+    
 
         #region CLASSE 
 
@@ -39,22 +35,22 @@ namespace MapeadorDeEntidades.Form
             var nomeProcBase = NomeTabela.Replace("MAG_T_PDL", "").Replace("_", "");
 
             var classe = new StringBuilder();
-            classe.Append("using System.Net;" + Environment.NewLine);
-            classe.Append("using PagamentoDespesasLojas.Domain.Helpers;" + Environment.NewLine);
-            classe.Append("using PagamentoDespesasLojas.Infra.Data;" + Environment.NewLine);
-            classe.Append("using System;" + Environment.NewLine + Environment.NewLine);
-            classe.Append("namespace MapeadorDeEntidades.Form" + Environment.NewLine);
-            classe.Append("{" + Environment.NewLine);
-            classe.Append($"    public class {nomeProcBase.ToLowerInvariant()}RequestRepository : ADORepository" + Environment.NewLine);
-            classe.Append("    {" + Environment.NewLine + Environment.NewLine);
-            classe.Append($"        private const string PackageName = \"{NomeTabela.Replace("_T_", "_PG_")}\";" + Environment.NewLine + Environment.NewLine);
+            classe.Append("using System.Net;" + N);
+            classe.Append("using PagamentoDespesasLojas.Domain.Helpers;" + N);
+            classe.Append("using PagamentoDespesasLojas.Infra.Data;" + N);
+            classe.Append("using System;" + N + N);
+            classe.Append("namespace MapeadorDeEntidades.Form" + N);
+            classe.Append("{" + N);
+            classe.Append($"    public class {nomeProcBase.ToLowerInvariant()}RequestRepository : ADORepository" + N);
+            classe.Append("    {" + N + N);
+            classe.Append($"        private const string PackageName = \"{NomeTabela.Replace("_T_", "_PG_")}\";" + N + N);
             classe.Append(Procedures(nomeProcBase));
             classe.Append(GetById(nomeProcBase));
             classe.Append(Add(nomeProcBase));
             classe.Append(Update(nomeProcBase));
 
-            classe.Append("    }" + Environment.NewLine);
-            classe.Append("}" + Environment.NewLine);
+            classe.Append("    }" + N);
+            classe.Append("}" + N);
 
             return classe;
         }
@@ -64,13 +60,13 @@ namespace MapeadorDeEntidades.Form
         private StringBuilder Procedures(string nomeProcBase)
         {
             var proc = new StringBuilder();
-            proc.Append(Environment.NewLine);
-            proc.Append("        private enum Procedures" + Environment.NewLine);
-            proc.Append("        {" + Environment.NewLine);
-            proc.Append($"            MAG_SP_PDL_S_{nomeProcBase}," + Environment.NewLine);
-            proc.Append($"            MAG_SP_PDL_I_{nomeProcBase}," + Environment.NewLine);
-            proc.Append($"            MAG_SP_PDL_U_{nomeProcBase}" + Environment.NewLine);
-            proc.Append("        }" + Environment.NewLine + Environment.NewLine);
+            proc.Append(N);
+            proc.Append("        private enum Procedures" + N);
+            proc.Append("        {" + N);
+            proc.Append($"            MAG_SP_PDL_S_{nomeProcBase}," + N);
+            proc.Append($"            MAG_SP_PDL_I_{nomeProcBase}," + N);
+            proc.Append($"            MAG_SP_PDL_U_{nomeProcBase}" + N);
+            proc.Append("        }" + N + N);
             return proc;
         }
 
@@ -80,38 +76,38 @@ namespace MapeadorDeEntidades.Form
         private StringBuilder GetById(string nomeProcedure)
         {
             var methodo = new StringBuilder();
-            methodo.Append(Environment.NewLine);
-            methodo.Append($"        public RequestMessage<{NomeTabela}> GetById(long idProcesso)" + Environment.NewLine);
-            methodo.Append("        {" + Environment.NewLine);
-            methodo.Append($"            var result = new RequestMessage<{NomeTabela}>" + Environment.NewLine);
-            methodo.Append("            {" + Environment.NewLine);
-            methodo.Append($"                Procedure = $\"{{PackageName}}.{{Procedures.MAG_SP_PDL_S_{nomeProcedure}}}\"," + Environment.NewLine);
-            methodo.Append($"                MethodApi = GetClass.GetMethod()" + Environment.NewLine);
-            methodo.Append("            };" + Environment.NewLine);
-            methodo.Append(Environment.NewLine);
-            methodo.Append("            BeginNewStatement(result.Procedure);" + Environment.NewLine);
-            methodo.Append("            AddParameter(\"INTIDPROCESSO\", idProcesso);" + Environment.NewLine);
-            methodo.Append(Environment.NewLine);
-            methodo.Append("            OpenConnection();" + Environment.NewLine);
-            methodo.Append("            using (var reader = ExecuteReader())" + Environment.NewLine);
-            methodo.Append("            {" + Environment.NewLine);
-            methodo.Append("                if (reader.Read())" + Environment.NewLine);
-            methodo.Append($"               {{" + Environment.NewLine);
-            methodo.Append($"                    result.Content = new {NomeTabela}" + Environment.NewLine);
-            methodo.Append("                    {" + Environment.NewLine);
+            methodo.Append(N);
+            methodo.Append($"        public RequestMessage<{NomeTabela}> GetById(long idProcesso)" + N);
+            methodo.Append("        {" + N);
+            methodo.Append($"            var result = new RequestMessage<{NomeTabela}>" + N);
+            methodo.Append("            {" + N);
+            methodo.Append($"                Procedure = $\"{{PackageName}}.{{Procedures.MAG_SP_PDL_S_{nomeProcedure}}}\"," + N);
+            methodo.Append($"                MethodApi = GetClass.GetMethod()" + N);
+            methodo.Append("            };" + N);
+            methodo.Append(N);
+            methodo.Append("            BeginNewStatement(result.Procedure);" + N);
+            methodo.Append("            AddParameter(\"ID\", idProcesso);" + N);
+            methodo.Append(N);
+            methodo.Append("            OpenConnection();" + N);
+            methodo.Append("            using (var reader = ExecuteReader())" + N);
+            methodo.Append("            {" + N);
+            methodo.Append("                if (reader.Read())" + N);
+            methodo.Append($"               {{" + N);
+            methodo.Append($"                    result.Content = new {NomeTabela}" + N);
+            methodo.Append("                    {" + N);
             methodo.Append(GetListaItensGetById());
-            methodo.Append("                    };" + Environment.NewLine);
-            methodo.Append("                return result;" + Environment.NewLine);
-            methodo.Append($"               }}" + Environment.NewLine);
-            methodo.Append("            }" + Environment.NewLine);
-            methodo.Append(Environment.NewLine);
-            methodo.Append("            result.Message = $\"A solicitação {idProcesso} não foi encontrada.\";" + Environment.NewLine);
-            methodo.Append("            result.StatusCode = HttpStatusCode.NoContent;" + Environment.NewLine);
-            methodo.Append($"            result.Content = new {NomeTabela}();" + Environment.NewLine);
-            methodo.Append(Environment.NewLine);
-            methodo.Append("            return result;" + Environment.NewLine);
-            methodo.Append("       }" + Environment.NewLine);
-            methodo.Append(Environment.NewLine);
+            methodo.Append("                    };" + N);
+            methodo.Append("                return result;" + N);
+            methodo.Append($"               }}" + N);
+            methodo.Append("            }" + N);
+            methodo.Append(N);
+            methodo.Append("            result.Message = $\"A solicitação {idProcesso} não foi encontrada.\";" + N);
+            methodo.Append("            result.StatusCode = HttpStatusCode.NoContent;" + N);
+            methodo.Append($"            result.Content = new {NomeTabela}();" + N);
+            methodo.Append(N);
+            methodo.Append("            return result;" + N);
+            methodo.Append("       }" + N);
+            methodo.Append(N);
             return methodo;
         }
 
@@ -120,7 +116,7 @@ namespace MapeadorDeEntidades.Form
             var atributoText = new StringBuilder();
             foreach (var item in ListaAtributosTabela)
             {
-                atributoText.Append($"                        {item.COLUMN_NAME} = \"{item.COLUMN_NAME}\".GetValueOrDefault<{GetTypeAtribute(item.DATA_TYPE, item.NULLABLE)}>(reader)," + Environment.NewLine);
+                atributoText.Append($"                        {item.COLUMN_NAME} = \"{item.COLUMN_NAME}\".GetValueOrDefault<{GetTypeAtribute(item.DATA_TYPE, item.NULLABLE)}>(reader)," + N);
             }
             return atributoText;
         }
@@ -130,18 +126,18 @@ namespace MapeadorDeEntidades.Form
         private StringBuilder Add(string nomeProcedure)
         {
             var methodo = new StringBuilder();
-            methodo.Append(Environment.NewLine);
-            methodo.Append($"        public RequestMessage<string> Add({NomeTabela} entidade, bool commit = false)" + Environment.NewLine);
-            methodo.Append("        {" + Environment.NewLine + Environment.NewLine);
+            methodo.Append(N);
+            methodo.Append($"        public RequestMessage<string> Add({NomeTabela} entidade, bool commit = false)" + N);
+            methodo.Append("        {" + N + N);
 
-            methodo.Append($"            BeginNewStatement(PackageName, Procedures.MAG_SP_PDL_I_{nomeProcedure});" + Environment.NewLine);
+            methodo.Append($"            BeginNewStatement(PackageName, Procedures.MAG_SP_PDL_I_{nomeProcedure});" + N);
 
-            methodo.Append(Environment.NewLine);
-            methodo.Append("            AddResult();" + Environment.NewLine);
+            methodo.Append(N);
+            methodo.Append("            AddResult();" + N);
             methodo.Append(GetListaItensAdd());
-            methodo.Append(Environment.NewLine + "            return RequestProc(GetClass.GetMethod(), commit);" + Environment.NewLine);
-            methodo.Append("        }" + Environment.NewLine);
-            methodo.Append(Environment.NewLine);
+            methodo.Append(N + "            return RequestProc(GetClass.GetMethod(), commit);" + N);
+            methodo.Append("        }" + N);
+            methodo.Append(N);
             return methodo;
         }
 
@@ -150,7 +146,7 @@ namespace MapeadorDeEntidades.Form
             var atributoText = new StringBuilder();
             foreach (var item in ListaAtributosTabela)
             {
-                atributoText.Append($"            AddParameter(\"{item.COLUMN_NAME}\", entidade.{item.COLUMN_NAME});" + Environment.NewLine);
+                atributoText.Append($"            AddParameter(\"{item.COLUMN_NAME}\", entidade.{item.COLUMN_NAME});" + N);
             }
             return atributoText;
         }
@@ -161,18 +157,18 @@ namespace MapeadorDeEntidades.Form
         private StringBuilder Update(string nomeProcedure)
         {
             var methodo = new StringBuilder();
-            methodo.Append(Environment.NewLine);
-            methodo.Append($"        public RequestMessage<string> Update({NomeTabela} entidade, bool commit = false)" + Environment.NewLine);
-            methodo.Append("        {" + Environment.NewLine + Environment.NewLine);
+            methodo.Append(N);
+            methodo.Append($"        public RequestMessage<string> Update({NomeTabela} entidade, bool commit = false)" + N);
+            methodo.Append("        {" + N + N);
 
-            methodo.Append($"            BeginNewStatement(PackageName, Procedures.MAG_SP_PDL_U_{nomeProcedure});" + Environment.NewLine);
+            methodo.Append($"            BeginNewStatement(PackageName, Procedures.MAG_SP_PDL_U_{nomeProcedure});" + N);
 
-            methodo.Append(Environment.NewLine);
-            methodo.Append("            AddResult();" + Environment.NewLine);
+            methodo.Append(N);
+            methodo.Append("            AddResult();" + N);
             methodo.Append(GetListaItensAdd());
-            methodo.Append(Environment.NewLine + "            return RequestProc(GetClass.GetMethod(), commit);" + Environment.NewLine);
-            methodo.Append("        }" + Environment.NewLine);
-            methodo.Append(Environment.NewLine);
+            methodo.Append(N + "            return RequestProc(GetClass.GetMethod(), commit);" + N);
+            methodo.Append("        }" + N);
+            methodo.Append(N);
             return methodo;
         }
 
@@ -185,14 +181,14 @@ namespace MapeadorDeEntidades.Form
             var nomeProcBase = NomeTabela.Replace("MAG_T_PDL", "").Replace("_", "");
 
             var classe = new StringBuilder();
-            classe.Append("using System;" + Environment.NewLine + Environment.NewLine);
-            classe.Append("namespace MapeadorDeEntidades.Form" + Environment.NewLine);
-            classe.Append("{" + Environment.NewLine);
-            classe.Append($"    public interface {nomeProcBase.ToLowerInvariant()}RequestRepository : IADORepository" + Environment.NewLine);
-            classe.Append("    {" + Environment.NewLine + Environment.NewLine);
+            classe.Append("using System;" + N + N);
+            classe.Append("namespace MapeadorDeEntidades.Form" + N);
+            classe.Append("{" + N);
+            classe.Append($"    public interface {nomeProcBase.ToLowerInvariant()}RequestRepository : IADORepository" + N);
+            classe.Append("    {" + N + N);
             classe.Append(GetInterfacesMethod());
-            classe.Append("    }" + Environment.NewLine);
-            classe.Append("}" + Environment.NewLine);
+            classe.Append("    }" + N);
+            classe.Append("}" + N);
 
             return classe;
         }
@@ -200,9 +196,9 @@ namespace MapeadorDeEntidades.Form
         private StringBuilder GetInterfacesMethod()
         {
             var assinatura = new StringBuilder();
-            assinatura.Append($"        RequestMessage<{NomeTabela}> GetById(long idProcesso);" + Environment.NewLine + Environment.NewLine);
-            assinatura.Append($"        RequestMessage<string> Add({NomeTabela} entidade, bool commit = false);" + Environment.NewLine + Environment.NewLine);
-            assinatura.Append($"        RequestMessage<string> Update({NomeTabela} entidade, bool commit = false);" + Environment.NewLine + Environment.NewLine);
+            assinatura.Append($"        RequestMessage<{NomeTabela}> GetById(long idProcesso);" + N + N);
+            assinatura.Append($"        RequestMessage<string> Add({NomeTabela} entidade, bool commit = false);" + N + N);
+            assinatura.Append($"        RequestMessage<string> Update({NomeTabela} entidade, bool commit = false);" + N + N);
             return assinatura;
         }
     }

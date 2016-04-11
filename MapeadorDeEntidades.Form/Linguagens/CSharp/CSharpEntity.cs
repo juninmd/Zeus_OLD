@@ -1,14 +1,11 @@
-﻿using System;
+﻿using MapeadorDeEntidades.Form.Linguagens;
+using System;
 using System.Text;
 
 namespace MapeadorDeEntidades.Form
 {
-    public class CSharpEntity
+    public class CSharpEntity : BaseEntity
     {
-        public string IsNullabe(string aceitaNull)
-        {
-            return aceitaNull == "Y" ? "?" : "";
-        }
         public string GetTypeAtribute(string tipoAttr, string aceitaNull)
         {
             switch (tipoAttr)
@@ -25,7 +22,7 @@ namespace MapeadorDeEntidades.Form
         {
             var classe = new StringBuilder();
             classe.Append("using System;" + Environment.NewLine + Environment.NewLine);
-            classe.Append("namespace MapeadorDeEntidades.Form" + Environment.NewLine);
+            classe.Append("namespace Model" + Environment.NewLine);
             classe.Append("{" + Environment.NewLine);
             classe.Append($"    public class {nomeTabela}" + Environment.NewLine);
             classe.Append("    {" + Environment.NewLine + Environment.NewLine);
@@ -47,7 +44,5 @@ namespace MapeadorDeEntidades.Form
 
             return classe;
         }
-
-
     }
 }

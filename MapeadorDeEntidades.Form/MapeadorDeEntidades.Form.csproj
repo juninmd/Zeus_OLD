@@ -61,8 +61,11 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Linguagens\BaseDAO.cs" />
+    <Compile Include="Linguagens\BaseEntity.cs" />
     <Compile Include="Linguagens\CSharp\CSharpEntity.cs" />
     <Compile Include="Linguagens\CSharp\CSharpADO.cs" />
+    <Compile Include="Linguagens\Java\JavaADO.cs" />
     <Compile Include="Linguagens\Java\JavaEntity.cs" />
     <Compile Include="Middleware\MD_ChamadaProc.cs" />
     <Compile Include="Middleware\MD_ConnectionString.cs" />

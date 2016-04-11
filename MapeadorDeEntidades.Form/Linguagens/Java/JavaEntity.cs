@@ -1,20 +1,16 @@
-﻿using System;
+﻿using MapeadorDeEntidades.Form.Linguagens;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace MapeadorDeEntidades.Form
 {
-    public class JavaEntity
+    public class JavaEntity : BaseEntity
     {
         /// <summary>
         /// Nova Linha
         /// </summary>
-        private string N => Environment.NewLine;
-
-        public bool IsNullabe(string aceitaNull)
-        {
-            return aceitaNull == "Y";
-        }
+   
         public string GetTypeAtribute(EntidadeTabela prop)
         {
             switch (prop.DATA_TYPE)
