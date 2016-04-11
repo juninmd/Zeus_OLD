@@ -12,5 +12,15 @@
 
         public string COMMENTS { get; set; }
 
+        /// <summary>
+        /// Para descobrir a precisão do campo. EX: NUMBER(9,*);
+        /// </summary>
+        public decimal? DATA_PRECISION { get; set; }
+
+        /// <summary>
+        ///  Para descobrir a precisão do campo. EX: NUMBER(*,2);
+        /// </summary>
+        public decimal? DATA_SCALE { get; set; }
+
     }
 }
