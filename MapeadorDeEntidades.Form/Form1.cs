@@ -16,7 +16,7 @@ namespace MapeadorDeEntidades.Form
             InitializeComponent();
             ParamtersInput.NomeTabelas = new List<string>();
         }
-      
+
         /// <summary>
         /// Geração da Entidade
         /// </summary>
@@ -24,18 +24,21 @@ namespace MapeadorDeEntidades.Form
         /// <param name="e"></param>
         private void btnEntidade_Click(object sender, EventArgs e)
         {
+            SetParamters();
             var mdMapeamento = new MD_MapeamentoEntidade().Generate(salvar);
             MessageBox.Show(mdMapeamento.Message);
         }
 
         private void btnChamadaProc_Click(object sender, EventArgs e)
         {
+            SetParamters();
             var mdChamdaProc = new MD_ChamadaProc().Generate(salvar);
             MessageBox.Show(mdChamdaProc.Message);
         }
 
         private void btnProcSql_Click(object sender, EventArgs e)
         {
+            SetParamters();
             var mdProc = new MD_Procedure().Generate(salvar);
             MessageBox.Show(mdProc.Message);
         }
@@ -51,7 +54,6 @@ namespace MapeadorDeEntidades.Form
                 ddlTabelas.Items.Clear();
                 ddlTabelas.Items.AddRange(md_connection.Content.ToArray());
             }
-
         }
 
         private void btnChkTabela_CheckedChanged(object sender, EventArgs e)
@@ -102,6 +104,6 @@ namespace MapeadorDeEntidades.Form
             }
         }
 
-      
+
     }
 }

@@ -25,15 +25,15 @@ namespace MapeadorDeEntidades.Form.Middleware
 
                 foreach (var nomeTabela in ParamtersInput.NomeTabelas)
                 {
-                    var local = salvar.SelectedPath + "I" + "\\";
+                    var local = salvar.SelectedPath + "\\";
 
                     var instancia = new ProcOracle(nomeTabela, new OracleTables().ListarAtributos(nomeTabela));
 
                     var header = instancia.GerarPackageHeader().ToString();
-                    File.WriteAllText(local + $"{nomeTabela}Header.sql", header);
+                    File.WriteAllText(local + $"{nomeTabela}_HEADER.sql", header);
 
                     var body = instancia.GerarPackageBody().ToString();
-                    File.WriteAllText(local + $"{nomeTabela}Body.sql", body);
+                    File.WriteAllText(local + $"{nomeTabela}_BODY.sql", body);
                 }
 
                 return new RequestMessage<string>()
