@@ -1,14 +1,17 @@
 ﻿using MapeadorDeEntidades.Form.Core;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace MapeadorDeEntidades.Form.Middleware
 {
-    public class MD_MapeamentoEntidade
+    public class MD_Procedure
     {
-        private RequestMessage<string> CSharp(FolderBrowserDialog salvar)
+        private RequestMessage<string> Oracle(FolderBrowserDialog salvar)
         {
             try
             {
@@ -22,11 +25,17 @@ namespace MapeadorDeEntidades.Form.Middleware
 
                 foreach (var nomeTabela in ParamtersInput.NomeTabelas)
                 {
-                    var classe = new CSharpEntity().GerarBody(nomeTabela).ToString();
+                    var local = salvar.SelectedPath + "I" + "\\";
 
-                    var local = salvar.SelectedPath + "\\" + nomeTabela + ".cs"; ;
-                    File.WriteAllText(local, classe);
+                    var instancia = new ProcOracle(nomeTabela, new OracleTables().ListarAtributos(nomeTabela));
+
+                    var header = instancia.GerarPackageHeader().ToString();
+                    File.WriteAllText(local + $"{nomeTabela}Header.sql", header);
+
+                    var body = instancia.GerarPackageBody().ToString();
+                    File.WriteAllText(local + $"{nomeTabela}Body.sql", body);
                 }
+
                 return new RequestMessage<string>()
                 {
                     Message = "Processamento concluído com sucesso!",
@@ -55,21 +64,19 @@ namespace MapeadorDeEntidades.Form.Middleware
                 };
             }
 
-            switch (ParamtersInput.Linguagem)
+            switch (ParamtersInput.SGBD)
             {
                 case 1:
                     {
-                        return CSharp(salvar);
+                        return Oracle(salvar);
                     }
             }
 
-
-
             return new RequestMessage<string>()
             {
-                Message = "Selecione uma tabela"
+                Message = "Selecione uma tabela",
+                StatusCode = System.Net.HttpStatusCode.InternalServerError
             };
-
         }
     }
 }

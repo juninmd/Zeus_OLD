@@ -3,22 +3,20 @@ using MapeadorDeEntidades.Form.Middleware;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace MapeadorDeEntidades.Form
 {
     public partial class Form1 : System.Windows.Forms.Form
     {
-        public SaveFileDialog Salvar { get { return salvar; } set { salvar = value; } }
+        public FolderBrowserDialog Salvar { get { return salvar; } set { salvar = value; } }
 
         public Form1()
         {
             InitializeComponent();
             ParamtersInput.NomeTabelas = new List<string>();
         }
-
-
+      
         /// <summary>
         /// Geração da Entidade
         /// </summary>
@@ -26,53 +24,20 @@ namespace MapeadorDeEntidades.Form
         /// <param name="e"></param>
         private void btnEntidade_Click(object sender, EventArgs e)
         {
-            if (String.IsNullOrEmpty(ddlTabelas.SelectedItem?.ToString()))
-            {
-                MessageBox.Show("Selecione uma tabela");
-                return;
-            }
-            var md_mapeamento = new MD_MapeamentoEntidade().Generate(salvar);
-
+            var mdMapeamento = new MD_MapeamentoEntidade().Generate(salvar);
+            MessageBox.Show(mdMapeamento.Message);
         }
-
-
 
         private void btnChamadaProc_Click(object sender, EventArgs e)
         {
-            SetParamters();
-
             var mdChamdaProc = new MD_ChamadaProc().Generate(salvar);
-
+            MessageBox.Show(mdChamdaProc.Message);
         }
 
         private void btnProcSql_Click(object sender, EventArgs e)
         {
-            if (String.IsNullOrEmpty(ddlTabelas.SelectedItem?.ToString()))
-            {
-                MessageBox.Show("Selecione uma tabela");
-                return;
-            }
-            var instancia = new ProcOracle(ddlTabelas.SelectedItem.ToString(), new OracleTables().ListarAtributos(ddlTabelas.SelectedItem.ToString()));
-
-            var interfacename = instancia.GerarPackageHeader().ToString();
-            salvar.FileName = "I" + ddlTabelas.SelectedItem.ToString().Replace("MAG_T_PDL", "").Replace("_", "").ToLower() + "Header.sql";
-
-
-            if (salvar.ShowDialog() == DialogResult.OK)
-            {
-                var local = salvar.FileName;
-                File.WriteAllText(local, interfacename);
-            }
-
-            var body = instancia.GerarPackageBody().ToString();
-            salvar.AddExtension = true;
-            salvar.FileName = ddlTabelas.SelectedItem.ToString().Replace("MAG_T_PDL", "").Replace("_", "").ToLower() + "Body.sql";
-
-            if (salvar.ShowDialog() == DialogResult.OK)
-            {
-                var local = salvar.FileName;
-                File.WriteAllText(local, body);
-            }
+            var mdProc = new MD_Procedure().Generate(salvar);
+            MessageBox.Show(mdProc.Message);
         }
 
         private void btnConnection_Click(object sender, EventArgs e)
@@ -92,14 +57,37 @@ namespace MapeadorDeEntidades.Form
         private void btnChkTabela_CheckedChanged(object sender, EventArgs e)
         {
             ddlTabelas.Enabled = (btnChkTabela.Checked == false);
+            SetParamters();
+
         }
+
+        private void ddlTabelas_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SetParamters();
+        }
+
+        private void radioSGBD_CheckedChanged(object sender, EventArgs e)
+        {
+            SetParamters();
+        }
+
+        private void radioCsharp_CheckedChanged(object sender, EventArgs e)
+        {
+            SetParamters();
+        }
+
+        private void radioJava_CheckedChanged(object sender, EventArgs e)
+        {
+            SetParamters();
+        }
+
         private void SetParamters()
         {
             ParamtersInput.NomeTabelas.Clear();
             ParamtersInput.ConnectionString = txtConnectionString.Text;
             ParamtersInput.Linguagem = radioCsharp.Checked ? 1 : 2;
             ParamtersInput.SGBD = 1;
-            ParamtersInput.TodasTabelas = btnChkTabela.Enabled;
+            ParamtersInput.TodasTabelas = btnChkTabela.Checked;
 
             if (ParamtersInput.TodasTabelas)
             {
@@ -112,8 +100,8 @@ namespace MapeadorDeEntidades.Form
             {
                 ParamtersInput.NomeTabelas.Add(ddlTabelas.SelectedItem.ToString());
             }
-
-
         }
+
+      
     }
 }

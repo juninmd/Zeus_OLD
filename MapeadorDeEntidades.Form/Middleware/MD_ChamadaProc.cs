@@ -1,4 +1,5 @@
 ﻿using MapeadorDeEntidades.Form.Core;
+using System;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
@@ -8,34 +9,50 @@ namespace MapeadorDeEntidades.Form.Middleware
     public class MD_ChamadaProc
     {
 
-        private void CSharp(SaveFileDialog salvar)
+        private RequestMessage<string> CSharp(FolderBrowserDialog salvar)
         {
-            foreach (var nomeTabela in ParamtersInput.NomeTabelas)
+            try
             {
-                var instancia = new CSharpADO(nomeTabela);
-                var classe = instancia.GerarBodyCSharpProc().ToString();
-                salvar.AddExtension = true;
-                salvar.FileName = nomeTabela.ToLower() + "Repository.cs";
+                var funcao = salvar.ShowDialog();
+                if (funcao != DialogResult.OK)
+                    return new RequestMessage<string>()
+                    {
+                        Message = "Processamento cancelado!",
+                        StatusCode = System.Net.HttpStatusCode.BadRequest
+                    };
 
-                if (salvar.ShowDialog() == DialogResult.OK)
+                foreach (var nomeTabela in ParamtersInput.NomeTabelas)
                 {
-                    var local = salvar.FileName;
-                    File.WriteAllText(local, classe);
+                    var local = salvar.SelectedPath + "\\";
+
+                    var instancia = new CSharpADO(nomeTabela);
+
+                    var classe = instancia.GerarBodyCSharpProc().ToString();
+                    File.WriteAllText(local + nomeTabela.ToLower() + "Repository.cs", classe);
+
+
+                    var interfacename = instancia.GerarInterfaceSharProc().ToString();
+                    File.WriteAllText(local + "I" + nomeTabela.ToLower() + "Repository.cs", interfacename);
                 }
 
-                var interfacename = instancia.GerarInterfaceSharProc().ToString();
-                salvar.FileName = "I" + nomeTabela.ToLower() + "Repository.cs";
-
-
-                if (salvar.ShowDialog() == DialogResult.OK)
+                return new RequestMessage<string>()
                 {
-                    var local = salvar.FileName;
-                    File.WriteAllText(local, interfacename);
-                }
+                    Message = "Processamento concluído com sucesso!",
+                    StatusCode = System.Net.HttpStatusCode.OK
+                };
+            }
+            catch (Exception ex)
+            {
+                return new RequestMessage<string>()
+                {
+                    Message = "Falha no sistema!",
+                    TechnicalMessage = ex.Message,
+                    StatusCode = System.Net.HttpStatusCode.InternalServerError
+                };
             }
         }
 
-        public RequestMessage<string> Generate(SaveFileDialog salvar)
+        public RequestMessage<string> Generate(FolderBrowserDialog salvar)
         {
             if (!ParamtersInput.NomeTabelas.Any())
             {
@@ -46,12 +63,19 @@ namespace MapeadorDeEntidades.Form.Middleware
                 };
             }
 
-            CSharp(salvar);
+            switch (ParamtersInput.Linguagem)
+            {
+                case 1:
+                    {
+                        return CSharp(salvar);
+                    }
+            }
+
             return new RequestMessage<string>()
             {
-                Message = "Selecione uma tabela"
+                Message = "Selecione uma tabela",
+                StatusCode = System.Net.HttpStatusCode.InternalServerError
             };
-
         }
     }
 }

@@ -31,7 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.ddlTabelas = new System.Windows.Forms.ComboBox();
             this.btnEntidade = new System.Windows.Forms.Button();
-            this.salvar = new System.Windows.Forms.SaveFileDialog();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnChamadaProc = new System.Windows.Forms.Button();
             this.btnProc = new System.Windows.Forms.Button();
@@ -42,10 +41,11 @@
             this.radioSGBD = new System.Windows.Forms.RadioButton();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.btnChkTabela = new System.Windows.Forms.CheckBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.btnConnection = new System.Windows.Forms.Button();
             this.txtConnectionString = new System.Windows.Forms.TextBox();
-            this.btnChkTabela = new System.Windows.Forms.CheckBox();
+            this.salvar = new System.Windows.Forms.FolderBrowserDialog();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -61,6 +61,7 @@
             this.ddlTabelas.Name = "ddlTabelas";
             this.ddlTabelas.Size = new System.Drawing.Size(389, 21);
             this.ddlTabelas.TabIndex = 0;
+            this.ddlTabelas.SelectedIndexChanged += new System.EventHandler(this.ddlTabelas_SelectedIndexChanged);
             // 
             // btnEntidade
             // 
@@ -111,6 +112,7 @@
             this.radioCsharp.TabStop = true;
             this.radioCsharp.Text = "C #";
             this.radioCsharp.UseVisualStyleBackColor = true;
+            this.radioCsharp.CheckedChanged += new System.EventHandler(this.radioCsharp_CheckedChanged);
             // 
             // radioJava
             // 
@@ -122,6 +124,7 @@
             this.radioJava.TabStop = true;
             this.radioJava.Text = "Java";
             this.radioJava.UseVisualStyleBackColor = true;
+            this.radioJava.CheckedChanged += new System.EventHandler(this.radioJava_CheckedChanged);
             // 
             // groupBox1
             // 
@@ -154,6 +157,7 @@
             this.radioSGBD.TabStop = true;
             this.radioSGBD.Text = "Oracle";
             this.radioSGBD.UseVisualStyleBackColor = true;
+            this.radioSGBD.CheckedChanged += new System.EventHandler(this.radioSGBD_CheckedChanged);
             // 
             // groupBox3
             // 
@@ -177,6 +181,17 @@
             this.groupBox4.TabIndex = 12;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Tabela";
+            // 
+            // btnChkTabela
+            // 
+            this.btnChkTabela.AutoSize = true;
+            this.btnChkTabela.Location = new System.Drawing.Point(359, 83);
+            this.btnChkTabela.Name = "btnChkTabela";
+            this.btnChkTabela.Size = new System.Drawing.Size(56, 17);
+            this.btnChkTabela.TabIndex = 1;
+            this.btnChkTabela.Text = "Todas";
+            this.btnChkTabela.UseVisualStyleBackColor = true;
+            this.btnChkTabela.CheckedChanged += new System.EventHandler(this.btnChkTabela_CheckedChanged);
             // 
             // groupBox5
             // 
@@ -205,17 +220,6 @@
             this.txtConnectionString.Name = "txtConnectionString";
             this.txtConnectionString.Size = new System.Drawing.Size(345, 20);
             this.txtConnectionString.TabIndex = 0;
-            // 
-            // btnChkTabela
-            // 
-            this.btnChkTabela.AutoSize = true;
-            this.btnChkTabela.Location = new System.Drawing.Point(359, 83);
-            this.btnChkTabela.Name = "btnChkTabela";
-            this.btnChkTabela.Size = new System.Drawing.Size(56, 17);
-            this.btnChkTabela.TabIndex = 1;
-            this.btnChkTabela.Text = "Todas";
-            this.btnChkTabela.UseVisualStyleBackColor = true;
-            this.btnChkTabela.CheckedChanged += new System.EventHandler(this.btnChkTabela_CheckedChanged);
             // 
             // Form1
             // 
@@ -249,7 +253,6 @@
 
         private System.Windows.Forms.ComboBox ddlTabelas;
         private System.Windows.Forms.Button btnEntidade;
-        private System.Windows.Forms.SaveFileDialog salvar;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button btnChamadaProc;
         private System.Windows.Forms.Button btnProc;
@@ -264,6 +267,7 @@
         private System.Windows.Forms.TextBox txtConnectionString;
         private System.Windows.Forms.Button btnConnection;
         private System.Windows.Forms.CheckBox btnChkTabela;
+        private System.Windows.Forms.FolderBrowserDialog salvar;
     }
 }
 
