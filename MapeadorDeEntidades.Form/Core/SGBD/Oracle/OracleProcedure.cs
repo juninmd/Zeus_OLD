@@ -4,13 +4,13 @@ using System.Text;
 
 namespace MapeadorDeEntidades.Form
 {
-    public class ProcOracle
+    public class OracleProcedure
     {
         public string NomeTabela { get; set; }
 
         public List<EntidadeTabela> ListaAtributosTabela { get; set; }
 
-        public ProcOracle(string nomeTabela, List<EntidadeTabela> atributosTabela)
+        public OracleProcedure(string nomeTabela, List<EntidadeTabela> atributosTabela)
         {
             NomeTabela = nomeTabela;
             ListaAtributosTabela = atributosTabela;
