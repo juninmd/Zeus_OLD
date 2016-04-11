@@ -27,7 +27,7 @@ namespace MapeadorDeEntidades.Form.Middleware
                 {
                     var local = salvar.SelectedPath + "\\";
 
-                    var instancia = new ProcOracle(nomeTabela, new OracleTables().ListarAtributos(nomeTabela));
+                    var instancia = new OracleProcedure(nomeTabela, new OracleTables().ListarAtributos(nomeTabela));
 
                     var header = instancia.GerarPackageHeader().ToString();
                     File.WriteAllText(local + $"{nomeTabela}_HEADER.sql", header);

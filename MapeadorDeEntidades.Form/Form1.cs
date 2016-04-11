@@ -104,6 +104,10 @@ namespace MapeadorDeEntidades.Form
             }
         }
 
+        private void btnJSON_Click(object sender, EventArgs e)
+        {
+            SetParamters();
 
+        }
     }
 }

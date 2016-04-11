@@ -29,15 +29,25 @@ namespace MapeadorDeEntidades.Form.Middleware
                 };
             };
 
-            switch (ParamtersInput.SGBD)
+            try
             {
-                case 1:
-                    return ConnectaOracle();
-                default:
-                    return new RequestMessage<List<string>>();
+                switch (ParamtersInput.SGBD)
+                {
+                    case 1:
+                        return ConnectaOracle();
+                    default:
+                        return new RequestMessage<List<string>>();
+                }
             }
-
-            return new RequestMessage<List<string>>();
+            catch (Exception ex)
+            {
+                return new RequestMessage<List<string>>
+                {
+                    StatusCode = System.Net.HttpStatusCode.InternalServerError,
+                    Message = "Ocorreu uma falha, verifique a string",
+                    TechnicalMessage = ex.Message
+                };
+            }
         }
     }
 }

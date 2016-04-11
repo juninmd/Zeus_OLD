@@ -46,6 +46,8 @@
             this.btnConnection = new System.Windows.Forms.Button();
             this.txtConnectionString = new System.Windows.Forms.TextBox();
             this.salvar = new System.Windows.Forms.FolderBrowserDialog();
+            this.btnJSON = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -130,9 +132,9 @@
             // 
             this.groupBox1.Controls.Add(this.radioCsharp);
             this.groupBox1.Controls.Add(this.radioJava);
-            this.groupBox1.Location = new System.Drawing.Point(230, 373);
+            this.groupBox1.Location = new System.Drawing.Point(230, 350);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(87, 134);
+            this.groupBox1.Size = new System.Drawing.Size(87, 157);
             this.groupBox1.TabIndex = 9;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Linguagem";
@@ -161,12 +163,13 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.btnJSON);
             this.groupBox3.Controls.Add(this.btnEntidade);
             this.groupBox3.Controls.Add(this.btnChamadaProc);
             this.groupBox3.Controls.Add(this.btnProc);
-            this.groupBox3.Location = new System.Drawing.Point(46, 373);
+            this.groupBox3.Location = new System.Drawing.Point(46, 350);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(178, 134);
+            this.groupBox3.Size = new System.Drawing.Size(178, 157);
             this.groupBox3.TabIndex = 11;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Gerar";
@@ -175,7 +178,7 @@
             // 
             this.groupBox4.Controls.Add(this.btnChkTabela);
             this.groupBox4.Controls.Add(this.ddlTabelas);
-            this.groupBox4.Location = new System.Drawing.Point(46, 261);
+            this.groupBox4.Location = new System.Drawing.Point(46, 238);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(435, 106);
             this.groupBox4.TabIndex = 12;
@@ -221,11 +224,32 @@
             this.txtConnectionString.Size = new System.Drawing.Size(345, 20);
             this.txtConnectionString.TabIndex = 0;
             // 
+            // btnJSON
+            // 
+            this.btnJSON.Location = new System.Drawing.Point(4, 115);
+            this.btnJSON.Name = "btnJSON";
+            this.btnJSON.Size = new System.Drawing.Size(163, 23);
+            this.btnJSON.TabIndex = 6;
+            this.btnJSON.Text = "JSON";
+            this.btnJSON.UseVisualStyleBackColor = true;
+            this.btnJSON.Click += new System.EventHandler(this.btnJSON_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(373, 449);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(329, 39);
+            this.label1.TabIndex = 14;
+            this.label1.Text = "MAPEADOR ZEUS";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(714, 522);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
@@ -246,6 +270,7 @@
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -268,6 +293,8 @@
         private System.Windows.Forms.Button btnConnection;
         private System.Windows.Forms.CheckBox btnChkTabela;
         private System.Windows.Forms.FolderBrowserDialog salvar;
+        private System.Windows.Forms.Button btnJSON;
+        private System.Windows.Forms.Label label1;
     }
 }
 
