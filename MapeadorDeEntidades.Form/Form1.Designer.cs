@@ -40,14 +40,15 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.radioSGBD = new System.Windows.Forms.RadioButton();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.btnJSON = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.btnChkTabela = new System.Windows.Forms.CheckBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.btnConnection = new System.Windows.Forms.Button();
             this.txtConnectionString = new System.Windows.Forms.TextBox();
             this.salvar = new System.Windows.Forms.FolderBrowserDialog();
-            this.btnJSON = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.btnExemplo = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -144,7 +145,7 @@
             this.groupBox2.Controls.Add(this.radioSGBD);
             this.groupBox2.Location = new System.Drawing.Point(12, 12);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(225, 60);
+            this.groupBox2.Size = new System.Drawing.Size(212, 60);
             this.groupBox2.TabIndex = 10;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "SGBD";
@@ -174,6 +175,16 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Gerar";
             // 
+            // btnJSON
+            // 
+            this.btnJSON.Location = new System.Drawing.Point(4, 115);
+            this.btnJSON.Name = "btnJSON";
+            this.btnJSON.Size = new System.Drawing.Size(163, 23);
+            this.btnJSON.TabIndex = 6;
+            this.btnJSON.Text = "JSON";
+            this.btnJSON.UseVisualStyleBackColor = true;
+            this.btnJSON.Click += new System.EventHandler(this.btnJSON_Click);
+            // 
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.btnChkTabela);
@@ -198,11 +209,12 @@
             // 
             // groupBox5
             // 
+            this.groupBox5.Controls.Add(this.btnExemplo);
             this.groupBox5.Controls.Add(this.btnConnection);
             this.groupBox5.Controls.Add(this.txtConnectionString);
-            this.groupBox5.Location = new System.Drawing.Point(243, 12);
+            this.groupBox5.Location = new System.Drawing.Point(229, 12);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(459, 60);
+            this.groupBox5.Size = new System.Drawing.Size(477, 60);
             this.groupBox5.TabIndex = 13;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Connection String";
@@ -224,16 +236,6 @@
             this.txtConnectionString.Size = new System.Drawing.Size(345, 20);
             this.txtConnectionString.TabIndex = 0;
             // 
-            // btnJSON
-            // 
-            this.btnJSON.Location = new System.Drawing.Point(4, 115);
-            this.btnJSON.Name = "btnJSON";
-            this.btnJSON.Size = new System.Drawing.Size(163, 23);
-            this.btnJSON.TabIndex = 6;
-            this.btnJSON.Text = "JSON";
-            this.btnJSON.UseVisualStyleBackColor = true;
-            this.btnJSON.Click += new System.EventHandler(this.btnJSON_Click);
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -243,6 +245,16 @@
             this.label1.Size = new System.Drawing.Size(329, 39);
             this.label1.TabIndex = 14;
             this.label1.Text = "MAPEADOR ZEUS";
+            // 
+            // btnExemplo
+            // 
+            this.btnExemplo.Location = new System.Drawing.Point(437, 16);
+            this.btnExemplo.Name = "btnExemplo";
+            this.btnExemplo.Size = new System.Drawing.Size(21, 21);
+            this.btnExemplo.TabIndex = 2;
+            this.btnExemplo.Text = "?";
+            this.btnExemplo.UseVisualStyleBackColor = true;
+            this.btnExemplo.Click += new System.EventHandler(this.btnExemplo_Click);
             // 
             // Form1
             // 
@@ -295,6 +307,7 @@
         private System.Windows.Forms.FolderBrowserDialog salvar;
         private System.Windows.Forms.Button btnJSON;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnExemplo;
     }
 }
 

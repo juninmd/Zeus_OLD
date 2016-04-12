@@ -11,9 +11,9 @@ namespace MapeadorDeEntidades.Form
             switch (tipoAttr)
             {
                 case "DATE":
-                    return "DateTime" + IsNullabe(aceitaNull);
+                    return "DateTime" + (IsNullabe(aceitaNull) ? "?" : "");
                 case "NUMBER":
-                    return "long" + IsNullabe(aceitaNull);
+                    return "long" + (IsNullabe(aceitaNull) ? "?" : "");
                 default:
                     return "string";
             }
