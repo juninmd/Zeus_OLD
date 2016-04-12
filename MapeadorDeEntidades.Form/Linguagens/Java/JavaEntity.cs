@@ -35,6 +35,30 @@ namespace MapeadorDeEntidades.Form
             }
         }
 
+        public string GetTypeDsAtribute(EntidadeTabela prop)
+        {
+            switch (prop.DATA_TYPE)
+            {
+                case "DATE":
+                    return "Date";
+                case "NUMBER":
+                    {
+                        if (prop.DATA_PRECISION == null || prop.DATA_PRECISION <= 4)
+                        {
+                            return "Int";
+                        }
+                        else if (prop.DATA_PRECISION <= 15)
+                        {
+                            return "Long";
+                        }
+                        return "BigDecimal";
+                    }
+
+                default:
+                    return "String";
+            }
+        }
+
         private StringBuilder Imports()
         {
             var imports = new StringBuilder();

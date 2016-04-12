@@ -45,7 +45,7 @@ namespace MapeadorDeEntidades.Form.Linguagens.Java
             get.Append($"				{NomeTabela} resposta = new {NomeTabela}();{N}");
             foreach (var att in ListaAtributosTabela)
             {
-                get.Append($"				resposta.set{att.COLUMN_NAME}(rs.get{j.GetTypeAtribute(att)}(\"{att.COLUMN_NAME}\"));{N}");
+                get.Append($"				resposta.set{att.COLUMN_NAME}(rs.get{j.GetTypeDsAtribute(att)}(\"{att.COLUMN_NAME}\"));{N}");
             }
             get.Append($"				return resposta;{N}");
             get.Append($"			}};{N}");
