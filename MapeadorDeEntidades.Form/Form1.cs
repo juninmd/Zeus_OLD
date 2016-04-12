@@ -118,5 +118,10 @@ namespace MapeadorDeEntidades.Form
             SetParamters();
 
         }
+
+        private void btnExemplo_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Oracle:\n User Id=###;Data Source=###;Password=###");
+        }
     }
 }
