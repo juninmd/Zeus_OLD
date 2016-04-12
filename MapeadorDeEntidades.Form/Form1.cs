@@ -3,6 +3,7 @@ using MapeadorDeEntidades.Form.Middleware;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Media;
 using System.Windows.Forms;
 
 namespace MapeadorDeEntidades.Form
@@ -14,7 +15,15 @@ namespace MapeadorDeEntidades.Form
         public Form1()
         {
             InitializeComponent();
+            Som();
             ParamtersInput.NomeTabelas = new List<string>();
+        }
+
+        private void Som()
+        {
+            string path = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+            SoundPlayer simpleSound = new SoundPlayer($"{path}\\zeus.wav");
+            simpleSound.Play();
         }
 
         /// <summary>
