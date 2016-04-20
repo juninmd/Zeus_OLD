@@ -4,6 +4,14 @@ namespace MapeadorDeEntidades.Form.Linguagens.Java
 {
     public class JavaADO : BaseDAO
     {
+        private string OracleType(string tipo)
+        {
+            if (tipo == "VARCHAR2")
+            {
+                tipo = "VARCHAR";
+            }
+            return tipo;
+        }
         public JavaADO(string nomeTabela) : base(nomeTabela)
         {
         }
@@ -101,7 +109,7 @@ namespace MapeadorDeEntidades.Form.Linguagens.Java
             get.Append($"			AddParamter(new Parameter(\"P_RESULT\", OracleTypes.VARCHAR, null,\"OUT\"));{N}{N}");
             foreach (var att in ListaAtributosTabela)
             {
-                get.Append($"			AddParamter(new Parameter(\"P_{att.COLUMN_NAME}\", OracleTypes.{att.DATA_TYPE}, entidade.get{att.COLUMN_NAME}()));{N}");
+                get.Append($"			AddParamter(new Parameter(\"P_{att.COLUMN_NAME}\", OracleTypes.{OracleType(att.DATA_TYPE)}, entidade.get{att.COLUMN_NAME}()));{N}");
             }
             get.Append($"			return RequestProc();{N}");
             get.Append($"		}}{N}");
@@ -117,7 +125,7 @@ namespace MapeadorDeEntidades.Form.Linguagens.Java
 
         private StringBuilder Update()
         {
-        
+
             var get = new StringBuilder();
             get.Append($"	public RequestMessageLite<String> Update({NomeTabela} entidade) throws Exception{N}");
             get.Append($"	{{{N}");
@@ -127,7 +135,7 @@ namespace MapeadorDeEntidades.Form.Linguagens.Java
             get.Append($"			AddParamter(new Parameter(\"P_ID\", OracleTypes.NUMBER, entidade.ID));{N}{N}");
             foreach (var att in ListaAtributosTabela)
             {
-                get.Append($"			AddParamter(new Parameter(\"P_{att.COLUMN_NAME}\", OracleTypes.{att.DATA_TYPE}, entidade.get{att.COLUMN_NAME}()));{N}");
+                get.Append($"			AddParamter(new Parameter(\"P_{att.COLUMN_NAME}\", OracleTypes.{OracleType(att.DATA_TYPE)}, entidade.get{att.COLUMN_NAME}()));{N}");
             }
             get.Append($"			return RequestProc();{N}");
             get.Append($"		}}{N}");
@@ -159,6 +167,7 @@ namespace MapeadorDeEntidades.Form.Linguagens.Java
             get.Append($"			desconecta();{N}");
             get.Append($"		}}{N}");
             get.Append($"	}}{N}");
+            get.Append($"}}{N}");
             return get;
         }
 
