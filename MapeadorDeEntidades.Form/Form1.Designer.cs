@@ -44,11 +44,11 @@
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.btnChkTabela = new System.Windows.Forms.CheckBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.btnExemplo = new System.Windows.Forms.Button();
             this.btnConnection = new System.Windows.Forms.Button();
             this.txtConnectionString = new System.Windows.Forms.TextBox();
             this.salvar = new System.Windows.Forms.FolderBrowserDialog();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnExemplo = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -219,6 +219,16 @@
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Connection String";
             // 
+            // btnExemplo
+            // 
+            this.btnExemplo.Location = new System.Drawing.Point(437, 16);
+            this.btnExemplo.Name = "btnExemplo";
+            this.btnExemplo.Size = new System.Drawing.Size(21, 21);
+            this.btnExemplo.TabIndex = 2;
+            this.btnExemplo.Text = "?";
+            this.btnExemplo.UseVisualStyleBackColor = true;
+            this.btnExemplo.Click += new System.EventHandler(this.btnExemplo_Click);
+            // 
             // btnConnection
             // 
             this.btnConnection.Location = new System.Drawing.Point(356, 16);
@@ -246,16 +256,6 @@
             this.label1.TabIndex = 14;
             this.label1.Text = "MAPEADOR ZEUS";
             // 
-            // btnExemplo
-            // 
-            this.btnExemplo.Location = new System.Drawing.Point(437, 16);
-            this.btnExemplo.Name = "btnExemplo";
-            this.btnExemplo.Size = new System.Drawing.Size(21, 21);
-            this.btnExemplo.TabIndex = 2;
-            this.btnExemplo.Text = "?";
-            this.btnExemplo.UseVisualStyleBackColor = true;
-            this.btnExemplo.Click += new System.EventHandler(this.btnExemplo_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -270,7 +270,7 @@
             this.Controls.Add(this.pictureBox1);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Form1";
+            this.Text = "Zeus - 0.1";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
