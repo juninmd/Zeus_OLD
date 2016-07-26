@@ -3,7 +3,7 @@ using MapeadorDeEntidades.Form.Linguagens.Base;
 
 namespace MapeadorDeEntidades.Form.Linguagens.CSharp.Oracle
 {
-    public class CSharpOracleRepository : BaseDAO
+    public class CSharpOracleRepository : BaseOracleDAO
     {
         public CSharpOracleRepository(string nomeTabela) : base(nomeTabela)
         {
