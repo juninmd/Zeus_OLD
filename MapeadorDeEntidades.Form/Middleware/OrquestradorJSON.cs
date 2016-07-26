@@ -12,16 +12,9 @@ namespace MapeadorDeEntidades.Form.Middleware
         }
         public RequestMessage<string> Generate(FolderBrowserDialog salvar)
         {
-            if (!ParamtersInput.NomeTabelas.Any())
-            {
-                return new RequestMessage<string>()
-                {
-                    Message = "Selecione uma tabela",
-                    StatusCode = System.Net.HttpStatusCode.InternalServerError
-                };
-            }
-
-         
+            var validate = new ValidateBasic().ValidateInput(salvar);
+            if (validate.IsError)
+                return validate;
 
             return new RequestMessage<string>()
             {

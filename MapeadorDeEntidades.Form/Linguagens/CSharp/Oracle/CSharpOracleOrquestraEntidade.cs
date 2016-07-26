@@ -13,8 +13,8 @@ namespace MapeadorDeEntidades.Form.Linguagens.CSharp.Oracle
             try
             {
                 int max = ParamtersInput.NomeTabelas.Count;
-
                 var i = 0;
+
                 foreach (var nomeTabela in ParamtersInput.NomeTabelas)
                 {
                     i++;

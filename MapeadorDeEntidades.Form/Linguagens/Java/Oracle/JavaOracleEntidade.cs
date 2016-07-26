@@ -1,38 +1,131 @@
 ﻿using System;
-using System.IO;
-using System.Windows.Forms;
-using MapeadorDeEntidades.Form.Core;
-using MapeadorDeEntidades.Form.Utilidade;
+using System.Collections.Generic;
+using System.Text;
+using MapeadorDeEntidades.Form.Core.SGBD.Oracle;
+using MapeadorDeEntidades.Form.Linguagens.Base;
 
-namespace MapeadorDeEntidades.Form.Linguagens.Java.Oracle
+namespace MapeadorDeEntidades.Form.Linguagens.Java
 {
-    public class JavaOracleEntidade
+    public class JavaOracleEntidade : BaseEntity
     {
-        public RequestMessage<string> Java(FolderBrowserDialog salvar)
+        /// <summary>
+        /// Nova Linha
+        /// </summary>
+   
+        public string GetTypeAtribute(OracleEntidadeTabela prop)
         {
-            try
+            switch (prop.DATA_TYPE)
             {
-                foreach (var nomeTabela in ParamtersInput.NomeTabelas)
-                {
-                    Util.Status($"Processando tabela: {nomeTabela}");
-                    var classe = new JavaEntity().GerarBody(nomeTabela).ToString();
-                    File.WriteAllText($"{salvar.SelectedPath}\\{nomeTabela}.java", classe);
-                }
-                return new RequestMessage<string>()
-                {
-                    Message = "Processamento concluído com sucesso!",
-                    StatusCode = System.Net.HttpStatusCode.OK
-                };
+                case "DATE":
+                    return "Date";
+                case "NUMBER":
+                    {
+                        if (prop.DATA_PRECISION == null || prop.DATA_PRECISION <= 4)
+                        {
+                            return IsNullabe(prop.NULLABLE) ? "Integer" : "int";
+                        }
+                        else if (prop.DATA_PRECISION <= 15)
+                        {
+                            return IsNullabe(prop.NULLABLE) ? "Long" : "long";
+                        }
+                        return "BigDecimal";
+                    }
+
+                default:
+                    return "String";
             }
-            catch (Exception ex)
+        }
+
+        public string GetTypeDsAtribute(OracleEntidadeTabela prop)
+        {
+            switch (prop.DATA_TYPE)
             {
-                return new RequestMessage<string>()
-                {
-                    Message = "Falha no sistema!",
-                    TechnicalMessage = ex.Message,
-                    StatusCode = System.Net.HttpStatusCode.InternalServerError
-                };
-            };
+                case "DATE":
+                    return "Date";
+                case "NUMBER":
+                    {
+                        if (prop.DATA_PRECISION == null || prop.DATA_PRECISION <= 4)
+                        {
+                            return "Int";
+                        }
+                        else if (prop.DATA_PRECISION <= 15)
+                        {
+                            return "Long";
+                        }
+                        return "BigDecimal";
+                    }
+
+                default:
+                    return "String";
+            }
+        }
+
+        private StringBuilder Imports()
+        {
+            var imports = new StringBuilder();
+            imports.Append($"import java.util.Date;{N}");
+            imports.Append($"import java.math.BigDecimal;{N}");
+            imports.Append($"import javax.xml.bind.annotation.XmlRootElement;{N}");
+            imports.Append($"{N}");
+
+            return imports;
+        }
+
+        private StringBuilder AtributosHeader(List<OracleEntidadeTabela> entidadeTabela)
+        {
+            var atributosHeader = new StringBuilder();
+
+            foreach (var att in entidadeTabela)
+            {
+                atributosHeader.Append($"	private {GetTypeAtribute(att)} {att.COLUMN_NAME};{N}");
+            }
+            atributosHeader.Append($"{N}");
+            return atributosHeader;
+        }
+
+        private StringBuilder AtributosBody(List<OracleEntidadeTabela> entidadeTabela)
+        {
+            var atributoBody = new StringBuilder();
+
+            foreach (var att in entidadeTabela)
+            {
+                atributoBody.Append($"	/** {N}");
+                atributoBody.Append($"	 * {N}");
+                atributoBody.Append($"	 * @Descrição {att.COMMENTS} {N}");
+                atributoBody.Append($"	 */{N}");
+                atributoBody.Append($"	public {GetTypeAtribute(att)} get{att.COLUMN_NAME}() {{{N}");
+                atributoBody.Append($"		return {att.COLUMN_NAME};{N}");
+                atributoBody.Append($"	}}{N}");
+                atributoBody.Append($"{N}");
+
+                atributoBody.Append($"	/** {N}");
+                atributoBody.Append($"	 * {N}");
+                atributoBody.Append($"	 * @Descrição {att.COMMENTS} {N}");
+                atributoBody.Append($"	 */{N}");
+                atributoBody.Append($"	public void set{att.COLUMN_NAME}({GetTypeAtribute(att)} {att.COLUMN_NAME}) {{{N}");
+                atributoBody.Append($"		this.{att.COLUMN_NAME} = {att.COLUMN_NAME};{N}");
+                atributoBody.Append($"	}}{N}");
+                atributoBody.Append($"{N}");
+            }
+            atributoBody.Append($"{N}");
+            return atributoBody;
+        }
+
+        public StringBuilder GerarBody(string nomeTabela)
+        {
+            var atributos = new OracleTables().ListarAtributos(nomeTabela);
+
+            var classe = new StringBuilder();
+            classe.Append($"package model;{N}{N}");
+
+            classe.Append(Imports());
+            classe.Append("@XmlRootElement" + N);
+            classe.Append($"public class {nomeTabela} {{{N}");
+            classe.Append(AtributosHeader(atributos));
+            classe.Append(AtributosBody(atributos));
+            classe.Append("}" + Environment.NewLine);
+
+            return classe;
         }
     }
 }

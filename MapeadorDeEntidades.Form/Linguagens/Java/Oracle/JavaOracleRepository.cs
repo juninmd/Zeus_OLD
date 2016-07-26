@@ -16,7 +16,7 @@ namespace MapeadorDeEntidades.Form.Linguagens.Java.Oracle
         public JavaOracleRepository(string nomeTabela) : base(nomeTabela)
         {
         }
-        private JavaEntity j => new JavaEntity();
+        private JavaOracleEntidade j => new JavaOracleEntidade();
 
         private StringBuilder Imports()
         {

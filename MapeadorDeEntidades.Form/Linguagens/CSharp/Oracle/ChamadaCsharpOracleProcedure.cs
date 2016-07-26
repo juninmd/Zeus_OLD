@@ -2,6 +2,7 @@
 using System.IO;
 using System.Windows.Forms;
 using MapeadorDeEntidades.Form.Core;
+using MapeadorDeEntidades.Form.Utilidade;
 
 namespace MapeadorDeEntidades.Form.Linguagens.CSharp.Oracle
 {
@@ -11,17 +12,16 @@ namespace MapeadorDeEntidades.Form.Linguagens.CSharp.Oracle
         {
             try
             {
-                var funcao = salvar.ShowDialog();
-                if (funcao != DialogResult.OK)
-                    return new RequestMessage<string>()
-                    {
-                        Message = "Processamento cancelado!",
-                        StatusCode = System.Net.HttpStatusCode.BadRequest
-                    };
+                int max = ParamtersInput.NomeTabelas.Count;
+                var i = 0;
+                var local = salvar.SelectedPath + "\\";
 
                 foreach (var nomeTabela in ParamtersInput.NomeTabelas)
                 {
-                    var local = salvar.SelectedPath + "\\";
+                    i++;
+                    Util.Barra((int)((((decimal)i / max) * 100)));
+                    Util.Status($"Processando tabela: {nomeTabela}");
+
 
                     var instancia = new CSharpOracleRepository(nomeTabela);
 
