@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MapeadorDeEntidades.Form.Linguagens
+namespace MapeadorDeEntidades.Form.Linguagens.Base
 {
     public class BaseEntity
     {

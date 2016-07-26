@@ -1,8 +1,9 @@
 ﻿using System.Text;
+using MapeadorDeEntidades.Form.Linguagens.Base;
 
-namespace MapeadorDeEntidades.Form.Linguagens.Java
+namespace MapeadorDeEntidades.Form.Linguagens.Java.Oracle
 {
-    public class JavaADO : BaseDAO
+    public class JavaOracleRepository : BaseDAO
     {
         private string OracleType(string tipo)
         {
@@ -12,7 +13,7 @@ namespace MapeadorDeEntidades.Form.Linguagens.Java
             }
             return tipo;
         }
-        public JavaADO(string nomeTabela) : base(nomeTabela)
+        public JavaOracleRepository(string nomeTabela) : base(nomeTabela)
         {
         }
         private JavaEntity j => new JavaEntity();

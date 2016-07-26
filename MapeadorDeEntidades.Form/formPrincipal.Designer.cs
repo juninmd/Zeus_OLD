@@ -1,6 +1,6 @@
 ﻿namespace MapeadorDeEntidades.Form
 {
-    partial class Form1
+    partial class formPrincipal
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(formPrincipal));
             this.ddlTabelas = new System.Windows.Forms.ComboBox();
             this.btnEntidade = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -38,9 +38,9 @@
             this.radioJava = new System.Windows.Forms.RadioButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioSGBD = new System.Windows.Forms.RadioButton();
+            this.radioSGBD3 = new System.Windows.Forms.RadioButton();
+            this.radioSGBD2 = new System.Windows.Forms.RadioButton();
+            this.radioSGBD1 = new System.Windows.Forms.RadioButton();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.btnJSON = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
@@ -50,12 +50,16 @@
             this.btnConnection = new System.Windows.Forms.Button();
             this.txtConnectionString = new System.Windows.Forms.TextBox();
             this.salvar = new System.Windows.Forms.FolderBrowserDialog();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.lblStatus = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox5.SuspendLayout();
+            this.groupBox6.SuspendLayout();
             this.SuspendLayout();
             // 
             // ddlTabelas
@@ -81,7 +85,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(-1, 2);
+            this.pictureBox1.Location = new System.Drawing.Point(77, -3);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(501, 433);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -151,9 +155,9 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.radioButton2);
-            this.groupBox2.Controls.Add(this.radioButton1);
-            this.groupBox2.Controls.Add(this.radioSGBD);
+            this.groupBox2.Controls.Add(this.radioSGBD3);
+            this.groupBox2.Controls.Add(this.radioSGBD2);
+            this.groupBox2.Controls.Add(this.radioSGBD1);
             this.groupBox2.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.groupBox2.Location = new System.Drawing.Point(23, 12);
             this.groupBox2.Name = "groupBox2";
@@ -162,43 +166,43 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "SGBD";
             // 
-            // radioButton2
+            // radioSGBD3
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.radioButton2.Location = new System.Drawing.Point(7, 66);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(52, 17);
-            this.radioButton2.TabIndex = 2;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "Mysql";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.radioSGBD3.AutoSize = true;
+            this.radioSGBD3.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.radioSGBD3.Location = new System.Drawing.Point(7, 66);
+            this.radioSGBD3.Name = "radioSGBD3";
+            this.radioSGBD3.Size = new System.Drawing.Size(52, 17);
+            this.radioSGBD3.TabIndex = 2;
+            this.radioSGBD3.TabStop = true;
+            this.radioSGBD3.Text = "Mysql";
+            this.radioSGBD3.UseVisualStyleBackColor = true;
             // 
-            // radioButton1
+            // radioSGBD2
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.radioButton1.Location = new System.Drawing.Point(7, 43);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(92, 17);
-            this.radioButton1.TabIndex = 1;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Microsoft SQL";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.radioSGBD2.AutoSize = true;
+            this.radioSGBD2.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.radioSGBD2.Location = new System.Drawing.Point(7, 43);
+            this.radioSGBD2.Name = "radioSGBD2";
+            this.radioSGBD2.Size = new System.Drawing.Size(92, 17);
+            this.radioSGBD2.TabIndex = 1;
+            this.radioSGBD2.TabStop = true;
+            this.radioSGBD2.Text = "Microsoft SQL";
+            this.radioSGBD2.UseVisualStyleBackColor = true;
             // 
-            // radioSGBD
+            // radioSGBD1
             // 
-            this.radioSGBD.AutoSize = true;
-            this.radioSGBD.Checked = true;
-            this.radioSGBD.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.radioSGBD.Location = new System.Drawing.Point(7, 20);
-            this.radioSGBD.Name = "radioSGBD";
-            this.radioSGBD.Size = new System.Drawing.Size(56, 17);
-            this.radioSGBD.TabIndex = 0;
-            this.radioSGBD.TabStop = true;
-            this.radioSGBD.Text = "Oracle";
-            this.radioSGBD.UseVisualStyleBackColor = true;
-            this.radioSGBD.CheckedChanged += new System.EventHandler(this.radioSGBD_CheckedChanged);
+            this.radioSGBD1.AutoSize = true;
+            this.radioSGBD1.Checked = true;
+            this.radioSGBD1.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.radioSGBD1.Location = new System.Drawing.Point(7, 20);
+            this.radioSGBD1.Name = "radioSGBD1";
+            this.radioSGBD1.Size = new System.Drawing.Size(56, 17);
+            this.radioSGBD1.TabIndex = 0;
+            this.radioSGBD1.TabStop = true;
+            this.radioSGBD1.Text = "Oracle";
+            this.radioSGBD1.UseVisualStyleBackColor = true;
+            this.radioSGBD1.CheckedChanged += new System.EventHandler(this.radioSGBD_CheckedChanged);
             // 
             // groupBox3
             // 
@@ -209,7 +213,7 @@
             this.groupBox3.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.groupBox3.Location = new System.Drawing.Point(430, 8);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(178, 157);
+            this.groupBox3.Size = new System.Drawing.Size(178, 136);
             this.groupBox3.TabIndex = 11;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Gerar";
@@ -256,7 +260,7 @@
             this.groupBox5.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.groupBox5.Location = new System.Drawing.Point(23, 211);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(477, 60);
+            this.groupBox5.Size = new System.Drawing.Size(581, 60);
             this.groupBox5.TabIndex = 13;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Connection String";
@@ -264,7 +268,7 @@
             // btnExemplo
             // 
             this.btnExemplo.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnExemplo.Location = new System.Drawing.Point(439, 18);
+            this.btnExemplo.Location = new System.Drawing.Point(553, 18);
             this.btnExemplo.Name = "btnExemplo";
             this.btnExemplo.Size = new System.Drawing.Size(21, 21);
             this.btnExemplo.TabIndex = 2;
@@ -275,7 +279,7 @@
             // btnConnection
             // 
             this.btnConnection.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnConnection.Location = new System.Drawing.Point(359, 17);
+            this.btnConnection.Location = new System.Drawing.Point(473, 17);
             this.btnConnection.Name = "btnConnection";
             this.btnConnection.Size = new System.Drawing.Size(75, 23);
             this.btnConnection.TabIndex = 1;
@@ -287,15 +291,43 @@
             // 
             this.txtConnectionString.Location = new System.Drawing.Point(9, 19);
             this.txtConnectionString.Name = "txtConnectionString";
-            this.txtConnectionString.Size = new System.Drawing.Size(345, 20);
+            this.txtConnectionString.Size = new System.Drawing.Size(458, 20);
             this.txtConnectionString.TabIndex = 0;
             // 
-            // Form1
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(307, 19);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(133, 18);
+            this.progressBar1.TabIndex = 14;
+            // 
+            // groupBox6
+            // 
+            this.groupBox6.Controls.Add(this.lblStatus);
+            this.groupBox6.Controls.Add(this.progressBar1);
+            this.groupBox6.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.groupBox6.Location = new System.Drawing.Point(157, 158);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(446, 51);
+            this.groupBox6.TabIndex = 11;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "Status";
+            // 
+            // lblStatus
+            // 
+            this.lblStatus.Location = new System.Drawing.Point(6, 19);
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.Size = new System.Drawing.Size(295, 18);
+            this.lblStatus.TabIndex = 15;
+            this.lblStatus.Text = "Aguardando Instruções";
+            // 
+            // formPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.ClientSize = new System.Drawing.Size(616, 331);
+            this.ClientSize = new System.Drawing.Size(616, 333);
+            this.Controls.Add(this.groupBox6);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
@@ -304,7 +336,7 @@
             this.Controls.Add(this.pictureBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
-            this.Name = "Form1";
+            this.Name = "formPrincipal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Zeus - 0.2";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -317,6 +349,7 @@
             this.groupBox4.PerformLayout();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
+            this.groupBox6.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -332,7 +365,7 @@
         private System.Windows.Forms.RadioButton radioJava;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.RadioButton radioSGBD;
+        private System.Windows.Forms.RadioButton radioSGBD1;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.GroupBox groupBox5;
@@ -342,8 +375,11 @@
         private System.Windows.Forms.FolderBrowserDialog salvar;
         private System.Windows.Forms.Button btnJSON;
         private System.Windows.Forms.Button btnExemplo;
-        private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.RadioButton radioSGBD2;
+        private System.Windows.Forms.RadioButton radioSGBD3;
+        private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.Label lblStatus;
     }
 }
 

@@ -1,17 +1,12 @@
-﻿using MapeadorDeEntidades.Form.Core;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace MapeadorDeEntidades.Form.Middleware
+namespace MapeadorDeEntidades.Form.Core.SGBD.Oracle
 {
-    public class MD_Procedure
+    public class OracleOrquestradorProcedures
     {
-        private RequestMessage<string> Oracle(FolderBrowserDialog salvar)
+        public RequestMessage<string> Oracle(FolderBrowserDialog salvar)
         {
             try
             {
@@ -51,32 +46,6 @@ namespace MapeadorDeEntidades.Form.Middleware
                     StatusCode = System.Net.HttpStatusCode.InternalServerError
                 };
             }
-        }
-
-        public RequestMessage<string> Generate(FolderBrowserDialog salvar)
-        {
-            if (!ParamtersInput.NomeTabelas.Any())
-            {
-                return new RequestMessage<string>()
-                {
-                    Message = "Selecione uma tabela",
-                    StatusCode = System.Net.HttpStatusCode.InternalServerError
-                };
-            }
-
-            switch (ParamtersInput.SGBD)
-            {
-                case 1:
-                    {
-                        return Oracle(salvar);
-                    }
-            }
-
-            return new RequestMessage<string>()
-            {
-                Message = "Selecione uma tabela",
-                StatusCode = System.Net.HttpStatusCode.InternalServerError
-            };
         }
     }
 }

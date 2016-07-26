@@ -12,9 +12,8 @@ using System.Data;
 using System.Net;
 using System.Runtime.CompilerServices;
 using Oracle.DataAccess.Client;
-using MapeadorDeEntidades.Form.Core;
 
-namespace MapeadorDeEntidades.Form
+namespace MapeadorDeEntidades.Form.Core.SGBD.Oracle
 {
     public abstract class OracleRepository
     {
