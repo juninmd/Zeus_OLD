@@ -12,22 +12,9 @@ namespace MapeadorDeEntidades.Form.Middleware
     {
         public RequestMessage<string> Generate(FolderBrowserDialog salvar)
         {
-            if (!ParamtersInput.NomeTabelas.Any())
-            {
-                return new RequestMessage<string>()
-                {
-                    Message = "Selecione uma tabela",
-                    StatusCode = System.Net.HttpStatusCode.InternalServerError
-                };
-            }
-
-            var funcao = salvar.ShowDialog();
-            if (funcao != DialogResult.OK)
-                return new RequestMessage<string>()
-                {
-                    Message = "Processamento cancelado!",
-                    StatusCode = System.Net.HttpStatusCode.BadRequest
-                };
+            var validate = new ValidateBasic().ValidateInput(salvar);
+            if (validate.IsError)
+                return validate;
 
             var dataInicial = DateTime.Now;
             var init = Init(salvar);
@@ -50,7 +37,7 @@ namespace MapeadorDeEntidades.Form.Middleware
                                 }
                             case 2:
                                 {
-                                    return new JavaOracleEntidade().Java(salvar);
+                                    return new JavaOracleOrquestraEntidade().Java(salvar);
                                 }
                             default:
                                 {
