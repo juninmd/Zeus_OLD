@@ -51,6 +51,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\NewProgressBar.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Core\Session.cs" />
     <Compile Include="Core\SGBD\Oracle\OracleToJson.cs" />
     <Compile Include="Core\SGBD\Oracle\OraclePing.cs" />
@@ -91,6 +94,9 @@
     <Compile Include="Core\SGBD\Oracle\OracleTables.cs" />
     <Compile Include="Core\RequestMessage.cs" />
     <Compile Include="Utilidade\Util.cs" />
+    <EmbeddedResource Include="Core\NewProgressBar.resx">
+      <DependentUpon>NewProgressBar.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="formConnectionString.resx">
       <DependentUpon>formConnectionString.cs</DependentUpon>
     </EmbeddedResource>

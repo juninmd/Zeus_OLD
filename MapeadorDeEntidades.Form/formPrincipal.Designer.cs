@@ -1,4 +1,6 @@
-﻿namespace MapeadorDeEntidades.Form
+﻿using MapeadorDeEntidades.Form.Core;
+
+namespace MapeadorDeEntidades.Form
 {
     partial class formPrincipal
     {
@@ -50,7 +52,7 @@
             this.btnConnection = new System.Windows.Forms.Button();
             this.txtConnectionString = new System.Windows.Forms.TextBox();
             this.salvar = new System.Windows.Forms.FolderBrowserDialog();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.progressBar1 = new NewProgressBar();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.lblStatus = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -296,6 +298,7 @@
             // 
             // progressBar1
             // 
+            this.progressBar1.ForeColor = System.Drawing.Color.Maroon;
             this.progressBar1.Location = new System.Drawing.Point(307, 19);
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(133, 18);
@@ -377,7 +380,7 @@
         private System.Windows.Forms.Button btnExemplo;
         private System.Windows.Forms.RadioButton radioSGBD2;
         private System.Windows.Forms.RadioButton radioSGBD3;
-        private System.Windows.Forms.ProgressBar progressBar1;
+        private NewProgressBar progressBar1;
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.Label lblStatus;
     }

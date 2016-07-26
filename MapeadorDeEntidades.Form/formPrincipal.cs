@@ -15,6 +15,7 @@ namespace MapeadorDeEntidades.Form
         public formPrincipal()
         {
             InitializeComponent();
+            Application.EnableVisualStyles();
             Som();
             Session.lblStatus = lblStatus;
             Session.progressBar1 = progressBar1;
