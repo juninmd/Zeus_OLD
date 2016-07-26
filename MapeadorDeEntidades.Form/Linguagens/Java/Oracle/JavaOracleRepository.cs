@@ -3,7 +3,7 @@ using MapeadorDeEntidades.Form.Linguagens.Base;
 
 namespace MapeadorDeEntidades.Form.Linguagens.Java.Oracle
 {
-    public class JavaOracleRepository : BaseDAO
+    public class JavaOracleRepository : BaseOracleDAO
     {
         private string OracleType(string tipo)
         {

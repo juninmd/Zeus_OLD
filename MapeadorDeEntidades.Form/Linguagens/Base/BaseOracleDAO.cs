@@ -4,10 +4,10 @@ using MapeadorDeEntidades.Form.Core.SGBD.Oracle;
 
 namespace MapeadorDeEntidades.Form.Linguagens.Base
 {
-    public class BaseDAO
+    public class BaseOracleDAO
     {
         protected static string N => Environment.NewLine;
-        public BaseDAO(string nomeTabela)
+        public BaseOracleDAO(string nomeTabela)
         {
             NomeTabela = nomeTabela;
         }

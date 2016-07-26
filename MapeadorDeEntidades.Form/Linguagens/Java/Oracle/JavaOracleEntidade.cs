@@ -4,7 +4,7 @@ using System.Text;
 using MapeadorDeEntidades.Form.Core.SGBD.Oracle;
 using MapeadorDeEntidades.Form.Linguagens.Base;
 
-namespace MapeadorDeEntidades.Form.Linguagens.Java
+namespace MapeadorDeEntidades.Form.Linguagens.Java.Oracle
 {
     public class JavaOracleEntidade : BaseEntity
     {

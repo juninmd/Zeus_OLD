@@ -73,7 +73,7 @@
     <Compile Include="formPrincipal.Designer.cs">
       <DependentUpon>formPrincipal.cs</DependentUpon>
     </Compile>
-    <Compile Include="Linguagens\Base\BaseDAO.cs" />
+    <Compile Include="Linguagens\Base\BaseOracleDAO.cs" />
     <Compile Include="Linguagens\Base\BaseEntity.cs" />
     <Compile Include="Linguagens\CSharp\Oracle\CSharpOracleEntidade.cs" />
     <Compile Include="Linguagens\CSharp\Oracle\CSharpOracleRepository.cs" />
