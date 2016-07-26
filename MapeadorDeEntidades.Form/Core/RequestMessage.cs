@@ -1,7 +1,6 @@
-﻿using System.Collections.Generic;
-using System.Net;
+﻿using System.Net;
 
-namespace MapeadorDeEntidades.Form
+namespace MapeadorDeEntidades.Form.Core
 {
     public class RequestMessage
     {

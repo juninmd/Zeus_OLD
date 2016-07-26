@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace MapeadorDeEntidades.Form
+namespace MapeadorDeEntidades.Form.Core.SGBD.Oracle
 {
     public class OracleProcedure
     {
         public string NomeTabela { get; set; }
 
-        public List<EntidadeTabela> ListaAtributosTabela { get; set; }
+        public List<OracleEntidadeTabela> ListaAtributosTabela { get; set; }
 
-        public OracleProcedure(string nomeTabela, List<EntidadeTabela> atributosTabela)
+        public OracleProcedure(string nomeTabela, List<OracleEntidadeTabela> atributosTabela)
         {
             NomeTabela = nomeTabela;
             ListaAtributosTabela = atributosTabela;

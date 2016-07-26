@@ -5,19 +5,8 @@ using System.Collections.Generic;
 
 namespace MapeadorDeEntidades.Form.Middleware
 {
-    public class MD_ConnectionString
+    public class OrquestradorPingSGBD
     {
-
-        private RequestMessage<List<string>> ConnectaOracle()
-        {
-            var ping = new OraclePing().Ping();
-            if (!ping.IsError)
-            {
-                ping.Content = new OracleTables().ListaTabelas();
-            }
-            return ping;
-        }
-
         public RequestMessage<List<string>> Connect()
         {
             if (String.IsNullOrEmpty(ParamtersInput.ConnectionString))
@@ -34,7 +23,7 @@ namespace MapeadorDeEntidades.Form.Middleware
                 switch (ParamtersInput.SGBD)
                 {
                     case 1:
-                        return ConnectaOracle();
+                        return new OraclePing().ConnectaOracle();
                     default:
                         return new RequestMessage<List<string>>();
                 }

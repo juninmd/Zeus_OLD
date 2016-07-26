@@ -1,9 +1,10 @@
-﻿using MapeadorDeEntidades.Form.Linguagens;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using MapeadorDeEntidades.Form.Core.SGBD.Oracle;
+using MapeadorDeEntidades.Form.Linguagens.Base;
 
-namespace MapeadorDeEntidades.Form
+namespace MapeadorDeEntidades.Form.Linguagens.Java
 {
     public class JavaEntity : BaseEntity
     {
@@ -11,7 +12,7 @@ namespace MapeadorDeEntidades.Form
         /// Nova Linha
         /// </summary>
    
-        public string GetTypeAtribute(EntidadeTabela prop)
+        public string GetTypeAtribute(OracleEntidadeTabela prop)
         {
             switch (prop.DATA_TYPE)
             {
@@ -35,7 +36,7 @@ namespace MapeadorDeEntidades.Form
             }
         }
 
-        public string GetTypeDsAtribute(EntidadeTabela prop)
+        public string GetTypeDsAtribute(OracleEntidadeTabela prop)
         {
             switch (prop.DATA_TYPE)
             {
@@ -70,7 +71,7 @@ namespace MapeadorDeEntidades.Form
             return imports;
         }
 
-        private StringBuilder AtributosHeader(List<EntidadeTabela> entidadeTabela)
+        private StringBuilder AtributosHeader(List<OracleEntidadeTabela> entidadeTabela)
         {
             var atributosHeader = new StringBuilder();
 
@@ -82,7 +83,7 @@ namespace MapeadorDeEntidades.Form
             return atributosHeader;
         }
 
-        private StringBuilder AtributosBody(List<EntidadeTabela> entidadeTabela)
+        private StringBuilder AtributosBody(List<OracleEntidadeTabela> entidadeTabela)
         {
             var atributoBody = new StringBuilder();
 

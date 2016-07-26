@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 
-namespace MapeadorDeEntidades.Form
+namespace MapeadorDeEntidades.Form.Core.SGBD.Oracle
 {
     public class OracleTables : OracleRepository
     {
         public List<string> ListaTabelas()
         {
-            BeginNewStatement("SELECT table_name FROM user_tables");
+            BeginNewStatement("SELECT table_name FROM user_tables order by table_name");
             OpenConnection();
 
             var lista = new List<string>();
@@ -19,11 +19,10 @@ namespace MapeadorDeEntidades.Form
             return lista;
         }
 
-        public List<EntidadeTabela> ListarAtributos(string nomeTabela)
+        public List<OracleEntidadeTabela> ListarAtributos(string nomeTabela)
         {
 
-            BeginNewStatement("SELECT " +
-                               "A.COLUMN_NAME, " +
+            BeginNewStatement("SELECT A.COLUMN_NAME, " +
                                "A.DATA_TYPE, " +
                                "A.CHAR_LENGTH, " +
                                "A.NULLABLE, " +
@@ -38,12 +37,12 @@ namespace MapeadorDeEntidades.Form
 
             OpenConnection();
 
-            var lista = new List<EntidadeTabela>();
+            var lista = new List<OracleEntidadeTabela>();
 
             using (var r = ExecuteReader())
                 while (r.Read())
                 {
-                    lista.Add(new EntidadeTabela
+                    lista.Add(new OracleEntidadeTabela
                     {
                         COLUMN_NAME = r.GetValueOrDefault<string>("COLUMN_NAME"),
                         DATA_TYPE = r.GetValueOrDefault<string>("DATA_TYPE"),
@@ -54,6 +53,7 @@ namespace MapeadorDeEntidades.Form
                         COMMENTS = r.GetValueOrDefault<string>("COMMENTS"),
                     });
                 };
+            
             return lista;
         }
 

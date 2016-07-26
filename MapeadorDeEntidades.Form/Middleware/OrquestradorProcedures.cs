@@ -1,15 +1,12 @@
 ﻿using MapeadorDeEntidades.Form.Core;
 using System.Linq;
 using System.Windows.Forms;
+using MapeadorDeEntidades.Form.Core.SGBD.Oracle;
 
 namespace MapeadorDeEntidades.Form.Middleware
 {
-    public class MD_JSON
+    public class OrquestradorProcedures
     {
-        public void Generate()
-        {
-
-        }
         public RequestMessage<string> Generate(FolderBrowserDialog salvar)
         {
             if (!ParamtersInput.NomeTabelas.Any())
@@ -21,7 +18,13 @@ namespace MapeadorDeEntidades.Form.Middleware
                 };
             }
 
-         
+            switch (ParamtersInput.SGBD)
+            {
+                case 1:
+                    {
+                        return new OracleOrquestradorProcedures().Oracle(salvar);
+                    }
+            }
 
             return new RequestMessage<string>()
             {

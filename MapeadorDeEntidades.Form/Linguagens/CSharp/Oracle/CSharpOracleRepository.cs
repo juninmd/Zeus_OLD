@@ -1,12 +1,11 @@
-﻿using MapeadorDeEntidades.Form.Linguagens;
-using System;
-using System.Text;
+﻿using System.Text;
+using MapeadorDeEntidades.Form.Linguagens.Base;
 
-namespace MapeadorDeEntidades.Form
+namespace MapeadorDeEntidades.Form.Linguagens.CSharp.Oracle
 {
-    public class CSharpADO : BaseDAO
+    public class CSharpOracleRepository : BaseDAO
     {
-        public CSharpADO(string nomeTabela) : base(nomeTabela)
+        public CSharpOracleRepository(string nomeTabela) : base(nomeTabela)
         {
         }
 

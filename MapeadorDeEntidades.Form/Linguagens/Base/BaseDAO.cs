@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using MapeadorDeEntidades.Form.Core.SGBD.Oracle;
 
-namespace MapeadorDeEntidades.Form.Linguagens
+namespace MapeadorDeEntidades.Form.Linguagens.Base
 {
     public class BaseDAO
     {
@@ -11,6 +12,6 @@ namespace MapeadorDeEntidades.Form.Linguagens
             NomeTabela = nomeTabela;
         }
         public string NomeTabela { get; set; }
-        public List<EntidadeTabela> ListaAtributosTabela => new OracleTables().ListarAtributos(NomeTabela);
+        public List<OracleEntidadeTabela> ListaAtributosTabela => new OracleTables().ListarAtributos(NomeTabela);
     }
 }

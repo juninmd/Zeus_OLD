@@ -1,6 +1,6 @@
-﻿namespace MapeadorDeEntidades.Form
+﻿namespace MapeadorDeEntidades.Form.Core.SGBD.Oracle
 {
-    public class EntidadeTabela
+    public class OracleEntidadeTabela
     {
         public string COLUMN_NAME { get; set; }
 
@@ -21,6 +21,8 @@
         ///  Para descobrir a precisão do campo. EX: NUMBER(*,2);
         /// </summary>
         public decimal? DATA_SCALE { get; set; }
+
+
 
     }
 }

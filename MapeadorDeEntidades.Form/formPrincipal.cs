@@ -8,14 +8,16 @@ using System.Windows.Forms;
 
 namespace MapeadorDeEntidades.Form
 {
-    public partial class Form1 : System.Windows.Forms.Form
+    public partial class formPrincipal : System.Windows.Forms.Form
     {
         public FolderBrowserDialog Salvar { get { return salvar; } set { salvar = value; } }
 
-        public Form1()
+        public formPrincipal()
         {
             InitializeComponent();
             Som();
+            Session.lblStatus = lblStatus;
+            Session.progressBar1 = progressBar1;
             ParamtersInput.NomeTabelas = new List<string>();
         }
 
@@ -34,34 +36,34 @@ namespace MapeadorDeEntidades.Form
         private void btnEntidade_Click(object sender, EventArgs e)
         {
             SetParamters();
-            var mdMapeamento = new MD_MapeamentoEntidade().Generate(salvar);
+            var mdMapeamento = new OrquestradorMapeamentoEntidade().Generate(salvar);
             MessageBox.Show(mdMapeamento.Message);
         }
 
         private void btnChamadaProc_Click(object sender, EventArgs e)
         {
             SetParamters();
-            var mdChamdaProc = new MD_ChamadaProc().Generate(salvar);
+            var mdChamdaProc = new OrquestradorChamadaProcedure().Generate(salvar);
             MessageBox.Show(mdChamdaProc.Message);
         }
 
         private void btnProcSql_Click(object sender, EventArgs e)
         {
             SetParamters();
-            var mdProc = new MD_Procedure().Generate(salvar);
+            var mdProc = new OrquestradorProcedures().Generate(salvar);
             MessageBox.Show(mdProc.Message);
         }
 
         private void btnConnection_Click(object sender, EventArgs e)
         {
             SetParamters();
-            var md_connection = new MD_ConnectionString().Connect();
-            MessageBox.Show(md_connection.Message);
+            var connectionDb = new OrquestradorPingSGBD().Connect();
+            MessageBox.Show(connectionDb.Message);
 
-            if (!md_connection.IsError)
+            if (!connectionDb.IsError)
             {
                 ddlTabelas.Items.Clear();
-                ddlTabelas.Items.AddRange(md_connection.Content.ToArray());
+                ddlTabelas.Items.AddRange(connectionDb.Content.ToArray());
             }
         }
 
@@ -97,7 +99,7 @@ namespace MapeadorDeEntidades.Form
             ParamtersInput.NomeTabelas.Clear();
             ParamtersInput.ConnectionString = txtConnectionString.Text;
             ParamtersInput.Linguagem = radioCsharp.Checked ? 1 : 2;
-            ParamtersInput.SGBD = 1;
+            ParamtersInput.SGBD = radioSGBD1.Checked ? 1 : radioSGBD2.Checked ? 2 : radioSGBD3.Checked ? 3 : 0;
             ParamtersInput.TodasTabelas = btnChkTabela.Checked;
 
             if (ParamtersInput.TodasTabelas)
@@ -121,7 +123,14 @@ namespace MapeadorDeEntidades.Form
 
         private void btnExemplo_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Oracle:\n User Id=###;Data Source=###;Password=###");
+            System.Windows.Forms.Form fc = Application.OpenForms["formConnectionString"];
+            if (fc == null)
+                new formConnectionString().Show();
+            else
+            {
+                fc.Close();
+                new formConnectionString().Show();
+            }
         }
     }
 }
