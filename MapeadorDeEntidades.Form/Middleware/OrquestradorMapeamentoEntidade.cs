@@ -1,8 +1,9 @@
 ﻿using System;
 using MapeadorDeEntidades.Form.Core;
-using System.Linq;
+using System.Net;
 using System.Windows.Forms;
 using MapeadorDeEntidades.Form.Linguagens.CSharp.Oracle;
+using MapeadorDeEntidades.Form.Linguagens.CSharp.SQL;
 using MapeadorDeEntidades.Form.Linguagens.Java.Oracle;
 using MapeadorDeEntidades.Form.Utilidade;
 
@@ -41,13 +42,40 @@ namespace MapeadorDeEntidades.Form.Middleware
                                 }
                             default:
                                 {
-                                    return new RequestMessage<string>();
+                                    return new RequestMessage<string>()
+                                    {
+                                        StatusCode = HttpStatusCode.BadGateway,
+                                        Message = "Essa linguagem não foi programada."
+                                    };
+                                }
+                        }
+                    }
+                case 2:
+                    {
+
+                        switch (ParamtersInput.Linguagem)
+                        {
+                            case 1:
+                                {
+                                    return new CSharpSQLOrquestraEntidade().CSharp(salvar);
+                                }
+                            default:
+                                {
+                                    return new RequestMessage<string>()
+                                    {
+                                        StatusCode = HttpStatusCode.BadGateway,
+                                        Message = "Essa linguagem não foi programada."
+                                    };
                                 }
                         }
                     }
                 default:
                     {
-                        return new RequestMessage<string>();
+                        return new RequestMessage<string>()
+                        {
+                            StatusCode = HttpStatusCode.BadGateway,
+                            Message = "Esse SGBD não foi programado."
+                        };
                     }
             }
         }

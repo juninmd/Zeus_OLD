@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
+using MapeadorDeEntidades.Form.Core.SGBD.Oracle;
 
-namespace MapeadorDeEntidades.Form.Core.SGBD.Oracle
+namespace MapeadorDeEntidades.Form.Core.SGBD.Microsoft_SQL
 {
-    public class OraclePing : OracleRepository
+    public class SQLPing : SQLRepository
     {
         public RequestMessage<List<string>> ConnectaOracle()
         {
