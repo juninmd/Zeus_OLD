@@ -6,9 +6,9 @@
 
         public string DATA_TYPE { get; set; }
 
-        public decimal CHAR_LENGTH { get; set; }
+        public short CHAR_LENGTH { get; set; }
 
-        public string NULLABLE { get; set; }
+        public bool NULLABLE { get; set; }
 
         public string COMMENTS { get; set; }
 
