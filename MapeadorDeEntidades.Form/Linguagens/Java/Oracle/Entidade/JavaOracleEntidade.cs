@@ -4,62 +4,10 @@ using System.Text;
 using MapeadorDeEntidades.Form.Core.SGBD.Oracle;
 using MapeadorDeEntidades.Form.Linguagens.Base;
 
-namespace MapeadorDeEntidades.Form.Linguagens.Java.Oracle
+namespace MapeadorDeEntidades.Form.Linguagens.Java.Oracle.Entidade
 {
     public class JavaOracleEntidade : BaseEntity
     {
-        /// <summary>
-        /// Nova Linha
-        /// </summary>
-   
-        public string GetTypeAtribute(OracleEntidadeTabela prop)
-        {
-            switch (prop.DATA_TYPE)
-            {
-                case "DATE":
-                    return "Date";
-                case "NUMBER":
-                    {
-                        if (prop.DATA_PRECISION == null || prop.DATA_PRECISION <= 4)
-                        {
-                            return IsNullabe(prop.NULLABLE) ? "Integer" : "int";
-                        }
-                        else if (prop.DATA_PRECISION <= 15)
-                        {
-                            return IsNullabe(prop.NULLABLE) ? "Long" : "long";
-                        }
-                        return "BigDecimal";
-                    }
-
-                default:
-                    return "String";
-            }
-        }
-
-        public string GetTypeDsAtribute(OracleEntidadeTabela prop)
-        {
-            switch (prop.DATA_TYPE)
-            {
-                case "DATE":
-                    return "Date";
-                case "NUMBER":
-                    {
-                        if (prop.DATA_PRECISION == null || prop.DATA_PRECISION <= 4)
-                        {
-                            return "Int";
-                        }
-                        else if (prop.DATA_PRECISION <= 15)
-                        {
-                            return "Long";
-                        }
-                        return "BigDecimal";
-                    }
-
-                default:
-                    return "String";
-            }
-        }
-
         private StringBuilder Imports()
         {
             var imports = new StringBuilder();
@@ -77,7 +25,7 @@ namespace MapeadorDeEntidades.Form.Linguagens.Java.Oracle
 
             foreach (var att in entidadeTabela)
             {
-                atributosHeader.Append($"	private {GetTypeAtribute(att)} {att.COLUMN_NAME};{N}");
+                atributosHeader.Append($"	private {JavaTypesOracle.GetTypeAtribute(att)} {att.COLUMN_NAME};{N}");
             }
             atributosHeader.Append($"{N}");
             return atributosHeader;
@@ -93,7 +41,7 @@ namespace MapeadorDeEntidades.Form.Linguagens.Java.Oracle
                 atributoBody.Append($"	 * {N}");
                 atributoBody.Append($"	 * @Descrição {att.COMMENTS} {N}");
                 atributoBody.Append($"	 */{N}");
-                atributoBody.Append($"	public {GetTypeAtribute(att)} get{att.COLUMN_NAME}() {{{N}");
+                atributoBody.Append($"	public {JavaTypesOracle.GetTypeAtribute(att)} get{att.COLUMN_NAME}() {{{N}");
                 atributoBody.Append($"		return {att.COLUMN_NAME};{N}");
                 atributoBody.Append($"	}}{N}");
                 atributoBody.Append($"{N}");
@@ -102,7 +50,7 @@ namespace MapeadorDeEntidades.Form.Linguagens.Java.Oracle
                 atributoBody.Append($"	 * {N}");
                 atributoBody.Append($"	 * @Descrição {att.COMMENTS} {N}");
                 atributoBody.Append($"	 */{N}");
-                atributoBody.Append($"	public void set{att.COLUMN_NAME}({GetTypeAtribute(att)} {att.COLUMN_NAME}) {{{N}");
+                atributoBody.Append($"	public void set{att.COLUMN_NAME}({JavaTypesOracle.GetTypeAtribute(att)} {att.COLUMN_NAME}) {{{N}");
                 atributoBody.Append($"		this.{att.COLUMN_NAME} = {att.COLUMN_NAME};{N}");
                 atributoBody.Append($"	}}{N}");
                 atributoBody.Append($"{N}");

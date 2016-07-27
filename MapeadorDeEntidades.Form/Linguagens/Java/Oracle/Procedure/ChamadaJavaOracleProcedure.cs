@@ -4,33 +4,27 @@ using System.Windows.Forms;
 using MapeadorDeEntidades.Form.Core;
 using MapeadorDeEntidades.Form.Utilidade;
 
-namespace MapeadorDeEntidades.Form.Linguagens.CSharp.SQL
+namespace MapeadorDeEntidades.Form.Linguagens.Java.Oracle.Procedure
 {
-    public class ChamadaCsharpSQLProcedure
+    public class ChamadaJavaOracleProcedure
     {
-        public RequestMessage<string> CSharp(FolderBrowserDialog salvar)
+        public RequestMessage<string> Java(FolderBrowserDialog salvar)
         {
             try
             {
                 int max = ParamtersInput.NomeTabelas.Count;
                 var i = 0;
-                var local = salvar.SelectedPath + "\\";
-
                 foreach (var nomeTabela in ParamtersInput.NomeTabelas)
                 {
+
                     i++;
                     Util.Barra((int)((((decimal)i / max) * 100)));
                     Util.Status($"Processando tabela: {nomeTabela}");
 
+                    var instancia = new JavaOracleProcedure(nomeTabela);
 
-                    var instancia = new CSharpSQLRepository(nomeTabela);
-
-                    var classe = instancia.GerarBodyCSharpProc().ToString();
-                    File.WriteAllText(local + nomeTabela.ToLower() + "Repository.cs", classe);
-
-
-                    var interfacename = instancia.GerarInterfaceSharProc().ToString();
-                    File.WriteAllText(local + "I" + nomeTabela.ToLower() + "Repository.cs", interfacename);
+                    var classe = instancia.GerarClasse().ToString();
+                    File.WriteAllText($"{salvar.SelectedPath}\\{nomeTabela.ToLower()}Dao.java", classe);
                 }
 
                 return new RequestMessage<string>()

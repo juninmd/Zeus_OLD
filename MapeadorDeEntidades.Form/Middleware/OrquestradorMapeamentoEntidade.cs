@@ -2,9 +2,9 @@
 using MapeadorDeEntidades.Form.Core;
 using System.Net;
 using System.Windows.Forms;
-using MapeadorDeEntidades.Form.Linguagens.CSharp.Oracle;
-using MapeadorDeEntidades.Form.Linguagens.CSharp.SQL;
-using MapeadorDeEntidades.Form.Linguagens.Java.Oracle;
+using MapeadorDeEntidades.Form.Linguagens.CSharp.Oracle.Entidade;
+using MapeadorDeEntidades.Form.Linguagens.CSharp.SQL.Entidade;
+using MapeadorDeEntidades.Form.Linguagens.Java.Oracle.Entidade;
 using MapeadorDeEntidades.Form.Utilidade;
 
 namespace MapeadorDeEntidades.Form.Middleware
