@@ -6,7 +6,16 @@ namespace MapeadorDeEntidades.Form.Core.SGBD.Microsoft_SQL
     {
         public List<string> ListaTabelas()
         {
+            BeginNewStatement("SELECT TABLE_NAME FROM information_schema.tables order by table_name");
+            OpenConnection();
+
             var lista = new List<string>();
+
+            using (var r = ExecuteReader())
+                while (r.Read())
+                {
+                    lista.Add(r.GetValueOrDefault<string>("table_name"));
+                };
             return lista;
         }
 

@@ -2,6 +2,7 @@
 using MapeadorDeEntidades.Form.Core.SGBD.Oracle;
 using System;
 using System.Collections.Generic;
+using MapeadorDeEntidades.Form.Core.SGBD.Microsoft_SQL;
 
 namespace MapeadorDeEntidades.Form.Middleware
 {
@@ -24,8 +25,11 @@ namespace MapeadorDeEntidades.Form.Middleware
                 {
                     case 1:
                         return new OraclePing().ConnectaOracle();
+                    case 2:
+                        return new SQLPing().ConnectaSQL();
                     default:
-                        return new RequestMessage<List<string>>();
+                        return new SQLPing().ConnectaSQL();
+
                 }
             }
             catch (Exception ex)

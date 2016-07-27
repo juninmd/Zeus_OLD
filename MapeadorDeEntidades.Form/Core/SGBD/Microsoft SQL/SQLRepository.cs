@@ -9,9 +9,9 @@
 
 using System;
 using System.Data;
+using System.Data.SqlClient;
 using System.Net;
 using System.Runtime.CompilerServices;
-using Oracle.DataAccess.Client;
 
 namespace MapeadorDeEntidades.Form.Core.SGBD.Microsoft_SQL
 {
@@ -24,10 +24,10 @@ namespace MapeadorDeEntidades.Form.Core.SGBD.Microsoft_SQL
 
         #region ••• Propriedades •••
 
-        private readonly OracleCommand _command;
+        private readonly SqlCommand _command;
         private bool _closeConnectionAfterExecution;
-        private OracleConnection _connection;
-        private OracleTransaction _transaction;
+        private SqlConnection _connection;
+        private SqlTransaction _transaction;
 
         #endregion
 
@@ -36,7 +36,7 @@ namespace MapeadorDeEntidades.Form.Core.SGBD.Microsoft_SQL
         protected SQLRepository()
         {
             P_RESULT = "P_RESULT";
-            _command = new OracleCommand();
+            _command = new SqlCommand();
         }
 
         #endregion
@@ -67,11 +67,11 @@ namespace MapeadorDeEntidades.Form.Core.SGBD.Microsoft_SQL
         }
 
 
-        public OracleConnection Connection()
+        public SqlConnection Connection()
         {
             return _connection;
         }
-        public void SetConnection(OracleConnection conexao)
+        public void SetConnection(SqlConnection conexao)
         {
             if (conexao.State != ConnectionState.Open)
             {
@@ -84,40 +84,15 @@ namespace MapeadorDeEntidades.Form.Core.SGBD.Microsoft_SQL
 
         protected void AddParameter(string name, object value)
         {
-            _command.Parameters.Add("P_" + name, value);
+            _command.Parameters.AddWithValue("P_" + name, value);
         }
-
-        protected void AddParameter(string name, object value, OracleDbType type)
-        {
-            _command.Parameters.Add("P_" + name, type, value, ParameterDirection.Input);
-        }
-
-        protected void AddParameter(string name, OracleDbType type, ParameterDirection direction)
-        {
-            _command.Parameters.Add("P_" + name, type, direction);
-        }
-
-        protected void AddResult(string name = "RESULT", int size = 900)
-        {
-            _command.Parameters.Add("P_" + name, OracleDbType.Varchar2, size).Direction = ParameterDirection.Output;
-        }
-
-        protected void AddParameter(string name, OracleDbType type, int size, ParameterDirection direction)
-        {
-            _command.Parameters.Add("P_" + name, type, size, DBNull.Value, direction);
-        }
-        protected void AddParameter(string name, OracleDbType type, object value, ParameterDirection direction = ParameterDirection.Input, int size = 40)
-        {
-            _command.Parameters.Add("P_" + name, type, size, value, direction);
-        }
-
 
 
         protected void OpenConnection(bool closeAfterExecution = true)
         {
 
             if (_connection == null)
-                _connection = new OracleConnection(ParamtersInput.ConnectionString);
+                _connection = new SqlConnection(ParamtersInput.ConnectionString);
 
             if (_connection.State == ConnectionState.Broken && _connection.State == ConnectionState.Closed)
                 throw new Exception("Falha na conexão com o banco de dados:" + _connection.State + _connection.ConnectionString);
@@ -204,16 +179,10 @@ namespace MapeadorDeEntidades.Form.Core.SGBD.Microsoft_SQL
         {
             try
             {
-                _command.Parameters.Insert(0,
-                    new OracleParameter("P_CURSORSELECT", OracleDbType.RefCursor, ParameterDirection.Output));
                 var retorno = _command.ExecuteReader(_closeConnectionAfterExecution
                     ? CommandBehavior.CloseConnection
                     : CommandBehavior.Default);
-
-
                 return retorno;
-
-
             }
             catch (Exception ex)
             {
