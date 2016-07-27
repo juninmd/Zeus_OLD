@@ -1,9 +1,9 @@
 ﻿using System.Text;
 using MapeadorDeEntidades.Form.Linguagens.Base;
 
-namespace MapeadorDeEntidades.Form.Linguagens.Java.Oracle
+namespace MapeadorDeEntidades.Form.Linguagens.Java.Oracle.Procedure
 {
-    public class JavaOracleRepository : BaseOracleDAO
+    public class JavaOracleProcedure : BaseOracleDAO
     {
         private string OracleType(string tipo)
         {
@@ -13,10 +13,9 @@ namespace MapeadorDeEntidades.Form.Linguagens.Java.Oracle
             }
             return tipo;
         }
-        public JavaOracleRepository(string nomeTabela) : base(nomeTabela)
+        public JavaOracleProcedure(string nomeTabela) : base(nomeTabela)
         {
         }
-        private JavaOracleEntidade j => new JavaOracleEntidade();
 
         private StringBuilder Imports()
         {
@@ -54,7 +53,7 @@ namespace MapeadorDeEntidades.Form.Linguagens.Java.Oracle
             get.Append($"				{NomeTabela} resposta = new {NomeTabela}();{N}");
             foreach (var att in ListaAtributosTabela)
             {
-                get.Append($"				resposta.set{att.COLUMN_NAME}(rs.get{j.GetTypeDsAtribute(att)}(\"{att.COLUMN_NAME}\"));{N}");
+                get.Append($"				resposta.set{att.COLUMN_NAME}(rs.get{JavaTypesOracle.GetTypeAtribute((att))}(\"{att.COLUMN_NAME}\"));{N}");
             }
             get.Append($"				return resposta;{N}");
             get.Append($"			}};{N}");
@@ -84,7 +83,7 @@ namespace MapeadorDeEntidades.Form.Linguagens.Java.Oracle
             get.Append($"				{NomeTabela} resposta = new {NomeTabela}();{N}");
             foreach (var att in ListaAtributosTabela)
             {
-                get.Append($"				resposta.set{att.COLUMN_NAME}(rs.get{j.GetTypeAtribute(att)}(\"{att.COLUMN_NAME}\"));{N}");
+                get.Append($"				resposta.set{att.COLUMN_NAME}(rs.get{JavaTypesOracle.GetTypeAtribute(att)}(\"{att.COLUMN_NAME}\"));{N}");
             }
             get.Append($"				lista.add(resposta);{N}");
             get.Append($"			}};{N}");

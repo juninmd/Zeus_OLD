@@ -105,18 +105,25 @@
     <Compile Include="Linguagens\Base\BaseSQLDAO.cs" />
     <Compile Include="Linguagens\Base\BaseOracleDAO.cs" />
     <Compile Include="Linguagens\Base\BaseEntity.cs" />
-    <Compile Include="Linguagens\CSharp\Oracle\CSharpOracleEntidade.cs" />
-    <Compile Include="Linguagens\CSharp\Oracle\CSharpOracleRepository.cs" />
-    <Compile Include="Linguagens\CSharp\Oracle\ChamadaCsharpOracleProcedure.cs" />
-    <Compile Include="Linguagens\CSharp\Oracle\CSharpOracleOrquestraEntidade.cs" />
-    <Compile Include="Linguagens\CSharp\SQL\ChamadaCsharpSQLProcedure.cs" />
-    <Compile Include="Linguagens\CSharp\SQL\CSharpSQLEntidade.cs" />
-    <Compile Include="Linguagens\CSharp\SQL\CSharpSQLOrquestraEntidade.cs" />
-    <Compile Include="Linguagens\CSharp\SQL\CSharpSQLRepository.cs" />
-    <Compile Include="Linguagens\Java\Oracle\JavaOracleRepository.cs" />
-    <Compile Include="Linguagens\Java\Oracle\JavaOracleEntidade.cs" />
-    <Compile Include="Linguagens\Java\Oracle\ChamadaJavaOracleProcedure.cs" />
-    <Compile Include="Linguagens\Java\Oracle\JavaOracleOrquestraEntidade.cs" />
+    <Compile Include="Linguagens\CSharp\Oracle\CSharpTypesOracle.cs" />
+    <Compile Include="Linguagens\CSharp\Oracle\Entidade\CSharpOracleEntidade.cs" />
+    <Compile Include="Linguagens\CSharp\Oracle\Procedure\CsharpOracleProcedure.cs" />
+    <Compile Include="Linguagens\CSharp\Oracle\Procedure\ChamadaCsharpOracleProcedure.cs" />
+    <Compile Include="Linguagens\CSharp\Oracle\Entidade\CSharpOracleOrquestraEntidade.cs" />
+    <Compile Include="Linguagens\CSharp\SQL\Procedure\ChamadaCsharpSQLProcedure.cs" />
+    <Compile Include="Linguagens\CSharp\SQL\Entidade\CSharpSQLEntidade.cs" />
+    <Compile Include="Linguagens\CSharp\SQL\Entidade\CSharpSQLOrquestraEntidade.cs" />
+    <Compile Include="Linguagens\CSharp\SQL\Procedure\CSharpProcSQL.cs" />
+    <Compile Include="Linguagens\CSharp\SQL\CSharpTypesSQL.cs" />
+    <Compile Include="Linguagens\CSharp\SQL\Procedure\CSharpProcGetAllSQL.cs" />
+    <Compile Include="Linguagens\CSharp\SQL\Procedure\CSharpProcPutSQL.cs" />
+    <Compile Include="Linguagens\CSharp\SQL\Procedure\CSharpProcPostSQL.cs" />
+    <Compile Include="Linguagens\CSharp\SQL\Procedure\CSharpProcGetByIdSQL.cs" />
+    <Compile Include="Linguagens\Java\Oracle\JavaTypesOracle.cs" />
+    <Compile Include="Linguagens\Java\Oracle\Procedure\JavaOracleProcedure.cs" />
+    <Compile Include="Linguagens\Java\Oracle\Entidade\JavaOracleEntidade.cs" />
+    <Compile Include="Linguagens\Java\Oracle\Procedure\ChamadaJavaOracleProcedure.cs" />
+    <Compile Include="Linguagens\Java\Oracle\Entidade\JavaOracleOrquestraEntidade.cs" />
     <Compile Include="Middleware\OrquestradorChamadaProcedure.cs" />
     <Compile Include="Middleware\OrquestradorPingSGBD.cs" />
     <Compile Include="Middleware\OrquestradorJSON.cs" />
@@ -161,6 +168,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Core\SGBD\MYSQL\" />
+    <Folder Include="Linguagens\Java\SQL\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="zeus.wav">

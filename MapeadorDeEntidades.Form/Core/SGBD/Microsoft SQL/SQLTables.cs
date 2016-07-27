@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using MapeadorDeEntidades.Form.Core.SGBD.Oracle;
 
 namespace MapeadorDeEntidades.Form.Core.SGBD.Microsoft_SQL
 {

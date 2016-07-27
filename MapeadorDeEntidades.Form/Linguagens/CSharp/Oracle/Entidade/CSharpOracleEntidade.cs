@@ -1,26 +1,11 @@
 ﻿using System.Text;
-using MapeadorDeEntidades.Form.Core.SGBD.Microsoft_SQL;
+using MapeadorDeEntidades.Form.Core.SGBD.Oracle;
 using MapeadorDeEntidades.Form.Linguagens.Base;
 
-namespace MapeadorDeEntidades.Form.Linguagens.CSharp.SQL
+namespace MapeadorDeEntidades.Form.Linguagens.CSharp.Oracle.Entidade
 {
-    public class CSharpSQLEntity : BaseEntity
+    public class CSharpOracleEntity : BaseEntity
     {
-        private string GetTypeAtribute(string tipoAttr, bool aceitaNull)
-        {
-            switch (tipoAttr)
-            {
-                case "int":
-                    return "int" + ((aceitaNull) ? "?" : "");
-                case "datetime":
-                    return "DateTime" + ((aceitaNull) ? "?" : "");
-                case "NUMBER":
-                    return "long" + ((aceitaNull) ? "?" : "");
-                default:
-                    return "string";
-            }
-        }
-
         private StringBuilder GerarUsing()
         {
             var texto = new StringBuilder();
@@ -37,14 +22,14 @@ namespace MapeadorDeEntidades.Form.Linguagens.CSharp.SQL
             classe.Append($"    public class {nomeTabela}" + N);
             classe.Append("    {" + N + N);
 
-            var atributos = new SQLTables().ListarAtributos(nomeTabela);
+            var atributos = new OracleTables().ListarAtributos(nomeTabela);
 
             foreach (var item in atributos)
             {
                 classe.Append("         /// <summary>" + N);
                 classe.Append($"         /// {item.COMMENTS}" + N);
                 classe.Append("         /// </summary>" + N);
-                classe.Append($"         public {GetTypeAtribute(item.DATA_TYPE, item.NULLABLE)} {item.COLUMN_NAME} {{ get; set; }}" + N);
+                classe.Append($"         public {CSharpTypesOracle.GetTypeAtribute(item.DATA_TYPE, item.NULLABLE)} {item.COLUMN_NAME} {{ get; set; }}" + N);
                 classe.Append(N);
             }
             classe.Append("    }" + N);

@@ -4,7 +4,7 @@ using System.Windows.Forms;
 using MapeadorDeEntidades.Form.Core;
 using MapeadorDeEntidades.Form.Utilidade;
 
-namespace MapeadorDeEntidades.Form.Linguagens.CSharp.Oracle
+namespace MapeadorDeEntidades.Form.Linguagens.CSharp.Oracle.Procedure
 {
     public class ChamadaCsharpOracleProcedure
     {
@@ -23,7 +23,7 @@ namespace MapeadorDeEntidades.Form.Linguagens.CSharp.Oracle
                     Util.Status($"Processando tabela: {nomeTabela}");
 
 
-                    var instancia = new CSharpOracleRepository(nomeTabela);
+                    var instancia = new CsharpOracleProcedure(nomeTabela);
 
                     var classe = instancia.GerarBodyCSharpProc().ToString();
                     File.WriteAllText(local + nomeTabela.ToLower() + "Repository.cs", classe);

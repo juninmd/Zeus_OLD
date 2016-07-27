@@ -1,11 +1,11 @@
 ﻿using System.Text;
 using MapeadorDeEntidades.Form.Linguagens.Base;
 
-namespace MapeadorDeEntidades.Form.Linguagens.CSharp.SQL
+namespace MapeadorDeEntidades.Form.Linguagens.CSharp.Oracle.Procedure
 {
-    public class CSharpSQLRepository : BaseSQLDAO
+    public class CsharpOracleProcedure : BaseOracleDAO
     {
-        public CSharpSQLRepository(string nomeTabela) : base(nomeTabela)
+        public CsharpOracleProcedure(string nomeTabela) : base(nomeTabela)
         {
         }
 

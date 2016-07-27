@@ -4,9 +4,9 @@ using System.Windows.Forms;
 using MapeadorDeEntidades.Form.Core;
 using MapeadorDeEntidades.Form.Utilidade;
 
-namespace MapeadorDeEntidades.Form.Linguagens.Java.Oracle
+namespace MapeadorDeEntidades.Form.Linguagens.Java.Oracle.Entidade
 {
-    public class ChamadaJavaOracleProcedure
+    public class JavaOracleOrquestraEntidade
     {
         public RequestMessage<string> Java(FolderBrowserDialog salvar)
         {
@@ -16,17 +16,13 @@ namespace MapeadorDeEntidades.Form.Linguagens.Java.Oracle
                 var i = 0;
                 foreach (var nomeTabela in ParamtersInput.NomeTabelas)
                 {
-
                     i++;
                     Util.Barra((int)((((decimal)i / max) * 100)));
                     Util.Status($"Processando tabela: {nomeTabela}");
 
-                    var instancia = new JavaOracleRepository(nomeTabela);
-
-                    var classe = instancia.GerarClasse().ToString();
-                    File.WriteAllText($"{salvar.SelectedPath}\\{nomeTabela.ToLower()}Dao.java", classe);
+                    var classe = new JavaOracleEntidade().GerarBody(nomeTabela).ToString();
+                    File.WriteAllText($"{salvar.SelectedPath}\\{nomeTabela}.java", classe);
                 }
-
                 return new RequestMessage<string>()
                 {
                     Message = "Processamento concluído com sucesso!",
@@ -41,7 +37,7 @@ namespace MapeadorDeEntidades.Form.Linguagens.Java.Oracle
                     TechnicalMessage = ex.Message,
                     StatusCode = System.Net.HttpStatusCode.InternalServerError
                 };
-            }
+            };
         }
     }
 }

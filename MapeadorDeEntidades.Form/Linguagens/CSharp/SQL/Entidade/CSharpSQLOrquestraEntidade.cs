@@ -4,9 +4,9 @@ using System.Windows.Forms;
 using MapeadorDeEntidades.Form.Core;
 using MapeadorDeEntidades.Form.Utilidade;
 
-namespace MapeadorDeEntidades.Form.Linguagens.CSharp.Oracle
+namespace MapeadorDeEntidades.Form.Linguagens.CSharp.SQL.Entidade
 {
-    public class CSharpOracleOrquestraEntidade
+    public class CSharpSQLOrquestraEntidade
     {
         public RequestMessage<string> CSharp(FolderBrowserDialog salvar)
         {
@@ -20,7 +20,7 @@ namespace MapeadorDeEntidades.Form.Linguagens.CSharp.Oracle
                     i++;
                     Util.Barra((int)((((decimal)i / max) * 100)));
                     Util.Status($"Processando tabela: {nomeTabela}");
-                    var classe = new CSharpOracleEntity().GerarBody(nomeTabela);
+                    var classe = new CSharpSQLEntidade().GerarBody(nomeTabela);
                     File.WriteAllText($"{salvar.SelectedPath}\\{nomeTabela}.cs", classe);
                 }
                 return new RequestMessage<string>()
