@@ -1,6 +1,5 @@
 ﻿using System;
 using MapeadorDeEntidades.Form.Core;
-using System.Linq;
 using System.Windows.Forms;
 using MapeadorDeEntidades.Form.Linguagens.CSharp.Oracle;
 using MapeadorDeEntidades.Form.Linguagens.Java.Oracle;

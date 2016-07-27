@@ -1,5 +1,4 @@
 ﻿using MapeadorDeEntidades.Form.Core;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace MapeadorDeEntidades.Form.Middleware

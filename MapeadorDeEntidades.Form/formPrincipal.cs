@@ -59,7 +59,7 @@ namespace MapeadorDeEntidades.Form
         {
             SetParamters();
             var connectionDb = new OrquestradorPingSGBD().Connect();
-            MessageBox.Show(connectionDb.Message);
+            MessageBox.Show(connectionDb.Message + "\n" + connectionDb.TechnicalMessage);
 
             if (!connectionDb.IsError)
             {
