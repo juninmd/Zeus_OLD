@@ -2,6 +2,7 @@
 using System.IO;
 using System.Windows.Forms;
 using MapeadorDeEntidades.Form.Core;
+using MapeadorDeEntidades.Form.Core.SGBD.Microsoft_SQL;
 using MapeadorDeEntidades.Form.Utilidade;
 
 namespace MapeadorDeEntidades.Form.Linguagens.CSharp.SQL.Entidade
@@ -21,7 +22,7 @@ namespace MapeadorDeEntidades.Form.Linguagens.CSharp.SQL.Entidade
                     Util.Barra((int)((((decimal)i / max) * 100)));
                     Util.Status($"Processando tabela: {nomeTabela}");
                     var classe = new CSharpSQLEntidade().GerarBody(nomeTabela);
-                    File.WriteAllText($"{salvar.SelectedPath}\\{nomeTabela}.cs", classe);
+                    File.WriteAllText($"{salvar.SelectedPath}\\{nomeTabela.TratarNomeSQL()}.cs", classe);
                 }
                 return new RequestMessage<string>()
                 {

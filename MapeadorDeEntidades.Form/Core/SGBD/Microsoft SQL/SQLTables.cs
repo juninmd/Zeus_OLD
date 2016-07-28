@@ -6,7 +6,7 @@ namespace MapeadorDeEntidades.Form.Core.SGBD.Microsoft_SQL
     {
         public List<string> ListaTabelas()
         {
-            BeginNewStatement("SELECT TABLE_NAME FROM information_schema.tables order by table_name");
+            BeginNewStatement("SELECT TABLE_NAME, TABLE_SCHEMA FROM information_schema.tables WHERE TABLE_TYPE = 'BASE TABLE' order by table_name");
             OpenConnection();
 
             var lista = new List<string>();
@@ -14,15 +14,14 @@ namespace MapeadorDeEntidades.Form.Core.SGBD.Microsoft_SQL
             using (var r = ExecuteReader())
                 while (r.Read())
                 {
-                    lista.Add(r.GetValueOrDefault<string>("table_name"));
+                    lista.Add($"[{r.GetValueOrDefault<string>("TABLE_SCHEMA")}].[{r.GetValueOrDefault<string>("TABLE_NAME")}]");
                 };
             return lista;
         }
 
         public List<SQLEntidadeTabela> ListarAtributos(string nomeTabela)
         {
-            BeginNewStatement("use apolo;" +
-            "SELECT OBJECT_SCHEMA_NAME(T.[object_id]," +
+            BeginNewStatement("SELECT OBJECT_SCHEMA_NAME(T.[object_id]," +
             " DB_ID()) AS[Schema], " +
             "AC.[name] AS[column_name], " +
             "TY.[name] AS DATA_TYPE, " +
@@ -38,7 +37,7 @@ namespace MapeadorDeEntidades.Form.Core.SGBD.Microsoft_SQL
             "AC.[user_type_id] = TY.[user_type_id] " +
             "WHERE T.[is_ms_shipped] = 0 " +
             "AND T.[is_ms_shipped] = 0 " +
-            $"AND T.[name] = '{nomeTabela}' " +
+            $"AND '['+OBJECT_SCHEMA_NAME(T.[object_id], DB_ID())+']'+'.['+ T.[name]+']' = '{nomeTabela}' " +
             "ORDER BY T.[name], AC.[column_id]");
 
             OpenConnection();

@@ -1,15 +1,13 @@
 ﻿using System;
 using System.IO;
 using System.Windows.Forms;
-using MapeadorDeEntidades.Form.Core;
-using MapeadorDeEntidades.Form.Core.SGBD.Microsoft_SQL;
 using MapeadorDeEntidades.Form.Utilidade;
 
-namespace MapeadorDeEntidades.Form.Linguagens.CSharp.SQL.Procedure
+namespace MapeadorDeEntidades.Form.Core.SGBD.Oracle.Procedure
 {
-    public class ChamadaCsharpSQLProcedure
+    public class OracleOrquestradorProcedures
     {
-        public RequestMessage<string> CSharp(FolderBrowserDialog salvar)
+        public RequestMessage<string> Oracle(FolderBrowserDialog salvar)
         {
             try
             {
@@ -23,15 +21,12 @@ namespace MapeadorDeEntidades.Form.Linguagens.CSharp.SQL.Procedure
                     Util.Barra((int)((((decimal)i / max) * 100)));
                     Util.Status($"Processando tabela: {nomeTabela}");
 
+                    var instancia = new OracleProcedure(nomeTabela, new OracleTables().ListarAtributos(nomeTabela));
+                    var header = instancia.GerarPackageHeader().ToString();
+                    File.WriteAllText(local + $"{nomeTabela}_HEADER.sql", header);
 
-                    var instancia = new CSharpProcSQL(nomeTabela);
-
-                    var classe = instancia.GerarBodyCSharpProc().ToString();
-                    File.WriteAllText(local + nomeTabela.TratarNomeSQL().ToLower() + "Repository.cs", classe);
-
-
-                    var interfacename = instancia.GerarInterfaceSharProc().ToString();
-                    File.WriteAllText(local + "I" + nomeTabela.TratarNomeSQL().ToLower() + "Repository.cs", interfacename);
+                    var body = instancia.GerarPackageBody().ToString();
+                    File.WriteAllText(local + $"{nomeTabela}_BODY.sql", body);
                 }
 
                 return new RequestMessage<string>()

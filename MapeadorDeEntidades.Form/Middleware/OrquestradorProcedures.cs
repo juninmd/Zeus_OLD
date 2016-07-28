@@ -1,7 +1,8 @@
 ﻿using System;
 using MapeadorDeEntidades.Form.Core;
 using System.Windows.Forms;
-using MapeadorDeEntidades.Form.Core.SGBD.Oracle;
+using MapeadorDeEntidades.Form.Core.SGBD.Microsoft_SQL.Procedure;
+using MapeadorDeEntidades.Form.Core.SGBD.Oracle.Procedure;
 using MapeadorDeEntidades.Form.Utilidade;
 
 namespace MapeadorDeEntidades.Form.Middleware
@@ -28,6 +29,10 @@ namespace MapeadorDeEntidades.Form.Middleware
                 case 1:
                     {
                         return new OracleOrquestradorProcedures().Oracle(salvar);
+                    }
+                case 2:
+                    {
+                        return new SQLOrquestradorProcedures().SQL(salvar);
                     }
                 default:
                     {
