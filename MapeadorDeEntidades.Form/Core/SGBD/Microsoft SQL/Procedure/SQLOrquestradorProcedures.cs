@@ -3,11 +3,11 @@ using System.IO;
 using System.Windows.Forms;
 using MapeadorDeEntidades.Form.Utilidade;
 
-namespace MapeadorDeEntidades.Form.Core.SGBD.Oracle
+namespace MapeadorDeEntidades.Form.Core.SGBD.Microsoft_SQL.Procedure
 {
-    public class OracleOrquestradorProcedures
+    public class SQLOrquestradorProcedures
     {
-        public RequestMessage<string> Oracle(FolderBrowserDialog salvar)
+        public RequestMessage<string> SQL(FolderBrowserDialog salvar)
         {
             try
             {
@@ -21,12 +21,9 @@ namespace MapeadorDeEntidades.Form.Core.SGBD.Oracle
                     Util.Barra((int)((((decimal)i / max) * 100)));
                     Util.Status($"Processando tabela: {nomeTabela}");
 
-                    var instancia = new OracleProcedure(nomeTabela, new OracleTables().ListarAtributos(nomeTabela));
-                    var header = instancia.GerarPackageHeader().ToString();
-                    File.WriteAllText(local + $"{nomeTabela}_HEADER.sql", header);
-
+                    var instancia = new SQLProcedure(nomeTabela, new SQLTables().ListarAtributos(nomeTabela));
                     var body = instancia.GerarPackageBody().ToString();
-                    File.WriteAllText(local + $"{nomeTabela}_BODY.sql", body);
+                    File.WriteAllText(local + $"{nomeTabela.TratarNomeSQL()}.sql", body);
                 }
 
                 return new RequestMessage<string>()

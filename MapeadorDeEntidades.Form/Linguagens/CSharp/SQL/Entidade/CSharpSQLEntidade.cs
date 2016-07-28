@@ -19,7 +19,7 @@ namespace MapeadorDeEntidades.Form.Linguagens.CSharp.SQL.Entidade
             var classe = new StringBuilder();
             classe.Append("namespace Model" + N);
             classe.Append("{" + N);
-            classe.Append($"    public class {nomeTabela}" + N);
+            classe.Append($"    public class {nomeTabela.TratarNomeSQL()}" + N);
             classe.Append("    {" + N + N);
 
             var atributos = new SQLTables().ListarAtributos(nomeTabela);

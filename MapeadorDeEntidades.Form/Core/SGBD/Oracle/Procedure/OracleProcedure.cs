@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace MapeadorDeEntidades.Form.Core.SGBD.Oracle
+namespace MapeadorDeEntidades.Form.Core.SGBD.Oracle.Procedure
 {
     public class OracleProcedure
     {

@@ -14,7 +14,7 @@ namespace MapeadorDeEntidades.Form.Linguagens.CSharp.SQL.Procedure
         {
             var methodo = new StringBuilder();
             methodo.Append(N);
-            methodo.Append($"        public RequestMessage<{NomeTabela}> GetById(long ID)" + N);
+            methodo.Append($"        public RequestMessage<{NomeTabela}> GetById(long id)" + N);
             methodo.Append("        {" + N);
             methodo.Append($"            var result = new RequestMessage<{NomeTabela}>" + N);
             methodo.Append("            {" + N);

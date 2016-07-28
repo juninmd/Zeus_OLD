@@ -80,16 +80,30 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Core\Session.cs" />
+    <Compile Include="Core\SGBD\Microsoft SQL\Procedure\Comum\SQLDeleteParamters.cs" />
+    <Compile Include="Core\SGBD\Microsoft SQL\Procedure\Comum\SQLUpdateParamters.cs" />
+    <Compile Include="Core\SGBD\Microsoft SQL\Procedure\Comum\SQLInsertParamters.cs" />
+    <Compile Include="Core\SGBD\Microsoft SQL\Procedure\Comum\SQLBuscaParamters.cs" />
+    <Compile Include="Core\SGBD\Microsoft SQL\Procedure\Comum\SQLSelectParamters.cs" />
+    <Compile Include="Core\SGBD\Microsoft SQL\Procedure\Verbos\SQLBuscar.cs" />
+    <Compile Include="Core\SGBD\Microsoft SQL\Procedure\Verbos\SQLDelete.cs" />
+    <Compile Include="Core\SGBD\Microsoft SQL\Procedure\Verbos\SQLUpdate.cs" />
+    <Compile Include="Core\SGBD\Microsoft SQL\Procedure\Verbos\SQLInsert.cs" />
+    <Compile Include="Core\SGBD\Microsoft SQL\Procedure\Verbos\SQLGet.cs" />
+    <Compile Include="Core\SGBD\Microsoft SQL\Procedure\Comum\SQLSumario.cs" />
+    <Compile Include="Core\SGBD\Microsoft SQL\Procedure\SQLOrquestradorProcedures.cs" />
+    <Compile Include="Core\SGBD\Microsoft SQL\Procedure\SQLProcedure.cs" />
     <Compile Include="Core\SGBD\Microsoft SQL\SQLPing.cs" />
     <Compile Include="Core\SGBD\Microsoft SQL\SQLRepository.cs" />
     <Compile Include="Core\SGBD\Microsoft SQL\SQLEntidadeTabela.cs" />
     <Compile Include="Core\SGBD\Microsoft SQL\SQLTables.cs" />
+    <Compile Include="Core\SGBD\Microsoft SQL\SQLUtil.cs" />
     <Compile Include="Core\SGBD\Oracle\OracleToJson.cs" />
     <Compile Include="Core\SGBD\Oracle\OraclePing.cs" />
     <Compile Include="Core\SGBD\Oracle\OracleRepository.cs" />
     <Compile Include="Core\ParamtersInput.cs" />
     <Compile Include="Core\SGBD\Oracle\OracleEntidadeTabela.cs" />
-    <Compile Include="Core\SGBD\Oracle\OracleOrquestradorProcedures.cs" />
+    <Compile Include="Core\SGBD\Oracle\Procedure\OracleOrquestradorProcedures.cs" />
     <Compile Include="formConnectionString.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -113,6 +127,7 @@
     <Compile Include="Linguagens\CSharp\SQL\Procedure\ChamadaCsharpSQLProcedure.cs" />
     <Compile Include="Linguagens\CSharp\SQL\Entidade\CSharpSQLEntidade.cs" />
     <Compile Include="Linguagens\CSharp\SQL\Entidade\CSharpSQLOrquestraEntidade.cs" />
+    <Compile Include="Linguagens\CSharp\SQL\Procedure\CSharpProcDeleteSQL.cs" />
     <Compile Include="Linguagens\CSharp\SQL\Procedure\CSharpProcSQL.cs" />
     <Compile Include="Linguagens\CSharp\SQL\CSharpTypesSQL.cs" />
     <Compile Include="Linguagens\CSharp\SQL\Procedure\CSharpProcGetAllSQL.cs" />
@@ -129,7 +144,7 @@
     <Compile Include="Middleware\OrquestradorJSON.cs" />
     <Compile Include="Middleware\OrquestradorMapeamentoEntidade.cs" />
     <Compile Include="Middleware\OrquestradorProcedures.cs" />
-    <Compile Include="Core\SGBD\Oracle\OracleProcedure.cs" />
+    <Compile Include="Core\SGBD\Oracle\Procedure\OracleProcedure.cs" />
     <Compile Include="Middleware\ValidateBasic.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
