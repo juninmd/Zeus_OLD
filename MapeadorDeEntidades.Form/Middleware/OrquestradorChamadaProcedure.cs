@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using MapeadorDeEntidades.Form.Linguagens.CSharp.Oracle.Procedure;
 using MapeadorDeEntidades.Form.Linguagens.CSharp.SQL.Procedure;
 using MapeadorDeEntidades.Form.Linguagens.Java.Oracle.Procedure;
+using MapeadorDeEntidades.Form.Linguagens.Node.Oracle.Procedure;
 using MapeadorDeEntidades.Form.Utilidade;
 
 namespace MapeadorDeEntidades.Form.Middleware
@@ -40,6 +41,10 @@ namespace MapeadorDeEntidades.Form.Middleware
                             case 2:
                                 {
                                     return new ChamadaJavaOracleProcedure().Java(salvar);
+                                }
+                            case 3:
+                                {
+                                    return new ChamadaNodeOracleProcedure().Node(salvar);
                                 }
                             default:
                                 {

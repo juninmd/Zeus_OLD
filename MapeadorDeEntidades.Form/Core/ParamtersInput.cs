@@ -9,7 +9,7 @@ namespace MapeadorDeEntidades.Form.Core
         /// <summary>
         /// 1 - C#
         /// 2 - JAVA
-        /// 3 - JAVASCRIPT
+        /// 3 - Node
         /// </summary>
         public static int Linguagem { get; set; }
 
