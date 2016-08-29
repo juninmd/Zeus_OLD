@@ -139,6 +139,8 @@
     <Compile Include="Linguagens\Java\Oracle\Entidade\JavaOracleEntidade.cs" />
     <Compile Include="Linguagens\Java\Oracle\Procedure\ChamadaJavaOracleProcedure.cs" />
     <Compile Include="Linguagens\Java\Oracle\Entidade\JavaOracleOrquestraEntidade.cs" />
+    <Compile Include="Linguagens\Node\Oracle\Procedure\ChamadaNodeOracleProcedure.cs" />
+    <Compile Include="Linguagens\Node\Oracle\Procedure\NodeOracleProcedure.cs" />
     <Compile Include="Middleware\OrquestradorChamadaProcedure.cs" />
     <Compile Include="Middleware\OrquestradorPingSGBD.cs" />
     <Compile Include="Middleware\OrquestradorJSON.cs" />
@@ -184,6 +186,7 @@
   <ItemGroup>
     <Folder Include="Core\SGBD\MYSQL\" />
     <Folder Include="Linguagens\Java\SQL\" />
+    <Folder Include="Linguagens\Node\SQL\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="zeus.wav">

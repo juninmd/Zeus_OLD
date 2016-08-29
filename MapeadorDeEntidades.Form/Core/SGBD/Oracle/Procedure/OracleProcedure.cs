@@ -173,7 +173,7 @@ namespace MapeadorDeEntidades.Form.Core.SGBD.Oracle.Procedure
             {
                 if (i == ListaAtributosTabela.Count - 1)
                 {
-                    parametro.Append($"      {ListaAtributosTabela[i].COLUMN_NAME}" + Environment.NewLine);
+                    parametro.Append($"             {ListaAtributosTabela[i].COLUMN_NAME}" + Environment.NewLine);
                 }
                 else if (i == 0)
                 {
