@@ -39,11 +39,13 @@ namespace MapeadorDeEntidades.Form
             this.radioCsharp = new System.Windows.Forms.RadioButton();
             this.radioJava = new System.Windows.Forms.RadioButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.radioNode = new System.Windows.Forms.RadioButton();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.radioSGBD3 = new System.Windows.Forms.RadioButton();
             this.radioSGBD2 = new System.Windows.Forms.RadioButton();
             this.radioSGBD1 = new System.Windows.Forms.RadioButton();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.btnChkTabela = new System.Windows.Forms.CheckBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
@@ -53,10 +55,7 @@ namespace MapeadorDeEntidades.Form
             this.salvar = new System.Windows.Forms.FolderBrowserDialog();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.lblStatus = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.radioNode = new System.Windows.Forms.RadioButton();
             this.progressBar1 = new MapeadorDeEntidades.Form.Core.NewProgressBar();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -147,7 +146,6 @@ namespace MapeadorDeEntidades.Form
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.radioButton1);
             this.groupBox1.Controls.Add(this.radioNode);
             this.groupBox1.Controls.Add(this.radioCsharp);
             this.groupBox1.Controls.Add(this.radioJava);
@@ -158,6 +156,18 @@ namespace MapeadorDeEntidades.Form
             this.groupBox1.TabIndex = 9;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Linguagem";
+            // 
+            // radioNode
+            // 
+            this.radioNode.AutoSize = true;
+            this.radioNode.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.radioNode.Location = new System.Drawing.Point(58, 18);
+            this.radioNode.Name = "radioNode";
+            this.radioNode.Size = new System.Drawing.Size(66, 17);
+            this.radioNode.TabIndex = 9;
+            this.radioNode.TabStop = true;
+            this.radioNode.Text = "Node JS";
+            this.radioNode.UseVisualStyleBackColor = true;
             // 
             // groupBox2
             // 
@@ -223,6 +233,18 @@ namespace MapeadorDeEntidades.Form
             this.groupBox3.TabIndex = 11;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Gerar";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.label1.Location = new System.Drawing.Point(55, 103);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(68, 25);
+            this.label1.TabIndex = 14;
+            this.label1.Text = "ZEUS";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // groupBox4
             // 
@@ -309,30 +331,6 @@ namespace MapeadorDeEntidades.Form
             this.lblStatus.TabIndex = 15;
             this.lblStatus.Text = "Aguardando Instruções";
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label1.Location = new System.Drawing.Point(55, 103);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(68, 25);
-            this.label1.TabIndex = 14;
-            this.label1.Text = "ZEUS";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
-            // 
-            // radioNode
-            // 
-            this.radioNode.AutoSize = true;
-            this.radioNode.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.radioNode.Location = new System.Drawing.Point(58, 18);
-            this.radioNode.Name = "radioNode";
-            this.radioNode.Size = new System.Drawing.Size(66, 17);
-            this.radioNode.TabIndex = 9;
-            this.radioNode.TabStop = true;
-            this.radioNode.Text = "Node JS";
-            this.radioNode.UseVisualStyleBackColor = true;
-            // 
             // progressBar1
             // 
             this.progressBar1.ForeColor = System.Drawing.Color.Maroon;
@@ -340,18 +338,6 @@ namespace MapeadorDeEntidades.Form
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(133, 18);
             this.progressBar1.TabIndex = 14;
-            // 
-            // radioButton1
-            // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.radioButton1.Location = new System.Drawing.Point(56, 42);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(66, 30);
-            this.radioButton1.TabIndex = 10;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Node JS\r\nJubarte\r\n";
-            this.radioButton1.UseVisualStyleBackColor = true;
             // 
             // formPrincipal
             // 
@@ -415,7 +401,6 @@ namespace MapeadorDeEntidades.Form
         private System.Windows.Forms.Label lblStatus;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.RadioButton radioNode;
-        private System.Windows.Forms.RadioButton radioButton1;
     }
 }
 
