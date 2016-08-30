@@ -16,7 +16,7 @@ namespace MapeadorDeEntidades.Form.Linguagens.Node.Oracle.Procedure
         private StringBuilder Imports()
         {
             var imports = new StringBuilder();
-            imports.Append($"var connection = require(\"../config /services /relational.js\"),{N}");
+            imports.Append($"var connection = require(\"../config/services/relational.js\"),{N}");
             imports.Append($"    oracleDB = require(\"oracledb\"),{N}");
             imports.Append($"    moment = require(\"moment\"),{N}");
             imports.Append($"    error = require('../config/services/log/errors.js'),{N}");
