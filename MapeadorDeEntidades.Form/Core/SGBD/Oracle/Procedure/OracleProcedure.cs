@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using MapeadorDeEntidades.Form.Properties;
 
 namespace MapeadorDeEntidades.Form.Core.SGBD.Oracle.Procedure
 {
@@ -55,7 +56,7 @@ namespace MapeadorDeEntidades.Form.Core.SGBD.Oracle.Procedure
 
             if (semparametros == false)
             {
-                parametro.Append("," +Environment.NewLine);
+                parametro.Append("," + Environment.NewLine);
                 if (onlyFirst == false)
                 {
                     for (var i = 0; i < ListaAtributosTabela.Count; i++)
@@ -237,7 +238,7 @@ namespace MapeadorDeEntidades.Form.Core.SGBD.Oracle.Procedure
         {
             var body = new StringBuilder();
             body.Append(Environment.NewLine);
-            var nomeProc = "MAG_SP_PDL_I_" + NomeTabela.Replace("MAG_T_PDL", "").Replace("_", "");
+            var nomeProc = Settings.Default.PrefixoProcedure + "_I_" + NomeTabela.TratarNomeTabela();
             body.Append(AdicionaCabecalho(nomeProc));
             body.Append(InsertBodyInside());
             body.Append($"END {nomeProc};" + Environment.NewLine);
@@ -263,7 +264,7 @@ namespace MapeadorDeEntidades.Form.Core.SGBD.Oracle.Procedure
         {
             var body = new StringBuilder();
             body.Append(Environment.NewLine);
-            var nomeProc = "MAG_SP_PDL_U_" + NomeTabela.Replace("MAG_T_PDL", "").Replace("_", "");
+            var nomeProc = Settings.Default.PrefixoProcedure + "_U_" + NomeTabela.TratarNomeTabela();
             body.Append(AdicionaCabecalho(nomeProc));
             body.Append(UpdateBodyInside());
             body.Append($"END {nomeProc};" + Environment.NewLine);
@@ -288,7 +289,7 @@ namespace MapeadorDeEntidades.Form.Core.SGBD.Oracle.Procedure
         {
             var body = new StringBuilder();
             body.Append(Environment.NewLine);
-            var nomeProc = "MAG_SP_PDL_S_" + NomeTabela.Replace("MAG_T_PDL", "").Replace("_", "") + (Isall ? "" : "_ID");
+            var nomeProc = Settings.Default.PrefixoProcedure + "_S_" + NomeTabela.TratarNomeTabela() + (Isall ? "" : "_ID");
             body.Append(AdicionaCabecalho(nomeProc, false, true, true, Isall));
             body.Append(SelectBodyInside(Isall));
             body.Append($"END {nomeProc};" + Environment.NewLine);
@@ -314,7 +315,7 @@ namespace MapeadorDeEntidades.Form.Core.SGBD.Oracle.Procedure
         {
             var body = new StringBuilder();
             body.Append(Environment.NewLine);
-            var nomeProc = "MAG_SP_PDL_D_" + NomeTabela.Replace("MAG_T_PDL", "").Replace("_", "");
+            var nomeProc = "MAG_SP_D_" + NomeTabela.TratarNomeTabela();
             body.Append(AdicionaCabecalho(nomeProc, false, false, true));
             body.Append(DeleteBodyInside());
             body.Append($"END {nomeProc};" + Environment.NewLine);
@@ -327,14 +328,14 @@ namespace MapeadorDeEntidades.Form.Core.SGBD.Oracle.Procedure
         public StringBuilder GerarPackageHeader()
         {
             var header = new StringBuilder();
-            header.Append($"create or replace package {NomeTabela.Replace("_T_", "_PG_")} is" + Environment.NewLine + Environment.NewLine);
+            header.Append($"create or replace package {NomeTabela.TratarNomePackage()} is" + Environment.NewLine + Environment.NewLine);
             header.Append("  TYPE TP_CURSOR IS REF CURSOR;" + Environment.NewLine + Environment.NewLine);
-            header.Append(AdicionaCabecalho("MAG_SP_PDL_I_" + NomeTabela.Replace("MAG_T_PDL", "").Replace("_", ""), true, false, false));
-            header.Append(AdicionaCabecalho("MAG_SP_PDL_U_" + NomeTabela.Replace("MAG_T_PDL", "").Replace("_", ""), true, false, false));
-            header.Append(AdicionaCabecalho("MAG_SP_PDL_D_" + NomeTabela.Replace("MAG_T_PDL", "").Replace("_", ""), true, false, true));
-            header.Append(AdicionaCabecalho("MAG_SP_PDL_S_" + NomeTabela.Replace("MAG_T_PDL", "").Replace("_", ""), true, true, true, true));
-            header.Append(AdicionaCabecalho("MAG_SP_PDL_S_" + NomeTabela.Replace("MAG_T_PDL", "").Replace("_", "") + "_ID", true, true, true));
-            header.Append(Environment.NewLine + Environment.NewLine + $"end {NomeTabela.Replace("_T_", "_PG_")};" + Environment.NewLine);
+            header.Append(AdicionaCabecalho(Settings.Default.PrefixoProcedure + "_I_" + NomeTabela.TratarNomeTabela(), true, false, false));
+            header.Append(AdicionaCabecalho(Settings.Default.PrefixoProcedure + "_U_" + NomeTabela.TratarNomeTabela(), true, false, false));
+            header.Append(AdicionaCabecalho(Settings.Default.PrefixoProcedure + "_D_" + NomeTabela.TratarNomeTabela(), true, false, true));
+            header.Append(AdicionaCabecalho(Settings.Default.PrefixoProcedure + "_S_" + NomeTabela.TratarNomeTabela(), true, true, true, true));
+            header.Append(AdicionaCabecalho(Settings.Default.PrefixoProcedure + "_S_" + NomeTabela.TratarNomeTabela() + "_ID", true, true, true));
+            header.Append(Environment.NewLine + Environment.NewLine + $"end {NomeTabela.TratarNomePackage()};" + Environment.NewLine);
 
             return header;
         }
@@ -342,13 +343,13 @@ namespace MapeadorDeEntidades.Form.Core.SGBD.Oracle.Procedure
         public StringBuilder GerarPackageBody()
         {
             var header = new StringBuilder();
-            header.Append($"create or replace package BODY {NomeTabela.Replace("_T_", "_PG_")} is" + Environment.NewLine + Environment.NewLine);
+            header.Append($"create or replace package BODY {NomeTabela.TratarNomePackage()} is" + Environment.NewLine + Environment.NewLine);
             header.Append(BodyInsert());
             header.Append(BodyUpdate());
             header.Append(BodyDelete());
-            header.Append(BodySelect());
             header.Append(BodySelect(true));
-            header.Append($"end {NomeTabela.Replace("_T_", "_PG_")};" + Environment.NewLine);
+            header.Append(BodySelect());
+            header.Append($"end {NomeTabela.TratarNomePackage()};" + Environment.NewLine);
             return header;
         }
 

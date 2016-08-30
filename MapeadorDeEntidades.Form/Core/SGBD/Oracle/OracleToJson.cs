@@ -9,7 +9,6 @@ namespace MapeadorDeEntidades.Form.Core.SGBD.Oracle
             BeginNewStatement($"SELECT * FROM {nomeTabela}");
             OpenConnection();
 
-            int rowCount = 0;
             var jsonResult = new StringBuilder();
             using (var r = ExecuteReader())
                 while (r.Read())
@@ -20,11 +19,6 @@ namespace MapeadorDeEntidades.Form.Core.SGBD.Oracle
             {
                 StatusCode = System.Net.HttpStatusCode.OK,
                 Message = "Connectado com sucesso!"
-            };
-            return new RequestMessage<string>
-            {
-                StatusCode = System.Net.HttpStatusCode.InternalServerError,
-                Message = "Não foi possível connectar!"
             };
         }
     }

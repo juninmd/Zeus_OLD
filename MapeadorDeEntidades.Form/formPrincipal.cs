@@ -20,6 +20,7 @@ namespace MapeadorDeEntidades.Form
             Session.lblStatus = lblStatus;
             Session.progressBar1 = progressBar1;
             ParamtersInput.NomeTabelas = new List<string>();
+            txtConnectionString.Text = Properties.Settings.Default.ConnectionStringDefault;
         }
 
         private void Som()
@@ -137,6 +138,18 @@ namespace MapeadorDeEntidades.Form
         private void label1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnConfiguracoes_Click(object sender, EventArgs e)
+        {
+            System.Windows.Forms.Form fc = Application.OpenForms["formConfiguracoes"];
+            if (fc == null)
+                new formConfiguracoes().Show();
+            else
+            {
+                fc.Close();
+                new formConfiguracoes().Show();
+            }
         }
     }
 }
