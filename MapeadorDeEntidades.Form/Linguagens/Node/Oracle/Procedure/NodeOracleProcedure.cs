@@ -1,6 +1,8 @@
 ﻿using System.Linq;
 using System.Text;
+using MapeadorDeEntidades.Form.Core;
 using MapeadorDeEntidades.Form.Linguagens.Base;
+using MapeadorDeEntidades.Form.Properties;
 
 namespace MapeadorDeEntidades.Form.Linguagens.Node.Oracle.Procedure
 {
@@ -26,7 +28,7 @@ namespace MapeadorDeEntidades.Form.Linguagens.Node.Oracle.Procedure
         {
             var get = new StringBuilder();
             get.Append($"    getByCodigo: function (id, callback) {{{N}");
-            get.Append($"        baseOracle.beginProcedure(connection, \"Proc.GetById(:P_CURSORSELECT,:P_{ListaAtributosTabela.First().COLUMN_NAME})\",{N}");
+            get.Append($"        baseOracle.beginProcedure(connection, \"{NomeTabela.TratarNomePackage()}.{Settings.Default.PrefixoProcedure + "_S_" + NomeTabela.TratarNomeTabela()+"_ID"}(:P_CURSORSELECT,:P_{ListaAtributosTabela.First().COLUMN_NAME})\",{N}");
             get.Append($"            {{{N}");
             get.Append($"                P_CURSORSELECT: {{ type: oracleDB.CURSOR, dir: oracleDB.BIND_OUT }},{N}");
             get.Append($"                P_{ListaAtributosTabela.First().COLUMN_NAME}: id,   {N}");
@@ -41,8 +43,8 @@ namespace MapeadorDeEntidades.Form.Linguagens.Node.Oracle.Procedure
         private StringBuilder GetAll()
         {
             var get = new StringBuilder();
-            get.Append($"    getAll: function (id, callback) {{{N}");
-            get.Append($"        baseOracle.beginProcedure(connection, \"Proc.GetAll(:P_CURSORSELECT)\",{N}");
+            get.Append($"    getAll: function (callback) {{{N}");
+            get.Append($"        baseOracle.beginProcedure(connection, \"{NomeTabela.TratarNomePackage()}.{Settings.Default.PrefixoProcedure + "_S_" + NomeTabela.TratarNomeTabela()}(:P_CURSORSELECT)\",{N}");
             get.Append($"            {{{N}");
             get.Append($"                P_CURSORSELECT: {{ type: oracleDB.CURSOR, dir: oracleDB.BIND_OUT }}{N}");
             get.Append($"            }}, function (err, result) {{  {N}");
@@ -58,7 +60,7 @@ namespace MapeadorDeEntidades.Form.Linguagens.Node.Oracle.Procedure
             var get = new StringBuilder();
             get.Append($"    insert: function (body, usuario, callback) {{ {N}");
             get.Append($"        connection.getConnection(function (conn) {{ {N}");
-            get.Append($"            conn.execute(\"BEGIN PROC.I(\" +{N}");
+            get.Append($"            conn.execute(\"BEGIN {NomeTabela.TratarNomePackage()}.{Settings.Default.PrefixoProcedure + "_I_" + NomeTabela.TratarNomeTabela()}(\" +{N}");
             get.Append($"                \":P_RESULT\",{N}");
             for (int i = 1; i < ListaAtributosTabela.Count - 1; i++)
             {
@@ -94,7 +96,7 @@ namespace MapeadorDeEntidades.Form.Linguagens.Node.Oracle.Procedure
             var get = new StringBuilder();
             get.Append($"    update: function (body, usuario, callback) {{ {N}");
             get.Append($"        connection.getConnection(function (conn) {{ {N}");
-            get.Append($"            conn.execute(\"BEGIN PROC.I(\" +{N}");
+            get.Append($"            conn.execute(\"BEGIN {NomeTabela.TratarNomePackage()}.{Settings.Default.PrefixoProcedure + "_U_" + NomeTabela.TratarNomeTabela()}(\" +{N}");
             get.Append($"                \":P_RESULT\",{N}");
             for (int i = 0; i < ListaAtributosTabela.Count - 1; i++)
             {
@@ -129,7 +131,7 @@ namespace MapeadorDeEntidades.Form.Linguagens.Node.Oracle.Procedure
             var get = new StringBuilder();
             get.Append($"    delete: function (body, usuario, callback) {{ {N}");
             get.Append($"        connection.getConnection(function (conn) {{ {N}");
-            get.Append($"            conn.execute(\"BEGIN PROC.D(\" +{N}");
+            get.Append($"            conn.execute(\"BEGIN {NomeTabela.TratarNomePackage()}.{Settings.Default.PrefixoProcedure + "_D_" + NomeTabela.TratarNomeTabela()}(\" +{N}");
             get.Append($"                \":P_RESULT\",{N}");
             get.Append($"                \":P_{ListaAtributosTabela.First().COLUMN_NAME})\",{N}");
             get.Append($"                \"END;\",{N}");
@@ -162,7 +164,7 @@ namespace MapeadorDeEntidades.Form.Linguagens.Node.Oracle.Procedure
             classe.Append(Add());
             classe.Append(Update());
             classe.Append(Delete());
-            classe.Append($"}}{N}");
+            classe.Append($"}};{N}");
             return classe;
         }
     }

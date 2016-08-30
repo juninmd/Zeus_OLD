@@ -1,7 +1,15 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
-  <Settings />
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="MapeadorDeEntidades.Form.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="PrefixoPackage" Type="System.String" Scope="User">
+      <Value Profile="(Default)">MAG_PG_CA</Value>
+    </Setting>
+    <Setting Name="PrefixoProcedure" Type="System.String" Scope="User">
+      <Value Profile="(Default)">MAG_SP_CA</Value>
+    </Setting>
+    <Setting Name="ConnectionStringDefault" Type="System.String" Scope="User">
+      <Value Profile="(Default)">User Id=usr_cobadmin;Data Source=cobadmin;Password=!usr_cobadmin!</Value>
+    </Setting>
+  </Settings>
 </SettingsFile>
