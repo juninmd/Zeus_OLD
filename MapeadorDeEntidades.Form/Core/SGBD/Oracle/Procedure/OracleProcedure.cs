@@ -315,7 +315,7 @@ namespace MapeadorDeEntidades.Form.Core.SGBD.Oracle.Procedure
         {
             var body = new StringBuilder();
             body.Append(Environment.NewLine);
-            var nomeProc = "MAG_SP_D_" + NomeTabela.TratarNomeTabela();
+            var nomeProc = Settings.Default.PrefixoProcedure + "_D_" + NomeTabela.TratarNomeTabela();
             body.Append(AdicionaCabecalho(nomeProc, false, false, true));
             body.Append(DeleteBodyInside());
             body.Append($"END {nomeProc};" + Environment.NewLine);
