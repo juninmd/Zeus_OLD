@@ -83,7 +83,7 @@ namespace MapeadorDeEntidades.Form.Linguagens.Node.Oracle.Procedure
 
             var get = new StringBuilder();
             get.Append($"    update: function (body, usuario, callback) {{ {N}");
-            get.Append($"        baseOracle.executeProcedure(connection, \"{NomeTabela.TratarNomePackage()}.{Settings.Default.PrefixoProcedure + "_I_" + NomeTabela.TratarNomeTabela()}(\" +{N}");
+            get.Append($"        baseOracle.executeProcedure(connection, \"{NomeTabela.TratarNomePackage()}.{Settings.Default.PrefixoProcedure + "_U_" + NomeTabela.TratarNomeTabela()}(\" +{N}");
             get.Append($"            \":P_RESULT,\" +{N}");
             for (int i = 0; i < ListaAtributosTabela.Count - 1; i++)
             {
