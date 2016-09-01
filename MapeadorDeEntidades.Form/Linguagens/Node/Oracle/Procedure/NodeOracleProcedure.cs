@@ -28,7 +28,7 @@ namespace MapeadorDeEntidades.Form.Linguagens.Node.Oracle.Procedure
         {
             var get = new StringBuilder();
             get.Append($"    getByCodigo: function (id, callback) {{{N}");
-            get.Append($"        baseOracle.beginProcedure(connection, \"{NomeTabela.TratarNomePackage()}.{Settings.Default.PrefixoProcedure + "_S_" + NomeTabela.TratarNomeTabela()+"_ID"}(:P_CURSORSELECT,:P_{ListaAtributosTabela.First().COLUMN_NAME})\",{N}");
+            get.Append($"        baseOracle.beginProcedureById(connection, \"{NomeTabela.TratarNomePackage()}.{Settings.Default.PrefixoProcedure + "_S_" + NomeTabela.TratarNomeTabela()+"_ID"}(:P_CURSORSELECT,:P_{ListaAtributosTabela.First().COLUMN_NAME})\",{N}");
             get.Append($"            {{{N}");
             get.Append($"                P_CURSORSELECT: {{ type: oracleDB.CURSOR, dir: oracleDB.BIND_OUT }},{N}");
             get.Append($"                P_{ListaAtributosTabela.First().COLUMN_NAME}: id,   {N}");
@@ -61,28 +61,28 @@ namespace MapeadorDeEntidades.Form.Linguagens.Node.Oracle.Procedure
             get.Append($"    insert: function (body, usuario, callback) {{ {N}");
             get.Append($"        connection.getConnection(function (conn) {{ {N}");
             get.Append($"            conn.execute(\"BEGIN {NomeTabela.TratarNomePackage()}.{Settings.Default.PrefixoProcedure + "_I_" + NomeTabela.TratarNomeTabela()}(\" +{N}");
-            get.Append($"                \":P_RESULT\",{N}");
+            get.Append($"                \":P_RESULT\"+{N}");
             for (int i = 1; i < ListaAtributosTabela.Count - 1; i++)
             {
-                get.Append($"                \":P_{ListaAtributosTabela[i].COLUMN_NAME}\",{N}");
+                get.Append($"                \":P_{ListaAtributosTabela[i].COLUMN_NAME}\"+{N}");
             }
-            get.Append($"                \":P_{ListaAtributosTabela[ListaAtributosTabela.Count - 1].COLUMN_NAME});\",{N}");
+            get.Append($"                \":P_{ListaAtributosTabela[ListaAtributosTabela.Count - 1].COLUMN_NAME});\"+{N}");
             get.Append($"                \"END;\",{N}");
             get.Append($"                {{{N}");
             get.Append($"                    P_RESULT: {{ dir: oracleDB.BIND_OUT, type: oracleDB.NUMBER }}, {N}");
             for (int i = 1; i < ListaAtributosTabela.Count - 1; i++)
             {
-                get.Append($"                    P_{ListaAtributosTabela[i].COLUMN_NAME}: {{ body.valorDepois.{ListaAtributosTabela[i].COLUMN_NAME} }},{N}");
+                get.Append($"                    P_{ListaAtributosTabela[i].COLUMN_NAME}: body.{ListaAtributosTabela[i].COLUMN_NAME},{N}");
             }
             get.Append($"                }},{N}");
             get.Append($"                function (err, result) {{ {N}");
             get.Append($"                    if (err) {{ {N}");
-            get.Append($"                        connection.releaseConnection(conn, false, function (connError) {{ {N}");
+            get.Append($"                        conn.releaseConnection(conn, false, function (connError) {{ {N}");
             get.Append($"                            callback(error.PROC_EXECUTION_FAIL, err, connError); {N}");
             get.Append($"                        }});{N}");
             get.Append($"                    }}{N}");
             get.Append($"                    else{N}");
-            get.Append($"                        connection.releaseConnection(conn, true, callback);{N}");
+            get.Append($"                        conn.releaseConnection(conn, true, callback);{N}");
             get.Append($"                }}{N}");
             get.Append($"            );{N}");
             get.Append($"        }});{N}");
@@ -97,28 +97,28 @@ namespace MapeadorDeEntidades.Form.Linguagens.Node.Oracle.Procedure
             get.Append($"    update: function (body, usuario, callback) {{ {N}");
             get.Append($"        connection.getConnection(function (conn) {{ {N}");
             get.Append($"            conn.execute(\"BEGIN {NomeTabela.TratarNomePackage()}.{Settings.Default.PrefixoProcedure + "_U_" + NomeTabela.TratarNomeTabela()}(\" +{N}");
-            get.Append($"                \":P_RESULT\",{N}");
+            get.Append($"                \":P_RESULT\"+{N}");
             for (int i = 0; i < ListaAtributosTabela.Count - 1; i++)
             {
-                get.Append($"                \":P_{ListaAtributosTabela[i].COLUMN_NAME}\",{N}");
+                get.Append($"                \":P_{ListaAtributosTabela[i].COLUMN_NAME}\"+{N}");
             }
-            get.Append($"                \":P_{ListaAtributosTabela[ListaAtributosTabela.Count - 1].COLUMN_NAME});\",{N}");
+            get.Append($"                \":P_{ListaAtributosTabela[ListaAtributosTabela.Count - 1].COLUMN_NAME});\"+{N}");
             get.Append($"                \"END;\",{N}");
             get.Append($"                {{{N}");
             get.Append($"                    P_RESULT: {{ dir: oracleDB.BIND_OUT, type: oracleDB.NUMBER }}, {N}");
             foreach (var att in ListaAtributosTabela)
             {
-                get.Append($"                    P_{att.COLUMN_NAME}: {{ body.valorDepois.{att.COLUMN_NAME} }},{N}");
+                get.Append($"                    P_{att.COLUMN_NAME}: body.{att.COLUMN_NAME},{N}");
             }
             get.Append($"                }},{N}");
             get.Append($"                function (err, result) {{ {N}");
             get.Append($"                    if (err) {{ {N}");
-            get.Append($"                        connection.releaseConnection(conn, false, function (connError) {{ {N}");
+            get.Append($"                        conn.releaseConnection(conn, false, function (connError) {{ {N}");
             get.Append($"                            callback(error.PROC_EXECUTION_FAIL, err, connError); {N}");
             get.Append($"                        }});{N}");
             get.Append($"                    }}{N}");
             get.Append($"                    else{N}");
-            get.Append($"                        connection.releaseConnection(conn, true, callback);{N}");
+            get.Append($"                        conn.releaseConnection(conn, true, callback);{N}");
             get.Append($"                }}{N}");
             get.Append($"            );{N}");
             get.Append($"        }});{N}");
@@ -137,7 +137,7 @@ namespace MapeadorDeEntidades.Form.Linguagens.Node.Oracle.Procedure
             get.Append($"                \"END;\",{N}");
             get.Append($"                {{{N}");
             get.Append($"                    P_RESULT: {{ dir: oracleDB.BIND_OUT, type: oracleDB.NUMBER }}, {N}");
-            get.Append($"                    P_{ListaAtributosTabela.First().COLUMN_NAME}: {{ body.valorDepois.{ListaAtributosTabela.First().COLUMN_NAME} }},{N}");
+            get.Append($"                    P_{ListaAtributosTabela.First().COLUMN_NAME}: body.{ListaAtributosTabela.First().COLUMN_NAME},{N}");
             get.Append($"                }},{N}");
             get.Append($"                function (err, result) {{ {N}");
             get.Append($"                    if (err) {{ {N}");
