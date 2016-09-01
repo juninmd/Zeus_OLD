@@ -117,7 +117,7 @@ namespace MapeadorDeEntidades.Form.Core.SGBD.Oracle.Procedure
                 }
                 else if (i == 0)
                 {
-                    parametro.Append($"P_{ListaAtributosTabela[i].COLUMN_NAME}," + Environment.NewLine);
+                    parametro.Append($"{NomeTabela.TratarNomeSequence()}," + Environment.NewLine);
                 }
                 else
                 {
