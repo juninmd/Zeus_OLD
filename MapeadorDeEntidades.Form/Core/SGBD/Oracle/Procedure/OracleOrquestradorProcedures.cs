@@ -23,10 +23,10 @@ namespace MapeadorDeEntidades.Form.Core.SGBD.Oracle.Procedure
 
                     var instancia = new OracleProcedure(nomeTabela, new OracleTables().ListarAtributos(nomeTabela));
                     var header = instancia.GerarPackageHeader().ToString();
-                    File.WriteAllText(local + $"{nomeTabela}_HEADER.sql", header);
+                    File.WriteAllText(local + $"{nomeTabela.TratarNomePackage()}_HEADER.sql", header);
 
                     var body = instancia.GerarPackageBody().ToString();
-                    File.WriteAllText(local + $"{nomeTabela}_BODY.sql", body);
+                    File.WriteAllText(local + $"{nomeTabela.TratarNomePackage()}_BODY.sql", body);
                 }
 
                 return new RequestMessage<string>()

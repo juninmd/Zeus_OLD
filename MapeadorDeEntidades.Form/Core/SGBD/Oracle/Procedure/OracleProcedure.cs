@@ -88,7 +88,7 @@ namespace MapeadorDeEntidades.Form.Core.SGBD.Oracle.Procedure
         {
             var parametro = new StringBuilder();
             parametro.Append($"      INSERT INTO {NomeTabela}" + Environment.NewLine);
-            parametro.Append("         (");
+            parametro.Append("        (");
 
             for (var i = 0; i < ListaAtributosTabela.Count; i++)
             {
@@ -108,7 +108,7 @@ namespace MapeadorDeEntidades.Form.Core.SGBD.Oracle.Procedure
 
             parametro.Append(")" + Environment.NewLine);
             parametro.Append("      VALUES" + Environment.NewLine);
-            parametro.Append("         (");
+            parametro.Append("        (");
             for (var i = 0; i < ListaAtributosTabela.Count; i++)
             {
                 if (i == ListaAtributosTabela.Count - 1)
@@ -133,15 +133,13 @@ namespace MapeadorDeEntidades.Form.Core.SGBD.Oracle.Procedure
         {
             var parametro = new StringBuilder();
             parametro.Append($"      UPDATE {NomeTabela}" + Environment.NewLine);
-            parametro.Append(Environment.NewLine);
-
             parametro.Append("         SET ");
 
             for (var i = 0; i < ListaAtributosTabela.Count; i++)
             {
                 if (i == ListaAtributosTabela.Count - 1)
                 {
-                    parametro.Append($"         {ListaAtributosTabela[i].COLUMN_NAME}        = P_{ListaAtributosTabela[i].COLUMN_NAME}" + Environment.NewLine);
+                    parametro.Append($"             {ListaAtributosTabela[i].COLUMN_NAME}        = P_{ListaAtributosTabela[i].COLUMN_NAME}" + Environment.NewLine);
                 }
                 else if (i == 0)
                 {
@@ -149,10 +147,10 @@ namespace MapeadorDeEntidades.Form.Core.SGBD.Oracle.Procedure
                 }
                 else
                 {
-                    parametro.Append($"         {ListaAtributosTabela[i].COLUMN_NAME}        = P_{ListaAtributosTabela[i].COLUMN_NAME}," + Environment.NewLine);
+                    parametro.Append($"             {ListaAtributosTabela[i].COLUMN_NAME}        = P_{ListaAtributosTabela[i].COLUMN_NAME}," + Environment.NewLine);
                 }
             }
-            parametro.Append($"         WHERE {ListaAtributosTabela[0].COLUMN_NAME}        = P_{ListaAtributosTabela[0].COLUMN_NAME};" + Environment.NewLine);
+            parametro.Append($"         WHERE {ListaAtributosTabela[0].COLUMN_NAME}        = P_{ListaAtributosTabela[0].COLUMN_NAME};");
 
             return parametro;
         }
@@ -213,24 +211,17 @@ namespace MapeadorDeEntidades.Form.Core.SGBD.Oracle.Procedure
             return body;
         }
 
-        private StringBuilder Adiciona_TratamentoException()
-        {
-            var body = new StringBuilder();
-            body.Append(Environment.NewLine + "           EXCEPTION" + Environment.NewLine);
-            body.Append("           WHEN OTHERS THEN" + Environment.NewLine);
-            body.Append("           P_RESULT:= SQLERRM;" + Environment.NewLine);
-            return body;
-        }
-
         #region Insert 
         private StringBuilder InsertBodyInside()
         {
             var body = new StringBuilder();
             body.Append(Adiciona_P_Result());
-            body.Append("  BEGIN" + Environment.NewLine);
+            body.Append("    BEGIN" + Environment.NewLine);
             body.Append(MontaTodosParametrosInsert());
-            body.Append(Adiciona_TratamentoException());
-            body.Append(" END;" + Environment.NewLine);
+            body.Append(Environment.NewLine + "    EXCEPTION" + Environment.NewLine);
+            body.Append("      WHEN OTHERS THEN" + Environment.NewLine);
+            body.Append("        P_RESULT:= SQLERRM;" + Environment.NewLine);
+            body.Append("    END;" + Environment.NewLine);
             return body;
         }
 
@@ -253,10 +244,12 @@ namespace MapeadorDeEntidades.Form.Core.SGBD.Oracle.Procedure
         {
             var body = new StringBuilder();
             body.Append(Adiciona_P_Result());
-            body.Append("  BEGIN" + Environment.NewLine);
+            body.Append("    BEGIN" + Environment.NewLine);
             body.Append(MontaTodosParametrosUpdate());
-            body.Append(Adiciona_TratamentoException());
-            body.Append(" END;" + Environment.NewLine);
+            body.Append(Environment.NewLine + "    EXCEPTION" + Environment.NewLine);
+            body.Append("      WHEN OTHERS THEN" + Environment.NewLine);
+            body.Append("        P_RESULT:= SQLERRM;" + Environment.NewLine);
+            body.Append("    END;" + Environment.NewLine);
             return body;
         }
 
@@ -306,8 +299,10 @@ namespace MapeadorDeEntidades.Form.Core.SGBD.Oracle.Procedure
             body.Append(Adiciona_P_Result());
             body.Append("  BEGIN" + Environment.NewLine);
             body.Append(MontaTodosParametrosDelete());
-            body.Append(Adiciona_TratamentoException());
-            body.Append("     END;" + Environment.NewLine);
+            body.Append(Environment.NewLine + "    EXCEPTION" + Environment.NewLine);
+            body.Append("      WHEN OTHERS THEN" + Environment.NewLine);
+            body.Append("        P_RESULT:= SQLERRM;" + Environment.NewLine);
+            body.Append("    END;" + Environment.NewLine);
             return body;
         }
 
