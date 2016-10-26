@@ -1,16 +1,22 @@
-﻿namespace MapeadorDeEntidades.Form.Core
+﻿using MapeadorDeEntidades.Form.Properties;
+
+namespace MapeadorDeEntidades.Form.Core
 {
     public static class Tratamentos
     {
         public static string TratarNomeTabela(this string nome)
         {
-            return nome.Replace("MAG_T", "").Replace("_PDL_", "").Replace("_CA_", "");
+            return nome.Replace(Settings.Default.PrefixoTabela, "");
         }
-        public static string TratarNomePackage(this string nome) { return nome.Replace("_T_", "_PG_"); }
+
+        public static string TratarNomePackage(this string nome)
+        {
+            return nome.Replace(Settings.Default.PrefixoTabela, Settings.Default.PrefixoPackage);
+        }
 
         public static string TratarNomeSequence(this string nome)
         {
-            return nome.Replace("_T_", "_SEQ_") + ".NEXTVAL";
+            return "SQ_" + nome.TratarNomeTabela() + ".NEXTVAL";
         }
     }
 }

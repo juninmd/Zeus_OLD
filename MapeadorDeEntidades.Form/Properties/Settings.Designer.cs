@@ -25,7 +25,7 @@ namespace MapeadorDeEntidades.Form.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("MAG_PG_CA")]
+        [global::System.Configuration.DefaultSettingValueAttribute("MAG_PG_CA_")]
         public string PrefixoPackage {
             get {
                 return ((string)(this["PrefixoPackage"]));
@@ -37,7 +37,7 @@ namespace MapeadorDeEntidades.Form.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("MAG_SP_CA")]
+        [global::System.Configuration.DefaultSettingValueAttribute("MAG_SP_CA_")]
         public string PrefixoProcedure {
             get {
                 return ((string)(this["PrefixoProcedure"]));
@@ -56,6 +56,18 @@ namespace MapeadorDeEntidades.Form.Properties {
             }
             set {
                 this["ConnectionStringDefault"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("MAG_T_")]
+        public string PrefixoTabela {
+            get {
+                return ((string)(this["PrefixoTabela"]));
+            }
+            set {
+                this["PrefixoTabela"] = value;
             }
         }
     }
