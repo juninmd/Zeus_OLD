@@ -10,6 +10,7 @@ namespace MapeadorDeEntidades.Form
             InitializeComponent();
             txtPreFixoPackages.Text = Settings.Default.PrefixoPackage;
             txtPreFixoProcedures.Text = Settings.Default.PrefixoProcedure;
+            txtPrefixoTabela.Text = Settings.Default.PrefixoTabela;
             txtConnectionString.Text = Settings.Default.ConnectionStringDefault;
         }
 
@@ -17,6 +18,7 @@ namespace MapeadorDeEntidades.Form
         {
             Settings.Default.PrefixoPackage = txtPreFixoPackages.Text;
             Settings.Default.PrefixoProcedure = txtPreFixoProcedures.Text;
+            Settings.Default.PrefixoTabela = txtPrefixoTabela.Text;
             Settings.Default.ConnectionStringDefault = txtConnectionString.Text;
             Settings.Default.Save();
 
