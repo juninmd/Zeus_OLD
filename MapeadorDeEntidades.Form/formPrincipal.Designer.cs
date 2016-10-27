@@ -58,6 +58,7 @@ namespace MapeadorDeEntidades.Form
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.lblStatus = new System.Windows.Forms.Label();
             this.progressBar1 = new MapeadorDeEntidades.Form.Core.NewProgressBar();
+            this.btnSequence = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -224,6 +225,7 @@ namespace MapeadorDeEntidades.Form
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.btnSequence);
             this.groupBox3.Controls.Add(this.label2);
             this.groupBox3.Controls.Add(this.btnConfiguracoes);
             this.groupBox3.Controls.Add(this.label1);
@@ -365,6 +367,17 @@ namespace MapeadorDeEntidades.Form
             this.progressBar1.Size = new System.Drawing.Size(133, 18);
             this.progressBar1.TabIndex = 14;
             // 
+            // btnSequence
+            // 
+            this.btnSequence.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnSequence.Location = new System.Drawing.Point(6, 105);
+            this.btnSequence.Name = "btnSequence";
+            this.btnSequence.Size = new System.Drawing.Size(101, 23);
+            this.btnSequence.TabIndex = 17;
+            this.btnSequence.Text = "Sequence";
+            this.btnSequence.UseVisualStyleBackColor = true;
+            this.btnSequence.Click += new System.EventHandler(this.btnSequence_Click);
+            // 
             // formPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -429,6 +442,7 @@ namespace MapeadorDeEntidades.Form
         private System.Windows.Forms.RadioButton radioNode;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnConfiguracoes;
+        private System.Windows.Forms.Button btnSequence;
     }
 }
 
