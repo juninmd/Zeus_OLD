@@ -3,13 +3,16 @@
   <Profiles />
   <Settings>
     <Setting Name="PrefixoPackage" Type="System.String" Scope="User">
-      <Value Profile="(Default)">MAG_PG_CA</Value>
+      <Value Profile="(Default)">MAG_PG_CA_</Value>
     </Setting>
     <Setting Name="PrefixoProcedure" Type="System.String" Scope="User">
-      <Value Profile="(Default)">MAG_SP_CA</Value>
+      <Value Profile="(Default)">MAG_SP_CA_</Value>
     </Setting>
     <Setting Name="ConnectionStringDefault" Type="System.String" Scope="User">
       <Value Profile="(Default)">User Id=usr_cobadmin;Data Source=cobadmin;Password=!usr_cobadmin!</Value>
+    </Setting>
+    <Setting Name="PrefixoTabela" Type="System.String" Scope="User">
+      <Value Profile="(Default)">MAG_T_</Value>
     </Setting>
   </Settings>
 </SettingsFile>
