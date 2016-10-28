@@ -45,7 +45,7 @@ namespace MapeadorDeEntidades.Form.Core.SGBD.Oracle.Procedure
             return espaco;
         }
 
-        private StringBuilder MontaTodosParametrosHeader(string nomeProcedure, bool isCursor, bool isHeader, bool onlyFirst = false, bool semparametros = false)
+        private StringBuilder MontaTodosParametrosHeader(string nomeProcedure, bool isCursor, bool isHeader, bool onlyFirst = false, bool semparametros = false, bool ocultaPrimeiro = false)
         {
 
             var parametro = new StringBuilder();
@@ -59,11 +59,11 @@ namespace MapeadorDeEntidades.Form.Core.SGBD.Oracle.Procedure
                 parametro.Append("," + Environment.NewLine);
                 if (onlyFirst == false)
                 {
-                    for (var i = 0; i < ListaAtributosTabela.Count; i++)
+                    for (var i = ocultaPrimeiro ? 1 : 0; i < ListaAtributosTabela.Count; i++)
                     {
                         if (i == ListaAtributosTabela.Count - 1)
                         {
-                            parametro.Append(EspacoMontadoParametros(nomeProcedure) + $"P_{ListaAtributosTabela[i].COLUMN_NAME}        IN {NomeTabela}.{ListaAtributosTabela[i].COLUMN_NAME}%TYPE ");
+                            parametro.Append(EspacoMontadoParametros(nomeProcedure) + $"P_{ListaAtributosTabela[i].COLUMN_NAME}        IN {NomeTabela}.{ListaAtributosTabela[i].COLUMN_NAME}%TYPE");
                         }
                         else
                         {
@@ -193,11 +193,11 @@ namespace MapeadorDeEntidades.Form.Core.SGBD.Oracle.Procedure
             return parametro;
         }
 
-        public StringBuilder AdicionaCabecalho(string nomeProcedure, bool isHeader = false, bool isCursor = false, bool onlyFirst = false, bool semParametros = false)
+        public StringBuilder AdicionaCabecalho(string nomeProcedure, bool isHeader = false, bool isCursor = false, bool onlyFirst = false, bool semParametros = false, bool ocultaprimeiro = false)
         {
             var cabecalho = new StringBuilder();
             cabecalho.Append(MontarSumario(nomeProcedure));
-            cabecalho.Append(MontaTodosParametrosHeader(nomeProcedure, isCursor, isHeader, onlyFirst, semParametros));
+            cabecalho.Append(MontaTodosParametrosHeader(nomeProcedure, isCursor, isHeader, onlyFirst, semParametros, ocultaprimeiro));
             return cabecalho;
         }
 
@@ -229,8 +229,8 @@ namespace MapeadorDeEntidades.Form.Core.SGBD.Oracle.Procedure
         {
             var body = new StringBuilder();
             body.Append(Environment.NewLine);
-            var nomeProc = Settings.Default.PrefixoProcedure + "_I_" + NomeTabela.TratarNomeTabela();
-            body.Append(AdicionaCabecalho(nomeProc));
+            var nomeProc = Settings.Default.PrefixoProcedure + "I_" + NomeTabela.TratarNomeTabela();
+            body.Append(AdicionaCabecalho(nomeProc, false, false, false, false, true));
             body.Append(InsertBodyInside());
             body.Append($"END {nomeProc};" + Environment.NewLine);
             body.Append(Environment.NewLine);
@@ -257,7 +257,7 @@ namespace MapeadorDeEntidades.Form.Core.SGBD.Oracle.Procedure
         {
             var body = new StringBuilder();
             body.Append(Environment.NewLine);
-            var nomeProc = Settings.Default.PrefixoProcedure + "_U_" + NomeTabela.TratarNomeTabela();
+            var nomeProc = Settings.Default.PrefixoProcedure + "U_" + NomeTabela.TratarNomeTabela();
             body.Append(AdicionaCabecalho(nomeProc));
             body.Append(UpdateBodyInside());
             body.Append($"END {nomeProc};" + Environment.NewLine);
@@ -282,7 +282,7 @@ namespace MapeadorDeEntidades.Form.Core.SGBD.Oracle.Procedure
         {
             var body = new StringBuilder();
             body.Append(Environment.NewLine);
-            var nomeProc = Settings.Default.PrefixoProcedure + "_S_" + NomeTabela.TratarNomeTabela() + (Isall ? "" : "_ID");
+            var nomeProc = Settings.Default.PrefixoProcedure + "S_" + NomeTabela.TratarNomeTabela() + (Isall ? "" : "_ID");
             body.Append(AdicionaCabecalho(nomeProc, false, true, true, Isall));
             body.Append(SelectBodyInside(Isall));
             body.Append($"END {nomeProc};" + Environment.NewLine);
@@ -310,7 +310,7 @@ namespace MapeadorDeEntidades.Form.Core.SGBD.Oracle.Procedure
         {
             var body = new StringBuilder();
             body.Append(Environment.NewLine);
-            var nomeProc = Settings.Default.PrefixoProcedure + "_D_" + NomeTabela.TratarNomeTabela();
+            var nomeProc = Settings.Default.PrefixoProcedure + "D_" + NomeTabela.TratarNomeTabela();
             body.Append(AdicionaCabecalho(nomeProc, false, false, true));
             body.Append(DeleteBodyInside());
             body.Append($"END {nomeProc};" + Environment.NewLine);
@@ -325,11 +325,11 @@ namespace MapeadorDeEntidades.Form.Core.SGBD.Oracle.Procedure
             var header = new StringBuilder();
             header.Append($"create or replace package {NomeTabela.TratarNomePackage()} is" + Environment.NewLine + Environment.NewLine);
             header.Append("  TYPE TP_CURSOR IS REF CURSOR;" + Environment.NewLine + Environment.NewLine);
-            header.Append(AdicionaCabecalho(Settings.Default.PrefixoProcedure + "_I_" + NomeTabela.TratarNomeTabela(), true, false, false));
-            header.Append(AdicionaCabecalho(Settings.Default.PrefixoProcedure + "_U_" + NomeTabela.TratarNomeTabela(), true, false, false));
-            header.Append(AdicionaCabecalho(Settings.Default.PrefixoProcedure + "_D_" + NomeTabela.TratarNomeTabela(), true, false, true));
-            header.Append(AdicionaCabecalho(Settings.Default.PrefixoProcedure + "_S_" + NomeTabela.TratarNomeTabela(), true, true, true, true));
-            header.Append(AdicionaCabecalho(Settings.Default.PrefixoProcedure + "_S_" + NomeTabela.TratarNomeTabela() + "_ID", true, true, true));
+            header.Append(AdicionaCabecalho(Settings.Default.PrefixoProcedure + "I_" + NomeTabela.TratarNomeTabela(), true, false, false, false, true));
+            header.Append(AdicionaCabecalho(Settings.Default.PrefixoProcedure + "U_" + NomeTabela.TratarNomeTabela(), true, false, false));
+            header.Append(AdicionaCabecalho(Settings.Default.PrefixoProcedure + "D_" + NomeTabela.TratarNomeTabela(), true, false, true));
+            header.Append(AdicionaCabecalho(Settings.Default.PrefixoProcedure + "S_" + NomeTabela.TratarNomeTabela(), true, true, true, true));
+            header.Append(AdicionaCabecalho(Settings.Default.PrefixoProcedure + "S_" + NomeTabela.TratarNomeTabela() + "_ID", true, true, true));
             header.Append(Environment.NewLine + Environment.NewLine + $"end {NomeTabela.TratarNomePackage()};" + Environment.NewLine);
 
             return header;

@@ -104,6 +104,8 @@
     <Compile Include="Core\ParamtersInput.cs" />
     <Compile Include="Core\SGBD\Oracle\OracleEntidadeTabela.cs" />
     <Compile Include="Core\SGBD\Oracle\Procedure\OracleOrquestradorProcedures.cs" />
+    <Compile Include="Core\SGBD\Oracle\Sequence\OracleOrquestradorSequence.cs" />
+    <Compile Include="Core\SGBD\Oracle\Sequence\OracleSequence.cs" />
     <Compile Include="Core\Tratamentos.cs" />
     <Compile Include="formConfiguracoes.cs">
       <SubType>Form</SubType>
@@ -152,6 +154,7 @@
     <Compile Include="Middleware\OrquestradorPingSGBD.cs" />
     <Compile Include="Middleware\OrquestradorJSON.cs" />
     <Compile Include="Middleware\OrquestradorMapeamentoEntidade.cs" />
+    <Compile Include="Middleware\OrquestradorSequences.cs" />
     <Compile Include="Middleware\OrquestradorProcedures.cs" />
     <Compile Include="Core\SGBD\Oracle\Procedure\OracleProcedure.cs" />
     <Compile Include="Middleware\ValidateBasic.cs" />

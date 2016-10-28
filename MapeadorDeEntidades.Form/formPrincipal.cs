@@ -151,5 +151,13 @@ namespace MapeadorDeEntidades.Form
                 new formConfiguracoes().Show();
             }
         }
+        private void btnSequence_Click(object sender, EventArgs e)
+        {
+            SetParamters();
+            var mdProc = new OrquestradorSequences().Generate(salvar);
+            MessageBox.Show(mdProc.Message);
+        }
+
+
     }
 }
