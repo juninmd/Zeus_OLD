@@ -262,7 +262,7 @@ namespace MapeadorDeEntidades.Form
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(42, 25);
             this.label2.TabIndex = 16;
-            this.label2.Text = "0.3";
+            this.label2.Text = "0.4";
             // 
             // btnConfiguracoes
             // 
