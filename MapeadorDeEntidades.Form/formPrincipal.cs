@@ -158,6 +158,11 @@ namespace MapeadorDeEntidades.Form
             MessageBox.Show(mdProc.Message);
         }
 
-
+        private void btnBatch_Click(object sender, EventArgs e)
+        {
+            SetParamters();
+            var mdProc = new OrquestradorSequences().Generate(salvar);
+            MessageBox.Show(mdProc.Message);
+        }
     }
 }

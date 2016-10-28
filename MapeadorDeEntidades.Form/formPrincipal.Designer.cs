@@ -45,6 +45,7 @@ namespace MapeadorDeEntidades.Form
             this.radioSGBD2 = new System.Windows.Forms.RadioButton();
             this.radioSGBD1 = new System.Windows.Forms.RadioButton();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.btnSequence = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.btnConfiguracoes = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -58,7 +59,7 @@ namespace MapeadorDeEntidades.Form
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.lblStatus = new System.Windows.Forms.Label();
             this.progressBar1 = new MapeadorDeEntidades.Form.Core.NewProgressBar();
-            this.btnSequence = new System.Windows.Forms.Button();
+            this.btnBatch = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -225,6 +226,7 @@ namespace MapeadorDeEntidades.Form
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.btnBatch);
             this.groupBox3.Controls.Add(this.btnSequence);
             this.groupBox3.Controls.Add(this.label2);
             this.groupBox3.Controls.Add(this.btnConfiguracoes);
@@ -239,6 +241,17 @@ namespace MapeadorDeEntidades.Form
             this.groupBox3.TabIndex = 11;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Gerar";
+            // 
+            // btnSequence
+            // 
+            this.btnSequence.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnSequence.Location = new System.Drawing.Point(6, 105);
+            this.btnSequence.Name = "btnSequence";
+            this.btnSequence.Size = new System.Drawing.Size(101, 23);
+            this.btnSequence.TabIndex = 17;
+            this.btnSequence.Text = "Sequence";
+            this.btnSequence.UseVisualStyleBackColor = true;
+            this.btnSequence.Click += new System.EventHandler(this.btnSequence_Click);
             // 
             // label2
             // 
@@ -367,16 +380,16 @@ namespace MapeadorDeEntidades.Form
             this.progressBar1.Size = new System.Drawing.Size(133, 18);
             this.progressBar1.TabIndex = 14;
             // 
-            // btnSequence
+            // btnBatch
             // 
-            this.btnSequence.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnSequence.Location = new System.Drawing.Point(6, 105);
-            this.btnSequence.Name = "btnSequence";
-            this.btnSequence.Size = new System.Drawing.Size(101, 23);
-            this.btnSequence.TabIndex = 17;
-            this.btnSequence.Text = "Sequence";
-            this.btnSequence.UseVisualStyleBackColor = true;
-            this.btnSequence.Click += new System.EventHandler(this.btnSequence_Click);
+            this.btnBatch.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnBatch.Location = new System.Drawing.Point(6, 75);
+            this.btnBatch.Name = "btnBatch";
+            this.btnBatch.Size = new System.Drawing.Size(101, 23);
+            this.btnBatch.TabIndex = 18;
+            this.btnBatch.Text = "Batch Execute";
+            this.btnBatch.UseVisualStyleBackColor = true;
+            this.btnBatch.Click += new System.EventHandler(this.btnBatch_Click);
             // 
             // formPrincipal
             // 
@@ -443,6 +456,7 @@ namespace MapeadorDeEntidades.Form
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnConfiguracoes;
         private System.Windows.Forms.Button btnSequence;
+        private System.Windows.Forms.Button btnBatch;
     }
 }
 
