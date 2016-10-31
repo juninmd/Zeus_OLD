@@ -1,0 +1,73 @@
+﻿using System;
+using System.IO;
+using System.Linq;
+using System.Windows.Forms;
+using MapeadorDeEntidades.Form.Properties;
+using MapeadorDeEntidades.Form.Utilidade;
+
+namespace MapeadorDeEntidades.Form.Core.SGBD.Oracle.Batch
+{
+    public class OracleOrquestradorBatch
+    {
+        public RequestMessage<string> Oracle(FolderBrowserDialog salvar)
+        {
+            try
+            {
+
+                var files = Directory.GetFiles(salvar.SelectedPath).OrderByDescending(q => q).ToList();
+                int max = files.Count;
+                var i = 0;
+
+                foreach (var nomeArquivo in files)
+                {
+                    i++;
+                    Util.Barra((int)((((decimal)i / max) * 100)));
+                    Util.Status($"Processando Arquivo: {nomeArquivo}");
+
+
+                    var nomePG = Path.GetFileNameWithoutExtension(nomeArquivo);
+                    if (nomePG.Contains((Settings.Default.PrefixoPackage)))
+                    {
+
+                        var body = nomePG.Contains("_BODY");
+                        if (new OracleBatchSkip().Package(nomePG.Replace("_BODY", "").Replace("_HEADER", ""), body).IsError)
+                            continue;
+                    }
+
+                    if (nomePG.Contains("_SEQUENCE"))
+                    {
+                        var nomeSequence = nomePG.Replace("_SEQUENCE", "").TratarNomeSequence().Replace(".NEXTVAL", "");
+                        if (new OracleBatchSkip().Sequence(nomeSequence).IsError)
+                            continue;
+                    }
+
+                    if (nomePG.Contains("_RELATIONAL"))
+                    {
+                        continue;
+                    }
+
+                    var instancia = new OracleBatch().Init(File.ReadAllText($"{nomeArquivo}"));
+                    if (instancia.IsError)
+                    {
+                        return instancia;
+                    }
+                }
+
+                return new RequestMessage<string>()
+                {
+                    Message = "Processamento concluído com sucesso!",
+                    StatusCode = System.Net.HttpStatusCode.OK
+                };
+            }
+            catch (Exception ex)
+            {
+                return new RequestMessage<string>()
+                {
+                    Message = "Falha no sistema!",
+                    TechnicalMessage = ex.Message,
+                    StatusCode = System.Net.HttpStatusCode.InternalServerError
+                };
+            }
+        }
+    }
+}

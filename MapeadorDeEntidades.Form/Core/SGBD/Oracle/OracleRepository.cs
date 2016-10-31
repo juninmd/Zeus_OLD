@@ -8,6 +8,7 @@
 #pragma warning restore 1587
 
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Net;
 using System.Runtime.CompilerServices;
@@ -214,6 +215,22 @@ namespace MapeadorDeEntidades.Form.Core.SGBD.Oracle
                 return retorno;
 
 
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Falha na conexão com o banco de dados" + "\n" + _command.CommandText + "\n" + ex.Message + "\n" + _connection.ConnectionString);
+            }
+        }
+
+        protected IDataReader ExecuteQueryString()
+        {
+            try
+            {
+                var retorno = _command.ExecuteReader(_closeConnectionAfterExecution
+                    ? CommandBehavior.CloseConnection
+                    : CommandBehavior.Default);
+
+                return retorno;
             }
             catch (Exception ex)
             {
