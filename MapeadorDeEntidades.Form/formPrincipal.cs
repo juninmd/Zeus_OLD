@@ -161,7 +161,7 @@ namespace MapeadorDeEntidades.Form
         private void btnBatch_Click(object sender, EventArgs e)
         {
             SetParamters();
-            var mdProc = new OrquestradorSequences().Generate(salvar);
+            var mdProc = new OrquestradorBatch().Generate(salvar);
             MessageBox.Show(mdProc.Message);
         }
     }

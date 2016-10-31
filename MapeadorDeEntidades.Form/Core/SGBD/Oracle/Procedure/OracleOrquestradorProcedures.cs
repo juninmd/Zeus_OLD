@@ -1,6 +1,8 @@
 ﻿using System;
 using System.IO;
 using System.Windows.Forms;
+using MapeadorDeEntidades.Form.Core.SGBD.Oracle.Batch;
+using MapeadorDeEntidades.Form.Core.SGBD.Oracle.Sequence;
 using MapeadorDeEntidades.Form.Utilidade;
 
 namespace MapeadorDeEntidades.Form.Core.SGBD.Oracle.Procedure
@@ -20,6 +22,19 @@ namespace MapeadorDeEntidades.Form.Core.SGBD.Oracle.Procedure
                     i++;
                     Util.Barra((int)((((decimal)i / max) * 100)));
                     Util.Status($"Processando tabela: {nomeTabela}");
+
+
+                    //Sequence
+                    var nomeSequence = nomeTabela.TratarNomeSequence().Replace(".NEXTVAL","");
+                    if (!new OracleBatchSkip().Sequence(nomeSequence).IsError)
+                    {
+                        var instanciaSequence = new OracleSequence().Init(nomeTabela);
+                        var instanciaSave = new OracleBatch().Init(instanciaSequence);
+                        if (instanciaSave.IsError)
+                        {
+                            return instanciaSave;
+                        }
+                    }
 
                     var instancia = new OracleProcedure(nomeTabela, new OracleTables().ListarAtributos(nomeTabela));
                     var header = instancia.GerarPackageHeader().ToString();
