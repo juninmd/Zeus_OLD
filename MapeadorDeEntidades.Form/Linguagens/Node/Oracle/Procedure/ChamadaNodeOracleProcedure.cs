@@ -24,7 +24,7 @@ namespace MapeadorDeEntidades.Form.Linguagens.Node.Oracle.Procedure
                     var instancia = new NodeOracleProcedure(nomeTabela);
 
                     var classe = instancia.GerarClasse().ToString();
-                    File.WriteAllText($"{salvar.SelectedPath}\\{nomeTabela.ToUpper()}_Relational.js", classe);
+                    File.WriteAllText($"{salvar.SelectedPath}\\{nomeTabela.TratarNomeTabela().ToLower()}Repository.js", classe);
                 }
 
                 return new RequestMessage<string>()
