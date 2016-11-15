@@ -151,6 +151,7 @@
     <Compile Include="Linguagens\Java\Oracle\Entidade\JavaOracleEntidade.cs" />
     <Compile Include="Linguagens\Java\Oracle\Procedure\ChamadaJavaOracleProcedure.cs" />
     <Compile Include="Linguagens\Java\Oracle\Entidade\JavaOracleOrquestraEntidade.cs" />
+    <Compile Include="Linguagens\Node\NodeRoutes.cs" />
     <Compile Include="Linguagens\Node\Oracle\Procedure\ChamadaNodeOracleProcedure.cs" />
     <Compile Include="Linguagens\Node\NodeController.cs" />
     <Compile Include="Linguagens\Node\Oracle\Procedure\NodeOracleProcedure.cs" />

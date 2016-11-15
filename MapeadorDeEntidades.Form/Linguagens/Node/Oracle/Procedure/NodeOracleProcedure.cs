@@ -16,14 +16,14 @@ namespace MapeadorDeEntidades.Form.Linguagens.Node.Oracle.Procedure
         private StringBuilder Imports()
         {
             var imports = new StringBuilder();
-            imports.Append($"var oracleDb = require('../oracle/initOracle.js');{N}{N}");
+            imports.Append($"var oracleDb = require('./oracle/initOracle.js');{N}{N}");
             return imports;
         }
 
         private StringBuilder GetById()
         {
             var get = new StringBuilder();
-            get.Append($"    getById: function (id, callback) {{{N}");//aqui
+            get.Append($"    getById: function (id, callback) {{{N}"); 
             get.Append($"        oracleDb.beginProcedureById({ParamtersInput.ConnectionString.TratarNomeBase()}, \"{NomeTabela.TratarNomePackage()}.{Settings.Default.PrefixoProcedure + "S_" + NomeTabela.TratarNomeTabela() + "_ID"}\",{N}");
             get.Append($"            {{{N}");
             get.Append($"                P_CURSORSELECT: {{ type: oracleDb.type(\"CURSOR\"), dir: oracleDb.type(\"BIND_OUT\") }},{N}");
@@ -42,7 +42,7 @@ namespace MapeadorDeEntidades.Form.Linguagens.Node.Oracle.Procedure
             get.Append($"        oracleDb.beginProcedure({ParamtersInput.ConnectionString.TratarNomeBase()}, \"{NomeTabela.TratarNomePackage()}.{Settings.Default.PrefixoProcedure + "S_" + NomeTabela.TratarNomeTabela()}\",{N}");
             get.Append($"            {{{N}");
             get.Append($"                P_CURSORSELECT: {{ type: oracleDb.type(\"CURSOR\"), dir: oracleDb.type(\"BIND_OUT\") }}{N}");
-            get.Append($"            }},\"P_CURSORSELECT\",  function (err, result) {{  {N}");
+            get.Append($"            }}, \"P_CURSORSELECT\",  function (err, result) {{  {N}");
             get.Append($"                callback(err, result);{N}");
             get.Append($"            }});{N}");
             get.Append($"    }},{N}");
