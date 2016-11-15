@@ -28,6 +28,10 @@ namespace MapeadorDeEntidades.Form.Linguagens.Node.Oracle.Procedure
 
                     var controller = new NodeController(nomeTabela).GerarClasse().ToString();
                     File.WriteAllText($"{salvar.SelectedPath}\\{nomeTabela.TratarNomeTabela().ToLower()}Ctl.js", controller);
+
+                    var routes = new NodeRoutes(nomeTabela).GerarClasse().ToString();
+                    File.WriteAllText($"{salvar.SelectedPath}\\{nomeTabela.TratarNomeTabela().ToLower()}Routes.js", routes);
+
                 }
 
                 return new RequestMessage<string>()
