@@ -45,6 +45,7 @@ namespace MapeadorDeEntidades.Form
             this.radioSGBD2 = new System.Windows.Forms.RadioButton();
             this.radioSGBD1 = new System.Windows.Forms.RadioButton();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.btnBatch = new System.Windows.Forms.Button();
             this.btnSequence = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.btnConfiguracoes = new System.Windows.Forms.Button();
@@ -59,7 +60,6 @@ namespace MapeadorDeEntidades.Form
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.lblStatus = new System.Windows.Forms.Label();
             this.progressBar1 = new MapeadorDeEntidades.Form.Core.NewProgressBar();
-            this.btnBatch = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -242,6 +242,17 @@ namespace MapeadorDeEntidades.Form
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Gerar";
             // 
+            // btnBatch
+            // 
+            this.btnBatch.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnBatch.Location = new System.Drawing.Point(6, 75);
+            this.btnBatch.Name = "btnBatch";
+            this.btnBatch.Size = new System.Drawing.Size(101, 23);
+            this.btnBatch.TabIndex = 18;
+            this.btnBatch.Text = "Batch Execute";
+            this.btnBatch.UseVisualStyleBackColor = true;
+            this.btnBatch.Click += new System.EventHandler(this.btnBatch_Click);
+            // 
             // btnSequence
             // 
             this.btnSequence.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
@@ -380,17 +391,6 @@ namespace MapeadorDeEntidades.Form
             this.progressBar1.Size = new System.Drawing.Size(133, 18);
             this.progressBar1.TabIndex = 14;
             // 
-            // btnBatch
-            // 
-            this.btnBatch.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnBatch.Location = new System.Drawing.Point(6, 75);
-            this.btnBatch.Name = "btnBatch";
-            this.btnBatch.Size = new System.Drawing.Size(101, 23);
-            this.btnBatch.TabIndex = 18;
-            this.btnBatch.Text = "Batch Execute";
-            this.btnBatch.UseVisualStyleBackColor = true;
-            this.btnBatch.Click += new System.EventHandler(this.btnBatch_Click);
-            // 
             // formPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -409,7 +409,7 @@ namespace MapeadorDeEntidades.Form
             this.MaximizeBox = false;
             this.Name = "formPrincipal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Zeus - 0.3";
+            this.Text = "Zeus - 0.4";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

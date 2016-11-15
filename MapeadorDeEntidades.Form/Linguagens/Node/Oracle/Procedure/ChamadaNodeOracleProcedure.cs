@@ -25,6 +25,9 @@ namespace MapeadorDeEntidades.Form.Linguagens.Node.Oracle.Procedure
 
                     var classe = instancia.GerarClasse().ToString();
                     File.WriteAllText($"{salvar.SelectedPath}\\{nomeTabela.TratarNomeTabela().ToLower()}Repository.js", classe);
+
+                    var controller = new NodeController(nomeTabela).GerarClasse().ToString();
+                    File.WriteAllText($"{salvar.SelectedPath}\\{nomeTabela.TratarNomeTabela().ToLower()}Ctl.js", controller);
                 }
 
                 return new RequestMessage<string>()
