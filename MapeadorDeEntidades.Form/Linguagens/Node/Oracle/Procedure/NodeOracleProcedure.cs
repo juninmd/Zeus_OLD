@@ -90,11 +90,11 @@ namespace MapeadorDeEntidades.Form.Linguagens.Node.Oracle.Procedure
         private StringBuilder Delete()
         {
             var get = new StringBuilder();
-            get.Append($"    delete: function (body, callback) {{ {N}");
+            get.Append($"    delete: function (id, callback) {{ {N}");
             get.Append($"        oracleDb.executeProcedure({ParamtersInput.ConnectionString.TratarNomeBase()}, \"{NomeTabela.TratarNomePackage()}.{Settings.Default.PrefixoProcedure + "D_" + NomeTabela.TratarNomeTabela()}\",{N}");
             get.Append($"            {{{N}");
             get.Append($"                P_RESULT: {{ dir: oracleDb.type(\"BIND_OUT\"), type: oracleDb.type(\"STRING\") }}, {N}");
-            get.Append($"                P_{ListaAtributosTabela.First().COLUMN_NAME}: body.{ListaAtributosTabela.First().COLUMN_NAME},{N}");
+            get.Append($"                P_{ListaAtributosTabela.First().COLUMN_NAME}: id,{N}");
             get.Append($"            }}, \"P_RESULT\",{N}");
             get.Append($"            function (err, result) {{ {N}");
             get.Append($"                callback(err, result);{N}");

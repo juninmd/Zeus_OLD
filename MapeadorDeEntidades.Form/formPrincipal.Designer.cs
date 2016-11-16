@@ -38,9 +38,7 @@ namespace MapeadorDeEntidades.Form
             this.btnProc = new System.Windows.Forms.Button();
             this.radioCsharp = new System.Windows.Forms.RadioButton();
             this.radioJava = new System.Windows.Forms.RadioButton();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.radioNode = new System.Windows.Forms.RadioButton();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.radioSGBD3 = new System.Windows.Forms.RadioButton();
             this.radioSGBD2 = new System.Windows.Forms.RadioButton();
             this.radioSGBD1 = new System.Windows.Forms.RadioButton();
@@ -59,14 +57,16 @@ namespace MapeadorDeEntidades.Form
             this.salvar = new System.Windows.Forms.FolderBrowserDialog();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.lblStatus = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.progressBar1 = new MapeadorDeEntidades.Form.Core.NewProgressBar();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBox6.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // ddlTabelas
@@ -92,9 +92,9 @@ namespace MapeadorDeEntidades.Form
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(-21, -5);
+            this.pictureBox1.Location = new System.Drawing.Point(-120, -3);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(501, 433);
+            this.pictureBox1.Size = new System.Drawing.Size(403, 357);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 3;
             this.pictureBox1.TabStop = false;
@@ -148,43 +148,17 @@ namespace MapeadorDeEntidades.Form
             this.radioJava.UseVisualStyleBackColor = true;
             this.radioJava.CheckedChanged += new System.EventHandler(this.radioJava_CheckedChanged);
             // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.radioNode);
-            this.groupBox1.Controls.Add(this.radioCsharp);
-            this.groupBox1.Controls.Add(this.radioJava);
-            this.groupBox1.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.groupBox1.Location = new System.Drawing.Point(23, 126);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(128, 83);
-            this.groupBox1.TabIndex = 9;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Linguagem";
-            // 
             // radioNode
             // 
             this.radioNode.AutoSize = true;
             this.radioNode.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.radioNode.Location = new System.Drawing.Point(58, 18);
+            this.radioNode.Location = new System.Drawing.Point(6, 71);
             this.radioNode.Name = "radioNode";
             this.radioNode.Size = new System.Drawing.Size(66, 17);
             this.radioNode.TabIndex = 9;
             this.radioNode.TabStop = true;
             this.radioNode.Text = "Node JS";
             this.radioNode.UseVisualStyleBackColor = true;
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.radioSGBD3);
-            this.groupBox2.Controls.Add(this.radioSGBD2);
-            this.groupBox2.Controls.Add(this.radioSGBD1);
-            this.groupBox2.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.groupBox2.Location = new System.Drawing.Point(23, 12);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(128, 112);
-            this.groupBox2.TabIndex = 10;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "SGBD";
             // 
             // radioSGBD3
             // 
@@ -228,14 +202,12 @@ namespace MapeadorDeEntidades.Form
             // 
             this.groupBox3.Controls.Add(this.btnBatch);
             this.groupBox3.Controls.Add(this.btnSequence);
-            this.groupBox3.Controls.Add(this.label2);
             this.groupBox3.Controls.Add(this.btnConfiguracoes);
-            this.groupBox3.Controls.Add(this.label1);
             this.groupBox3.Controls.Add(this.btnEntidade);
             this.groupBox3.Controls.Add(this.btnChamadaProc);
             this.groupBox3.Controls.Add(this.btnProc);
             this.groupBox3.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.groupBox3.Location = new System.Drawing.Point(319, 8);
+            this.groupBox3.Location = new System.Drawing.Point(429, 8);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(289, 144);
             this.groupBox3.TabIndex = 11;
@@ -245,9 +217,9 @@ namespace MapeadorDeEntidades.Form
             // btnBatch
             // 
             this.btnBatch.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnBatch.Location = new System.Drawing.Point(6, 75);
+            this.btnBatch.Location = new System.Drawing.Point(6, 18);
             this.btnBatch.Name = "btnBatch";
-            this.btnBatch.Size = new System.Drawing.Size(101, 23);
+            this.btnBatch.Size = new System.Drawing.Size(101, 80);
             this.btnBatch.TabIndex = 18;
             this.btnBatch.Text = "Batch Execute";
             this.btnBatch.UseVisualStyleBackColor = true;
@@ -269,11 +241,11 @@ namespace MapeadorDeEntidades.Form
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label2.Location = new System.Drawing.Point(33, 47);
+            this.label2.Location = new System.Drawing.Point(58, 285);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(42, 25);
             this.label2.TabIndex = 16;
-            this.label2.Text = "0.4";
+            this.label2.Text = "0.5";
             // 
             // btnConfiguracoes
             // 
@@ -291,7 +263,7 @@ namespace MapeadorDeEntidades.Form
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label1.Location = new System.Drawing.Point(20, 16);
+            this.label1.Location = new System.Drawing.Point(42, 254);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(68, 25);
             this.label1.TabIndex = 14;
@@ -303,9 +275,9 @@ namespace MapeadorDeEntidades.Form
             this.groupBox4.Controls.Add(this.btnChkTabela);
             this.groupBox4.Controls.Add(this.ddlTabelas);
             this.groupBox4.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.groupBox4.Location = new System.Drawing.Point(23, 274);
+            this.groupBox4.Location = new System.Drawing.Point(139, 158);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(581, 55);
+            this.groupBox4.Size = new System.Drawing.Size(579, 55);
             this.groupBox4.TabIndex = 12;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Tabela";
@@ -327,9 +299,9 @@ namespace MapeadorDeEntidades.Form
             this.groupBox5.Controls.Add(this.btnConnection);
             this.groupBox5.Controls.Add(this.txtConnectionString);
             this.groupBox5.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.groupBox5.Location = new System.Drawing.Point(23, 211);
+            this.groupBox5.Location = new System.Drawing.Point(139, 219);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(581, 60);
+            this.groupBox5.Size = new System.Drawing.Size(579, 60);
             this.groupBox5.TabIndex = 13;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Connection String";
@@ -366,11 +338,10 @@ namespace MapeadorDeEntidades.Form
             // groupBox6
             // 
             this.groupBox6.Controls.Add(this.lblStatus);
-            this.groupBox6.Controls.Add(this.progressBar1);
             this.groupBox6.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.groupBox6.Location = new System.Drawing.Point(157, 158);
+            this.groupBox6.Location = new System.Drawing.Point(139, 285);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(446, 51);
+            this.groupBox6.Size = new System.Drawing.Size(579, 51);
             this.groupBox6.TabIndex = 11;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Status";
@@ -379,16 +350,42 @@ namespace MapeadorDeEntidades.Form
             // 
             this.lblStatus.Location = new System.Drawing.Point(6, 19);
             this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(295, 18);
+            this.lblStatus.Size = new System.Drawing.Size(566, 18);
             this.lblStatus.TabIndex = 15;
             this.lblStatus.Text = "Aguardando Instruções";
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.radioNode);
+            this.groupBox1.Controls.Add(this.radioCsharp);
+            this.groupBox1.Controls.Add(this.radioJava);
+            this.groupBox1.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.groupBox1.Location = new System.Drawing.Point(161, 12);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(128, 140);
+            this.groupBox1.TabIndex = 9;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Linguagem";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.radioSGBD3);
+            this.groupBox2.Controls.Add(this.radioSGBD2);
+            this.groupBox2.Controls.Add(this.radioSGBD1);
+            this.groupBox2.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.groupBox2.Location = new System.Drawing.Point(295, 12);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(128, 140);
+            this.groupBox2.TabIndex = 10;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "SGBD";
             // 
             // progressBar1
             // 
             this.progressBar1.ForeColor = System.Drawing.Color.Maroon;
-            this.progressBar1.Location = new System.Drawing.Point(307, 19);
+            this.progressBar1.Location = new System.Drawing.Point(3, 321);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(133, 18);
+            this.progressBar1.Size = new System.Drawing.Size(130, 18);
             this.progressBar1.TabIndex = 14;
             // 
             // formPrincipal
@@ -396,11 +393,14 @@ namespace MapeadorDeEntidades.Form
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.ClientSize = new System.Drawing.Size(616, 333);
+            this.ClientSize = new System.Drawing.Size(732, 350);
             this.Controls.Add(this.groupBox6);
+            this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.groupBox5);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.pictureBox1);
@@ -409,20 +409,20 @@ namespace MapeadorDeEntidades.Form
             this.MaximizeBox = false;
             this.Name = "formPrincipal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Zeus - 0.4";
+            this.Text = "Zeus - 0.5";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
             this.groupBox6.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -435,8 +435,6 @@ namespace MapeadorDeEntidades.Form
         private System.Windows.Forms.Button btnProc;
         private System.Windows.Forms.RadioButton radioCsharp;
         private System.Windows.Forms.RadioButton radioJava;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.RadioButton radioSGBD1;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.GroupBox groupBox4;
@@ -457,6 +455,8 @@ namespace MapeadorDeEntidades.Form
         private System.Windows.Forms.Button btnConfiguracoes;
         private System.Windows.Forms.Button btnSequence;
         private System.Windows.Forms.Button btnBatch;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox groupBox2;
     }
 }
 
