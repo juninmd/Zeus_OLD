@@ -338,6 +338,7 @@ namespace MapeadorDeEntidades.Form
             // groupBox6
             // 
             this.groupBox6.Controls.Add(this.lblStatus);
+            this.groupBox6.Controls.Add(this.progressBar1);
             this.groupBox6.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.groupBox6.Location = new System.Drawing.Point(139, 285);
             this.groupBox6.Name = "groupBox6";
@@ -383,9 +384,9 @@ namespace MapeadorDeEntidades.Form
             // progressBar1
             // 
             this.progressBar1.ForeColor = System.Drawing.Color.Maroon;
-            this.progressBar1.Location = new System.Drawing.Point(3, 321);
+            this.progressBar1.Location = new System.Drawing.Point(6, 35);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(130, 18);
+            this.progressBar1.Size = new System.Drawing.Size(569, 10);
             this.progressBar1.TabIndex = 14;
             // 
             // formPrincipal
@@ -395,7 +396,6 @@ namespace MapeadorDeEntidades.Form
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.ClientSize = new System.Drawing.Size(732, 350);
             this.Controls.Add(this.groupBox6);
-            this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.groupBox4);
