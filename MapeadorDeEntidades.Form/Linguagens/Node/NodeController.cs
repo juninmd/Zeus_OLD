@@ -85,7 +85,7 @@ namespace MapeadorDeEntidades.Form.Linguagens.Node
         {
             var get = new StringBuilder();
             get.Append($"    delete: function (req, res) {{{N}");
-            get.Append($"        {_classe}.delete(req.query, function (err, result) {{{N}");
+            get.Append($"        {_classe}.delete(req.query.id, function (err, result) {{{N}");
             get.Append($"            if (err) {{{N}");
             get.Append($"                res.status(err.statusCode).send(err);{N}");
             get.Append($"            }} else {{  {N}");

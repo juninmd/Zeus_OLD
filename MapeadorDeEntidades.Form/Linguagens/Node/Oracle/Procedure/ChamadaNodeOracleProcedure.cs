@@ -32,6 +32,9 @@ namespace MapeadorDeEntidades.Form.Linguagens.Node.Oracle.Procedure
                     var routes = new NodeRoutes(nomeTabela).GerarClasse().ToString();
                     File.WriteAllText($"{salvar.SelectedPath}\\{nomeTabela.TratarNomeTabela().ToLower()}Routes.js", routes);
 
+                    var ajaxService = new NodeAjax(nomeTabela).GerarClasse().ToString();
+                    File.WriteAllText($"{salvar.SelectedPath}\\{nomeTabela.TratarNomeTabela().ToLower()}Ajax.js", ajaxService);
+
                 }
 
                 return new RequestMessage<string>()

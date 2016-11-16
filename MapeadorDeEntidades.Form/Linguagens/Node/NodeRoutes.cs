@@ -22,7 +22,7 @@ namespace MapeadorDeEntidades.Form.Linguagens.Node
             classe.Append($"app.route(`/{_classe}/`).get({_classe}.getAll);{N}");
             classe.Append($"app.route(`/{_classe}/`).post({_classe}.insert);{N}");
             classe.Append($"app.route(`/{_classe}/`).put({_classe}.update);{N}");
-            classe.Append($"app.route(`/{_classe}/`).delete({_classe}.delete);{N}");
+            classe.Append($"app.route(`/{_classe}/:id`).delete({_classe}.delete);{N}");
             return classe;
         }
     }
