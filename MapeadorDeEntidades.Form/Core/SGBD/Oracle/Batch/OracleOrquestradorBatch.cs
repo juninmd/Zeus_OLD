@@ -41,7 +41,7 @@ namespace MapeadorDeEntidades.Form.Core.SGBD.Oracle.Batch
                             continue;
                     }
 
-                    if (nomePG.Contains("_RELATIONAL"))
+                    if (nomePG.Contains("_RELATIONAL") || nomePG.Contains("Repository"))
                     {
                         continue;
                     }

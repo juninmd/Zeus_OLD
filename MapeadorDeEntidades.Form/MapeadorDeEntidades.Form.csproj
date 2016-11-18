@@ -98,6 +98,11 @@
     <Compile Include="Core\SGBD\Microsoft SQL\SQLEntidadeTabela.cs" />
     <Compile Include="Core\SGBD\Microsoft SQL\SQLTables.cs" />
     <Compile Include="Core\SGBD\Microsoft SQL\SQLUtil.cs" />
+    <Compile Include="Core\SGBD\MySql\MySqlRepository.cs" />
+    <Compile Include="Core\SGBD\MySql\MySqlEntidadeTabela.cs" />
+    <Compile Include="Core\SGBD\MySql\MySqlPing.cs" />
+    <Compile Include="Core\SGBD\MySql\MySqlTables.cs" />
+    <Compile Include="Core\SGBD\MySql\MySqlUtil.cs" />
     <Compile Include="Core\SGBD\Oracle\Batch\OracleBatchSkip.cs" />
     <Compile Include="Core\SGBD\Oracle\Batch\OracleBatch.cs" />
     <Compile Include="Core\SGBD\Oracle\Batch\OracleOrquestradorBatch.cs" />
@@ -205,7 +210,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Core\SGBD\MYSQL\" />
+    <Folder Include="Core\SGBD\MySql\Procedure\" />
     <Folder Include="Linguagens\Java\SQL\" />
     <Folder Include="Linguagens\Node\SQL\" />
   </ItemGroup>

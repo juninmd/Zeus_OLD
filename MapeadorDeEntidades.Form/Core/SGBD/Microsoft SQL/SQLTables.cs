@@ -21,24 +21,10 @@ namespace MapeadorDeEntidades.Form.Core.SGBD.Microsoft_SQL
 
         public List<SQLEntidadeTabela> ListarAtributos(string nomeTabela)
         {
-            BeginNewStatement("SELECT OBJECT_SCHEMA_NAME(T.[object_id]," +
-            " DB_ID()) AS[Schema], " +
-            "AC.[name] AS[column_name], " +
-            "TY.[name] AS DATA_TYPE, " +
-            "AC.[max_length] AS CHAR_LENGTH, " +
-            "AC.[precision] AS DATA_PRECISION, " +
-            "AC.[scale] AS DATA_SCALE, " +
-            "AC.[is_nullable] AS NULLABLE " +
-            "FROM sys.[tables] AS T " +
-            "INNER JOIN sys.[all_columns] AC ON " +
-            "T.[object_id] = AC.[object_id] " +
-            "INNER JOIN sys.[types] TY ON " +
-            "AC.[system_type_id] = TY.[system_type_id] AND " +
-            "AC.[user_type_id] = TY.[user_type_id] " +
-            "WHERE T.[is_ms_shipped] = 0 " +
-            "AND T.[is_ms_shipped] = 0 " +
-            $"AND '['+OBJECT_SCHEMA_NAME(T.[object_id], DB_ID())+']'+'.['+ T.[name]+']' = '{nomeTabela}' " +
-            "ORDER BY T.[name], AC.[column_id]");
+            BeginNewStatement("select * from information_schema.columns " +
+                              "where table_schema = 'fatecjava' " +
+                              $"and TABLE_NAME = '{nomeTabela}'" +
+                              "order by table_name, ordinal_position");
 
             OpenConnection();
 
