@@ -3,6 +3,7 @@ using MapeadorDeEntidades.Form.Core.SGBD.Oracle;
 using System;
 using System.Collections.Generic;
 using MapeadorDeEntidades.Form.Core.SGBD.Microsoft_SQL;
+using MapeadorDeEntidades.Form.Core.SGBD.MySql;
 
 namespace MapeadorDeEntidades.Form.Middleware
 {
@@ -27,6 +28,8 @@ namespace MapeadorDeEntidades.Form.Middleware
                         return new OraclePing().ConnectaOracle();
                     case 2:
                         return new SQLPing().ConnectaSQL();
+                    case 3:
+                        return new MySqlPing().ConnectaSQL();
                     default:
                         return new SQLPing().ConnectaSQL();
 
