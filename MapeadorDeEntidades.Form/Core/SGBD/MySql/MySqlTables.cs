@@ -5,9 +5,9 @@ namespace MapeadorDeEntidades.Form.Core.SGBD.MySql
 {
     public class MySqlTables : MySqlRepository
     {
-        public List<string> ListaTabelas()
+        public List<string> ListaTabelas(string database)
         {
-            BeginNewStatement("select * from information_schema.tables where table_schema = \"fatecjava\" order by table_name");
+            BeginNewStatement($"select * from information_schema.tables where table_schema = \"{database}\" order by table_name");
             OpenConnection();
 
             var lista = new List<string>();
@@ -15,12 +15,26 @@ namespace MapeadorDeEntidades.Form.Core.SGBD.MySql
             using (var r = ExecuteReader())
                 while (r.Read())
                 {
-                    lista.Add($"[{r.GetValueOrDefault<string>("TABLE_SCHEMA")}].[{r.GetValueOrDefault<string>("TABLE_NAME")}]");
+                    lista.Add(r.GetValueOrDefault<string>("TABLE_NAME"));
+                };
+            return lista;
+        }
+        public List<string> ListaDataBases()
+        {
+            BeginNewStatement("show databases");
+            OpenConnection();
+
+            var lista = new List<string>();
+
+            using (var r = ExecuteReader())
+                while (r.Read())
+                {
+                    lista.Add(r.GetValueOrDefault<string>("Database"));
                 };
             return lista;
         }
 
-        public List<SQLEntidadeTabela> ListarAtributos(string nomeTabela)
+        public List<MySqlEntidadeTabela> ListarAtributos(string nomeTabela)
         {
             BeginNewStatement("SELECT OBJECT_SCHEMA_NAME(T.[object_id]," +
             " DB_ID()) AS[Schema], " +
@@ -43,19 +57,19 @@ namespace MapeadorDeEntidades.Form.Core.SGBD.MySql
 
             OpenConnection();
 
-            var lista = new List<SQLEntidadeTabela>();
+            var lista = new List<MySqlEntidadeTabela>();
 
             using (var r = ExecuteReader())
                 while (r.Read())
                 {
-                    lista.Add(new SQLEntidadeTabela
+                    lista.Add(new MySqlEntidadeTabela
                     {
-                        COLUMN_NAME = NullSafeGetter.GetValueOrDefault<string>(r, "COLUMN_NAME"),
-                        DATA_TYPE = NullSafeGetter.GetValueOrDefault<string>(r, "DATA_TYPE"),
-                        CHAR_LENGTH = NullSafeGetter.GetValueOrDefault<short>(r, "CHAR_LENGTH"),
-                        DATA_PRECISION = NullSafeGetter.GetValueOrDefault<byte?>(r, "DATA_PRECISION"),
-                        DATA_SCALE = NullSafeGetter.GetValueOrDefault<byte?>(r, "DATA_SCALE"),
-                        NULLABLE = NullSafeGetter.GetValueOrDefault<bool>(r, "NULLABLE"),
+                        COLUMN_NAME = r.GetValueOrDefault<string>("COLUMN_NAME"),
+                        DATA_TYPE = r.GetValueOrDefault<string>("DATA_TYPE"),
+                        CHAR_LENGTH = r.GetValueOrDefault<short>("CHAR_LENGTH"),
+                        DATA_PRECISION = r.GetValueOrDefault<byte?>("DATA_PRECISION"),
+                        DATA_SCALE = r.GetValueOrDefault<byte?>("DATA_SCALE"),
+                        NULLABLE = r.GetValueOrDefault<bool>("NULLABLE"),
                         COMMENTS = "",
                     });
                 };

@@ -103,6 +103,19 @@
     <Compile Include="Core\SGBD\MySql\MySqlPing.cs" />
     <Compile Include="Core\SGBD\MySql\MySqlTables.cs" />
     <Compile Include="Core\SGBD\MySql\MySqlUtil.cs" />
+    <Compile Include="Core\SGBD\MySql\Procedure\Comum\MySqlBuscaParamters.cs" />
+    <Compile Include="Core\SGBD\MySql\Procedure\Comum\MySqlDeleteParamters.cs" />
+    <Compile Include="Core\SGBD\MySql\Procedure\Comum\MySqlInsertParamters.cs" />
+    <Compile Include="Core\SGBD\MySql\Procedure\Comum\MySqlSelectParamters.cs" />
+    <Compile Include="Core\SGBD\MySql\Procedure\Comum\MySqlSumario.cs" />
+    <Compile Include="Core\SGBD\MySql\Procedure\Comum\MySqlUpdateParamters.cs" />
+    <Compile Include="Core\SGBD\MySql\Procedure\MySqlOrquestradorProcedures.cs" />
+    <Compile Include="Core\SGBD\MySql\Procedure\MySqlProcedure.cs" />
+    <Compile Include="Core\SGBD\MySql\Procedure\Verbos\MySqlBuscar.cs" />
+    <Compile Include="Core\SGBD\MySql\Procedure\Verbos\MySqlDelete.cs" />
+    <Compile Include="Core\SGBD\MySql\Procedure\Verbos\MySqlGet.cs" />
+    <Compile Include="Core\SGBD\MySql\Procedure\Verbos\MySqlInsert.cs" />
+    <Compile Include="Core\SGBD\MySql\Procedure\Verbos\MySqlUpdate.cs" />
     <Compile Include="Core\SGBD\Oracle\Batch\OracleBatchSkip.cs" />
     <Compile Include="Core\SGBD\Oracle\Batch\OracleBatch.cs" />
     <Compile Include="Core\SGBD\Oracle\Batch\OracleOrquestradorBatch.cs" />
@@ -163,6 +176,7 @@
     <Compile Include="Linguagens\Node\Oracle\Procedure\NodeOracleProcedure.cs" />
     <Compile Include="Middleware\OrquestradorChamadaProcedure.cs" />
     <Compile Include="Middleware\OrquestradorBatch.cs" />
+    <Compile Include="Middleware\OrquestradorTabelasSGBD.cs" />
     <Compile Include="Middleware\OrquestradorPingSGBD.cs" />
     <Compile Include="Middleware\OrquestradorJSON.cs" />
     <Compile Include="Middleware\OrquestradorMapeamentoEntidade.cs" />
@@ -210,7 +224,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Core\SGBD\MySql\Procedure\" />
     <Folder Include="Linguagens\Java\SQL\" />
     <Folder Include="Linguagens\Node\SQL\" />
   </ItemGroup>

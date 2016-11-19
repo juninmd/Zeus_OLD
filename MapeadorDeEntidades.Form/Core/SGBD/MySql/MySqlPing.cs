@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using MapeadorDeEntidades.Form.Core.SGBD.Microsoft_SQL;
 
 namespace MapeadorDeEntidades.Form.Core.SGBD.MySql
 {
@@ -10,7 +9,7 @@ namespace MapeadorDeEntidades.Form.Core.SGBD.MySql
             var ping = Ping();
             if (!ping.IsError)
             {
-                ping.Content = new MySqlTables().ListaTabelas();
+                ping.Content =  new MySqlTables().ListaDataBases();
             }
             return ping;
         }

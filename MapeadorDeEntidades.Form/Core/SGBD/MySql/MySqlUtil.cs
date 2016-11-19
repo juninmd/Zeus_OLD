@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MapeadorDeEntidades.Form.Core.SGBD.MySql
+﻿namespace MapeadorDeEntidades.Form.Core.SGBD.MySql
 {
-    class MySqlUtil
+    public static class MySqlUtil
     {
+        public static string TratarNomeMySql(this string nome)
+        {
+            return nome.Split('.')[1].Replace("[", "").Replace("]", ""); ;
+        }
     }
 }
