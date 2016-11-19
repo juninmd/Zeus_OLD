@@ -21,6 +21,11 @@ namespace MapeadorDeEntidades.Form.Core
         public static int SGBD { get; set; }
         public static string ConnectionString { get; set; }
 
+        /// <summary>
+        /// Schema escolhido
+        /// </summary>
+        public static string DataBase { get; set; }
+
         public static bool TodasTabelas { get; set; }
     }
 }

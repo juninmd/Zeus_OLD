@@ -64,8 +64,18 @@ namespace MapeadorDeEntidades.Form
 
             if (!connectionDb.IsError)
             {
-                ddlTabelas.Items.Clear();
-                ddlTabelas.Items.AddRange(connectionDb.Content.ToArray());
+
+                if (ParamtersInput.SGBD != 3)
+                {
+                    ddlTabelas.Items.Clear();
+                    ddlTabelas.Items.AddRange(connectionDb.Content.ToArray());
+                    ddlDatabase.Items.Clear();
+                    return;
+                }
+
+                ddlDatabase.Items.Clear();
+                ddlDatabase.Items.AddRange(connectionDb.Content.ToArray());
+
             }
         }
 
@@ -103,6 +113,7 @@ namespace MapeadorDeEntidades.Form
             ParamtersInput.Linguagem = radioCsharp.Checked ? 1 : radioJava.Checked ? 2 : radioNode.Checked ? 3 : 0;
             ParamtersInput.SGBD = radioSGBD1.Checked ? 1 : radioSGBD2.Checked ? 2 : radioSGBD3.Checked ? 3 : 0;
             ParamtersInput.TodasTabelas = btnChkTabela.Checked;
+            ParamtersInput.DataBase = ddlDatabase?.SelectedItem?.ToString();
 
             if (ParamtersInput.TodasTabelas)
             {
@@ -117,11 +128,7 @@ namespace MapeadorDeEntidades.Form
             }
         }
 
-        private void btnJSON_Click(object sender, EventArgs e)
-        {
-            SetParamters();
-
-        }
+     
 
         private void btnExemplo_Click(object sender, EventArgs e)
         {
@@ -134,11 +141,7 @@ namespace MapeadorDeEntidades.Form
                 new formConnectionString().Show();
             }
         }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
+ 
 
         private void btnConfiguracoes_Click(object sender, EventArgs e)
         {
@@ -164,5 +167,12 @@ namespace MapeadorDeEntidades.Form
             var mdProc = new OrquestradorBatch().Generate(salvar);
             MessageBox.Show(mdProc.Message);
         }
+
+        private void ddlDatabase_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SetParamters();
+            var mdProc = new OrquestradorTabelasSGBD().Connect();
+            ddlTabelas.Items.AddRange(mdProc?.Content?.ToArray());
+        } 
     }
 }

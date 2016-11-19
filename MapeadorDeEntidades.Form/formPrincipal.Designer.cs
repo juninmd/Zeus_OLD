@@ -45,8 +45,8 @@ namespace MapeadorDeEntidades.Form
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.btnBatch = new System.Windows.Forms.Button();
             this.btnSequence = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
             this.btnConfiguracoes = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.btnChkTabela = new System.Windows.Forms.CheckBox();
@@ -57,9 +57,11 @@ namespace MapeadorDeEntidades.Form
             this.salvar = new System.Windows.Forms.FolderBrowserDialog();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.lblStatus = new System.Windows.Forms.Label();
+            this.progressBar1 = new MapeadorDeEntidades.Form.Core.NewProgressBar();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.progressBar1 = new MapeadorDeEntidades.Form.Core.NewProgressBar();
+            this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.ddlDatabase = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -67,6 +69,7 @@ namespace MapeadorDeEntidades.Form
             this.groupBox6.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.groupBox7.SuspendLayout();
             this.SuspendLayout();
             // 
             // ddlTabelas
@@ -236,17 +239,6 @@ namespace MapeadorDeEntidades.Form
             this.btnSequence.UseVisualStyleBackColor = true;
             this.btnSequence.Click += new System.EventHandler(this.btnSequence_Click);
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label2.Location = new System.Drawing.Point(58, 285);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(42, 25);
-            this.label2.TabIndex = 16;
-            this.label2.Text = "0.5";
-            // 
             // btnConfiguracoes
             // 
             this.btnConfiguracoes.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
@@ -258,6 +250,17 @@ namespace MapeadorDeEntidades.Form
             this.btnConfiguracoes.UseVisualStyleBackColor = true;
             this.btnConfiguracoes.Click += new System.EventHandler(this.btnConfiguracoes_Click);
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.label2.Location = new System.Drawing.Point(58, 285);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(42, 25);
+            this.label2.TabIndex = 16;
+            this.label2.Text = "0.5";
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -268,7 +271,6 @@ namespace MapeadorDeEntidades.Form
             this.label1.Size = new System.Drawing.Size(68, 25);
             this.label1.TabIndex = 14;
             this.label1.Text = "ZEUS";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // groupBox4
             // 
@@ -301,7 +303,7 @@ namespace MapeadorDeEntidades.Form
             this.groupBox5.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.groupBox5.Location = new System.Drawing.Point(139, 219);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(579, 60);
+            this.groupBox5.Size = new System.Drawing.Size(447, 60);
             this.groupBox5.TabIndex = 13;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Connection String";
@@ -309,7 +311,7 @@ namespace MapeadorDeEntidades.Form
             // btnExemplo
             // 
             this.btnExemplo.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnExemplo.Location = new System.Drawing.Point(553, 18);
+            this.btnExemplo.Location = new System.Drawing.Point(418, 19);
             this.btnExemplo.Name = "btnExemplo";
             this.btnExemplo.Size = new System.Drawing.Size(21, 21);
             this.btnExemplo.TabIndex = 2;
@@ -320,7 +322,7 @@ namespace MapeadorDeEntidades.Form
             // btnConnection
             // 
             this.btnConnection.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnConnection.Location = new System.Drawing.Point(473, 17);
+            this.btnConnection.Location = new System.Drawing.Point(337, 17);
             this.btnConnection.Name = "btnConnection";
             this.btnConnection.Size = new System.Drawing.Size(75, 23);
             this.btnConnection.TabIndex = 1;
@@ -332,7 +334,7 @@ namespace MapeadorDeEntidades.Form
             // 
             this.txtConnectionString.Location = new System.Drawing.Point(9, 19);
             this.txtConnectionString.Name = "txtConnectionString";
-            this.txtConnectionString.Size = new System.Drawing.Size(458, 20);
+            this.txtConnectionString.Size = new System.Drawing.Size(322, 20);
             this.txtConnectionString.TabIndex = 0;
             // 
             // groupBox6
@@ -354,6 +356,14 @@ namespace MapeadorDeEntidades.Form
             this.lblStatus.Size = new System.Drawing.Size(566, 18);
             this.lblStatus.TabIndex = 15;
             this.lblStatus.Text = "Aguardando Instruções";
+            // 
+            // progressBar1
+            // 
+            this.progressBar1.ForeColor = System.Drawing.Color.Maroon;
+            this.progressBar1.Location = new System.Drawing.Point(6, 35);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(569, 10);
+            this.progressBar1.TabIndex = 14;
             // 
             // groupBox1
             // 
@@ -381,13 +391,25 @@ namespace MapeadorDeEntidades.Form
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "SGBD";
             // 
-            // progressBar1
+            // groupBox7
             // 
-            this.progressBar1.ForeColor = System.Drawing.Color.Maroon;
-            this.progressBar1.Location = new System.Drawing.Point(6, 35);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(569, 10);
-            this.progressBar1.TabIndex = 14;
+            this.groupBox7.Controls.Add(this.ddlDatabase);
+            this.groupBox7.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.groupBox7.Location = new System.Drawing.Point(589, 219);
+            this.groupBox7.Name = "groupBox7";
+            this.groupBox7.Size = new System.Drawing.Size(129, 60);
+            this.groupBox7.TabIndex = 14;
+            this.groupBox7.TabStop = false;
+            this.groupBox7.Text = "DataBase";
+            // 
+            // ddlDatabase
+            // 
+            this.ddlDatabase.FormattingEnabled = true;
+            this.ddlDatabase.Location = new System.Drawing.Point(6, 20);
+            this.ddlDatabase.Name = "ddlDatabase";
+            this.ddlDatabase.Size = new System.Drawing.Size(118, 21);
+            this.ddlDatabase.TabIndex = 1;
+            this.ddlDatabase.SelectedIndexChanged += new System.EventHandler(this.ddlDatabase_SelectedIndexChanged);
             // 
             // formPrincipal
             // 
@@ -395,6 +417,7 @@ namespace MapeadorDeEntidades.Form
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.ClientSize = new System.Drawing.Size(732, 350);
+            this.Controls.Add(this.groupBox7);
             this.Controls.Add(this.groupBox6);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.label2);
@@ -421,6 +444,7 @@ namespace MapeadorDeEntidades.Form
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.groupBox7.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -457,6 +481,8 @@ namespace MapeadorDeEntidades.Form
         private System.Windows.Forms.Button btnBatch;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox groupBox7;
+        private System.Windows.Forms.ComboBox ddlDatabase;
     }
 }
 

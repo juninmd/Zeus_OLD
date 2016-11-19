@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Net;
 using System.Windows.Forms;
 using MapeadorDeEntidades.Form.Core;
@@ -14,6 +15,15 @@ namespace MapeadorDeEntidades.Form.Middleware
                 return new RequestMessage<string>()
                 {
                     Message = "Selecione uma tabela",
+                    StatusCode = System.Net.HttpStatusCode.InternalServerError
+                };
+            }
+
+            if (ParamtersInput.SGBD == 3 && String.IsNullOrEmpty(ParamtersInput.DataBase))
+            {
+                return new RequestMessage<string>()
+                {
+                    Message = "Selecione uma database",
                     StatusCode = System.Net.HttpStatusCode.InternalServerError
                 };
             }
