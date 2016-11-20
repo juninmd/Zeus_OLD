@@ -95,7 +95,15 @@ namespace MapeadorDeEntidades.Form
         {
             SetParamters();
         }
+        private void radioSGBD2_CheckedChanged(object sender, EventArgs e)
+        {
+            SetParamters();
+        }
 
+        private void radioSGBD3_CheckedChanged(object sender, EventArgs e)
+        {
+            SetParamters();
+        }
         private void radioCsharp_CheckedChanged(object sender, EventArgs e)
         {
             SetParamters();
@@ -105,7 +113,10 @@ namespace MapeadorDeEntidades.Form
         {
             SetParamters();
         }
-
+        private void radioNode_CheckedChanged(object sender, EventArgs e)
+        {
+            SetParamters();
+        }
         private void SetParamters()
         {
             ParamtersInput.NomeTabelas.Clear();
@@ -126,6 +137,8 @@ namespace MapeadorDeEntidades.Form
             {
                 ParamtersInput.NomeTabelas.Add(ddlTabelas.SelectedItem.ToString());
             }
+
+            ddlDatabase.Enabled = radioSGBD3.Checked;
         }
 
      
@@ -172,7 +185,10 @@ namespace MapeadorDeEntidades.Form
         {
             SetParamters();
             var mdProc = new OrquestradorTabelasSGBD().Connect();
+            ddlTabelas.Items.Clear();
             ddlTabelas.Items.AddRange(mdProc?.Content?.ToArray());
-        } 
+        }
+
+    
     }
 }

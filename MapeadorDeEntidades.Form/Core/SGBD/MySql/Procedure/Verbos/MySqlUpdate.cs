@@ -21,22 +21,11 @@ namespace MapeadorDeEntidades.Form.Core.SGBD.MYSQL.Procedure.Verbos
         public StringBuilder Init(string nomeProcedure, string nomeTabela, List<MySqlEntidadeTabela> listaAtributos)
         {
             var desc = new StringBuilder();
-            desc.Append(new MySqlSumario().Init(nomeProcedure, nomeTabela, Paramters(listaAtributos)));
+            desc.Append(new MySqlSumario().Init(nomeProcedure, nomeTabela));
             desc.Append("	BEGIN" + N + N);
             desc.Append(new MySqlUpdateParamters().Init(nomeTabela, listaAtributos));
             desc.Append("	END" + N + N);
             desc.Append("GO" + N + N + N + N);
-            return desc;
-        }
-        private StringBuilder Paramters(List<MySqlEntidadeTabela> parametro)
-        {
-            var count = parametro.Count;
-            var desc = new StringBuilder();
-            for (int i = 0; i < count - 1; i++)
-            {
-                desc.Append($"	@{parametro[i].COLUMN_NAME}        {parametro[i].DATA_TYPE},{N}");
-            }
-            desc.Append($"	@{parametro[count - 1].COLUMN_NAME}        {parametro[count - 1].DATA_TYPE}{N}");
             return desc;
         }
     }

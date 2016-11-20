@@ -2,6 +2,7 @@
 using MapeadorDeEntidades.Form.Core;
 using System.Windows.Forms;
 using MapeadorDeEntidades.Form.Core.SGBD.Microsoft_SQL.Procedure;
+using MapeadorDeEntidades.Form.Core.SGBD.MYSQL.Procedure;
 using MapeadorDeEntidades.Form.Core.SGBD.Oracle.Procedure;
 using MapeadorDeEntidades.Form.Utilidade;
 
@@ -34,10 +35,14 @@ namespace MapeadorDeEntidades.Form.Middleware
                     {
                         return new SQLOrquestradorProcedures().SQL(salvar);
                     }
-                default:
+                case 3:
                     {
-                        return new RequestMessage<string>();
+                        return new MySqlOrquestradorProcedures().MySql(salvar);
                     }
+                default:
+                {
+                    return new RequestMessage<string>();
+                }
             }
         }
     }

@@ -1,31 +1,31 @@
 ﻿using System;
 using System.IO;
 using System.Windows.Forms;
-using MapeadorDeEntidades.Form.Core.SGBD.Microsoft_SQL;
-using MapeadorDeEntidades.Form.Core.SGBD.MySql;
+using MapeadorDeEntidades.Form.Core;
+using MapeadorDeEntidades.Form.Linguagens.Java.Oracle.Procedure;
 using MapeadorDeEntidades.Form.Utilidade;
 
-namespace MapeadorDeEntidades.Form.Core.SGBD.MYSQL.Procedure
+namespace MapeadorDeEntidades.Form.Linguagens.Java.MySql.Procedure
 {
-    public class MySqlOrquestradorProcedures
+    public class ChamadaJavaMySqlProcedure
     {
-        public RequestMessage<string> MySql(FolderBrowserDialog salvar)
+        public RequestMessage<string> Java(FolderBrowserDialog salvar)
         {
             try
             {
                 int max = ParamtersInput.NomeTabelas.Count;
                 var i = 0;
-                var local = salvar.SelectedPath + "\\";
-
                 foreach (var nomeTabela in ParamtersInput.NomeTabelas)
                 {
+
                     i++;
                     Util.Barra((int)((((decimal)i / max) * 100)));
                     Util.Status($"Processando tabela: {nomeTabela}");
 
-                    var instancia = new MySqlProcedure(nomeTabela, new MySqlTables().ListarAtributos(nomeTabela));
-                    var body = instancia.GerarPackageBody().ToString();
-                    File.WriteAllText(local + $"{nomeTabela}.sql", body);
+                    var instancia = new JavaMySqlProcedure(nomeTabela);
+
+                    var classe = instancia.GerarClasse().ToString();
+                    File.WriteAllText($"{salvar.SelectedPath}\\{nomeTabela.ToLower()}Dao.java", classe);
                 }
 
                 return new RequestMessage<string>()

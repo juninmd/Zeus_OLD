@@ -162,6 +162,7 @@ namespace MapeadorDeEntidades.Form
             this.radioNode.TabStop = true;
             this.radioNode.Text = "Node JS";
             this.radioNode.UseVisualStyleBackColor = true;
+            this.radioNode.CheckedChanged += new System.EventHandler(this.radioNode_CheckedChanged);
             // 
             // radioSGBD3
             // 
@@ -174,6 +175,7 @@ namespace MapeadorDeEntidades.Form
             this.radioSGBD3.TabStop = true;
             this.radioSGBD3.Text = "Mysql";
             this.radioSGBD3.UseVisualStyleBackColor = true;
+            this.radioSGBD3.CheckedChanged += new System.EventHandler(this.radioSGBD3_CheckedChanged);
             // 
             // radioSGBD2
             // 
@@ -186,6 +188,7 @@ namespace MapeadorDeEntidades.Form
             this.radioSGBD2.TabStop = true;
             this.radioSGBD2.Text = "Microsoft SQL";
             this.radioSGBD2.UseVisualStyleBackColor = true;
+            this.radioSGBD2.CheckedChanged += new System.EventHandler(this.radioSGBD2_CheckedChanged);
             // 
             // radioSGBD1
             // 
@@ -303,7 +306,7 @@ namespace MapeadorDeEntidades.Form
             this.groupBox5.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.groupBox5.Location = new System.Drawing.Point(139, 219);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(447, 60);
+            this.groupBox5.Size = new System.Drawing.Size(447, 55);
             this.groupBox5.TabIndex = 13;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Connection String";
@@ -344,7 +347,7 @@ namespace MapeadorDeEntidades.Form
             this.groupBox6.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.groupBox6.Location = new System.Drawing.Point(139, 285);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(579, 51);
+            this.groupBox6.Size = new System.Drawing.Size(579, 55);
             this.groupBox6.TabIndex = 11;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Status";
@@ -371,9 +374,9 @@ namespace MapeadorDeEntidades.Form
             this.groupBox1.Controls.Add(this.radioCsharp);
             this.groupBox1.Controls.Add(this.radioJava);
             this.groupBox1.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.groupBox1.Location = new System.Drawing.Point(161, 12);
+            this.groupBox1.Location = new System.Drawing.Point(161, 8);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(128, 140);
+            this.groupBox1.Size = new System.Drawing.Size(128, 144);
             this.groupBox1.TabIndex = 9;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Linguagem";
@@ -384,9 +387,9 @@ namespace MapeadorDeEntidades.Form
             this.groupBox2.Controls.Add(this.radioSGBD2);
             this.groupBox2.Controls.Add(this.radioSGBD1);
             this.groupBox2.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.groupBox2.Location = new System.Drawing.Point(295, 12);
+            this.groupBox2.Location = new System.Drawing.Point(295, 8);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(128, 140);
+            this.groupBox2.Size = new System.Drawing.Size(128, 144);
             this.groupBox2.TabIndex = 10;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "SGBD";
@@ -397,13 +400,14 @@ namespace MapeadorDeEntidades.Form
             this.groupBox7.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.groupBox7.Location = new System.Drawing.Point(589, 219);
             this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(129, 60);
+            this.groupBox7.Size = new System.Drawing.Size(129, 55);
             this.groupBox7.TabIndex = 14;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "DataBase";
             // 
             // ddlDatabase
             // 
+            this.ddlDatabase.Enabled = false;
             this.ddlDatabase.FormattingEnabled = true;
             this.ddlDatabase.Location = new System.Drawing.Point(6, 20);
             this.ddlDatabase.Name = "ddlDatabase";

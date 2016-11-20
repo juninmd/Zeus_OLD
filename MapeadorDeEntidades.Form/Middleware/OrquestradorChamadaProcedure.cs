@@ -3,6 +3,7 @@ using MapeadorDeEntidades.Form.Core;
 using System.Windows.Forms;
 using MapeadorDeEntidades.Form.Linguagens.CSharp.Oracle.Procedure;
 using MapeadorDeEntidades.Form.Linguagens.CSharp.SQL.Procedure;
+using MapeadorDeEntidades.Form.Linguagens.Java.MySql.Procedure;
 using MapeadorDeEntidades.Form.Linguagens.Java.Oracle.Procedure;
 using MapeadorDeEntidades.Form.Linguagens.Node.Oracle.Procedure;
 using MapeadorDeEntidades.Form.Utilidade;
@@ -60,6 +61,21 @@ namespace MapeadorDeEntidades.Form.Middleware
                             case 1:
                                 {
                                     return new ChamadaCsharpSQLProcedure().CSharp(salvar);
+                                }
+                            default:
+                                {
+                                    return new RequestMessage<string>();
+                                }
+                        }
+
+                    }
+                case 3:
+                    {
+                        switch (ParamtersInput.Linguagem)
+                        {
+                            case 2:
+                                {
+                                    return new ChamadaJavaMySqlProcedure().Java(salvar);
                                 }
                             default:
                                 {
