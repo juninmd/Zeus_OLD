@@ -22,7 +22,7 @@ namespace MapeadorDeEntidades.Form.Core.SGBD.MYSQL.Procedure
 
         public StringBuilder GerarPackageBody()
         {
-            var baseProc = NomeTabela.TratarNomeMySql();
+            var baseProc = NomeTabela.TratarNomeTabela();
             var header = new StringBuilder();
             header.Append(new MySqlGet().Init($"Sel{baseProc}", NomeTabela, ListaAtributosTabela));
             header.Append(new MySqlBuscar().Init($"Busca{baseProc}", NomeTabela, ListaAtributosTabela));

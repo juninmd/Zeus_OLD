@@ -26,7 +26,7 @@ namespace MapeadorDeEntidades.Form.Core.SGBD.MYSQL.Procedure.Comum
                 param.Append($"		    {listaAtributos[i].COLUMN_NAME}," + N);
             }
             param.Append("		    " + listaAtributos[count - 1].COLUMN_NAME + N);
-            param.Append($"	     FROM {nomeTabela} WITH(NOLOCK)" + N);
+            param.Append($"	     FROM {nomeTabela}" + N);
             param.Append($"	     WHERE {listaAtributos.First().COLUMN_NAME} = @{listaAtributos.First().COLUMN_NAME}" + N);
             return param;
         }

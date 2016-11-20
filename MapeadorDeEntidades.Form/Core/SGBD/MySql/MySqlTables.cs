@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using MapeadorDeEntidades.Form.Core.SGBD.Microsoft_SQL;
 
 namespace MapeadorDeEntidades.Form.Core.SGBD.MySql
 {
@@ -36,24 +35,7 @@ namespace MapeadorDeEntidades.Form.Core.SGBD.MySql
 
         public List<MySqlEntidadeTabela> ListarAtributos(string nomeTabela)
         {
-            BeginNewStatement("SELECT OBJECT_SCHEMA_NAME(T.[object_id]," +
-            " DB_ID()) AS[Schema], " +
-            "AC.[name] AS[column_name], " +
-            "TY.[name] AS DATA_TYPE, " +
-            "AC.[max_length] AS CHAR_LENGTH, " +
-            "AC.[precision] AS DATA_PRECISION, " +
-            "AC.[scale] AS DATA_SCALE, " +
-            "AC.[is_nullable] AS NULLABLE " +
-            "FROM sys.[tables] AS T " +
-            "INNER JOIN sys.[all_columns] AC ON " +
-            "T.[object_id] = AC.[object_id] " +
-            "INNER JOIN sys.[types] TY ON " +
-            "AC.[system_type_id] = TY.[system_type_id] AND " +
-            "AC.[user_type_id] = TY.[user_type_id] " +
-            "WHERE T.[is_ms_shipped] = 0 " +
-            "AND T.[is_ms_shipped] = 0 " +
-            $"AND '['+OBJECT_SCHEMA_NAME(T.[object_id], DB_ID())+']'+'.['+ T.[name]+']' = '{nomeTabela}' " +
-            "ORDER BY T.[name], AC.[column_id]");
+            BeginNewStatement($"SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = '{ParamtersInput.DataBase}' AND TABLE_NAME = '{nomeTabela}';");
 
             OpenConnection();
 
@@ -64,13 +46,18 @@ namespace MapeadorDeEntidades.Form.Core.SGBD.MySql
                 {
                     lista.Add(new MySqlEntidadeTabela
                     {
+                        TABLE_CATALOG = r.GetValueOrDefault<string>("TABLE_CATALOG"),
+                        TABLE_SCHEMA = r.GetValueOrDefault<string>("TABLE_SCHEMA"),
+                        TABLE_NAME = r.GetValueOrDefault<string>("TABLE_NAME"),
                         COLUMN_NAME = r.GetValueOrDefault<string>("COLUMN_NAME"),
+                        ORDINAL_POSITION = r.GetInt32(r.GetOrdinal("ORDINAL_POSITION")),
+                        COLUMN_DEFAULT = r.GetValueOrDefault<int?>("COLUMN_DEFAULT"),
+                        IS_NULLABLE = r.GetValueOrDefault<string>("IS_NULLABLE"),
                         DATA_TYPE = r.GetValueOrDefault<string>("DATA_TYPE"),
-                        CHAR_LENGTH = r.GetValueOrDefault<short>("CHAR_LENGTH"),
-                        DATA_PRECISION = r.GetValueOrDefault<byte?>("DATA_PRECISION"),
-                        DATA_SCALE = r.GetValueOrDefault<byte?>("DATA_SCALE"),
-                        NULLABLE = r.GetValueOrDefault<bool>("NULLABLE"),
-                        COMMENTS = "",
+                        CHARACTER_MAXIMUM_LENGTH = r.GetValueOrDefault<int?>("CHARACTER_MAXIMUM_LENGTH"),
+                        CHARACTER_OCTET_LENGTH = r.GetValueOrDefault<int?>("CHARACTER_OCTET_LENGTH"),
+                        NUMERIC_PRECISION = r.GetInt32(r.GetOrdinal("NUMERIC_PRECISION")),
+                        COLUMN_COMMENT = r.GetValueOrDefault<string>("COLUMN_COMMENT"),
                     });
                 };
 

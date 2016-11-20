@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using MapeadorDeEntidades.Form.Core.SGBD.Microsoft_SQL;
 using MapeadorDeEntidades.Form.Core.SGBD.MySql;
 
 namespace MapeadorDeEntidades.Form.Core.SGBD.MYSQL.Procedure.Comum
@@ -24,7 +23,7 @@ namespace MapeadorDeEntidades.Form.Core.SGBD.MYSQL.Procedure.Comum
                 param.Append($"		    {listaAtributos[i].COLUMN_NAME}," + N);
             }
             param.Append("		    " + listaAtributos[count - 1].COLUMN_NAME + N);
-            param.Append($"	     FROM {nomeTabela} WITH(NOLOCK)" + N);
+            param.Append($"	     FROM {nomeTabela}" + N);
             return param;
         }
     }

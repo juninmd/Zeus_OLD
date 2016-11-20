@@ -4,6 +4,7 @@ using System.Net;
 using System.Windows.Forms;
 using MapeadorDeEntidades.Form.Linguagens.CSharp.Oracle.Entidade;
 using MapeadorDeEntidades.Form.Linguagens.CSharp.SQL.Entidade;
+using MapeadorDeEntidades.Form.Linguagens.Java.MySql.Entidade;
 using MapeadorDeEntidades.Form.Linguagens.Java.Oracle.Entidade;
 using MapeadorDeEntidades.Form.Utilidade;
 
@@ -40,6 +41,14 @@ namespace MapeadorDeEntidades.Form.Middleware
                                 {
                                     return new JavaOracleOrquestraEntidade().Java(salvar);
                                 }
+                            case 3:
+                                {
+                                    return new RequestMessage<string>()
+                                    {
+                                        StatusCode = HttpStatusCode.BadGateway,
+                                        Message = "Essa linguagem não tem mapeamento de entidade NODE JS."
+                                    };
+                                }
                             default:
                                 {
                                     return new RequestMessage<string>()
@@ -58,6 +67,25 @@ namespace MapeadorDeEntidades.Form.Middleware
                             case 1:
                                 {
                                     return new CSharpSQLOrquestraEntidade().CSharp(salvar);
+                                }
+                            default:
+                                {
+                                    return new RequestMessage<string>()
+                                    {
+                                        StatusCode = HttpStatusCode.BadGateway,
+                                        Message = "Essa linguagem não foi programada."
+                                    };
+                                }
+                        }
+                    }
+                case 3:
+                    {
+
+                        switch (ParamtersInput.Linguagem)
+                        {
+                            case 2:
+                                {
+                                    return new JavaMySqlOrquestraEntidade().Java(salvar);
                                 }
                             default:
                                 {
