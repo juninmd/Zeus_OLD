@@ -25,7 +25,7 @@ namespace MapeadorDeEntidades.Form.Linguagens.Java.MySql.Procedure
                     var instancia = new JavaMySqlProcedure(nomeTabela);
 
                     var classe = instancia.GerarClasse().ToString();
-                    File.WriteAllText($"{salvar.SelectedPath}\\{nomeTabela.ToLower()}Dao.java", classe);
+                    File.WriteAllText($"{salvar.SelectedPath}\\{nomeTabela.TratarNomeTabela().ToLower()}Dao.java", classe);
                 }
 
                 return new RequestMessage<string>()
