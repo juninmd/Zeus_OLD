@@ -1,6 +1,8 @@
 ﻿using System.Text;
+using MapeadorDeEntidades.Form.Core;
 using MapeadorDeEntidades.Form.Linguagens.Base;
 using MapeadorDeEntidades.Form.Linguagens.Java.MySql;
+using MapeadorDeEntidades.Form.Properties;
 
 namespace MapeadorDeEntidades.Form.Linguagens.Java.MySql.Procedure
 {
@@ -28,26 +30,28 @@ namespace MapeadorDeEntidades.Form.Linguagens.Java.MySql.Procedure
 
         private StringBuilder ProceduresNames()
         {
+            var baseProc = NomeTabela.TratarNomeTabela().ToUpper();
             var proc = new StringBuilder();
-            proc.Append($"	private String Package = \"{NomeTabela}\";{N}{N} ");
             proc.Append($"	private enum Proc{N}");
             proc.Append($"	{{{N}");
-            proc.Append($"		S_ID,{N}");
-            proc.Append($"		S,{N}");
-            proc.Append($"		I,{N}");
-            proc.Append($"		U,{N}");
-            proc.Append($"		D{N}");
+            proc.Append($"		{Settings.Default.PrefixoProcedure}S_{baseProc}_ID,{N}");
+            proc.Append($"		{Settings.Default.PrefixoProcedure}S_{baseProc},{N}");
+            proc.Append($"		{Settings.Default.PrefixoProcedure}I_{baseProc},{N}");
+            proc.Append($"		{Settings.Default.PrefixoProcedure}U_{baseProc},{N}");
+            proc.Append($"		{Settings.Default.PrefixoProcedure}D_{baseProc}{N}");
             proc.Append($"	}}{N}");
             return proc;
         }
 
         private StringBuilder GetById()
         {
+            var nameProc = $"{Settings.Default.PrefixoProcedure}S_{NomeTabela.TratarNomeTabela().ToUpper()}_ID";
+
             var get = new StringBuilder();
             get.Append($"	public {NomeTabela} GetById(int id) throws Exception{N}");
             get.Append($"	{{{N}");
             get.Append($"		try{{{N}");
-            get.Append($"			BeginNewStatement(Package, Proc.S_ID, \"SOURCE\");{N}");
+            get.Append($"			BeginNewStatement(Proc.{nameProc}, \"{ParamtersInput.DataBase}\");{N}");
             get.Append($"			AddParamter(new Parameter(\"ID\", MySqlTypes.NUMBER, ID));{N}{N}");
             get.Append($"			ResultSet rs = super.ExecuteReader();{N}{N}");
             get.Append($"			if(rs.next()){{{N}");
@@ -72,12 +76,14 @@ namespace MapeadorDeEntidades.Form.Linguagens.Java.MySql.Procedure
 
         private StringBuilder GetAll()
         {
+            var nameProc = $"{Settings.Default.PrefixoProcedure}S_{NomeTabela.TratarNomeTabela().ToUpper()}";
+
             var get = new StringBuilder();
             get.Append($"	public List<{NomeTabela}> GetAll(int id) throws Exception{N}");
             get.Append($"	{{{N}");
             get.Append($"		try{{{N}");
             get.Append($"			List<{NomeTabela}> lista = new java.util.ArrayList<{NomeTabela}>();{N}{N}");
-            get.Append($"			BeginNewStatement(Package, Proc.S, \"SOURCE\");{N}");
+            get.Append($"			BeginNewStatement(Proc.{nameProc}, \"{ParamtersInput.DataBase}\");{N}");
             get.Append($"			AddParamter(new Parameter(\"ID\", MySqlTypes.NUMBER, ID));{N}{N}");
             get.Append($"			ResultSet rs = super.ExecuteReader();{N}{N}");
             get.Append($"			while(rs.next()){{{N}");
@@ -102,11 +108,13 @@ namespace MapeadorDeEntidades.Form.Linguagens.Java.MySql.Procedure
 
         private StringBuilder Add()
         {
+            var nameProc = $"{Settings.Default.PrefixoProcedure}I_{NomeTabela.TratarNomeTabela().ToUpper()}";
+
             var get = new StringBuilder();
             get.Append($"	public RequestMessageLite<String> Add({NomeTabela} entidade) throws Exception{N}");
             get.Append($"	{{{N}");
             get.Append($"		try{{{N}");
-            get.Append($"			BeginNewStatement(Package, Proc.I, \"SOURCE\");{N}");
+            get.Append($"			BeginNewStatement(Proc.{nameProc}, \"{ParamtersInput.DataBase}\");{N}");
             get.Append($"			AddParamter(new Parameter(\"P_RESULT\", MySqlTypes.VARCHAR, null,\"OUT\"));{N}{N}");
             foreach (var att in ListaAtributosTabela)
             {
@@ -126,12 +134,13 @@ namespace MapeadorDeEntidades.Form.Linguagens.Java.MySql.Procedure
 
         private StringBuilder Update()
         {
+            var nameProc = $"{Settings.Default.PrefixoProcedure}U_{NomeTabela.TratarNomeTabela().ToUpper()}";
 
             var get = new StringBuilder();
             get.Append($"	public RequestMessageLite<String> Update({NomeTabela} entidade) throws Exception{N}");
             get.Append($"	{{{N}");
             get.Append($"		try{{{N}");
-            get.Append($"			BeginNewStatement(Package, Proc.U, \"SOURCE\");{N}");
+            get.Append($"			BeginNewStatement(Proc.{nameProc}, \"{ParamtersInput.DataBase}\");{N}");
             get.Append($"			AddParamter(new Parameter(\"P_RESULT\", MySqlTypes.VARCHAR, null,\"OUT\"));{N}{N}");
             get.Append($"			AddParamter(new Parameter(\"P_ID\", MySqlTypes.NUMBER, entidade.ID));{N}{N}");
             foreach (var att in ListaAtributosTabela)
@@ -151,12 +160,13 @@ namespace MapeadorDeEntidades.Form.Linguagens.Java.MySql.Procedure
         }
         private StringBuilder Delete()
         {
+            var nameProc = $"{Settings.Default.PrefixoProcedure}U_{NomeTabela.TratarNomeTabela().ToUpper()}";
 
             var get = new StringBuilder();
             get.Append($"	public RequestMessageLite<String> Delete(int ID) throws Exception{N}");
             get.Append($"	{{{N}");
             get.Append($"		try{{{N}");
-            get.Append($"			BeginNewStatement(Package, Proc.D, \"SOURCE\");{N}");
+            get.Append($"			BeginNewStatement(Proc.{nameProc}, \"{ParamtersInput.DataBase}\");{N}");
             get.Append($"			AddParamter(new Parameter(\"P_RESULT\", MySqlTypes.VARCHAR, null,\"OUT\"));{N}{N}");
             get.Append($"			AddParamter(new Parameter(\"P_ID\", MySqlTypes.NUMBER, ID));{N}{N}");
             get.Append($"			return RequestProc();{N}");

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using MapeadorDeEntidades.Form.Core.SGBD.MySql;
 using MapeadorDeEntidades.Form.Linguagens.Base;
@@ -8,12 +9,18 @@ namespace MapeadorDeEntidades.Form.Linguagens.Java.MySql.Entidade
 {
     public class JavaMySqlEntidade : BaseEntity
     {
-        private StringBuilder Imports()
+        private StringBuilder Imports(List<MySqlEntidadeTabela> entidadeTabela)
         {
             var imports = new StringBuilder();
-            imports.Append($"import java.util.Date;{N}");
-            imports.Append($"import java.math.BigDecimal;{N}");
-            imports.Append($"import javax.xml.bind.annotation.XmlRootElement;{N}");
+            if (entidadeTabela.FirstOrDefault(q => q.DATA_TYPE == "date") != null)
+            {
+                imports.Append($"import java.util.Date;{N}");
+            }
+            if (entidadeTabela.FirstOrDefault(q => q.DATA_TYPE == "long") != null)
+            {
+                imports.Append($"import java.math.BigDecimal;{N}");
+            }
+            
             imports.Append($"{N}");
 
             return imports;
@@ -46,16 +53,11 @@ namespace MapeadorDeEntidades.Form.Linguagens.Java.MySql.Entidade
                 atributoBody.Append($"	}}{N}");
                 atributoBody.Append($"{N}");
 
-                atributoBody.Append($"	/** {N}");
-                atributoBody.Append($"	 * {N}");
-                atributoBody.Append($"	 * @Descrição {att.COLUMN_COMMENT} {N}");
-                atributoBody.Append($"	 */{N}");
                 atributoBody.Append($"	public void set{att.COLUMN_NAME}({JavaTypesMySql.GetTypeAtribute(att)} {att.COLUMN_NAME}) {{{N}");
                 atributoBody.Append($"		this.{att.COLUMN_NAME} = {att.COLUMN_NAME};{N}");
                 atributoBody.Append($"	}}{N}");
                 atributoBody.Append($"{N}");
             }
-            atributoBody.Append($"{N}");
             return atributoBody;
         }
 
@@ -66,8 +68,7 @@ namespace MapeadorDeEntidades.Form.Linguagens.Java.MySql.Entidade
             var classe = new StringBuilder();
             classe.Append($"package model;{N}{N}");
 
-            classe.Append(Imports());
-            classe.Append("@XmlRootElement" + N);
+            classe.Append(Imports(atributos));
             classe.Append($"public class {nomeTabela} {{{N}");
             classe.Append(AtributosHeader(atributos));
             classe.Append(AtributosBody(atributos));
