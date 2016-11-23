@@ -46,6 +46,7 @@ namespace MapeadorDeEntidades.Form.Linguagens.Java.MySql.Entidade
             {
                 atributoBody.Append($"	/** {N}");
                 atributoBody.Append($"	 * {N}");
+                atributoBody.Append($"	 * @return {N}");
                 atributoBody.Append($"	 * @Descrição {att.COLUMN_COMMENT} {N}");
                 atributoBody.Append($"	 */{N}");
                 atributoBody.Append($"	public {JavaTypesMySql.GetTypeAtribute(att)} get{att.COLUMN_NAME}() {{{N}");

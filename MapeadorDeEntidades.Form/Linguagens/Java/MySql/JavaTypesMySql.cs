@@ -21,7 +21,7 @@ namespace MapeadorDeEntidades.Form.Linguagens.Java.MySql
                         {
                             return (prop.IS_NULLABLE == "Y") ? "Long" : "long";
                         }
-                        return "BigDecimal";
+                        return "Integer";
                     }
 
                 default:
