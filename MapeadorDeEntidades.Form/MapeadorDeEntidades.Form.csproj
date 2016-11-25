@@ -76,6 +76,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\Char.cs" />
     <Compile Include="Core\NewProgressBar.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -169,6 +170,7 @@
     <Compile Include="Linguagens\Java\MySql\Entidade\JavaMySqlOrquestraEntidade.cs" />
     <Compile Include="Linguagens\Java\MySql\JavaTypesMySql.cs" />
     <Compile Include="Linguagens\Java\MySql\Procedure\ChamadaJavaMySqlProcedure.cs" />
+    <Compile Include="Linguagens\Java\MySql\Procedure\ex.cs" />
     <Compile Include="Linguagens\Java\MySql\Procedure\JavaMySqlProcedure.cs" />
     <Compile Include="Linguagens\Java\Oracle\JavaTypesOracle.cs" />
     <Compile Include="Linguagens\Java\Oracle\Procedure\JavaOracleProcedure.cs" />

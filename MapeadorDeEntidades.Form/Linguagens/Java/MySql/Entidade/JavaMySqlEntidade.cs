@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using MapeadorDeEntidades.Form.Core;
 using MapeadorDeEntidades.Form.Core.SGBD.MySql;
 using MapeadorDeEntidades.Form.Linguagens.Base;
 
@@ -49,12 +50,12 @@ namespace MapeadorDeEntidades.Form.Linguagens.Java.MySql.Entidade
                 atributoBody.Append($"	 * @return {N}");
                 atributoBody.Append($"	 * @Descrição {att.COLUMN_COMMENT} {N}");
                 atributoBody.Append($"	 */{N}");
-                atributoBody.Append($"	public {JavaTypesMySql.GetTypeAtribute(att)} get{att.COLUMN_NAME}() {{{N}");
+                atributoBody.Append($"	public {JavaTypesMySql.GetTypeAtribute(att)} get{att.COLUMN_NAME.ToFirstCharToUpper()}() {{{N}");
                 atributoBody.Append($"		return {att.COLUMN_NAME};{N}");
                 atributoBody.Append($"	}}{N}");
                 atributoBody.Append($"{N}");
 
-                atributoBody.Append($"	public void set{att.COLUMN_NAME}({JavaTypesMySql.GetTypeAtribute(att)} {att.COLUMN_NAME}) {{{N}");
+                atributoBody.Append($"	public void set{att.COLUMN_NAME.ToFirstCharToUpper()}({JavaTypesMySql.GetTypeAtribute(att)} {att.COLUMN_NAME}) {{{N}");
                 atributoBody.Append($"		this.{att.COLUMN_NAME} = {att.COLUMN_NAME};{N}");
                 atributoBody.Append($"	}}{N}");
                 atributoBody.Append($"{N}");
