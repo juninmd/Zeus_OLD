@@ -57,11 +57,11 @@ namespace MapeadorDeEntidades.Form
             this.salvar = new System.Windows.Forms.FolderBrowserDialog();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.lblStatus = new System.Windows.Forms.Label();
-            this.progressBar1 = new MapeadorDeEntidades.Form.Core.NewProgressBar();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.ddlDatabase = new System.Windows.Forms.ComboBox();
+            this.progressBar1 = new MapeadorDeEntidades.Form.Core.NewProgressBar();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -109,7 +109,7 @@ namespace MapeadorDeEntidades.Form
             this.btnChamadaProc.Name = "btnChamadaProc";
             this.btnChamadaProc.Size = new System.Drawing.Size(169, 23);
             this.btnChamadaProc.TabIndex = 4;
-            this.btnChamadaProc.Text = "Chamada Procedure";
+            this.btnChamadaProc.Text = "Acesso Banco de Dados";
             this.btnChamadaProc.UseVisualStyleBackColor = true;
             this.btnChamadaProc.Click += new System.EventHandler(this.btnChamadaProc_Click);
             // 
@@ -170,10 +170,10 @@ namespace MapeadorDeEntidades.Form
             this.radioSGBD3.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.radioSGBD3.Location = new System.Drawing.Point(7, 66);
             this.radioSGBD3.Name = "radioSGBD3";
-            this.radioSGBD3.Size = new System.Drawing.Size(52, 17);
+            this.radioSGBD3.Size = new System.Drawing.Size(54, 17);
             this.radioSGBD3.TabIndex = 2;
             this.radioSGBD3.TabStop = true;
-            this.radioSGBD3.Text = "Mysql";
+            this.radioSGBD3.Text = "MySql";
             this.radioSGBD3.UseVisualStyleBackColor = true;
             this.radioSGBD3.CheckedChanged += new System.EventHandler(this.radioSGBD3_CheckedChanged);
             // 
@@ -262,7 +262,7 @@ namespace MapeadorDeEntidades.Form
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(42, 25);
             this.label2.TabIndex = 16;
-            this.label2.Text = "0.5";
+            this.label2.Text = "0.6";
             // 
             // label1
             // 
@@ -360,14 +360,6 @@ namespace MapeadorDeEntidades.Form
             this.lblStatus.TabIndex = 15;
             this.lblStatus.Text = "Aguardando Instruções";
             // 
-            // progressBar1
-            // 
-            this.progressBar1.ForeColor = System.Drawing.Color.Maroon;
-            this.progressBar1.Location = new System.Drawing.Point(6, 35);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(569, 10);
-            this.progressBar1.TabIndex = 14;
-            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.radioNode);
@@ -415,6 +407,14 @@ namespace MapeadorDeEntidades.Form
             this.ddlDatabase.TabIndex = 1;
             this.ddlDatabase.SelectedIndexChanged += new System.EventHandler(this.ddlDatabase_SelectedIndexChanged);
             // 
+            // progressBar1
+            // 
+            this.progressBar1.ForeColor = System.Drawing.Color.Maroon;
+            this.progressBar1.Location = new System.Drawing.Point(6, 35);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(569, 10);
+            this.progressBar1.TabIndex = 14;
+            // 
             // formPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -436,7 +436,7 @@ namespace MapeadorDeEntidades.Form
             this.MaximizeBox = false;
             this.Name = "formPrincipal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Zeus - 0.5";
+            this.Text = "Zeus - 0.6";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
