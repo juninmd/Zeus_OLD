@@ -90,12 +90,12 @@ namespace MapeadorDeEntidades.Form.Linguagens.Java.MySql.Procedure
             get.Append($"	public void Add({NomeTabela} entidade) throws Exception{N}");
             get.Append($"	{{{N}");
             get.Append($"		try{{{N}");
-            get.Append($"			PreparedStatement conn = BeginNewStatement(\"INSERT INTO {NomeTabela} ({String.Join(", ", ListaAtributosTabela.Select(e => e.COLUMN_NAME))}) values ({String.Join(", ", ListaAtributosTabela.Select(q => "?"))})\");{N}");
+            get.Append($"			PreparedStatement conn = BeginNewStatement(\"INSERT INTO {NomeTabela} ({String.Join(", ", ListaAtributosTabela.Where(e => e.COLUMN_NAME != ListaAtributosTabela.First().COLUMN_NAME).Select(e => e.COLUMN_NAME))}) values ({String.Join(", ", ListaAtributosTabela.Where(e => e.COLUMN_NAME != ListaAtributosTabela.First().COLUMN_NAME).Select(q => "?"))})\");{N}");
 
-            for (int index = 0; index < ListaAtributosTabela.Count; index++)
+            for (int index = 1; index < ListaAtributosTabela.Count; index++)
             {
                 var att = ListaAtributosTabela[index];
-                get.Append($"			conn.set{JavaTypesMySql.GetTypeAtribute(att).ToFirstCharToUpper()}({index+1}, entidade.get{att.COLUMN_NAME.ToFirstCharToUpper()}());{N}");
+                get.Append($"			conn.set{JavaTypesMySql.GetTypeAtribute(att).ToFirstCharToUpper()}({index}, entidade.get{att.COLUMN_NAME.ToFirstCharToUpper()}());{N}");
             }
             get.Append($"			conn.execute();{N}");
             get.Append($"			commit();{N}");
@@ -112,17 +112,15 @@ namespace MapeadorDeEntidades.Form.Linguagens.Java.MySql.Procedure
 
         private StringBuilder Update()
         {
-            var nameProc = $"{Settings.Default.PrefixoProcedure}U_{NomeTabela.TratarNomeTabela().ToUpper()}";
-
             var get = new StringBuilder();
             get.Append($"	public void Update({NomeTabela} entidade) throws Exception{N}");
             get.Append($"	{{{N}");
             get.Append($"		try{{{N}");
-            get.Append($"			PreparedStatement conn = BeginNewStatement(\"UPDATE {NomeTabela} SET {String.Join(", ", ListaAtributosTabela.Select(e => e.COLUMN_NAME + " = ?"))} WHERE {ListaAtributosTabela.First().COLUMN_NAME} = \" +  entidade.get{ListaAtributosTabela.First().COLUMN_NAME.ToFirstCharToUpper()}());{N}");
-            for (int index = 0; index < ListaAtributosTabela.Count; index++)
+            get.Append($"			PreparedStatement conn = BeginNewStatement(\"UPDATE {NomeTabela} SET {String.Join(", ", ListaAtributosTabela.Where(e => e.COLUMN_NAME != ListaAtributosTabela.First().COLUMN_NAME).Select(e => e.COLUMN_NAME + " = ?"))} WHERE {ListaAtributosTabela.First().COLUMN_NAME} = \" +  entidade.get{ListaAtributosTabela.First().COLUMN_NAME.ToFirstCharToUpper()}());{N}");
+            for (int index = 1; index < ListaAtributosTabela.Count; index++)
             {
                 var att = ListaAtributosTabela[index];
-                get.Append($"			conn.set{JavaTypesMySql.GetTypeAtribute(att).ToFirstCharToUpper()}({index + 1}, entidade.get{att.COLUMN_NAME.ToFirstCharToUpper()}());{N}");
+                get.Append($"			conn.set{JavaTypesMySql.GetTypeAtribute(att).ToFirstCharToUpper()}({index}, entidade.get{att.COLUMN_NAME.ToFirstCharToUpper()}());{N}");
             }
             get.Append($"			conn.execute();{N}");
             get.Append($"			commit();{N}");
@@ -138,7 +136,6 @@ namespace MapeadorDeEntidades.Form.Linguagens.Java.MySql.Procedure
         }
         private StringBuilder Delete()
         {
-            var nameProc = $"{Settings.Default.PrefixoProcedure}U_{NomeTabela.TratarNomeTabela().ToUpper()}";
 
             var get = new StringBuilder();
             get.Append($"	public void Delete(int ID) throws Exception{N}");
