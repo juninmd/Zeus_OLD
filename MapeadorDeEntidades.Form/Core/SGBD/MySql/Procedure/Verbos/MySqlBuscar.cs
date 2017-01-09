@@ -23,10 +23,10 @@ namespace MapeadorDeEntidades.Form.Core.SGBD.MYSQL.Procedure.Verbos
         {
             var desc = new StringBuilder();
             desc.Append(new MySqlSumario().Init(nomeProcedure, nomeTabela));
-            desc.Append($" CREATE PROCEDURE `{nomeProcedure}` (IN {listaAtributos.First().COLLATION_NAME} {listaAtributos.First().DATA_TYPE})"+N);
+            desc.Append($" CREATE PROCEDURE `{nomeProcedure}` (IN P_{listaAtributos.First().COLUMN_NAME} {listaAtributos.First().DATA_TYPE})"+N);
             desc.Append("	BEGIN" + N + N);
             desc.Append(new MySqlBuscaParamters().Init(nomeTabela, listaAtributos));
-            desc.Append("	END" + N + N);
+            desc.Append("	END$$" + N + N);
             return desc;
         }
 

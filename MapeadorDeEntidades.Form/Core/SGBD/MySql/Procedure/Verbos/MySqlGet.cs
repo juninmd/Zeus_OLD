@@ -25,7 +25,7 @@ namespace MapeadorDeEntidades.Form.Core.SGBD.MYSQL.Procedure.Verbos
             desc.Append($" CREATE PROCEDURE `{nomeProcedure}` ()"+N);
             desc.Append("	BEGIN" + N + N);
             desc.Append(new MySqlSelectParamters().Init(nomeTabela, listaAtributos));
-            desc.Append("	END" + N + N);
+            desc.Append("	END$$" + N + N);
             return desc;
         }
     }

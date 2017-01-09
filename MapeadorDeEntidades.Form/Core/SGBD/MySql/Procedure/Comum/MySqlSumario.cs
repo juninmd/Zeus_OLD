@@ -17,13 +17,13 @@ namespace MapeadorDeEntidades.Form.Core.SGBD.MYSQL.Procedure.Comum
         public StringBuilder Init(string nomeProcedure, string nomeTabela)
         {
             var desc = new StringBuilder();
-            desc.Append(N);
             desc.Append($"DROP procedure IF EXISTS `{nomeProcedure}`;" + N);
             desc.Append("	/*" + N);
             desc.Append("	Documentação" + N);
             desc.Append($"	Data..............: {DateTime.Now.ToShortDateString()}" + N);
-            desc.Append($"	Ex................: EXEC {nomeProcedure}" + N);
-            desc.Append("	*/" + N + N);
+            desc.Append($"	Ex................: call {nomeProcedure}()" + N);
+            desc.Append("	*/" + N);
+            desc.Append("DELIMITER $$" + N);
             return desc;
         }
     }
