@@ -23,7 +23,7 @@ namespace MapeadorDeEntidades.Form.Core.SGBD.MYSQL.Procedure.Comum
                 param.Append($"		    {listaAtributos[i].COLUMN_NAME}," + N);
             }
             param.Append("		    " + listaAtributos[count - 1].COLUMN_NAME + N);
-            param.Append($"	     FROM {nomeTabela}" + N);
+            param.Append($"	     FROM {nomeTabela};" + N);
             return param;
         }
     }

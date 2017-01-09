@@ -107,6 +107,7 @@
     <Compile Include="Core\SGBD\MySql\Procedure\Comum\MySqlBuscaParamters.cs" />
     <Compile Include="Core\SGBD\MySql\Procedure\Comum\MySqlDeleteParamters.cs" />
     <Compile Include="Core\SGBD\MySql\Procedure\Comum\MySqlInsertParamters.cs" />
+    <Compile Include="Core\SGBD\MySql\Procedure\Comum\MySqlParametros.cs" />
     <Compile Include="Core\SGBD\MySql\Procedure\Comum\MySqlSelectParamters.cs" />
     <Compile Include="Core\SGBD\MySql\Procedure\Comum\MySqlSumario.cs" />
     <Compile Include="Core\SGBD\MySql\Procedure\Comum\MySqlUpdateParamters.cs" />

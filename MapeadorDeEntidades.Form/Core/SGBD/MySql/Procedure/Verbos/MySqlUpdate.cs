@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using MapeadorDeEntidades.Form.Core.SGBD.MySql;
+using MapeadorDeEntidades.Form.Core.SGBD.MySql.Procedure.Comum;
 using MapeadorDeEntidades.Form.Core.SGBD.MYSQL.Procedure.Comum;
 
 namespace MapeadorDeEntidades.Form.Core.SGBD.MYSQL.Procedure.Verbos
@@ -25,19 +26,12 @@ namespace MapeadorDeEntidades.Form.Core.SGBD.MYSQL.Procedure.Verbos
             desc.Append($" CREATE PROCEDURE `{nomeProcedure}` ({Paramters(listaAtributos)})" + N);
             desc.Append("	BEGIN" + N + N);
             desc.Append(new MySqlUpdateParamters().Init(nomeTabela, listaAtributos));
-            desc.Append("	END" + N + N);
+            desc.Append("	END$$" + N + N);
             return desc;
         }
         private StringBuilder Paramters(List<MySqlEntidadeTabela> parametro)
         {
-            var desc = new StringBuilder();
-
-            for (int index = 0; index < parametro.Count; index++)
-            {
-                var item = parametro[index];
-                desc.Append($"IN {item.COLUMN_NAME} {item.DATA_TYPE}{(index == parametro.Count || parametro.Count ==1 ? "" : $",{N}")}");
-            }
-            return desc;
+            return new MySqlParametros().GenerateParams(parametro, true);
         }
     }
 }

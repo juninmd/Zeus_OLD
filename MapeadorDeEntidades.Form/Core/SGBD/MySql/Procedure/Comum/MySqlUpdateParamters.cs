@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using MapeadorDeEntidades.Form.Core.SGBD.Microsoft_SQL;
 using MapeadorDeEntidades.Form.Core.SGBD.MySql;
 
 namespace MapeadorDeEntidades.Form.Core.SGBD.MYSQL.Procedure.Comum
@@ -19,13 +18,13 @@ namespace MapeadorDeEntidades.Form.Core.SGBD.MYSQL.Procedure.Comum
                 return param;
 
             param.Append($"	     UPDATE {nomeTabela}" + N);
-            param.Append($"   		   SET {listaAtributos[0].COLUMN_NAME}     = {listaAtributos[0].COLUMN_NAME},{N}");
+            param.Append($"   		   SET {listaAtributos[0].COLUMN_NAME}     = P_{listaAtributos[0].COLUMN_NAME},{N}");
             for (int i = 1; i < count - 1; i++)
             {
-                param.Append($"               {listaAtributos[i].COLUMN_NAME}     = {listaAtributos[i].COLUMN_NAME},{N}");
+                param.Append($"               {listaAtributos[i].COLUMN_NAME}     = P_{listaAtributos[i].COLUMN_NAME},{N}");
             }
-            param.Append($"               {listaAtributos[count - 1].COLUMN_NAME}     = {listaAtributos[count - 1].COLUMN_NAME}{N}");
-            param.Append($"     	   WHERE {listaAtributos.First().COLUMN_NAME} =  {listaAtributos.First().COLUMN_NAME}{N}{N}");
+            param.Append($"               {listaAtributos[count - 1].COLUMN_NAME}     = P_{listaAtributos[count - 1].COLUMN_NAME}{N}");
+            param.Append($"     	   WHERE {listaAtributos.First().COLUMN_NAME} =  P_{listaAtributos.First().COLUMN_NAME}{N}{N}");
             param.Append($"	     RETURN 0{N}");
 
             return param;
