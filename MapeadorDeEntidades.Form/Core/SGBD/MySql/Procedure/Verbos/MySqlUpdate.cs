@@ -31,7 +31,7 @@ namespace MapeadorDeEntidades.Form.Core.SGBD.MYSQL.Procedure.Verbos
         }
         private StringBuilder Paramters(List<MySqlEntidadeTabela> parametro)
         {
-            return new MySqlParametros().GenerateParams(parametro, true);
+            return new MySqlParametros().GenerateResultParams(parametro, true);
         }
     }
 }

@@ -27,14 +27,14 @@ namespace MapeadorDeEntidades.Form.Core.SGBD.MYSQL.Procedure.Comum
             param.Append($")" + N);
 
             param.Append($"			   VALUES");
-            param.Append($"(P_{listaAtributos[0].COLUMN_NAME},{N}");
+            param.Append($"(null,{N}");
             for (int i = 1; i < count - 1; i++)
             {
                 param.Append($"					  P_{listaAtributos[i].COLUMN_NAME},{N}");
             }
             param.Append($"					  P_{listaAtributos[count - 1].COLUMN_NAME}");
             param.Append($");{N}{N}");
-            param.Append($"	     RETURN 0{N}");
+            param.Append($"	SELECT 0 INTO P_RESULT;{N}");
             return param;
         }
     }
