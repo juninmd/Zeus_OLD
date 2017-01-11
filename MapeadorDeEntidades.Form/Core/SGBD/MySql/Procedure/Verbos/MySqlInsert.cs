@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using MapeadorDeEntidades.Form.Core.SGBD.MySql;
 using MapeadorDeEntidades.Form.Core.SGBD.MySql.Procedure.Comum;
@@ -33,7 +32,7 @@ namespace MapeadorDeEntidades.Form.Core.SGBD.MYSQL.Procedure.Verbos
 
         private StringBuilder Paramters(List<MySqlEntidadeTabela> parametro)
         {
-            return new MySqlParametros().GenerateParams(parametro, false);
+            return new MySqlParametros().GenerateResultParams(parametro, false);
         }
     }
 }
