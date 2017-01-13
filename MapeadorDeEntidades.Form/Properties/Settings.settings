@@ -14,5 +14,8 @@
     <Setting Name="PrefixoTabela" Type="System.String" Scope="User">
       <Value Profile="(Default)">MAG_T_</Value>
     </Setting>
+    <Setting Name="UnificarOutput" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

@@ -70,5 +70,17 @@ namespace Zeus.Properties {
                 this["PrefixoTabela"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool UnificarOutput {
+            get {
+                return ((bool)(this["UnificarOutput"]));
+            }
+            set {
+                this["UnificarOutput"] = value;
+            }
+        }
     }
 }
