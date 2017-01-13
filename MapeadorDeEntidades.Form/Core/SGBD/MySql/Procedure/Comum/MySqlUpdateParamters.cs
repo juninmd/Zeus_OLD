@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using MapeadorDeEntidades.Form.Core.SGBD.MySql;
 
-namespace MapeadorDeEntidades.Form.Core.SGBD.MYSQL.Procedure.Comum
+namespace Zeus.Core.SGBD.MySql.Procedure.Comum
 {
     public class MySqlUpdateParamters
     {

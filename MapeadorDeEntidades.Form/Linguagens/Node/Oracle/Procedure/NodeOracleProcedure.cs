@@ -1,10 +1,10 @@
 ﻿using System.Linq;
 using System.Text;
-using MapeadorDeEntidades.Form.Core;
-using MapeadorDeEntidades.Form.Linguagens.Base;
-using MapeadorDeEntidades.Form.Properties;
+using Zeus.Core;
+using Zeus.Linguagens.Base;
+using Zeus.Properties;
 
-namespace MapeadorDeEntidades.Form.Linguagens.Node.Oracle.Procedure
+namespace Zeus.Linguagens.Node.Oracle.Procedure
 {
     public class NodeOracleProcedure : BaseOracleDAO
     {

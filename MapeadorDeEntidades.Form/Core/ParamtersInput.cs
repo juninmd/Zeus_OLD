@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace MapeadorDeEntidades.Form.Core
+namespace Zeus.Core
 {
     public static class ParamtersInput
     {

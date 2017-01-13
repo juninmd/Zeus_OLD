@@ -1,11 +1,11 @@
 ﻿using System;
 using System.IO;
 using System.Windows.Forms;
-using MapeadorDeEntidades.Form.Core;
-using MapeadorDeEntidades.Form.Core.SGBD.Microsoft_SQL;
-using MapeadorDeEntidades.Form.Utilidade;
+using Zeus.Core;
+using Zeus.Core.SGBD.Microsoft_SQL;
+using Zeus.Utilidade;
 
-namespace MapeadorDeEntidades.Form.Linguagens.CSharp.SQL.Procedure
+namespace Zeus.Linguagens.CSharp.SQL.Procedure
 {
     public class ChamadaCsharpSQLProcedure
     {

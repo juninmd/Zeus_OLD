@@ -1,7 +1,6 @@
-﻿using System.Collections.Generic;
-using System.Net;
+﻿using System.Net;
 
-namespace MapeadorDeEntidades.Form.Core.SGBD.Oracle.Batch
+namespace Zeus.Core.SGBD.Oracle.Batch
 {
     public class OracleBatchSkip : OracleRepository
     {

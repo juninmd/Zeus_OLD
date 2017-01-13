@@ -1,12 +1,10 @@
 ﻿using System;
-using MapeadorDeEntidades.Form.Core;
 using System.Windows.Forms;
-using MapeadorDeEntidades.Form.Core.SGBD.Microsoft_SQL.Procedure;
-using MapeadorDeEntidades.Form.Core.SGBD.Oracle.Procedure;
-using MapeadorDeEntidades.Form.Core.SGBD.Oracle.Sequence;
-using MapeadorDeEntidades.Form.Utilidade;
+using Zeus.Core;
+using Zeus.Core.SGBD.Oracle.Sequence;
+using Zeus.Utilidade;
 
-namespace MapeadorDeEntidades.Form.Middleware
+namespace Zeus.Middleware
 {
     public class OrquestradorSequences
     {

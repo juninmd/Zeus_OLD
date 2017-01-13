@@ -1,7 +1,7 @@
 ﻿using System.Text;
-using MapeadorDeEntidades.Form.Linguagens.Base;
+using Zeus.Linguagens.Base;
 
-namespace MapeadorDeEntidades.Form.Linguagens.Java.Oracle.Procedure
+namespace Zeus.Linguagens.Java.Oracle.Procedure
 {
     public class JavaOracleProcedure : BaseOracleDAO
     {

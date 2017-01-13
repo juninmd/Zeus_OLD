@@ -1,7 +1,7 @@
 ﻿using System.Windows.Forms;
-using MapeadorDeEntidades.Form.Core;
+using Zeus.Core;
 
-namespace MapeadorDeEntidades.Form.Utilidade
+namespace Zeus.Utilidade
 {
     public class Util
     {

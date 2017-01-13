@@ -1,8 +1,8 @@
 ﻿using System.Text;
-using MapeadorDeEntidades.Form.Core.SGBD.Oracle;
-using MapeadorDeEntidades.Form.Linguagens.Base;
+using Zeus.Core.SGBD.Oracle;
+using Zeus.Linguagens.Base;
 
-namespace MapeadorDeEntidades.Form.Linguagens.CSharp.Oracle.Entidade
+namespace Zeus.Linguagens.CSharp.Oracle.Entidade
 {
     public class CSharpOracleEntity : BaseEntity
     {

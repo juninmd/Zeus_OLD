@@ -1,11 +1,11 @@
-﻿using MapeadorDeEntidades.Form.Core;
-using MapeadorDeEntidades.Form.Core.SGBD.Oracle;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using MapeadorDeEntidades.Form.Core.SGBD.Microsoft_SQL;
-using MapeadorDeEntidades.Form.Core.SGBD.MySql;
+using Zeus.Core;
+using Zeus.Core.SGBD.Microsoft_SQL;
+using Zeus.Core.SGBD.MySql;
+using Zeus.Core.SGBD.Oracle;
 
-namespace MapeadorDeEntidades.Form.Middleware
+namespace Zeus.Middleware
 {
     public class OrquestradorPingSGBD
     {

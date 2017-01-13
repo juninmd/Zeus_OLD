@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using MapeadorDeEntidades.Form.Core.SGBD.MySql;
-using MapeadorDeEntidades.Form.Core.SGBD.MYSQL.Procedure.Verbos;
-using MapeadorDeEntidades.Form.Properties;
+using Zeus.Core.SGBD.MySql.Procedure.Verbos;
+using Zeus.Properties;
 
-namespace MapeadorDeEntidades.Form.Core.SGBD.MYSQL.Procedure
+namespace Zeus.Core.SGBD.MySql.Procedure
 {
     public class MySqlProcedure
     {

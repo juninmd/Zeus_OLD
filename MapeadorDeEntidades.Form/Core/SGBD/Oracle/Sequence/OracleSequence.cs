@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text;
 
-namespace MapeadorDeEntidades.Form.Core.SGBD.Oracle.Sequence
+namespace Zeus.Core.SGBD.Oracle.Sequence
 {
     public class OracleSequence
     {

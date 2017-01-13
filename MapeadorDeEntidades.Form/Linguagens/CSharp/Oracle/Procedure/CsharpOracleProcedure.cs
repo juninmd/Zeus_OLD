@@ -1,7 +1,7 @@
 ﻿using System.Text;
-using MapeadorDeEntidades.Form.Linguagens.Base;
+using Zeus.Linguagens.Base;
 
-namespace MapeadorDeEntidades.Form.Linguagens.CSharp.Oracle.Procedure
+namespace Zeus.Linguagens.CSharp.Oracle.Procedure
 {
     public class CsharpOracleProcedure : BaseOracleDAO
     {

@@ -1,8 +1,8 @@
 ﻿using System.Text;
-using MapeadorDeEntidades.Form.Core.SGBD.Microsoft_SQL;
-using MapeadorDeEntidades.Form.Linguagens.Base;
+using Zeus.Core.SGBD.Microsoft_SQL;
+using Zeus.Linguagens.Base;
 
-namespace MapeadorDeEntidades.Form.Linguagens.CSharp.SQL.Procedure
+namespace Zeus.Linguagens.CSharp.SQL.Procedure
 {
     public class CSharpProcSQL : BaseSQLDAO
     {

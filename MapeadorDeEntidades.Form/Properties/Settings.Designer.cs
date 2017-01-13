@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MapeadorDeEntidades.Form.Properties {
+namespace Zeus.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]

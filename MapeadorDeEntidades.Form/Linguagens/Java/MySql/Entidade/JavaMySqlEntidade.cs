@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using MapeadorDeEntidades.Form.Core;
-using MapeadorDeEntidades.Form.Core.SGBD.MySql;
-using MapeadorDeEntidades.Form.Linguagens.Base;
+using Zeus.Core;
+using Zeus.Core.SGBD.MySql;
+using Zeus.Linguagens.Base;
 
-namespace MapeadorDeEntidades.Form.Linguagens.Java.MySql.Entidade
+namespace Zeus.Linguagens.Java.MySql.Entidade
 {
     public class JavaMySqlEntidade : BaseEntity
     {

@@ -1,4 +1,4 @@
-﻿namespace MapeadorDeEntidades.Form
+﻿namespace Zeus
 {
     partial class formConnectionString
     {

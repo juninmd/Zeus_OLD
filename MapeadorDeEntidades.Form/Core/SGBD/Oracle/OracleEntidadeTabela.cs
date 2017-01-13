@@ -1,4 +1,4 @@
-﻿namespace MapeadorDeEntidades.Form.Core.SGBD.Oracle
+﻿namespace Zeus.Core.SGBD.Oracle
 {
     public class OracleEntidadeTabela
     {

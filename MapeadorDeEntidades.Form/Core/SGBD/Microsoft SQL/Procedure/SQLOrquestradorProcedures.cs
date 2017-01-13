@@ -1,9 +1,9 @@
 ﻿using System;
 using System.IO;
 using System.Windows.Forms;
-using MapeadorDeEntidades.Form.Utilidade;
+using Zeus.Utilidade;
 
-namespace MapeadorDeEntidades.Form.Core.SGBD.Microsoft_SQL.Procedure
+namespace Zeus.Core.SGBD.Microsoft_SQL.Procedure
 {
     public class SQLOrquestradorProcedures
     {

@@ -1,4 +1,4 @@
-﻿namespace MapeadorDeEntidades.Form.Core.SGBD.Microsoft_SQL
+﻿namespace Zeus.Core.SGBD.Microsoft_SQL
 {
     public class SQLEntidadeTabela
     {

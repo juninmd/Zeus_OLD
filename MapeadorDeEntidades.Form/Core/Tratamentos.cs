@@ -1,6 +1,6 @@
-﻿using MapeadorDeEntidades.Form.Properties;
+﻿using Zeus.Properties;
 
-namespace MapeadorDeEntidades.Form.Core
+namespace Zeus.Core
 {
     public static class Tratamentos
     {

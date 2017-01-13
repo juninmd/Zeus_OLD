@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text;
 
-namespace MapeadorDeEntidades.Form.Core.SGBD.MYSQL.Procedure.Comum
+namespace Zeus.Core.SGBD.MySql.Procedure.Comum
 {
     public class MySqlSumario
     {

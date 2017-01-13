@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 
-namespace MapeadorDeEntidades.Form.Core
+namespace Zeus.Core
 {
     public static class Char
     {

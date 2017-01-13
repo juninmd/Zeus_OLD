@@ -1,14 +1,14 @@
 ﻿using System;
-using MapeadorDeEntidades.Form.Core;
 using System.Net;
 using System.Windows.Forms;
-using MapeadorDeEntidades.Form.Linguagens.CSharp.Oracle.Entidade;
-using MapeadorDeEntidades.Form.Linguagens.CSharp.SQL.Entidade;
-using MapeadorDeEntidades.Form.Linguagens.Java.MySql.Entidade;
-using MapeadorDeEntidades.Form.Linguagens.Java.Oracle.Entidade;
-using MapeadorDeEntidades.Form.Utilidade;
+using Zeus.Core;
+using Zeus.Linguagens.CSharp.Oracle.Entidade;
+using Zeus.Linguagens.CSharp.SQL.Entidade;
+using Zeus.Linguagens.Java.MySql.Entidade;
+using Zeus.Linguagens.Java.Oracle.Entidade;
+using Zeus.Utilidade;
 
-namespace MapeadorDeEntidades.Form.Middleware
+namespace Zeus.Middleware
 {
     public class OrquestradorMapeamentoEntidade
     {

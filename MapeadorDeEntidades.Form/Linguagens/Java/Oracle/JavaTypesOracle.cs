@@ -1,6 +1,6 @@
-﻿using MapeadorDeEntidades.Form.Core.SGBD.Oracle;
+﻿using Zeus.Core.SGBD.Oracle;
 
-namespace MapeadorDeEntidades.Form.Linguagens.Java.Oracle
+namespace Zeus.Linguagens.Java.Oracle
 {
     public static class JavaTypesOracle
     {

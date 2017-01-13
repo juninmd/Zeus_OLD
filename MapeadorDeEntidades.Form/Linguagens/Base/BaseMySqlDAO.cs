@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using MapeadorDeEntidades.Form.Core.SGBD.MySql;
+using Zeus.Core.SGBD.MySql;
 
-namespace MapeadorDeEntidades.Form.Linguagens.Base
+namespace Zeus.Linguagens.Base
 {
     public class BaseMySqlDAO
     {
