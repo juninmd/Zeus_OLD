@@ -12,6 +12,7 @@ namespace Zeus
             txtPreFixoProcedures.Text = Settings.Default.PrefixoProcedure;
             txtPrefixoTabela.Text = Settings.Default.PrefixoTabela;
             txtConnectionString.Text = Settings.Default.ConnectionStringDefault;
+            ddlUnificar.SelectedItem = Settings.Default.UnificarOutput ? "SIM" : "NÃO";
         }
 
         private void btnAplicar_Click(object sender, System.EventArgs e)
@@ -20,6 +21,7 @@ namespace Zeus
             Settings.Default.PrefixoProcedure = txtPreFixoProcedures.Text;
             Settings.Default.PrefixoTabela = txtPrefixoTabela.Text;
             Settings.Default.ConnectionStringDefault = txtConnectionString.Text;
+            Settings.Default.UnificarOutput = ddlUnificar.SelectedItem?.ToString() == "SIM";
             Settings.Default.Save();
 
             MessageBox.Show("Valores atualizados", "Sucesso", MessageBoxButtons.OK); 

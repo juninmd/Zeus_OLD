@@ -1,6 +1,8 @@
 ﻿using System;
 using System.IO;
+using System.Text;
 using System.Windows.Forms;
+using Zeus.Properties;
 using Zeus.Utilidade;
 
 namespace Zeus.Core.SGBD.MySql.Procedure
@@ -14,6 +16,7 @@ namespace Zeus.Core.SGBD.MySql.Procedure
                 int max = ParamtersInput.NomeTabelas.Count;
                 var i = 0;
                 var local = salvar.SelectedPath + "\\";
+                var unificar = new StringBuilder();
 
                 foreach (var nomeTabela in ParamtersInput.NomeTabelas)
                 {
@@ -23,8 +26,18 @@ namespace Zeus.Core.SGBD.MySql.Procedure
 
                     var instancia = new MySqlProcedure(nomeTabela, new MySqlTables().ListarAtributos(nomeTabela));
                     var body = instancia.GerarPackageBody().ToString();
-                    File.WriteAllText(local + $"{nomeTabela}.sql", body);
+
+                    if (!Settings.Default.UnificarOutput)
+                        File.WriteAllText(local + $"{nomeTabela}.sql", body);
+                    else
+                    {
+                        unificar.Append(body);
+                        unificar.Append("\n\n");
+                    }
                 }
+
+                if (Settings.Default.UnificarOutput)
+                    File.WriteAllText(local + $"{ParamtersInput.DataBase}.sql", unificar.ToString());
 
                 return new RequestMessage<string>()
                 {
