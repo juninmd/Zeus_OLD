@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using MapeadorDeEntidades.Form.Core.SGBD.Microsoft_SQL;
+using Zeus.Core.SGBD.Microsoft_SQL;
 
-namespace MapeadorDeEntidades.Form.Linguagens.Base
+namespace Zeus.Linguagens.Base
 {
     public class BaseSQLDAO
     {

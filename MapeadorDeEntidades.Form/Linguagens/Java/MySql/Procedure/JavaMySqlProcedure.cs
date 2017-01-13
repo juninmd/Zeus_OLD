@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Linq;
 using System.Text;
-using MapeadorDeEntidades.Form.Core;
-using MapeadorDeEntidades.Form.Linguagens.Base;
-using MapeadorDeEntidades.Form.Linguagens.Java.MySql;
-using MapeadorDeEntidades.Form.Properties;
+using Zeus.Core;
+using Zeus.Linguagens.Base;
 
-namespace MapeadorDeEntidades.Form.Linguagens.Java.MySql.Procedure
+namespace Zeus.Linguagens.Java.MySql.Procedure
 {
     public class JavaMySqlProcedure : BaseMySqlDAO
     {
@@ -55,8 +53,6 @@ namespace MapeadorDeEntidades.Form.Linguagens.Java.MySql.Procedure
 
         private StringBuilder GetAll()
         {
-            var nameProc = $"{Settings.Default.PrefixoProcedure}S_{NomeTabela.TratarNomeTabela().ToUpper()}";
-
             var get = new StringBuilder();
             get.Append($"	public List<{NomeTabela}> GetAll() throws Exception{N}");
             get.Append($"	{{{N}");

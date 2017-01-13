@@ -2,9 +2,9 @@
 using System.Linq;
 using System.Net;
 using System.Windows.Forms;
-using MapeadorDeEntidades.Form.Core;
+using Zeus.Core;
 
-namespace MapeadorDeEntidades.Form.Middleware
+namespace Zeus.Middleware
 {
     public class ValidateBasic
     {

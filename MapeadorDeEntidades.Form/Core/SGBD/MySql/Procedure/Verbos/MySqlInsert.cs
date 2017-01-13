@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using MapeadorDeEntidades.Form.Core.SGBD.MySql;
-using MapeadorDeEntidades.Form.Core.SGBD.MySql.Procedure.Comum;
-using MapeadorDeEntidades.Form.Core.SGBD.MYSQL.Procedure.Comum;
+using Zeus.Core.SGBD.MySql.Procedure.Comum;
 
-namespace MapeadorDeEntidades.Form.Core.SGBD.MYSQL.Procedure.Verbos
+namespace Zeus.Core.SGBD.MySql.Procedure.Verbos
 {
     public class MySqlInsert
     {

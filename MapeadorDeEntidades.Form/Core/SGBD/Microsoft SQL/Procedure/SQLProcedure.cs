@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using MapeadorDeEntidades.Form.Core.SGBD.Microsoft_SQL.Procedure.Verbos;
+using Zeus.Core.SGBD.Microsoft_SQL.Procedure.Verbos;
 
-namespace MapeadorDeEntidades.Form.Core.SGBD.Microsoft_SQL.Procedure
+namespace Zeus.Core.SGBD.Microsoft_SQL.Procedure
 {
     public class SQLProcedure
     {

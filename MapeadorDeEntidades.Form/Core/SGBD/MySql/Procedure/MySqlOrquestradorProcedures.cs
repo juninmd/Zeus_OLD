@@ -1,11 +1,9 @@
 ﻿using System;
 using System.IO;
 using System.Windows.Forms;
-using MapeadorDeEntidades.Form.Core.SGBD.Microsoft_SQL;
-using MapeadorDeEntidades.Form.Core.SGBD.MySql;
-using MapeadorDeEntidades.Form.Utilidade;
+using Zeus.Utilidade;
 
-namespace MapeadorDeEntidades.Form.Core.SGBD.MYSQL.Procedure
+namespace Zeus.Core.SGBD.MySql.Procedure
 {
     public class MySqlOrquestradorProcedures
     {

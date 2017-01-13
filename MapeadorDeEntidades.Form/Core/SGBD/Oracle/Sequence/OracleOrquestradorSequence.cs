@@ -1,9 +1,9 @@
 ﻿using System;
 using System.IO;
 using System.Windows.Forms;
-using MapeadorDeEntidades.Form.Utilidade;
+using Zeus.Utilidade;
 
-namespace MapeadorDeEntidades.Form.Core.SGBD.Oracle.Sequence
+namespace Zeus.Core.SGBD.Oracle.Sequence
 {
     public class OracleOrquestradorSequence
     {

@@ -1,11 +1,10 @@
 ﻿using System;
-using MapeadorDeEntidades.Form.Core;
 using System.Windows.Forms;
-using MapeadorDeEntidades.Form.Core.SGBD.Oracle.Batch;
-using MapeadorDeEntidades.Form.Core.SGBD.Oracle.Sequence;
-using MapeadorDeEntidades.Form.Utilidade;
+using Zeus.Core;
+using Zeus.Core.SGBD.Oracle.Batch;
+using Zeus.Utilidade;
 
-namespace MapeadorDeEntidades.Form.Middleware
+namespace Zeus.Middleware
 {
     public class OrquestradorBatch
     {

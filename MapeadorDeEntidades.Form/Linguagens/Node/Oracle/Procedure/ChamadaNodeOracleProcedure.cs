@@ -1,10 +1,10 @@
 ﻿using System;
 using System.IO;
 using System.Windows.Forms;
-using MapeadorDeEntidades.Form.Core;
-using MapeadorDeEntidades.Form.Utilidade;
+using Zeus.Core;
+using Zeus.Utilidade;
 
-namespace MapeadorDeEntidades.Form.Linguagens.Node.Oracle.Procedure
+namespace Zeus.Linguagens.Node.Oracle.Procedure
 {
     public class ChamadaNodeOracleProcedure
     {

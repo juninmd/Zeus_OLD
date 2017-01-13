@@ -1,4 +1,4 @@
-﻿namespace MapeadorDeEntidades.Form.Core.SGBD.MySql
+﻿namespace Zeus.Core.SGBD.MySql
 {
     public static class MySqlUtil
     {

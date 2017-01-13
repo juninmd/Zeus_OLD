@@ -1,4 +1,4 @@
-﻿namespace MapeadorDeEntidades.Form.Linguagens.CSharp.SQL
+﻿namespace Zeus.Linguagens.CSharp.SQL
 {
     public static class CSharpTypesSQL
     {

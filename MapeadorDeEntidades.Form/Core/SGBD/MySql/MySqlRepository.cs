@@ -4,7 +4,7 @@ using System.Net;
 using System.Runtime.CompilerServices;
 using MySql.Data.MySqlClient;
 
-namespace MapeadorDeEntidades.Form.Core.SGBD.MySql
+namespace Zeus.Core.SGBD.MySql
 {
     public abstract class MySqlRepository
     {

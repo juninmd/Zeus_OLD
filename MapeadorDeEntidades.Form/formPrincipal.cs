@@ -1,12 +1,13 @@
-﻿using MapeadorDeEntidades.Form.Core;
-using MapeadorDeEntidades.Form.Middleware;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Media;
 using System.Windows.Forms;
+using Zeus.Core;
+using Zeus.Middleware;
+using Zeus.Properties;
 
-namespace MapeadorDeEntidades.Form
+namespace Zeus
 {
     public partial class formPrincipal : System.Windows.Forms.Form
     {
@@ -20,7 +21,7 @@ namespace MapeadorDeEntidades.Form
             Session.lblStatus = lblStatus;
             Session.progressBar1 = progressBar1;
             ParamtersInput.NomeTabelas = new List<string>();
-            txtConnectionString.Text = Properties.Settings.Default.ConnectionStringDefault;
+            txtConnectionString.Text = Settings.Default.ConnectionStringDefault;
         }
 
         private void Som()

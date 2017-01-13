@@ -1,11 +1,11 @@
 ﻿using System;
 using System.IO;
 using System.Windows.Forms;
-using MapeadorDeEntidades.Form.Core.SGBD.Oracle.Batch;
-using MapeadorDeEntidades.Form.Core.SGBD.Oracle.Sequence;
-using MapeadorDeEntidades.Form.Utilidade;
+using Zeus.Core.SGBD.Oracle.Batch;
+using Zeus.Core.SGBD.Oracle.Sequence;
+using Zeus.Utilidade;
 
-namespace MapeadorDeEntidades.Form.Core.SGBD.Oracle.Procedure
+namespace Zeus.Core.SGBD.Oracle.Procedure
 {
     public class OracleOrquestradorProcedures
     {

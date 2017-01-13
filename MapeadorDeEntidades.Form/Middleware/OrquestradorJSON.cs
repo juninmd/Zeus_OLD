@@ -1,7 +1,7 @@
-﻿using MapeadorDeEntidades.Form.Core;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
+using Zeus.Core;
 
-namespace MapeadorDeEntidades.Form.Middleware
+namespace Zeus.Middleware
 {
     public class OrquestradorJSON
     {

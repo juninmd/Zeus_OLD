@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace MapeadorDeEntidades.Form.Core.SGBD.Microsoft_SQL.Procedure.Comum
+namespace Zeus.Core.SGBD.Microsoft_SQL.Procedure.Comum
 {
     public class SQLInsertParamters
     {

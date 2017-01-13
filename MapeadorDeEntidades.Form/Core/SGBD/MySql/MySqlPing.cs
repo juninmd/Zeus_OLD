@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace MapeadorDeEntidades.Form.Core.SGBD.MySql
+namespace Zeus.Core.SGBD.MySql
 {
     public class MySqlPing : MySqlRepository
     {

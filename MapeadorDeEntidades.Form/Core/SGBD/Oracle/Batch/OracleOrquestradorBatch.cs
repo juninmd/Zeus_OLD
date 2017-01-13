@@ -2,10 +2,10 @@
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
-using MapeadorDeEntidades.Form.Properties;
-using MapeadorDeEntidades.Form.Utilidade;
+using Zeus.Properties;
+using Zeus.Utilidade;
 
-namespace MapeadorDeEntidades.Form.Core.SGBD.Oracle.Batch
+namespace Zeus.Core.SGBD.Oracle.Batch
 {
     public class OracleOrquestradorBatch
     {

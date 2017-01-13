@@ -1,14 +1,14 @@
 ﻿using System;
-using MapeadorDeEntidades.Form.Core;
 using System.Windows.Forms;
-using MapeadorDeEntidades.Form.Linguagens.CSharp.Oracle.Procedure;
-using MapeadorDeEntidades.Form.Linguagens.CSharp.SQL.Procedure;
-using MapeadorDeEntidades.Form.Linguagens.Java.MySql.Procedure;
-using MapeadorDeEntidades.Form.Linguagens.Java.Oracle.Procedure;
-using MapeadorDeEntidades.Form.Linguagens.Node.Oracle.Procedure;
-using MapeadorDeEntidades.Form.Utilidade;
+using Zeus.Core;
+using Zeus.Linguagens.CSharp.Oracle.Procedure;
+using Zeus.Linguagens.CSharp.SQL.Procedure;
+using Zeus.Linguagens.Java.MySql.Procedure;
+using Zeus.Linguagens.Java.Oracle.Procedure;
+using Zeus.Linguagens.Node.Oracle.Procedure;
+using Zeus.Utilidade;
 
-namespace MapeadorDeEntidades.Form.Middleware
+namespace Zeus.Middleware
 {
     public class OrquestradorChamadaProcedure
     {

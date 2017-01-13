@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace MapeadorDeEntidades.Form.Core.SGBD.Oracle
+namespace Zeus.Core.SGBD.Oracle
 {
     public class OracleToJson : OracleRepository
     {

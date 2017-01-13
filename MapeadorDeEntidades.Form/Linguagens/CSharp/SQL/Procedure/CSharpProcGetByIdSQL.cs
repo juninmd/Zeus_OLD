@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using MapeadorDeEntidades.Form.Core.SGBD.Microsoft_SQL;
+using Zeus.Core.SGBD.Microsoft_SQL;
 
-namespace MapeadorDeEntidades.Form.Linguagens.CSharp.SQL.Procedure
+namespace Zeus.Linguagens.CSharp.SQL.Procedure
 {
     public class CSharpProcGetByIdSQL  
     {

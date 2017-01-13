@@ -1,6 +1,6 @@
-﻿using MapeadorDeEntidades.Form.Core;
+﻿using Zeus.Core;
 
-namespace MapeadorDeEntidades.Form
+namespace Zeus
 {
     partial class formPrincipal
     {
@@ -61,7 +61,7 @@ namespace MapeadorDeEntidades.Form
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.ddlDatabase = new System.Windows.Forms.ComboBox();
-            this.progressBar1 = new MapeadorDeEntidades.Form.Core.NewProgressBar();
+            this.progressBar1 = new NewProgressBar();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();

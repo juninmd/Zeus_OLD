@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace MapeadorDeEntidades.Form
+namespace Zeus
 {
     static class Program
     {

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Text;
-using MapeadorDeEntidades.Form.Core;
+using Zeus.Core;
 
-namespace MapeadorDeEntidades.Form.Linguagens.Node
+namespace Zeus.Linguagens.Node
 {
     public class NodeRoutes
     {

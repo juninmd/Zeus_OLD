@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using MapeadorDeEntidades.Form.Properties;
+using Zeus.Properties;
 
-namespace MapeadorDeEntidades.Form.Core.SGBD.Oracle.Procedure
+namespace Zeus.Core.SGBD.Oracle.Procedure
 {
     public class OracleProcedure
     {

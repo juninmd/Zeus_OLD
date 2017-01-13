@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace MapeadorDeEntidades.Form.Core.SGBD.Oracle
+namespace Zeus.Core.SGBD.Oracle
 {
     public class OracleTables : OracleRepository
     {

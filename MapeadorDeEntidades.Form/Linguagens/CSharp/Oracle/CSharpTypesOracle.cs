@@ -1,4 +1,4 @@
-﻿namespace MapeadorDeEntidades.Form.Linguagens.CSharp.Oracle
+﻿namespace Zeus.Linguagens.CSharp.Oracle
 {
     public static class CSharpTypesOracle
     {

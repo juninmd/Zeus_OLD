@@ -1,6 +1,6 @@
-﻿using MapeadorDeEntidades.Form.Core.SGBD.MySql;
+﻿using Zeus.Core.SGBD.MySql;
 
-namespace MapeadorDeEntidades.Form.Linguagens.Java.MySql
+namespace Zeus.Linguagens.Java.MySql
 {
     public static class JavaTypesMySql
     {

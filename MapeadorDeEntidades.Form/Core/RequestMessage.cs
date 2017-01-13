@@ -1,6 +1,6 @@
 ﻿using System.Net;
 
-namespace MapeadorDeEntidades.Form.Core
+namespace Zeus.Core
 {
     public class RequestMessage
     {

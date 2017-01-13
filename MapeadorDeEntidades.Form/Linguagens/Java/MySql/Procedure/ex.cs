@@ -1,11 +1,10 @@
 ﻿using System.Linq;
 using System.Text;
-using MapeadorDeEntidades.Form.Core;
-using MapeadorDeEntidades.Form.Linguagens.Base;
-using MapeadorDeEntidades.Form.Linguagens.Java.MySql;
-using MapeadorDeEntidades.Form.Properties;
+using Zeus.Core;
+using Zeus.Linguagens.Base;
+using Zeus.Properties;
 
-namespace MapeadorDeEntidades.Form.Linguagens.Java.MySql.Procedure
+namespace Zeus.Linguagens.Java.MySql.Procedure
 {
     public class ex : BaseMySqlDAO
     {

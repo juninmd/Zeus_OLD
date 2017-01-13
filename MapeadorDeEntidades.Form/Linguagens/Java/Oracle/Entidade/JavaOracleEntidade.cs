@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using MapeadorDeEntidades.Form.Core.SGBD.Oracle;
-using MapeadorDeEntidades.Form.Linguagens.Base;
+using Zeus.Core.SGBD.Oracle;
+using Zeus.Linguagens.Base;
 
-namespace MapeadorDeEntidades.Form.Linguagens.Java.Oracle.Entidade
+namespace Zeus.Linguagens.Java.Oracle.Entidade
 {
     public class JavaOracleEntidade : BaseEntity
     {

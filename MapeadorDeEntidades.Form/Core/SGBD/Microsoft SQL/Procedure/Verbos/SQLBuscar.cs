@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using MapeadorDeEntidades.Form.Core.SGBD.Microsoft_SQL.Procedure.Comum;
+using Zeus.Core.SGBD.Microsoft_SQL.Procedure.Comum;
 
-namespace MapeadorDeEntidades.Form.Core.SGBD.Microsoft_SQL.Procedure.Verbos
+namespace Zeus.Core.SGBD.Microsoft_SQL.Procedure.Verbos
 {
     public class SQLBuscar
     {

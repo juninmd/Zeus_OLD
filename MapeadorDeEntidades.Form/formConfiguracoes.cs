@@ -1,7 +1,7 @@
 ﻿using System.Windows.Forms;
-using MapeadorDeEntidades.Form.Properties;
+using Zeus.Properties;
 
-namespace MapeadorDeEntidades.Form
+namespace Zeus
 {
     public partial class formConfiguracoes : System.Windows.Forms.Form
     {

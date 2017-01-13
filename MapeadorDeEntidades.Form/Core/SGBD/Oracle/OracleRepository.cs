@@ -8,13 +8,12 @@
 #pragma warning restore 1587
 
 using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Net;
 using System.Runtime.CompilerServices;
 using Oracle.DataAccess.Client;
 
-namespace MapeadorDeEntidades.Form.Core.SGBD.Oracle
+namespace Zeus.Core.SGBD.Oracle
 {
     public abstract class OracleRepository
     {

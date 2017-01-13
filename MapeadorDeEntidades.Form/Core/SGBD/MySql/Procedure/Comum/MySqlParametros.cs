@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Text;
 
-namespace MapeadorDeEntidades.Form.Core.SGBD.MySql.Procedure.Comum
+namespace Zeus.Core.SGBD.MySql.Procedure.Comum
 {
     public class MySqlParametros
     {

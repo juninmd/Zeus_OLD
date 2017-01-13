@@ -1,10 +1,10 @@
 ﻿using System;
 using System.IO;
 using System.Windows.Forms;
-using MapeadorDeEntidades.Form.Core;
-using MapeadorDeEntidades.Form.Utilidade;
+using Zeus.Core;
+using Zeus.Utilidade;
 
-namespace MapeadorDeEntidades.Form.Linguagens.Java.MySql.Entidade
+namespace Zeus.Linguagens.Java.MySql.Entidade
 {
     public class JavaMySqlOrquestraEntidade
     {

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using MapeadorDeEntidades.Form.Core.SGBD.Oracle;
+using Zeus.Core.SGBD.Oracle;
 
-namespace MapeadorDeEntidades.Form.Linguagens.Base
+namespace Zeus.Linguagens.Base
 {
     public class BaseOracleDAO
     {
