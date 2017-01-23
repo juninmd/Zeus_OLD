@@ -33,7 +33,6 @@ namespace Zeus.Core.SGBD.MySql.Procedure.Comum
             }
             param.Append($"					  P_{listaAtributos[count - 1].COLUMN_NAME}");
             param.Append($");{N}{N}");
-            param.Append($"	SELECT 0 INTO P_RESULT;{N}");
             return param;
         }
     }

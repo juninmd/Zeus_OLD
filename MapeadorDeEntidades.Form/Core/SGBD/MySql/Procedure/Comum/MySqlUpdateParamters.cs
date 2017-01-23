@@ -24,7 +24,6 @@ namespace Zeus.Core.SGBD.MySql.Procedure.Comum
             }
             param.Append($"               {listaAtributos[count - 1].COLUMN_NAME}     = P_{listaAtributos[count - 1].COLUMN_NAME}{N}");
             param.Append($"     	   WHERE {listaAtributos.First().COLUMN_NAME} =  P_{listaAtributos.First().COLUMN_NAME};{N}{N}");
-            param.Append($"	SELECT 0 INTO P_RESULT;{N}");
 
             return param;
         }

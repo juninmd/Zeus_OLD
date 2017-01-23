@@ -30,7 +30,7 @@ namespace Zeus.Core.SGBD.MySql.Procedure.Verbos
 
         private StringBuilder Paramters(List<MySqlEntidadeTabela> parametro)
         {
-            return new MySqlParametros().GenerateResultParams(parametro, false);
+            return new MySqlParametros().GenerateParams(parametro, false);
         }
     }
 }

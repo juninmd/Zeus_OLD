@@ -22,7 +22,7 @@ namespace Zeus.Core.SGBD.MySql.Procedure.Verbos
         {
             var desc = new StringBuilder();
             desc.Append(new MySqlSumario().Init(nomeProcedure, nomeTabela));
-            desc.Append($" CREATE PROCEDURE `{nomeProcedure}` (IN P_{listaAtributos.First().COLUMN_NAME} {listaAtributos.First().DATA_TYPE}, OUT P_RESULT varchar(255))" + N);
+            desc.Append($" CREATE PROCEDURE `{nomeProcedure}` (IN P_{listaAtributos.First().COLUMN_NAME} {listaAtributos.First().DATA_TYPE})" + N);
             desc.Append("	BEGIN" + N + N);
             desc.Append(new MySqlDeleteParamters().Init(nomeTabela, listaAtributos));
             desc.Append("	END$$" + N + N);
