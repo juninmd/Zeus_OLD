@@ -20,24 +20,6 @@ namespace Zeus.Core.SGBD.MySql.Procedure.Comum
             return desc;
         }
 
-        public StringBuilder GenerateResultParams(List<MySqlEntidadeTabela> parametro, bool full)
-        {
-            if (parametro.Count == (full ? 0 : 1))
-                return new StringBuilder("OUT P_RESULT varchar(255)");
-
-            var desc = new StringBuilder();
-
-            for (int index = (full ? 0 : 1); index < parametro.Count; index++)
-            {
-                var item = parametro[index];
-                desc.Append($"IN P_{item.COLUMN_NAME} {TrataTipo(item)}, ");
-            }
-
-            desc.Append("OUT P_RESULT varchar(255)");
-
-            return desc;
-        }
-
         private string TrataTipo(MySqlEntidadeTabela tipo)
         {
             if (tipo.DATA_TYPE == "varchar")
