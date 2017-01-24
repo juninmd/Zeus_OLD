@@ -5,6 +5,7 @@ using Zeus.Linguagens.CSharp.Oracle.Procedure;
 using Zeus.Linguagens.CSharp.SQL.Procedure;
 using Zeus.Linguagens.Java.MySql.Procedure;
 using Zeus.Linguagens.Java.Oracle.Procedure;
+using Zeus.Linguagens.Node.MySql;
 using Zeus.Linguagens.Node.Oracle.Procedure;
 using Zeus.Utilidade;
 
@@ -76,6 +77,10 @@ namespace Zeus.Middleware
                             case 2:
                                 {
                                     return new ChamadaJavaMySqlProcedure().Java(salvar);
+                                }
+                            case 3:
+                                {
+                                    return new ChamadaNodeMySqlProcedure().Node(salvar);
                                 }
                             default:
                                 {

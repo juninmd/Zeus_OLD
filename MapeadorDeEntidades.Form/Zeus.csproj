@@ -171,6 +171,7 @@
     <Compile Include="Linguagens\Java\Oracle\Entidade\JavaOracleEntidade.cs" />
     <Compile Include="Linguagens\Java\Oracle\Procedure\ChamadaJavaOracleProcedure.cs" />
     <Compile Include="Linguagens\Java\Oracle\Entidade\JavaOracleOrquestraEntidade.cs" />
+    <Compile Include="Linguagens\Node\MySql\ChamadaNodeMySqlProcedure.cs" />
     <Compile Include="Linguagens\Node\MySql\Procedure\ChamadaNodeMySqlProcedure.cs" />
     <Compile Include="Linguagens\Node\MySql\Procedure\NodeMySqlProcedure.cs" />
     <Compile Include="Linguagens\Node\NodeAjax.cs" />
