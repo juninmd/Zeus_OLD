@@ -27,7 +27,7 @@ namespace Zeus.Linguagens.Node.MySql.Procedure
             var get = new StringBuilder();
             get.Append($"    getById: function (id) {{{N}");
             get.Append($"        return new Promise(function (resolve, reject) {{{N}");
-            get.Append($"            mysql.executeString({baseDb}, \"select * from {NomeTabela} where {ListaAtributosTabela.First().COLUMN_NAME} =  \"+id,{N}");
+            get.Append($"            mysql.executeString({baseDb}, \"SELECT * FROM {NomeTabela.ToUpper()} WHERE {ListaAtributosTabela.First().COLUMN_NAME} =  \"+id,{N}");
             get.Append($"                function (err, result) {{{N}");
             get.Append($"                    if (err) {{{N}");
             get.Append($"                        reject(err);{N}");
@@ -45,7 +45,7 @@ namespace Zeus.Linguagens.Node.MySql.Procedure
             var get = new StringBuilder();
             get.Append($"    getAll: function () {{{N}");
             get.Append($"        return new Promise(function (resolve, reject) {{{N}");
-            get.Append($"            mysql.executeString({baseDb}, \"select * from {NomeTabela} \",{N}");
+            get.Append($"            mysql.executeString({baseDb}, \"SELECT * FROM {NomeTabela.ToUpper()} \",{N}");
             get.Append($"                function (err, result) {{{N}");
             get.Append($"                    if (err) {{{N}");
             get.Append($"                        reject(err);{N}");
@@ -82,7 +82,7 @@ namespace Zeus.Linguagens.Node.MySql.Procedure
             var get = new StringBuilder();
             get.Append($"    update: function (body) {{ {N}");
             get.Append($"        return new Promise(function (resolve, reject) {{{N}");
-            get.Append($"            mysql.execute({baseDb}, \"UPDATE INTO {NomeTabela.ToUpper()} SET ?\", {parametrosQuery(true)},{N}");
+            get.Append($"            mysql.execute({baseDb}, \"UPDATE {NomeTabela.ToUpper()} SET ? WHERE {ListaAtributosTabela.First().COLUMN_NAME} =\" + body.{ListaAtributosTabela.First().COLUMN_NAME}, {parametrosQuery(true)},{N}");
             get.Append($"                function (err, result) {{{N}");
             get.Append($"                    if (err) {{{N}");
             get.Append($"                        reject(err);{N}");
