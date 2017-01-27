@@ -99,7 +99,7 @@ namespace Zeus.Linguagens.Node.MySql.Procedure
             var get = new StringBuilder();
             get.Append($"    delete: function (id) {{ {N}");
             get.Append($"        return new Promise(function (resolve, reject) {{{N}");
-            get.Append($"            mysql.executeString({baseDb}, \"DELETE {NomeTabela.ToUpper()} WHERE {ListaAtributosTabela.First().COLUMN_NAME} =\" + id,{N}");
+            get.Append($"            mysql.executeString({baseDb}, \"DELETE FROM {NomeTabela.ToUpper()} WHERE {ListaAtributosTabela.First().COLUMN_NAME} =\" + id,{N}");
             get.Append($"                function (err, result) {{{N}");
             get.Append($"                    if (err) {{{N}");
             get.Append($"                        reject(err);{N}");
