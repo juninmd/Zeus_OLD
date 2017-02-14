@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using Zeus.Core;
 using Zeus.Middleware;
 using Zeus.Properties;
+using Zeus.Utilidade;
 
 namespace Zeus
 {
@@ -18,6 +19,7 @@ namespace Zeus
             InitializeComponent();
             Application.EnableVisualStyles();
             Som();
+            InitConfigurations();
             Session.lblStatus = lblStatus;
             Session.progressBar1 = progressBar1;
             ParamtersInput.NomeTabelas = new List<string>();
@@ -30,6 +32,8 @@ namespace Zeus
             SoundPlayer simpleSound = new SoundPlayer($"{path}\\zeus.wav");
             simpleSound.Play();
         }
+      
+        #region ### GERAR ###
 
         /// <summary>
         /// Geração da Entidade
@@ -40,29 +44,43 @@ namespace Zeus
         {
             SetParamters();
             var mdMapeamento = new OrquestradorMapeamentoEntidade().Generate(salvar);
-            MessageBox.Show(mdMapeamento.Message);
+            Util.Status(mdMapeamento.Message + " - " + mdMapeamento.TechnicalMessage);
         }
 
         private void btnChamadaProc_Click(object sender, EventArgs e)
         {
             SetParamters();
             var mdChamdaProc = new OrquestradorChamadaProcedure().Generate(salvar);
-            MessageBox.Show(mdChamdaProc.Message);
+            Util.Status(mdChamdaProc.Message + " - " + mdChamdaProc.TechnicalMessage);
         }
 
         private void btnProcSql_Click(object sender, EventArgs e)
         {
             SetParamters();
             var mdProc = new OrquestradorProcedures().Generate(salvar);
-            MessageBox.Show(mdProc.Message);
+            Util.Status(mdProc.Message + " - " + mdProc.TechnicalMessage);
         }
+        private void btnSequence_Click(object sender, EventArgs e)
+        {
+            SetParamters();
+            var mdProc = new OrquestradorSequences().Generate(salvar);
+            Util.Status(mdProc.Message + " - " + mdProc.TechnicalMessage);
+        }
+        private void btnBatch_Click(object sender, EventArgs e)
+        {
+            SetParamters();
+            var mdProc = new OrquestradorBatch().Generate(salvar);
+            Util.Status(mdProc.Message);
+        }
+
+        #endregion
 
         private void btnConnection_Click(object sender, EventArgs e)
         {
             SetParamters();
             var connectionDb = new OrquestradorPingSGBD().Connect();
-            MessageBox.Show(connectionDb.Message + "\n" + connectionDb.TechnicalMessage);
-
+            Util.Status(connectionDb.Message + " - " + connectionDb.TechnicalMessage);
+            Util.Barra(100);
             if (!connectionDb.IsError)
             {
 
@@ -84,40 +102,13 @@ namespace Zeus
         {
             ddlTabelas.Enabled = (btnChkTabela.Checked == false);
             SetParamters();
-
         }
 
-        private void ddlTabelas_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            SetParamters();
-        }
-
-        private void radioSGBD_CheckedChanged(object sender, EventArgs e)
-        {
-            SetParamters();
-        }
-        private void radioSGBD2_CheckedChanged(object sender, EventArgs e)
+        private void EventSetParamters(object sender, EventArgs e)
         {
             SetParamters();
         }
 
-        private void radioSGBD3_CheckedChanged(object sender, EventArgs e)
-        {
-            SetParamters();
-        }
-        private void radioCsharp_CheckedChanged(object sender, EventArgs e)
-        {
-            SetParamters();
-        }
-
-        private void radioJava_CheckedChanged(object sender, EventArgs e)
-        {
-            SetParamters();
-        }
-        private void radioNode_CheckedChanged(object sender, EventArgs e)
-        {
-            SetParamters();
-        }
         private void SetParamters()
         {
             ParamtersInput.NomeTabelas.Clear();
@@ -142,7 +133,7 @@ namespace Zeus
             ddlDatabase.Enabled = radioSGBD3.Checked;
         }
 
-     
+
 
         private void btnExemplo_Click(object sender, EventArgs e)
         {
@@ -155,32 +146,6 @@ namespace Zeus
                 new formConnectionString().Show();
             }
         }
- 
-
-        private void btnConfiguracoes_Click(object sender, EventArgs e)
-        {
-            System.Windows.Forms.Form fc = Application.OpenForms["formConfiguracoes"];
-            if (fc == null)
-                new formConfiguracoes().Show();
-            else
-            {
-                fc.Close();
-                new formConfiguracoes().Show();
-            }
-        }
-        private void btnSequence_Click(object sender, EventArgs e)
-        {
-            SetParamters();
-            var mdProc = new OrquestradorSequences().Generate(salvar);
-            MessageBox.Show(mdProc.Message);
-        }
-
-        private void btnBatch_Click(object sender, EventArgs e)
-        {
-            SetParamters();
-            var mdProc = new OrquestradorBatch().Generate(salvar);
-            MessageBox.Show(mdProc.Message);
-        }
 
         private void ddlDatabase_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -190,6 +155,28 @@ namespace Zeus
             ddlTabelas.Items.AddRange(mdProc?.Content?.ToArray());
         }
 
-    
+        private void btnConfiguracoes_Click_1(object sender, EventArgs e)
+        {
+            Util.Barra(0);
+
+            Settings.Default.PrefixoPackage = txtPreFixoPackages.Text;
+            Settings.Default.PrefixoProcedure = txtPreFixoProcedures.Text;
+            Settings.Default.PrefixoTabela = txtPrefixoTabela.Text;
+            Settings.Default.ConnectionStringDefault = txtConnectionString.Text;
+            Settings.Default.UnificarOutput = ddlUnificar.SelectedItem?.ToString() == "SIM";
+            Settings.Default.Save();
+
+            Util.Status("Valores atualizados");
+            Util.Barra(100);
+        }
+
+        private void InitConfigurations()
+        {
+            txtPreFixoPackages.Text = Settings.Default.PrefixoPackage;
+            txtPreFixoProcedures.Text = Settings.Default.PrefixoProcedure;
+            txtPrefixoTabela.Text = Settings.Default.PrefixoTabela;
+            txtConnectionString.Text = Settings.Default.ConnectionStringDefault;
+            ddlUnificar.SelectedItem = Settings.Default.UnificarOutput ? "SIM" : "NÃO";
+        }
     }
 }
