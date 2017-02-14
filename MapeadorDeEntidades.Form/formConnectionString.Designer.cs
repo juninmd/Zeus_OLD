@@ -98,7 +98,7 @@
             this.textBox3.ReadOnly = true;
             this.textBox3.Size = new System.Drawing.Size(426, 20);
             this.textBox3.TabIndex = 0;
-            this.textBox3.Text = "Server=###;Database=###;Uid=###;Pwd=###;Port=###";
+            this.textBox3.Text = "Server=###;Uid=###;Pwd=###;Port=###";
             // 
             // formConnectionString
             // 

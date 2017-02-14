@@ -123,12 +123,6 @@
     <Compile Include="Core\SGBD\Oracle\Sequence\OracleOrquestradorSequence.cs" />
     <Compile Include="Core\SGBD\Oracle\Sequence\OracleSequence.cs" />
     <Compile Include="Core\Tratamentos.cs" />
-    <Compile Include="formConfiguracoes.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="formConfiguracoes.Designer.cs">
-      <DependentUpon>formConfiguracoes.cs</DependentUpon>
-    </Compile>
     <Compile Include="formConnectionString.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -197,9 +191,6 @@
     <Compile Include="Utilidade\Util.cs" />
     <EmbeddedResource Include="Core\NewProgressBar.resx">
       <DependentUpon>NewProgressBar.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="formConfiguracoes.resx">
-      <DependentUpon>formConfiguracoes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="formConnectionString.resx">
       <DependentUpon>formConnectionString.cs</DependentUpon>

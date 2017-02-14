@@ -6,7 +6,6 @@ using Zeus.Linguagens.CSharp.Oracle.Entidade;
 using Zeus.Linguagens.CSharp.SQL.Entidade;
 using Zeus.Linguagens.Java.MySql.Entidade;
 using Zeus.Linguagens.Java.Oracle.Entidade;
-using Zeus.Utilidade;
 
 namespace Zeus.Middleware
 {
@@ -20,8 +19,7 @@ namespace Zeus.Middleware
 
             var dataInicial = DateTime.Now;
             var init = Init(salvar);
-            var dataFinal = DateTime.Now;
-            Util.Status($"Tempo de processamento: {(dataFinal - dataInicial).Seconds}s - Tabelas: {ParamtersInput.NomeTabelas.Count}");
+            init.TechnicalMessage = ($"Tempo de processamento: {(DateTime.Now - dataInicial).Seconds}s - Tabelas: {ParamtersInput.NomeTabelas.Count}");
             return init;
 
         }
