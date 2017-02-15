@@ -25,16 +25,10 @@ namespace Zeus.Linguagens.Node.MySql.Procedure
         private StringBuilder GetById()
         {
             var get = new StringBuilder();
-            get.Append($"    getById: function (id) {{{N}");
-            get.Append($"        return new Promise(function (resolve, reject) {{{N}");
+            get.Append($"    getById: (id) => {{{N}");
+            get.Append($"        return new Promise((resolve, reject) => {{{N}");
             get.Append($"            mysql.executeString({baseDb}, \"SELECT * FROM {NomeTabela.ToUpper()} WHERE {ListaAtributosTabela.First().COLUMN_NAME} =  \"+id,{N}");
-            get.Append($"                function (err, result) {{{N}");
-            get.Append($"                    if (err) {{{N}");
-            get.Append($"                        reject(err);{N}");
-            get.Append($"                    }} else {{{N}");
-            get.Append($"                        resolve(result);{N}");
-            get.Append($"                    }}{N}");
-            get.Append($"                }});{N}");
+            get.Append($"                (err, result) => err ? reject(err) : resolve(result));{N}");
             get.Append($"        }});{N}");
             get.Append($"    }},{N}");
             return get;
@@ -43,16 +37,10 @@ namespace Zeus.Linguagens.Node.MySql.Procedure
         private StringBuilder GetAll()
         {
             var get = new StringBuilder();
-            get.Append($"    getAll: function () {{{N}");
-            get.Append($"        return new Promise(function (resolve, reject) {{{N}");
+            get.Append($"    getAll: () => {{{N}");
+            get.Append($"        return new Promise((resolve, reject) => {{{N}");
             get.Append($"            mysql.executeString({baseDb}, \"SELECT * FROM {NomeTabela.ToUpper()} \",{N}");
-            get.Append($"                function (err, result) {{{N}");
-            get.Append($"                    if (err) {{{N}");
-            get.Append($"                        reject(err);{N}");
-            get.Append($"                    }} else {{{N}");
-            get.Append($"                        resolve(result);{N}");
-            get.Append($"                    }}{N}");
-            get.Append($"                }});{N}");
+            get.Append($"                (err, result) => err ? reject(err) : resolve(result));{N}");
             get.Append($"        }});{N}");
             get.Append($"    }},{N}");
             return get;
@@ -61,16 +49,10 @@ namespace Zeus.Linguagens.Node.MySql.Procedure
         private StringBuilder Add()
         {
             var get = new StringBuilder();
-            get.Append($"    insert: function (body) {{ {N}");
-            get.Append($"        return new Promise(function (resolve, reject) {{{N}");
+            get.Append($"    insert: (body) => {{ {N}");
+            get.Append($"        return new Promise((resolve, reject) => {{{N}");
             get.Append($"            mysql.execute({baseDb}, \"INSERT INTO {NomeTabela.ToUpper()} SET ?\", {parametrosQuery(false)},{N}");
-            get.Append($"                function (err, result) {{{N}");
-            get.Append($"                    if (err) {{{N}");
-            get.Append($"                        reject(err);{N}");
-            get.Append($"                    }} else {{{N}");
-            get.Append($"                        resolve(result);{N}");
-            get.Append($"                    }}{N}");
-            get.Append($"                }});{N}");
+            get.Append($"                (err, result) => err ? reject(err) : resolve(result));{N}");
             get.Append($"        }});{N}");
             get.Append($"    }},{N}");
             return get;
@@ -80,16 +62,10 @@ namespace Zeus.Linguagens.Node.MySql.Procedure
         {
 
             var get = new StringBuilder();
-            get.Append($"    update: function (body) {{ {N}");
-            get.Append($"        return new Promise(function (resolve, reject) {{{N}");
+            get.Append($"    update: (body) => {{ {N}");
+            get.Append($"        return new Promise((resolve, reject) => {{{N}");
             get.Append($"            mysql.execute({baseDb}, \"UPDATE {NomeTabela.ToUpper()} SET ? WHERE {ListaAtributosTabela.First().COLUMN_NAME} =\" + body.{ListaAtributosTabela.First().COLUMN_NAME}, {parametrosQuery(true)},{N}");
-            get.Append($"                function (err, result) {{{N}");
-            get.Append($"                    if (err) {{{N}");
-            get.Append($"                        reject(err);{N}");
-            get.Append($"                    }} else {{{N}");
-            get.Append($"                        resolve(result);{N}");
-            get.Append($"                    }}{N}");
-            get.Append($"                }});{N}");
+            get.Append($"                (err, result) => err ? reject(err) : resolve(result));{N}");
             get.Append($"        }});{N}");
             get.Append($"    }},{N}");
             return get;
@@ -97,16 +73,10 @@ namespace Zeus.Linguagens.Node.MySql.Procedure
         private StringBuilder Delete()
         {
             var get = new StringBuilder();
-            get.Append($"    delete: function (id) {{ {N}");
-            get.Append($"        return new Promise(function (resolve, reject) {{{N}");
+            get.Append($"    delete: (id) => {{ {N}");
+            get.Append($"        return new Promise((resolve, reject) => {{{N}");
             get.Append($"            mysql.executeString({baseDb}, \"DELETE FROM {NomeTabela.ToUpper()} WHERE {ListaAtributosTabela.First().COLUMN_NAME} =\" + id,{N}");
-            get.Append($"                function (err, result) {{{N}");
-            get.Append($"                    if (err) {{{N}");
-            get.Append($"                        reject(err);{N}");
-            get.Append($"                    }} else {{{N}");
-            get.Append($"                        resolve(result);{N}");
-            get.Append($"                    }}{N}");
-            get.Append($"                }});{N}");
+            get.Append($"                (err, result) => err ? reject(err) : resolve(result));{N}");
             get.Append($"        }});{N}");
             get.Append($"    }},{N}");
             return get;
