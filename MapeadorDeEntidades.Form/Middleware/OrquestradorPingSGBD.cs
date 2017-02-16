@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Net;
+using System.Runtime.InteropServices;
 using Zeus.Core;
 using Zeus.Core.SGBD.Microsoft_SQL;
 using Zeus.Core.SGBD.MySql;
@@ -31,7 +34,11 @@ namespace Zeus.Middleware
                     case 3:
                         return new MySqlPing().ConnectaSQL();
                     default:
-                        return new SQLPing().ConnectaSQL();
+                        return new RequestMessage<List<string>>
+                        {
+                            StatusCode = System.Net.HttpStatusCode.InternalServerError,
+                            Message = "Esse banco de dados não foi programado",
+                        };
 
                 }
             }

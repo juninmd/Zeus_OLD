@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 using System.Windows.Forms;
 using Zeus.Core;
 using Zeus.Core.SGBD.Microsoft_SQL.Procedure;
@@ -40,9 +41,13 @@ namespace Zeus.Middleware
                         return new MySqlOrquestradorProcedures().MySql(salvar);
                     }
                 default:
-                {
-                    return new RequestMessage<string>();
-                }
+                    {
+                        return new RequestMessage<string>()
+                        {
+                            StatusCode = HttpStatusCode.InternalServerError,
+                            Message = "Essa linguagem não foi programada!"
+                        };
+                    }
             }
         }
     }

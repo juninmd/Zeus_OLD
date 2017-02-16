@@ -31,8 +31,11 @@ namespace Zeus.Middleware
                             Content = new MySqlTables().ListaTabelas(ParamtersInput.DataBase)
                         };
                     default:
-                        return new SQLPing().ConnectaSQL();
-
+                        return new RequestMessage<List<string>>
+                        {
+                            StatusCode = System.Net.HttpStatusCode.InternalServerError,
+                            Message = "Essa linguagem não foi programada",
+                        };
                 }
             }
             catch (Exception ex)

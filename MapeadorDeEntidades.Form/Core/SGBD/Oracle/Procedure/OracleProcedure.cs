@@ -27,7 +27,6 @@ namespace Zeus.Core.SGBD.Oracle.Procedure
             desc.Append("  //*****************************************************************************" + Environment.NewLine);
             desc.Append("  //* DESCRICAO: --" + Environment.NewLine);
             desc.Append("  //* AUTOR: -- " + Environment.NewLine);
-            desc.Append("  //* FABRICA: ENGSOLUTIONS" + Environment.NewLine);
             desc.Append($"  //* DATA DA CRIACAO: {DateTime.Now.ToShortDateString()}" + Environment.NewLine);
             desc.Append("  //* DATA DA ULTIMA ALTERACAO: -" + Environment.NewLine);
             desc.Append("  //*****************************************************************************/" + Environment.NewLine);
