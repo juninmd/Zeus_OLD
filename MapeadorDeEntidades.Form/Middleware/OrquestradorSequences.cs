@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 using System.Windows.Forms;
 using Zeus.Core;
 using Zeus.Core.SGBD.Oracle.Sequence;
@@ -29,14 +30,12 @@ namespace Zeus.Middleware
                     {
                         return new OracleOrquestradorSequence().Oracle(salvar);
                     }
-                case 2:
-                    {
-                        return new RequestMessage<string>();
-                    }
                 default:
+                    return new RequestMessage<string>()
                     {
-                        return new RequestMessage<string>();
-                    }
+                        StatusCode = HttpStatusCode.InternalServerError,
+                        Message = "Essa linguagem não possui sequence."
+                    };
             }
         }
     }

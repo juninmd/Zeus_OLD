@@ -130,6 +130,14 @@ namespace Zeus
             SetParamters();
         }
 
+        private void CleanParamters(object sender, EventArgs e)
+        {
+            SetParamters();
+            ddlTabelas.Items.Clear();
+            ddlTabelas.Text = "";
+            ddlDatabase.Items.Clear();
+            ddlDatabase.Text = "";
+        }
         private void SetParamters()
         {
             ParamtersInput.NomeTabelas.Clear();

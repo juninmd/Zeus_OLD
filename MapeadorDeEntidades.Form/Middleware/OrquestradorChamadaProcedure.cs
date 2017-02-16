@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 using System.Windows.Forms;
 using Zeus.Core;
 using Zeus.Linguagens.CSharp.Oracle.Procedure;
@@ -50,7 +51,11 @@ namespace Zeus.Middleware
                                 }
                             default:
                                 {
-                                    return new RequestMessage<string>();
+                                    return new RequestMessage<string>()
+                                    {
+                                        StatusCode = HttpStatusCode.InternalServerError,
+                                        Message = "Essa linguagem não foi programada!"
+                                    };
                                 }
                         }
 
@@ -65,7 +70,11 @@ namespace Zeus.Middleware
                                 }
                             default:
                                 {
-                                    return new RequestMessage<string>();
+                                    return new RequestMessage<string>()
+                                    {
+                                        StatusCode = HttpStatusCode.InternalServerError,
+                                        Message = "Essa linguagem não foi programada!"
+                                    };
                                 }
                         }
 
@@ -84,14 +93,22 @@ namespace Zeus.Middleware
                                 }
                             default:
                                 {
-                                    return new RequestMessage<string>();
+                                    return new RequestMessage<string>()
+                                    {
+                                        StatusCode = HttpStatusCode.InternalServerError,
+                                        Message = "Essa linguagem não foi programada!"
+                                    };
                                 }
                         }
 
                     }
                 default:
                     {
-                        return new RequestMessage<string>();
+                        return new RequestMessage<string>()
+                        {
+                            StatusCode = HttpStatusCode.InternalServerError,
+                            Message = "Essa linguagem não foi programada!"
+                        };
                     }
             }
         }

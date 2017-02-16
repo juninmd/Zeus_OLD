@@ -35,8 +35,6 @@ namespace Zeus.Linguagens.CSharp.Oracle.Procedure
 
             var classe = new StringBuilder();
             classe.Append("using System.Net;" + N);
-            classe.Append("using PagamentoDespesasLojas.Domain.Helpers;" + N);
-            classe.Append("using PagamentoDespesasLojas.Infra.Data;" + N);
             classe.Append("using System;" + N + N);
             classe.Append("namespace MapeadorDeEntidades.Form" + N);
             classe.Append("{" + N);

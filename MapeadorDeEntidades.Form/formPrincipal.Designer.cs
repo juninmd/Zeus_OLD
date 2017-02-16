@@ -68,8 +68,8 @@ namespace Zeus
             this.ddlUnificar = new System.Windows.Forms.ComboBox();
             this.groupBox11 = new System.Windows.Forms.GroupBox();
             this.groupBox12 = new System.Windows.Forms.GroupBox();
-            this.btnConfiguracoes = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.btnConfiguracoes = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.progressBar1 = new Zeus.Core.NewProgressBar();
             this.groupBox3.SuspendLayout();
@@ -180,7 +180,7 @@ namespace Zeus
             this.radioSGBD3.TabStop = true;
             this.radioSGBD3.Text = "MySql";
             this.radioSGBD3.UseVisualStyleBackColor = true;
-            this.radioSGBD3.CheckedChanged += new System.EventHandler(this.EventSetParamters);
+            this.radioSGBD3.CheckedChanged += new System.EventHandler(this.CleanParamters);
             // 
             // radioSGBD2
             // 
@@ -193,7 +193,7 @@ namespace Zeus
             this.radioSGBD2.TabStop = true;
             this.radioSGBD2.Text = "Microsoft SQL";
             this.radioSGBD2.UseVisualStyleBackColor = true;
-            this.radioSGBD2.CheckedChanged += new System.EventHandler(this.EventSetParamters);
+            this.radioSGBD2.CheckedChanged += new System.EventHandler(this.CleanParamters);
             // 
             // radioSGBD1
             // 
@@ -207,7 +207,7 @@ namespace Zeus
             this.radioSGBD1.TabStop = true;
             this.radioSGBD1.Text = "Oracle";
             this.radioSGBD1.UseVisualStyleBackColor = true;
-            this.radioSGBD1.CheckedChanged += new System.EventHandler(this.EventSetParamters);
+            this.radioSGBD1.CheckedChanged += new System.EventHandler(this.CleanParamters);
             // 
             // groupBox3
             // 
@@ -216,7 +216,7 @@ namespace Zeus
             this.groupBox3.Controls.Add(this.btnChamadaProc);
             this.groupBox3.Controls.Add(this.btnProc);
             this.groupBox3.Font = new System.Drawing.Font("Gill Sans MT", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox3.ForeColor = Color.FromArgb(255, 0, 150);
+            this.groupBox3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(150)))));
             this.groupBox3.Location = new System.Drawing.Point(469, 147);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(471, 56);
@@ -263,7 +263,7 @@ namespace Zeus
             this.groupBox4.Controls.Add(this.btnChkTabela);
             this.groupBox4.Controls.Add(this.ddlTabelas);
             this.groupBox4.Font = new System.Drawing.Font("Gill Sans MT", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox4.ForeColor = Color.FromArgb(255, 0, 150);
+            this.groupBox4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(150)))));
             this.groupBox4.Location = new System.Drawing.Point(21, 147);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(448, 56);
@@ -289,7 +289,7 @@ namespace Zeus
             this.groupBox5.Controls.Add(this.btnConnection);
             this.groupBox5.Controls.Add(this.txtConnectionString);
             this.groupBox5.Font = new System.Drawing.Font("Gill Sans MT", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox5.ForeColor = Color.FromArgb(255, 0, 150);
+            this.groupBox5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(150)))));
             this.groupBox5.Location = new System.Drawing.Point(240, 12);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(511, 66);
@@ -331,7 +331,7 @@ namespace Zeus
             this.groupBox6.Controls.Add(this.lblStatus);
             this.groupBox6.Controls.Add(this.progressBar1);
             this.groupBox6.Font = new System.Drawing.Font("Gill Sans MT", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox6.ForeColor = Color.FromArgb(255, 0, 150);
+            this.groupBox6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(150)))));
             this.groupBox6.Location = new System.Drawing.Point(21, 209);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Size = new System.Drawing.Size(448, 55);
@@ -354,7 +354,7 @@ namespace Zeus
             this.groupBox1.Controls.Add(this.radioCsharp);
             this.groupBox1.Controls.Add(this.radioJava);
             this.groupBox1.Font = new System.Drawing.Font("Gill Sans MT", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.ForeColor = Color.FromArgb(255, 0, 150);
+            this.groupBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(150)))));
             this.groupBox1.Location = new System.Drawing.Point(21, 12);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(111, 131);
@@ -368,7 +368,7 @@ namespace Zeus
             this.groupBox2.Controls.Add(this.radioSGBD2);
             this.groupBox2.Controls.Add(this.radioSGBD1);
             this.groupBox2.Font = new System.Drawing.Font("Gill Sans MT", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.ForeColor = Color.FromArgb(255, 0, 150);
+            this.groupBox2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(150)))));
             this.groupBox2.Location = new System.Drawing.Point(131, 12);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(110, 131);
@@ -380,7 +380,7 @@ namespace Zeus
             // 
             this.groupBox7.Controls.Add(this.ddlDatabase);
             this.groupBox7.Font = new System.Drawing.Font("Gill Sans MT", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox7.ForeColor = Color.FromArgb(255, 0, 150);
+            this.groupBox7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(150)))));
             this.groupBox7.Location = new System.Drawing.Point(751, 12);
             this.groupBox7.Name = "groupBox7";
             this.groupBox7.Size = new System.Drawing.Size(189, 66);
@@ -409,7 +409,7 @@ namespace Zeus
             // 
             this.groupBox8.Controls.Add(this.txtPreFixoProcedures);
             this.groupBox8.Font = new System.Drawing.Font("Gill Sans MT", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox8.ForeColor = Color.FromArgb(255, 0, 150);
+            this.groupBox8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(150)))));
             this.groupBox8.Location = new System.Drawing.Point(240, 78);
             this.groupBox8.Name = "groupBox8";
             this.groupBox8.Size = new System.Drawing.Size(175, 65);
@@ -428,7 +428,7 @@ namespace Zeus
             // 
             this.groupBox9.Controls.Add(this.txtPrefixoTabela);
             this.groupBox9.Font = new System.Drawing.Font("Gill Sans MT", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox9.ForeColor = Color.FromArgb(255, 0, 150);
+            this.groupBox9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(150)))));
             this.groupBox9.Location = new System.Drawing.Point(415, 78);
             this.groupBox9.Name = "groupBox9";
             this.groupBox9.Size = new System.Drawing.Size(182, 65);
@@ -447,7 +447,7 @@ namespace Zeus
             // 
             this.groupBox10.Controls.Add(this.txtPreFixoPackages);
             this.groupBox10.Font = new System.Drawing.Font("Gill Sans MT", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox10.ForeColor = Color.FromArgb(255, 0, 150);
+            this.groupBox10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(150)))));
             this.groupBox10.Location = new System.Drawing.Point(597, 78);
             this.groupBox10.Name = "groupBox10";
             this.groupBox10.Size = new System.Drawing.Size(200, 65);
@@ -470,7 +470,7 @@ namespace Zeus
             // 
             this.groupBox11.Controls.Add(this.ddlUnificar);
             this.groupBox11.Font = new System.Drawing.Font("Gill Sans MT", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox11.ForeColor = Color.FromArgb(255, 0, 150);
+            this.groupBox11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(150)))));
             this.groupBox11.Location = new System.Drawing.Point(797, 78);
             this.groupBox11.Name = "groupBox11";
             this.groupBox11.Size = new System.Drawing.Size(143, 65);
@@ -485,13 +485,23 @@ namespace Zeus
             this.groupBox12.Controls.Add(this.btnBatch);
             this.groupBox12.Controls.Add(this.label1);
             this.groupBox12.Font = new System.Drawing.Font("Gill Sans MT", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox12.ForeColor = Color.FromArgb(255, 0, 150);
+            this.groupBox12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(150)))));
             this.groupBox12.Location = new System.Drawing.Point(469, 209);
             this.groupBox12.Name = "groupBox12";
             this.groupBox12.Size = new System.Drawing.Size(471, 55);
             this.groupBox12.TabIndex = 18;
             this.groupBox12.TabStop = false;
             this.groupBox12.Text = "11 - Extras";
+            // 
+            // button1
+            // 
+            this.button1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.button1.Location = new System.Drawing.Point(252, 19);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(124, 23);
+            this.button1.TabIndex = 20;
+            this.button1.Text = "Classes Necessárias";
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // btnConfiguracoes
             // 
@@ -503,16 +513,6 @@ namespace Zeus
             this.btnConfiguracoes.Text = "Salvar Configurações";
             this.btnConfiguracoes.UseVisualStyleBackColor = true;
             this.btnConfiguracoes.Click += new System.EventHandler(this.btnConfiguracoes_Click_1);
-            // 
-            // button1
-            // 
-            this.button1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.button1.Location = new System.Drawing.Point(252, 19);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(124, 23);
-            this.button1.TabIndex = 20;
-            this.button1.Text = "Classes Necessárias";
-            this.button1.UseVisualStyleBackColor = true;
             // 
             // pictureBox1
             // 
