@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Media;
 using System.Windows.Forms;
@@ -19,11 +20,31 @@ namespace Zeus
             InitializeComponent();
             Application.EnableVisualStyles();
             Som();
+            Transparent();
             InitConfigurations();
             Session.lblStatus = lblStatus;
             Session.progressBar1 = progressBar1;
             ParamtersInput.NomeTabelas = new List<string>();
             txtConnectionString.Text = Settings.Default.ConnectionStringDefault;
+        }
+
+        private void Transparent()
+        {
+            var lista = new List<Control>() { groupBox1, groupBox2, groupBox3, groupBox4, groupBox5, groupBox6, groupBox7, groupBox8, groupBox9, groupBox10, groupBox11, groupBox12 };
+            foreach (var item in lista)
+            {
+                Just(item);
+            }
+            label1.Parent = groupBox12;
+            label1.Location = new Point(382, 21);
+            label1.BackColor = Color.Transparent;
+        }
+
+        private void Just(Control a)
+        {
+            a.Parent = pictureBox1;
+            a.Location = pictureBox1.PointToClient(this.PointToScreen(a.Location));
+            a.BackColor = Color.Transparent;
         }
 
         private void Som()
@@ -32,7 +53,7 @@ namespace Zeus
             SoundPlayer simpleSound = new SoundPlayer($"{path}\\zeus.wav");
             simpleSound.Play();
         }
-      
+
         #region ### GERAR ###
 
         /// <summary>
