@@ -20,8 +20,7 @@ namespace Zeus.Middleware
 
             var dataInicial = DateTime.Now;
             var init = Init(salvar);
-            var dataFinal = DateTime.Now;
-            Util.Status($"Tempo de processamento: {(dataFinal - dataInicial).Seconds}s - Tabelas: {ParamtersInput.NomeTabelas.Count}");
+            init.TechnicalMessage = ($"Tempo de processamento: {(DateTime.Now - dataInicial).Seconds}s - Tabelas: {ParamtersInput.NomeTabelas.Count}");
             return init;
 
         }
@@ -35,11 +34,19 @@ namespace Zeus.Middleware
                     }
                 case 2:
                     {
-                        return new RequestMessage<string>();
+                        return new RequestMessage<string>()
+                        {
+                            Message = "Não foi desenvolvido para esse SGBD!",
+                            StatusCode = System.Net.HttpStatusCode.BadRequest
+                        };
                     }
                 default:
                     {
-                        return new RequestMessage<string>();
+                        return new RequestMessage<string>()
+                        {
+                            Message = "Não foi desenvolvido para esse SGBD!",
+                            StatusCode = System.Net.HttpStatusCode.BadRequest
+                        };
                     }
             }
         }
