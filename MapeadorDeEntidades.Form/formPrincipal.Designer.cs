@@ -55,6 +55,7 @@ namespace Zeus
             this.salvar = new System.Windows.Forms.FolderBrowserDialog();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.lblStatus = new System.Windows.Forms.Label();
+            this.progressBar1 = new Zeus.Core.NewProgressBar();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
@@ -71,7 +72,6 @@ namespace Zeus
             this.button1 = new System.Windows.Forms.Button();
             this.btnConfiguracoes = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.progressBar1 = new Zeus.Core.NewProgressBar();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox5.SuspendLayout();
@@ -348,6 +348,14 @@ namespace Zeus
             this.lblStatus.TabIndex = 15;
             this.lblStatus.Text = "Aguardando Instruções";
             // 
+            // progressBar1
+            // 
+            this.progressBar1.ForeColor = System.Drawing.Color.Maroon;
+            this.progressBar1.Location = new System.Drawing.Point(6, 35);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(430, 10);
+            this.progressBar1.TabIndex = 14;
+            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.radioNode);
@@ -522,14 +530,6 @@ namespace Zeus
             this.pictureBox1.Size = new System.Drawing.Size(957, 281);
             this.pictureBox1.TabIndex = 19;
             this.pictureBox1.TabStop = false;
-            // 
-            // progressBar1
-            // 
-            this.progressBar1.ForeColor = System.Drawing.Color.Maroon;
-            this.progressBar1.Location = new System.Drawing.Point(6, 35);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(430, 10);
-            this.progressBar1.TabIndex = 14;
             // 
             // formPrincipal
             // 
