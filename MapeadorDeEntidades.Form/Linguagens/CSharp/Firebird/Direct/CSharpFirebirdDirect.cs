@@ -15,6 +15,7 @@ namespace Zeus.Linguagens.CSharp.Firebird.Direct
         private StringBuilder Imports()
         {
             var imports = new StringBuilder();
+            imports.Append($"using System.Data;{N}");
             imports.Append($"using System.Windows.Forms;{N}{N}");
             return imports;
         }
@@ -61,10 +62,10 @@ namespace Zeus.Linguagens.CSharp.Firebird.Direct
             if (count == 0)
                 return param;
 
-            param.Append($"    		+$\"({{entidade.{ListaAtributosTabela[0].FIELD_NAME}}}\"+{N}");
+            param.Append($"    		+$\"({{entidade.{ListaAtributosTabela[0].FIELD_NAME}}}\"{N}");
             for (int i = 1; i < count - 1; i++)
             {
-                param.Append($"    		+$\"{{entidade.{ListaAtributosTabela[i].FIELD_NAME}}},\"+{N}");
+                param.Append($"    		+$\"{{entidade.{ListaAtributosTabela[i].FIELD_NAME}}},\"{N}");
             }
             param.Append($"    		+$\"{{entidade.{ListaAtributosTabela[count - 1].FIELD_NAME}}})\";{N}");
             return param;
@@ -75,23 +76,35 @@ namespace Zeus.Linguagens.CSharp.Firebird.Direct
             var get = new StringBuilder();
             get.Append($"    	public void Update({NomeTabela}Model entidade){N}");
             get.Append($"    	{{{N}");
-            get.Append($"    	 	var sql = $\"UPDATE {NomeTabela} SET\" + {N}");
-            foreach (var item in ListaAtributosTabela)
-            {
-                get.Append($"    		+\"{item.FIELD_NAME} = \"+{item.FIELD_NAME}" + N);
-            }
-            get.Append($"    	 	+$\"WHERE {ListaAtributosTabela.First().FIELD_NAME} = {{ entidade.{ListaAtributosTabela.First().FIELD_NAME}}};\" {N}");
+            get.Append($"    	 	var sql = $\"UPDATE {NomeTabela} SET \" {N}");
+            get.Append(UpdateParams());
+            get.Append($"    	 	+$\"WHERE {ListaAtributosTabela.First().FIELD_NAME} = {{ entidade.{ListaAtributosTabela.First().FIELD_NAME}}}\"; {N}");
             get.Append($"    	 	ExecuteNonResult(sql); {N}");
             get.Append($"    	 	MessageBox.Show(\"Registro gravado com sucesso !!!\");{N}");
             get.Append($"    	}}{N}");
             return get;
         }
+        private StringBuilder UpdateParams()
+        {
+            var param = new StringBuilder();
+            var count = ListaAtributosTabela.Count;
+            if (count == 0)
+                return param;
+
+            for (int i = 0; i < count - 1; i++)
+            {
+                param.Append($"    		+$\"{ListaAtributosTabela[i].FIELD_NAME} = {{entidade.{ListaAtributosTabela[i].FIELD_NAME}}},\"" + N);
+            }
+            param.Append($"    		+$\"{ListaAtributosTabela[count - 1].FIELD_NAME} = {{entidade.{ListaAtributosTabela[count - 1].FIELD_NAME}}} \"" + N);
+            return param;
+        }
+
         private StringBuilder Delete()
         {
             var get = new StringBuilder();
             get.Append($"    	public void Delete(int ID){N}");
             get.Append($"    	{{{N}");
-            get.Append($"    	 	var sql = $\"DELETE FROM {NomeTabela} WHERE {ListaAtributosTabela.First().FIELD_NAME} = {{ ID }}\"{N}");
+            get.Append($"    	 	var sql = $\"DELETE FROM {NomeTabela} WHERE {ListaAtributosTabela.First().FIELD_NAME} = {{ ID }}\";{N}");
             get.Append($"    	 	ExecuteNonResult(sql); {N}");
             get.Append($"    	 	MessageBox.Show(\"Registro excluído com sucesso !!!\"); {N}");
             get.Append($"    	}}{N}");
