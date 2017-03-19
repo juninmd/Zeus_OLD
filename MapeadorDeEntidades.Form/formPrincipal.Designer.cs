@@ -58,6 +58,7 @@ namespace Zeus
             this.progressBar1 = new Zeus.Core.NewProgressBar();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.radioSGBD4 = new System.Windows.Forms.RadioButton();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.ddlDatabase = new System.Windows.Forms.ComboBox();
             this.txtPreFixoProcedures = new System.Windows.Forms.TextBox();
@@ -372,6 +373,7 @@ namespace Zeus
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.radioSGBD4);
             this.groupBox2.Controls.Add(this.radioSGBD3);
             this.groupBox2.Controls.Add(this.radioSGBD2);
             this.groupBox2.Controls.Add(this.radioSGBD1);
@@ -383,6 +385,20 @@ namespace Zeus
             this.groupBox2.TabIndex = 10;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "2 - SGBD";
+            // 
+            // radioSGBD4
+            // 
+            this.radioSGBD4.AutoSize = true;
+            this.radioSGBD4.Enabled = false;
+            this.radioSGBD4.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.radioSGBD4.Location = new System.Drawing.Point(7, 92);
+            this.radioSGBD4.Name = "radioSGBD4";
+            this.radioSGBD4.Size = new System.Drawing.Size(67, 20);
+            this.radioSGBD4.TabIndex = 3;
+            this.radioSGBD4.TabStop = true;
+            this.radioSGBD4.Text = "Firebird";
+            this.radioSGBD4.UseVisualStyleBackColor = true;
+            this.radioSGBD4.Visible = false;
             // 
             // groupBox7
             // 
@@ -623,6 +639,7 @@ namespace Zeus
         private System.Windows.Forms.Button btnConfiguracoes;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.RadioButton radioSGBD4;
     }
 }
 

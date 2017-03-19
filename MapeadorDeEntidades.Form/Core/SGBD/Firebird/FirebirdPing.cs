@@ -1,0 +1,35 @@
+﻿using System.Collections.Generic;
+
+namespace Zeus.Core.SGBD.Firebird
+{
+    public class FirebirdPing : FirebirdRepository
+    {
+        public RequestMessage<List<string>> ConnectaSQL()
+        {
+            var ping = Ping();
+            if (!ping.IsError)
+            {
+                ping.Content = new FirebirdTables().ListaTabelas();
+            }
+            return ping;
+        }
+
+        public RequestMessage<List<string>> Ping()
+        {
+            using (var r = ExecuteReader("select current_timestamp(0) AS DATA from rdb$database"))
+                if (r.Read())
+                {
+                    return new RequestMessage<List<string>>
+                    {
+                        StatusCode = System.Net.HttpStatusCode.OK,
+                        Message = "Connectado com sucesso!"
+                    };
+                };
+            return new RequestMessage<List<string>>
+            {
+                StatusCode = System.Net.HttpStatusCode.InternalServerError,
+                Message = "Não foi possível connectar!"
+            };
+        }
+    }
+}

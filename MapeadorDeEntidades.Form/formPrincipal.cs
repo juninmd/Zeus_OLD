@@ -143,7 +143,7 @@ namespace Zeus
             ParamtersInput.NomeTabelas.Clear();
             ParamtersInput.ConnectionString = txtConnectionString.Text;
             ParamtersInput.Linguagem = radioCsharp.Checked ? 1 : radioJava.Checked ? 2 : radioNode.Checked ? 3 : 0;
-            ParamtersInput.SGBD = radioSGBD1.Checked ? 1 : radioSGBD2.Checked ? 2 : radioSGBD3.Checked ? 3 : 0;
+            ParamtersInput.SGBD = radioSGBD1.Checked ? 1 : radioSGBD2.Checked ? 2 : radioSGBD3.Checked ? 3 : radioSGBD4.Checked ? 4 : 0;
             ParamtersInput.TodasTabelas = btnChkTabela.Checked;
             ParamtersInput.DataBase = ddlDatabase?.SelectedItem?.ToString();
 
