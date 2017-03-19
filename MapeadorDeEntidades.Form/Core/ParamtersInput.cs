@@ -17,6 +17,7 @@ namespace Zeus.Core
         /// 1 - Oracle
         /// 2 - Microsoft SQL
         /// 3 - MYSQL
+        /// 4 - Firebird
         /// </summary>
         public static int SGBD { get; set; }
         public static string ConnectionString { get; set; }

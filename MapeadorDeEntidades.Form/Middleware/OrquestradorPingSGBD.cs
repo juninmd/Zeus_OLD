@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Runtime.InteropServices;
 using Zeus.Core;
+using Zeus.Core.SGBD.Firebird;
 using Zeus.Core.SGBD.Microsoft_SQL;
 using Zeus.Core.SGBD.MySql;
 using Zeus.Core.SGBD.Oracle;
@@ -33,6 +34,8 @@ namespace Zeus.Middleware
                         return new SQLPing().ConnectaSQL();
                     case 3:
                         return new MySqlPing().ConnectaSQL();
+                    case 4:
+                        return new FirebirdPing().ConnectaSQL();
                     default:
                         return new RequestMessage<List<string>>
                         {

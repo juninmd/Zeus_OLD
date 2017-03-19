@@ -18,7 +18,6 @@ namespace Zeus.Linguagens.Java.MySql.Procedure
             var imports = new StringBuilder();
             imports.Append($"import java.sql.ResultSet;{N}");
             imports.Append($"import java.util.List;{N}");
-            imports.Append($"import br.fatecfranca.model.{NomeTabela};{N}");
             imports.Append($"import java.sql.PreparedStatement;{N}");
             return imports;
         }
