@@ -2,6 +2,7 @@
 using System.Net;
 using System.Windows.Forms;
 using Zeus.Core;
+using Zeus.Linguagens.CSharp.Firebird.Direct;
 using Zeus.Linguagens.CSharp.Oracle.Procedure;
 using Zeus.Linguagens.CSharp.SQL.Procedure;
 using Zeus.Linguagens.Java.MySql.Procedure;
@@ -102,7 +103,24 @@ namespace Zeus.Middleware
                         }
 
                     }
-                 
+                case 4:
+                    {
+                        switch (ParamtersInput.Linguagem)
+                        {
+                            case 1:
+                                {
+                                    return new ChamadaCsharpFirebirdProcedure().CSharp(salvar);
+                                }
+                            default:
+                                {
+                                    return new RequestMessage<string>()
+                                    {
+                                        StatusCode = HttpStatusCode.InternalServerError,
+                                        Message = "Essa linguagem não foi programada!"
+                                    };
+                                }
+                        }
+                    } 
                 default:
                     {
                         return new RequestMessage<string>()
