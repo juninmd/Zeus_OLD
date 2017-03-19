@@ -143,11 +143,13 @@
     <Compile Include="formPrincipal.Designer.cs">
       <DependentUpon>formPrincipal.cs</DependentUpon>
     </Compile>
+    <Compile Include="Linguagens\Base\BaseFirebirdDAO.cs" />
     <Compile Include="Linguagens\Base\BaseMySqlDAO.cs" />
     <Compile Include="Linguagens\Base\BaseSQLDAO.cs" />
     <Compile Include="Linguagens\Base\BaseOracleDAO.cs" />
     <Compile Include="Linguagens\Base\BaseEntity.cs" />
     <Compile Include="Linguagens\CSharp\Firebird\CSharpTypesFirebird.cs" />
+    <Compile Include="Linguagens\CSharp\Firebird\Direct\ChamadaCsharpFirebirdProcedure.cs" />
     <Compile Include="Linguagens\CSharp\Firebird\Direct\CSharpFirebirdDirect.cs" />
     <Compile Include="Linguagens\CSharp\Firebird\Entidade\CSharpFirebirdOrquestraEntidade.cs" />
     <Compile Include="Linguagens\CSharp\Firebird\Entidade\CSharpSQLEntidade.cs" />
