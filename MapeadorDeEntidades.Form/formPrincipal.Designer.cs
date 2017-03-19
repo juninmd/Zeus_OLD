@@ -389,7 +389,6 @@ namespace Zeus
             // radioSGBD4
             // 
             this.radioSGBD4.AutoSize = true;
-            this.radioSGBD4.Enabled = false;
             this.radioSGBD4.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.radioSGBD4.Location = new System.Drawing.Point(7, 92);
             this.radioSGBD4.Name = "radioSGBD4";
@@ -398,7 +397,6 @@ namespace Zeus
             this.radioSGBD4.TabStop = true;
             this.radioSGBD4.Text = "Firebird";
             this.radioSGBD4.UseVisualStyleBackColor = true;
-            this.radioSGBD4.Visible = false;
             // 
             // groupBox7
             // 
