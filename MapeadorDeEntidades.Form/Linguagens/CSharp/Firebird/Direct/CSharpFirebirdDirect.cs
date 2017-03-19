@@ -46,7 +46,7 @@ namespace Zeus.Linguagens.CSharp.Firebird.Direct
         private StringBuilder Add()
         {
             var get = new StringBuilder();
-            get.Append($"    	public void Insert({NomeTabela}Model entidade){N}");
+            get.Append($"    	public void Insert({NomeTabela.ToFirstCharToUpper()}Model entidade){N}");
             get.Append($"    	{{{N}");
             get.Append($"    	 	var sql = $\"INSERT INTO {NomeTabela} VALUES\"{N}");
             get.Append(AddParams());
@@ -74,7 +74,7 @@ namespace Zeus.Linguagens.CSharp.Firebird.Direct
         private StringBuilder Update()
         {
             var get = new StringBuilder();
-            get.Append($"    	public void Update({NomeTabela}Model entidade){N}");
+            get.Append($"    	public void Update({NomeTabela.ToFirstCharToUpper()}Model entidade){N}");
             get.Append($"    	{{{N}");
             get.Append($"    	 	var sql = $\"UPDATE {NomeTabela} SET \" {N}");
             get.Append(UpdateParams());
