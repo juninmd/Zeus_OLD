@@ -21,7 +21,7 @@ namespace Zeus.Linguagens.CSharp.Firebird.Entidade
                     Util.Barra((int)((((decimal)i / max) * 100)));
                     Util.Status($"Processando tabela: {nomeTabela}");
                     var classe = new CSharpFirebirdEntidade().GerarBody(nomeTabela);
-                    File.WriteAllText($"{salvar.SelectedPath}\\{nomeTabela}Model.cs", classe);
+                    File.WriteAllText($"{salvar.SelectedPath}\\{nomeTabela.ToFirstCharToUpper()}Model.cs", classe);
                 }
                 return new RequestMessage<string>()
                 {

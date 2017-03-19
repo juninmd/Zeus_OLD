@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using Zeus.Core;
 using Zeus.Core.SGBD.Firebird;
 using Zeus.Linguagens.Base;
 
@@ -19,16 +20,13 @@ namespace Zeus.Linguagens.CSharp.Firebird.Entidade
             var classe = new StringBuilder();
             classe.Append("namespace Model" + N);
             classe.Append("{" + N);
-            classe.Append($"    public class {nomeTabela.TratarNomeFirebird()}" + N);
+            classe.Append($"    public class {nomeTabela.ToFirstCharToUpper()}Model" + N);
             classe.Append("    {" + N + N);
 
             var atributos = new FirebirdTables().ListarAtributos(nomeTabela);
 
             foreach (var item in atributos)
             {
-                classe.Append("         /// <summary>" + N);
-                classe.Append($"         ///  " + N);
-                classe.Append("         /// </summary>" + N);
                 classe.Append($"         public string {item.FIELD_NAME} {{ get; set; }}" + N);
                 classe.Append(N);
             }
