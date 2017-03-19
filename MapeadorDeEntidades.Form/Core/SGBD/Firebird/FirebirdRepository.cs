@@ -66,11 +66,11 @@ namespace Zeus.Core.SGBD.Firebird
     }
     public static class NullSafeGetter
     {
-        public static T GetValueOrDefault<T>(this IDataRecord r, string columnName, [CallerFilePath]string sourceFilePath = "")
+        public static string GetValueOrDefault<T>(this IDataRecord r, string columnName, [CallerFilePath]string sourceFilePath = "")
         {
             try
             {
-                return r[columnName] == DBNull.Value ? default(T) : (T)r[columnName];
+                return r[columnName].ToString().Trim(); ;
             }
             catch (Exception ex) when (ex.Message == "Unable to find specified column in result set")
             {

@@ -149,6 +149,8 @@
     <Compile Include="Linguagens\Base\BaseEntity.cs" />
     <Compile Include="Linguagens\CSharp\Firebird\CSharpTypesFirebird.cs" />
     <Compile Include="Linguagens\CSharp\Firebird\Direct\CSharpFirebirdDirect.cs" />
+    <Compile Include="Linguagens\CSharp\Firebird\Entidade\CSharpFirebirdOrquestraEntidade.cs" />
+    <Compile Include="Linguagens\CSharp\Firebird\Entidade\CSharpSQLEntidade.cs" />
     <Compile Include="Linguagens\CSharp\Oracle\CSharpTypesOracle.cs" />
     <Compile Include="Linguagens\CSharp\Oracle\Entidade\CSharpOracleEntidade.cs" />
     <Compile Include="Linguagens\CSharp\Oracle\Procedure\CsharpOracleProcedure.cs" />

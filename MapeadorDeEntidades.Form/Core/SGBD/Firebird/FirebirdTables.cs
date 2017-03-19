@@ -14,7 +14,7 @@ namespace Zeus.Core.SGBD.Firebird
             using (var r = ExecuteReader(query))
                 while (r.Read())
                 {
-                    lista.Add(r.GetValueOrDefault<string>("TABLE_NAME"));
+                    lista.Add(r.GetValueOrDefault<string>("TABLE_NAME").Trim());
                 };
             CloseConnection();
             return lista;
@@ -30,8 +30,8 @@ namespace Zeus.Core.SGBD.Firebird
                 {
                     lista.Add(new FirebirdEntidadeTabela
                     {
-                        FIELD_NAME = r.GetValueOrDefault<string>("RDS$FIELD_NAME"),
-                        IS_NULLABLE = r.GetValueOrDefault<string>("RDS$FIELD_NAME") == "1",
+                        FIELD_NAME = r.GetValueOrDefault<string>("RDB$FIELD_NAME").Trim(),
+                        IS_NULLABLE = r.GetValueOrDefault<string>("RDB$NULL_FLAG") != "1",
                     });
                 };
             CloseConnection();

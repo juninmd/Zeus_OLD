@@ -2,6 +2,7 @@
 using System.Net;
 using System.Windows.Forms;
 using Zeus.Core;
+using Zeus.Linguagens.CSharp.Firebird.Entidade;
 using Zeus.Linguagens.CSharp.Oracle.Entidade;
 using Zeus.Linguagens.CSharp.SQL.Entidade;
 using Zeus.Linguagens.Java.MySql.Entidade;
@@ -84,6 +85,24 @@ namespace Zeus.Middleware
                             case 2:
                                 {
                                     return new JavaMySqlOrquestraEntidade().Java(salvar);
+                                }
+                            default:
+                                {
+                                    return new RequestMessage<string>()
+                                    {
+                                        StatusCode = HttpStatusCode.BadGateway,
+                                        Message = "Essa linguagem não foi programada."
+                                    };
+                                }
+                        }
+                    }
+                case 4:
+                    {
+                        switch (ParamtersInput.Linguagem)
+                        {
+                            case 1:
+                                {
+                                    return new CSharpFirebirdOrquestraEntidade().CSharp(salvar);
                                 }
                             default:
                                 {
