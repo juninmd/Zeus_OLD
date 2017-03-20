@@ -48,7 +48,7 @@ namespace Zeus.Linguagens.CSharp.Firebird.Direct
             var get = new StringBuilder();
             get.Append($"    	public void Insert({NomeTabela.ToFirstCharToUpper()}Model entidade){N}");
             get.Append($"    	{{{N}");
-            get.Append($"    	 	var sql = $\"INSERT INTO {NomeTabela} VALUES\"{N}");
+            get.Append($"    	 	var sql = $\"INSERT INTO {NomeTabela} ({string.Join(",", ListaAtributosTabela.Select(q=> q.FIELD_NAME))}) VALUES\"{N}");
             get.Append(AddParams());
             get.Append($"    	 	ExecuteNonResult(sql); {N}");
             get.Append($"    	 	MessageBox.Show(\"Registro inserido com sucesso !!!\"); {N}");
@@ -62,12 +62,12 @@ namespace Zeus.Linguagens.CSharp.Firebird.Direct
             if (count == 0)
                 return param;
 
-            param.Append($"    		+$\"({{entidade.{ListaAtributosTabela[0].FIELD_NAME}}}\"{N}");
+            param.Append($"    		+$\"('{{entidade.{ListaAtributosTabela[0].FIELD_NAME}}}',\"{N}");
             for (int i = 1; i < count - 1; i++)
             {
-                param.Append($"    		+$\"{{entidade.{ListaAtributosTabela[i].FIELD_NAME}}},\"{N}");
+                param.Append($"    		+$\"'{{entidade.{ListaAtributosTabela[i].FIELD_NAME}}}',\"{N}");
             }
-            param.Append($"    		+$\"{{entidade.{ListaAtributosTabela[count - 1].FIELD_NAME}}})\";{N}");
+            param.Append($"    		+$\"'{{entidade.{ListaAtributosTabela[count - 1].FIELD_NAME}}}')\";{N}");
             return param;
         }
 
@@ -93,9 +93,9 @@ namespace Zeus.Linguagens.CSharp.Firebird.Direct
 
             for (int i = 0; i < count - 1; i++)
             {
-                param.Append($"    		+$\"{ListaAtributosTabela[i].FIELD_NAME} = {{entidade.{ListaAtributosTabela[i].FIELD_NAME}}},\"" + N);
+                param.Append($"    		+$\"{ListaAtributosTabela[i].FIELD_NAME} = '{{entidade.{ListaAtributosTabela[i].FIELD_NAME}}}',\"" + N);
             }
-            param.Append($"    		+$\"{ListaAtributosTabela[count - 1].FIELD_NAME} = {{entidade.{ListaAtributosTabela[count - 1].FIELD_NAME}}} \"" + N);
+            param.Append($"    		+$\"{ListaAtributosTabela[count - 1].FIELD_NAME} = '{{entidade.{ListaAtributosTabela[count - 1].FIELD_NAME}}}' \"" + N);
             return param;
         }
 
