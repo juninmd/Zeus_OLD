@@ -1,10 +1,10 @@
 ﻿using System.Text;
-using Zeus.Core.SGBD.Oracle;
+using Zeus.Core.SGBD.MySql;
 using Zeus.Linguagens.Base;
 
-namespace Zeus.Linguagens.CSharp.Oracle.Entidade
+namespace Zeus.Linguagens.CSharp.MySql.Entidade
 {
-    public class CSharpOracleEntidade : BaseEntity
+    public class CSharpMySqlEntidade : BaseEntity
     {
         private StringBuilder GerarUsing()
         {
@@ -22,14 +22,14 @@ namespace Zeus.Linguagens.CSharp.Oracle.Entidade
             classe.Append($"    public class {nomeTabela}" + N);
             classe.Append("    {" + N + N);
 
-            var atributos = new OracleTables().ListarAtributos(nomeTabela);
+            var atributos = new MySqlTables().ListarAtributos(nomeTabela);
 
             foreach (var item in atributos)
             {
                 classe.Append("         /// <summary>" + N);
-                classe.Append($"         /// {item.COMMENTS}" + N);
+                classe.Append($"         /// {item.COLUMN_COMMENT}" + N);
                 classe.Append("         /// </summary>" + N);
-                classe.Append($"         public {CSharpTypesOracle.GetTypeAtribute(item.DATA_TYPE, item.NULLABLE)} {item.COLUMN_NAME} {{ get; set; }}" + N);
+                classe.Append($"         public {CSharpTypesMySql.GetTypeAtribute(item.DATA_TYPE, item.IS_NULLABLE)} {item.COLUMN_NAME} {{ get; set; }}" + N);
                 classe.Append(N);
             }
             classe.Append("    }" + N);

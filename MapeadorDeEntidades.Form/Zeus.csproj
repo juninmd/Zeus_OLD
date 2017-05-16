@@ -153,6 +153,13 @@
     <Compile Include="Linguagens\CSharp\Firebird\Direct\CSharpFirebirdDirect.cs" />
     <Compile Include="Linguagens\CSharp\Firebird\Entidade\CSharpFirebirdOrquestraEntidade.cs" />
     <Compile Include="Linguagens\CSharp\Firebird\Entidade\CSharpSQLEntidade.cs" />
+    <Compile Include="Linguagens\CSharp\MYSQL\CSharpTypesMySql.cs" />
+    <Compile Include="Linguagens\CSharp\MYSQL\Entidade\CSharpMySqlEntidade.cs" />
+    <Compile Include="Linguagens\CSharp\MYSQL\Entidade\CSharpMySqlOrquestraEntidade.cs" />
+    <Compile Include="Linguagens\CSharp\MYSQL\Procedure\ChamadaCsharpMySqlProcedure.cs" />
+    <Compile Include="Linguagens\CSharp\MYSQL\Procedure\CsharpMySqlProcedure.cs" />
+    <Compile Include="Linguagens\CSharp\MYSQL\Query\ChamadaCsharpMySqlQuery.cs" />
+    <Compile Include="Linguagens\CSharp\MYSQL\Query\CsharpMySqlQuery.cs" />
     <Compile Include="Linguagens\CSharp\Oracle\CSharpTypesOracle.cs" />
     <Compile Include="Linguagens\CSharp\Oracle\Entidade\CSharpOracleEntidade.cs" />
     <Compile Include="Linguagens\CSharp\Oracle\Procedure\CsharpOracleProcedure.cs" />

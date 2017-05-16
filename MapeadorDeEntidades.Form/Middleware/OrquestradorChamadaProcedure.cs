@@ -3,6 +3,7 @@ using System.Net;
 using System.Windows.Forms;
 using Zeus.Core;
 using Zeus.Linguagens.CSharp.Firebird.Direct;
+using Zeus.Linguagens.CSharp.MYSQL.Query;
 using Zeus.Linguagens.CSharp.Oracle.Procedure;
 using Zeus.Linguagens.CSharp.SQL.Procedure;
 using Zeus.Linguagens.Java.MySql.Procedure;
@@ -84,6 +85,11 @@ namespace Zeus.Middleware
                     {
                         switch (ParamtersInput.Linguagem)
                         {
+
+                            case 1:
+                                {
+                                    return new ChamadaCsharpMySqlQuery().CSharp(salvar);
+                                }
                             case 2:
                                 {
                                     return new ChamadaJavaMySqlProcedure().Java(salvar);
@@ -120,7 +126,7 @@ namespace Zeus.Middleware
                                     };
                                 }
                         }
-                    } 
+                    }
                 default:
                     {
                         return new RequestMessage<string>()
