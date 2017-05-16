@@ -2,11 +2,11 @@
 using Zeus.Linguagens.Base;
 using Zeus.Properties;
 
-namespace Zeus.Linguagens.CSharp.Oracle.Procedure
+namespace Zeus.Linguagens.CSharp.MySql.Procedure
 {
-    public class CsharpOracleProcedure : BaseOracleDAO
+    public class CsharpMySqlProcedure : BaseMySqlDAO
     {
-        public CsharpOracleProcedure(string nomeTabela) : base(nomeTabela)
+        public CsharpMySqlProcedure(string nomeTabela) : base(nomeTabela)
         {
         }
 
@@ -26,13 +26,13 @@ namespace Zeus.Linguagens.CSharp.Oracle.Procedure
                     return "string";
             }
         }
-    
+
 
         #region CLASSE 
 
         public StringBuilder GerarBodyCSharpProc()
         {
-            var nomeProcBase =NomeTabela.Replace(Settings.Default.PrefixoTabela, "");
+            var nomeProcBase = NomeTabela.Replace(Settings.Default.PrefixoTabela, "");
 
             var classe = new StringBuilder();
             classe.Append("using System.Net;" + N);
@@ -114,7 +114,7 @@ namespace Zeus.Linguagens.CSharp.Oracle.Procedure
             var atributoText = new StringBuilder();
             foreach (var item in ListaAtributosTabela)
             {
-                atributoText.Append($"                        {item.COLUMN_NAME} = \"{item.COLUMN_NAME}\".GetValueOrDefault<{GetTypeAtribute(item.DATA_TYPE, item.NULLABLE)}>(reader)," + N);
+                atributoText.Append($"                        {item.COLUMN_NAME} = \"{item.COLUMN_NAME}\".GetValueOrDefault<{GetTypeAtribute(item.DATA_TYPE, item.IS_NULLABLE)}>(reader)," + N);
             }
             return atributoText;
         }
@@ -176,7 +176,7 @@ namespace Zeus.Linguagens.CSharp.Oracle.Procedure
 
         public StringBuilder GerarInterfaceSharProc()
         {
-            var nomeProcBase =NomeTabela.Replace(Settings.Default.PrefixoTabela, "");
+            var nomeProcBase = NomeTabela.Replace(Settings.Default.PrefixoTabela, "");
 
             var classe = new StringBuilder();
             classe.Append("using System;" + N + N);

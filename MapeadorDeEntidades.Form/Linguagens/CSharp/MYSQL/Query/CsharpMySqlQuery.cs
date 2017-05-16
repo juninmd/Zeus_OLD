@@ -2,11 +2,11 @@
 using Zeus.Linguagens.Base;
 using Zeus.Properties;
 
-namespace Zeus.Linguagens.CSharp.Oracle.Procedure
+namespace Zeus.Linguagens.CSharp.MYSQL.Query
 {
-    public class CsharpOracleProcedure : BaseOracleDAO
+    public class CsharpMySqlQuery : BaseMySqlDAO
     {
-        public CsharpOracleProcedure(string nomeTabela) : base(nomeTabela)
+        public CsharpMySqlQuery(string nomeTabela) : base(nomeTabela)
         {
         }
 
@@ -32,7 +32,8 @@ namespace Zeus.Linguagens.CSharp.Oracle.Procedure
 
         public StringBuilder GerarBodyCSharpProc()
         {
-            var nomeProcBase =NomeTabela.Replace(Settings.Default.PrefixoTabela, "");
+            //aqui
+            var nomeProcBase = NomeTabela.Replace(Settings.Default.PrefixoTabela, "");
 
             var classe = new StringBuilder();
             classe.Append("using System.Net;" + N);
@@ -41,8 +42,6 @@ namespace Zeus.Linguagens.CSharp.Oracle.Procedure
             classe.Append("{" + N);
             classe.Append($"    public class {nomeProcBase.ToLowerInvariant()}RequestRepository : ADORepository" + N);
             classe.Append("    {" + N + N);
-            classe.Append($"        private const string PackageName = \"{NomeTabela.Replace("_T_", "_PG_")}\";" + N + N);
-            classe.Append(Procedures(nomeProcBase));
             classe.Append(GetById(nomeProcBase));
             classe.Append(Add(nomeProcBase));
             classe.Append(Update(nomeProcBase));
@@ -114,7 +113,7 @@ namespace Zeus.Linguagens.CSharp.Oracle.Procedure
             var atributoText = new StringBuilder();
             foreach (var item in ListaAtributosTabela)
             {
-                atributoText.Append($"                        {item.COLUMN_NAME} = \"{item.COLUMN_NAME}\".GetValueOrDefault<{GetTypeAtribute(item.DATA_TYPE, item.NULLABLE)}>(reader)," + N);
+                atributoText.Append($"                        {item.COLUMN_NAME} = \"{item.COLUMN_NAME}\".GetValueOrDefault<{GetTypeAtribute(item.DATA_TYPE, item.IS_NULLABLE)}>(reader)," + N);
             }
             return atributoText;
         }
