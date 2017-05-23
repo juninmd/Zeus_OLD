@@ -46,7 +46,7 @@ namespace Zeus
                     Firebird.Checked = true;
                     break;
                 case "Postgree":
-                    FormPrincipal.Text = $"Server={txt1.Text};Uid={txt2.Text};Pwd={txt3.Text};Port={txt4.Text}";
+                    FormPrincipal.Text = $"Host={txt1.Text};Database={txt2.Text};User={txt3.Text};Password={txt4.Text};Port={txt5.Text}";
                     Postgree.Checked = true;
                     break;
             }
@@ -102,12 +102,13 @@ namespace Zeus
                     }
                 case "Postgree":
                     {
-                        lbl1.Text = "Server";
-                        lbl2.Text = "Uid";
+                        lbl1.Text = "Host";
+                        lbl2.Text = "Database";
                         lbl3.Text = "Password";
-                        lbl4.Text = "Port";
-                        lbl4.Visible = lbl3.Visible = lbl2.Visible = lbl1.Visible = true;
-                        txt1.Visible = txt2.Visible = txt3.Visible = txt4.Visible = true;
+                        lbl4.Text = "User ID";
+                        lbl5.Text = "Password";
+                        lbl5.Visible = lbl4.Visible = lbl3.Visible = lbl2.Visible = lbl1.Visible = true;
+                        txt1.Visible = txt2.Visible = txt3.Visible = txt4.Visible = txt5.Visible = true;
                         return;
                     }
 

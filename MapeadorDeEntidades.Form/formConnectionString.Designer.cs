@@ -159,7 +159,7 @@
             this.textBox5.ReadOnly = true;
             this.textBox5.Size = new System.Drawing.Size(426, 20);
             this.textBox5.TabIndex = 0;
-            this.textBox5.Text = "Server=###;Uid=###;Pwd=###;Port=###";
+            this.textBox5.Text = "User ID=###;Password=###;Host=###;Port=###;Database=####;";
             // 
             // groupBox6
             // 

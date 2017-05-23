@@ -43,7 +43,6 @@ namespace Zeus
             this.radioSGBD2 = new System.Windows.Forms.RadioButton();
             this.radioSGBD1 = new System.Windows.Forms.RadioButton();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.btnSequence = new System.Windows.Forms.Button();
             this.btnBatch = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.btnChkTabela = new System.Windows.Forms.CheckBox();
@@ -99,7 +98,7 @@ namespace Zeus
             // btnEntidade
             // 
             this.btnEntidade.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnEntidade.Location = new System.Drawing.Point(6, 15);
+            this.btnEntidade.Location = new System.Drawing.Point(369, 17);
             this.btnEntidade.Name = "btnEntidade";
             this.btnEntidade.Size = new System.Drawing.Size(89, 30);
             this.btnEntidade.TabIndex = 1;
@@ -110,20 +109,20 @@ namespace Zeus
             // btnChamadaProc
             // 
             this.btnChamadaProc.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnChamadaProc.Location = new System.Drawing.Point(101, 15);
+            this.btnChamadaProc.Location = new System.Drawing.Point(11, 17);
             this.btnChamadaProc.Name = "btnChamadaProc";
-            this.btnChamadaProc.Size = new System.Drawing.Size(156, 30);
+            this.btnChamadaProc.Size = new System.Drawing.Size(216, 30);
             this.btnChamadaProc.TabIndex = 4;
-            this.btnChamadaProc.Text = "Acesso Banco de Dados";
+            this.btnChamadaProc.Text = "Classe de acesso ao banco de dados";
             this.btnChamadaProc.UseVisualStyleBackColor = true;
             this.btnChamadaProc.Click += new System.EventHandler(this.btnChamadaProc_Click);
             // 
             // btnProc
             // 
             this.btnProc.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnProc.Location = new System.Drawing.Point(263, 15);
+            this.btnProc.Location = new System.Drawing.Point(233, 17);
             this.btnProc.Name = "btnProc";
-            this.btnProc.Size = new System.Drawing.Size(95, 30);
+            this.btnProc.Size = new System.Drawing.Size(130, 30);
             this.btnProc.TabIndex = 5;
             this.btnProc.Text = "Procedure";
             this.btnProc.UseVisualStyleBackColor = true;
@@ -142,6 +141,7 @@ namespace Zeus
             this.radioCsharp.Text = "C #";
             this.radioCsharp.UseVisualStyleBackColor = true;
             this.radioCsharp.CheckedChanged += new System.EventHandler(this.EventSetParamters);
+            this.radioCsharp.Click += new System.EventHandler(this.CheckLanguage);
             // 
             // radioJava
             // 
@@ -155,6 +155,7 @@ namespace Zeus
             this.radioJava.Text = "Java";
             this.radioJava.UseVisualStyleBackColor = true;
             this.radioJava.CheckedChanged += new System.EventHandler(this.EventSetParamters);
+            this.radioJava.Click += new System.EventHandler(this.CheckLanguage);
             // 
             // radioNode
             // 
@@ -168,6 +169,7 @@ namespace Zeus
             this.radioNode.Text = "Node JS";
             this.radioNode.UseVisualStyleBackColor = true;
             this.radioNode.CheckedChanged += new System.EventHandler(this.EventSetParamters);
+            this.radioNode.Click += new System.EventHandler(this.CheckLanguage);
             // 
             // radioSGBD3
             // 
@@ -211,7 +213,6 @@ namespace Zeus
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.btnSequence);
             this.groupBox3.Controls.Add(this.btnEntidade);
             this.groupBox3.Controls.Add(this.btnChamadaProc);
             this.groupBox3.Controls.Add(this.btnProc);
@@ -223,17 +224,6 @@ namespace Zeus
             this.groupBox3.TabIndex = 11;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "10 - Gerar";
-            // 
-            // btnSequence
-            // 
-            this.btnSequence.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnSequence.Location = new System.Drawing.Point(364, 15);
-            this.btnSequence.Name = "btnSequence";
-            this.btnSequence.Size = new System.Drawing.Size(101, 30);
-            this.btnSequence.TabIndex = 17;
-            this.btnSequence.Text = "Sequence";
-            this.btnSequence.UseVisualStyleBackColor = true;
-            this.btnSequence.Click += new System.EventHandler(this.btnSequence_Click);
             // 
             // btnBatch
             // 
@@ -422,7 +412,7 @@ namespace Zeus
             // 
             // txtPreFixoProcedures
             // 
-            this.txtPreFixoProcedures.Location = new System.Drawing.Point(9, 19);
+            this.txtPreFixoProcedures.Location = new System.Drawing.Point(9, 26);
             this.txtPreFixoProcedures.Name = "txtPreFixoProcedures";
             this.txtPreFixoProcedures.Size = new System.Drawing.Size(150, 20);
             this.txtPreFixoProcedures.TabIndex = 0;
@@ -441,7 +431,7 @@ namespace Zeus
             // 
             // txtPrefixoTabela
             // 
-            this.txtPrefixoTabela.Location = new System.Drawing.Point(6, 19);
+            this.txtPrefixoTabela.Location = new System.Drawing.Point(6, 26);
             this.txtPrefixoTabela.Name = "txtPrefixoTabela";
             this.txtPrefixoTabela.Size = new System.Drawing.Size(159, 20);
             this.txtPrefixoTabela.TabIndex = 0;
@@ -460,7 +450,7 @@ namespace Zeus
             // 
             // txtPreFixoPackages
             // 
-            this.txtPreFixoPackages.Location = new System.Drawing.Point(6, 19);
+            this.txtPreFixoPackages.Location = new System.Drawing.Point(6, 26);
             this.txtPreFixoPackages.Name = "txtPreFixoPackages";
             this.txtPreFixoPackages.Size = new System.Drawing.Size(188, 20);
             this.txtPreFixoPackages.TabIndex = 0;
@@ -568,7 +558,7 @@ namespace Zeus
             this.MaximizeBox = false;
             this.Name = "formPrincipal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Zeus - 0.7";
+            this.Text = "Zeus - 0.8";
             this.groupBox3.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
@@ -615,7 +605,6 @@ namespace Zeus
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.Label lblStatus;
         private System.Windows.Forms.RadioButton radioNode;
-        private System.Windows.Forms.Button btnSequence;
         private System.Windows.Forms.Button btnBatch;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
