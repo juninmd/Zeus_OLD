@@ -50,8 +50,16 @@ namespace Zeus
         private void btnChamadaProc_Click(object sender, EventArgs e)
         {
             SetParamters();
-            var mdChamdaProc = new OrquestradorChamadaProcedure().Generate(salvar);
-            Util.Status(mdChamdaProc.Message + " - " + mdChamdaProc.TechnicalMessage);
+            var x = MessageBox.Show("Deseja efetuar as chamadas via Procedure?", "Qual forma de acesso?", MessageBoxButtons.YesNoCancel);
+            if (x == DialogResult.Yes)
+            {
+                var mdChamdaProc = new OrquestradorChamadaProcedure().Generate(salvar);
+                Util.Status(mdChamdaProc.Message + " - " + mdChamdaProc.TechnicalMessage);
+            }
+            else if(x == DialogResult.No)
+            {
+                
+            }
         }
 
         private void btnProcSql_Click(object sender, EventArgs e)
@@ -178,6 +186,23 @@ namespace Zeus
             var mdProc = new OrquestradorTabelasSGBD().Connect();
             ddlTabelas.Items.Clear();
             ddlTabelas.Items.AddRange(mdProc?.Content?.ToArray());
+        }
+
+        private void CheckLanguage(object sender, EventArgs e)
+        {
+            if (radioCsharp.Checked)
+            {
+                btnEntidade.Visible = btnChamadaProc.Visible = btnProc.Visible = true;
+            }
+            else if (radioJava.Checked)
+            {
+                btnEntidade.Visible = btnChamadaProc.Visible = btnProc.Visible = true;
+            }
+            else if (radioNode.Checked)
+            {
+                btnChamadaProc.Visible = btnProc.Visible = true;
+                btnEntidade.Visible = false;
+            }
         }
 
         private void btnConfiguracoes_Click_1(object sender, EventArgs e)
