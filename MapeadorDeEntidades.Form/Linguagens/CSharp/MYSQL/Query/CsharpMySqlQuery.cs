@@ -60,7 +60,7 @@ namespace Zeus.Linguagens.CSharp.MYSQL.Query
             proc.Append(N);
             proc.Append("        private enum Procedures" + N);
             proc.Append("        {" + N);
-            proc.Append($"            MAG_SP_PDL_S_{nomeProcBase}," + N);
+            proc.Append($"            S_{nomeProcBase}," + N);
             proc.Append($"            MAG_SP_PDL_I_{nomeProcBase}," + N);
             proc.Append($"            MAG_SP_PDL_U_{nomeProcBase}" + N);
             proc.Append("        }" + N + N);
@@ -78,7 +78,7 @@ namespace Zeus.Linguagens.CSharp.MYSQL.Query
             methodo.Append("        {" + N);
             methodo.Append($"            var result = new RequestMessage<{NomeTabela}>" + N);
             methodo.Append("            {" + N);
-            methodo.Append($"                Procedure = $\"{{PackageName}}.{{Procedures.MAG_SP_PDL_S_{nomeProcedure}}}\"," + N);
+            methodo.Append($"                Procedure = $\"{{PackageName}}.{{Procedures.S_{nomeProcedure}}}\"," + N);
             methodo.Append($"                MethodApi = GetClass.GetMethod()" + N);
             methodo.Append("            };" + N);
             methodo.Append(N);
