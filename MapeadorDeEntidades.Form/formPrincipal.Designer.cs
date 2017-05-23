@@ -45,7 +45,6 @@ namespace Zeus
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.btnSequence = new System.Windows.Forms.Button();
             this.btnBatch = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.btnChkTabela = new System.Windows.Forms.CheckBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
@@ -55,8 +54,10 @@ namespace Zeus
             this.salvar = new System.Windows.Forms.FolderBrowserDialog();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.lblStatus = new System.Windows.Forms.Label();
+            this.progressBar1 = new Zeus.Core.NewProgressBar();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.radioSGBD5 = new System.Windows.Forms.RadioButton();
             this.radioSGBD4 = new System.Windows.Forms.RadioButton();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.ddlDatabase = new System.Windows.Forms.ComboBox();
@@ -69,12 +70,9 @@ namespace Zeus
             this.ddlUnificar = new System.Windows.Forms.ComboBox();
             this.groupBox11 = new System.Windows.Forms.GroupBox();
             this.groupBox12 = new System.Windows.Forms.GroupBox();
+            this.btnSobre = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.btnConfiguracoes = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.progressBar1 = new Zeus.Core.NewProgressBar();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox5.SuspendLayout();
@@ -87,7 +85,6 @@ namespace Zeus
             this.groupBox10.SuspendLayout();
             this.groupBox11.SuspendLayout();
             this.groupBox12.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // ddlTabelas
@@ -137,7 +134,7 @@ namespace Zeus
             this.radioCsharp.AutoSize = true;
             this.radioCsharp.Checked = true;
             this.radioCsharp.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.radioCsharp.Location = new System.Drawing.Point(6, 19);
+            this.radioCsharp.Location = new System.Drawing.Point(6, 28);
             this.radioCsharp.Name = "radioCsharp";
             this.radioCsharp.Size = new System.Drawing.Size(43, 20);
             this.radioCsharp.TabIndex = 7;
@@ -150,7 +147,7 @@ namespace Zeus
             // 
             this.radioJava.AutoSize = true;
             this.radioJava.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.radioJava.Location = new System.Drawing.Point(6, 42);
+            this.radioJava.Location = new System.Drawing.Point(6, 51);
             this.radioJava.Name = "radioJava";
             this.radioJava.Size = new System.Drawing.Size(48, 20);
             this.radioJava.TabIndex = 8;
@@ -163,7 +160,7 @@ namespace Zeus
             // 
             this.radioNode.AutoSize = true;
             this.radioNode.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.radioNode.Location = new System.Drawing.Point(6, 71);
+            this.radioNode.Location = new System.Drawing.Point(6, 80);
             this.radioNode.Name = "radioNode";
             this.radioNode.Size = new System.Drawing.Size(68, 20);
             this.radioNode.TabIndex = 9;
@@ -178,10 +175,10 @@ namespace Zeus
             this.radioSGBD3.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.radioSGBD3.Location = new System.Drawing.Point(7, 60);
             this.radioSGBD3.Name = "radioSGBD3";
-            this.radioSGBD3.Size = new System.Drawing.Size(68, 20);
+            this.radioSGBD3.Size = new System.Drawing.Size(58, 20);
             this.radioSGBD3.TabIndex = 2;
             this.radioSGBD3.TabStop = true;
-            this.radioSGBD3.Text = "MYSQL";
+            this.radioSGBD3.Text = "MySql";
             this.radioSGBD3.UseVisualStyleBackColor = true;
             this.radioSGBD3.CheckedChanged += new System.EventHandler(this.CleanParamters);
             // 
@@ -248,18 +245,6 @@ namespace Zeus
             this.btnBatch.Text = "Batch Execute";
             this.btnBatch.UseVisualStyleBackColor = true;
             this.btnBatch.Click += new System.EventHandler(this.btnBatch_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.label1.Font = new System.Drawing.Font("Bauhaus 93", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.SystemColors.Info;
-            this.label1.Location = new System.Drawing.Point(382, 21);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(76, 18);
-            this.label1.TabIndex = 14;
-            this.label1.Text = "ZEUS 0.7";
             // 
             // groupBox4
             // 
@@ -351,9 +336,16 @@ namespace Zeus
             this.lblStatus.TabIndex = 15;
             this.lblStatus.Text = "Aguardando Instruções";
             // 
+            // progressBar1
+            // 
+            this.progressBar1.ForeColor = System.Drawing.Color.Maroon;
+            this.progressBar1.Location = new System.Drawing.Point(6, 35);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(430, 10);
+            this.progressBar1.TabIndex = 14;
+            // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.radioButton2);
             this.groupBox1.Controls.Add(this.radioNode);
             this.groupBox1.Controls.Add(this.radioCsharp);
             this.groupBox1.Controls.Add(this.radioJava);
@@ -368,7 +360,7 @@ namespace Zeus
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.radioButton1);
+            this.groupBox2.Controls.Add(this.radioSGBD5);
             this.groupBox2.Controls.Add(this.radioSGBD4);
             this.groupBox2.Controls.Add(this.radioSGBD3);
             this.groupBox2.Controls.Add(this.radioSGBD2);
@@ -381,6 +373,18 @@ namespace Zeus
             this.groupBox2.TabIndex = 10;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "2 - SGBD";
+            // 
+            // radioSGBD5
+            // 
+            this.radioSGBD5.AutoSize = true;
+            this.radioSGBD5.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.radioSGBD5.Location = new System.Drawing.Point(7, 105);
+            this.radioSGBD5.Name = "radioSGBD5";
+            this.radioSGBD5.Size = new System.Drawing.Size(72, 20);
+            this.radioSGBD5.TabIndex = 3;
+            this.radioSGBD5.TabStop = true;
+            this.radioSGBD5.Text = "Postgree";
+            this.radioSGBD5.UseVisualStyleBackColor = true;
             // 
             // radioSGBD4
             // 
@@ -498,10 +502,10 @@ namespace Zeus
             // 
             // groupBox12
             // 
+            this.groupBox12.Controls.Add(this.btnSobre);
             this.groupBox12.Controls.Add(this.button1);
             this.groupBox12.Controls.Add(this.btnConfiguracoes);
             this.groupBox12.Controls.Add(this.btnBatch);
-            this.groupBox12.Controls.Add(this.label1);
             this.groupBox12.Font = new System.Drawing.Font("Gill Sans MT", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(150)))));
             this.groupBox12.Location = new System.Drawing.Point(469, 209);
@@ -510,6 +514,15 @@ namespace Zeus
             this.groupBox12.TabIndex = 18;
             this.groupBox12.TabStop = false;
             this.groupBox12.Text = "11 - Extras";
+            // 
+            // btnSobre
+            // 
+            this.btnSobre.Location = new System.Drawing.Point(382, 19);
+            this.btnSobre.Name = "btnSobre";
+            this.btnSobre.Size = new System.Drawing.Size(76, 23);
+            this.btnSobre.TabIndex = 21;
+            this.btnSobre.Text = "Sobre";
+            this.btnSobre.UseVisualStyleBackColor = true;
             // 
             // button1
             // 
@@ -532,48 +545,6 @@ namespace Zeus
             this.btnConfiguracoes.UseVisualStyleBackColor = true;
             this.btnConfiguracoes.Click += new System.EventHandler(this.btnConfiguracoes_Click_1);
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(1, 1);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(957, 281);
-            this.pictureBox1.TabIndex = 19;
-            this.pictureBox1.TabStop = false;
-            // 
-            // radioButton1
-            // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.radioButton1.Location = new System.Drawing.Point(7, 105);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(90, 20);
-            this.radioButton1.TabIndex = 3;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "PostgreSQL";
-            this.radioButton1.UseVisualStyleBackColor = true;
-            // 
-            // progressBar1
-            // 
-            this.progressBar1.ForeColor = System.Drawing.Color.Maroon;
-            this.progressBar1.Location = new System.Drawing.Point(6, 35);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(430, 10);
-            this.progressBar1.TabIndex = 14;
-            // 
-            // radioButton2
-            // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.radioButton2.Location = new System.Drawing.Point(6, 97);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(81, 20);
-            this.radioButton2.TabIndex = 9;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "Typescript";
-            this.radioButton2.UseVisualStyleBackColor = true;
-            this.radioButton2.CheckedChanged += new System.EventHandler(this.EventSetParamters);
-            // 
             // formPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -592,7 +563,6 @@ namespace Zeus
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.pictureBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
@@ -618,8 +588,6 @@ namespace Zeus
             this.groupBox10.PerformLayout();
             this.groupBox11.ResumeLayout(false);
             this.groupBox12.ResumeLayout(false);
-            this.groupBox12.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -646,7 +614,6 @@ namespace Zeus
         private NewProgressBar progressBar1;
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.Label lblStatus;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.RadioButton radioNode;
         private System.Windows.Forms.Button btnSequence;
         private System.Windows.Forms.Button btnBatch;
@@ -665,10 +632,9 @@ namespace Zeus
         private System.Windows.Forms.GroupBox groupBox12;
         private System.Windows.Forms.Button btnConfiguracoes;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.RadioButton radioSGBD4;
-        private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.RadioButton radioSGBD5;
+        private System.Windows.Forms.Button btnSobre;
     }
 }
 
