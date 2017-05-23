@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Zeus.Core;
-using Zeus.Linguagens.Node.MySql.Procedure;
 using Zeus.Utilidade;
 
 namespace Zeus.Linguagens.Node.MySql.Procedure

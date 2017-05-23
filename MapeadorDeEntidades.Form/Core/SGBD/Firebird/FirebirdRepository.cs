@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Data;
-using System.Net;
 using System.Runtime.CompilerServices;
 using FirebirdSql.Data.FirebirdClient;
 
