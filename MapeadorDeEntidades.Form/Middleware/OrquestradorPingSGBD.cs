@@ -40,7 +40,7 @@ namespace Zeus.Middleware
                         return new RequestMessage<List<string>>
                         {
                             StatusCode = System.Net.HttpStatusCode.InternalServerError,
-                            Message = "Esse banco de dados não foi programado",
+                            Message = "Esse banco de dados não foi programado para essa linguagem de programação",
                         };
 
                 }
