@@ -69,8 +69,6 @@ namespace Zeus
             this.ddlUnificar = new System.Windows.Forms.ComboBox();
             this.groupBox11 = new System.Windows.Forms.GroupBox();
             this.groupBox12 = new System.Windows.Forms.GroupBox();
-            this.btnSobre = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             this.btnConfiguracoes = new System.Windows.Forms.Button();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -467,7 +465,7 @@ namespace Zeus
             this.groupBox10.Size = new System.Drawing.Size(200, 65);
             this.groupBox10.TabIndex = 2;
             this.groupBox10.TabStop = false;
-            this.groupBox10.Text = "7- Pré-Fixo Packages";
+            this.groupBox10.Text = "7- Pré-Fixo Packages (Oracle)";
             // 
             // ddlUnificar
             // 
@@ -494,8 +492,6 @@ namespace Zeus
             // 
             // groupBox12
             // 
-            this.groupBox12.Controls.Add(this.btnSobre);
-            this.groupBox12.Controls.Add(this.button1);
             this.groupBox12.Controls.Add(this.btnConfiguracoes);
             this.groupBox12.Controls.Add(this.btnBatch);
             this.groupBox12.Font = new System.Drawing.Font("Gill Sans MT", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -506,25 +502,6 @@ namespace Zeus
             this.groupBox12.TabIndex = 18;
             this.groupBox12.TabStop = false;
             this.groupBox12.Text = "11 - Extras";
-            // 
-            // btnSobre
-            // 
-            this.btnSobre.Location = new System.Drawing.Point(382, 19);
-            this.btnSobre.Name = "btnSobre";
-            this.btnSobre.Size = new System.Drawing.Size(76, 23);
-            this.btnSobre.TabIndex = 21;
-            this.btnSobre.Text = "Sobre";
-            this.btnSobre.UseVisualStyleBackColor = true;
-            // 
-            // button1
-            // 
-            this.button1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.button1.Location = new System.Drawing.Point(252, 19);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(124, 23);
-            this.button1.TabIndex = 20;
-            this.button1.Text = "Classes Necessárias";
-            this.button1.UseVisualStyleBackColor = true;
             // 
             // btnConfiguracoes
             // 
@@ -622,10 +599,8 @@ namespace Zeus
         private System.Windows.Forms.GroupBox groupBox11;
         private System.Windows.Forms.GroupBox groupBox12;
         private System.Windows.Forms.Button btnConfiguracoes;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.RadioButton radioSGBD4;
         private System.Windows.Forms.RadioButton radioSGBD5;
-        private System.Windows.Forms.Button btnSobre;
     }
 }
 
