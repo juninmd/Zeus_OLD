@@ -2,7 +2,7 @@
 using Zeus.Core.SGBD.MySql;
 using Zeus.Linguagens.Base;
 
-namespace Zeus.Linguagens.CSharp.MySql.Entidade
+namespace Zeus.Linguagens.CSharp.MYSQL.Entidade
 {
     public class CSharpMySqlEntidade : BaseEntity
     {

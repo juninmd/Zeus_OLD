@@ -1,4 +1,4 @@
-﻿namespace Zeus.Linguagens.CSharp.MySql
+﻿namespace Zeus.Linguagens.CSharp.MYSQL
 {
     public static class CSharpTypesMySql
     {

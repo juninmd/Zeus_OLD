@@ -4,7 +4,7 @@ using System.Windows.Forms;
 using Zeus.Core;
 using Zeus.Utilidade;
 
-namespace Zeus.Linguagens.CSharp.MySql.Entidade
+namespace Zeus.Linguagens.CSharp.MYSQL.Entidade
 {
     public class CSharpMySqlOrquestraEntidade
     {

@@ -2,14 +2,14 @@
 using System.Text;
 using Zeus.Core;
 
-namespace Zeus.Linguagens.Node
+namespace Zeus.Frontend.Angular
 {
-    public class NodeAjax
+    public class AngularTypeService
     {
         private readonly string _classe;
         private readonly string N = Environment.NewLine;
 
-        public NodeAjax(string nomeTabela)
+        public AngularTypeService(string nomeTabela)
         {
             this._classe = nomeTabela.TratarNomeTabela().ToLower();
         }

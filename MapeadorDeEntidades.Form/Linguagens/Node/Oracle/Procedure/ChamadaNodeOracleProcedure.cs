@@ -2,6 +2,7 @@
 using System.IO;
 using System.Windows.Forms;
 using Zeus.Core;
+using Zeus.Frontend.Angular;
 using Zeus.Utilidade;
 
 namespace Zeus.Linguagens.Node.Oracle.Procedure
@@ -31,10 +32,6 @@ namespace Zeus.Linguagens.Node.Oracle.Procedure
 
                     var routes = new NodeRoutes(nomeTabela).GerarClasse().ToString();
                     File.WriteAllText($"{salvar.SelectedPath}\\{nomeTabela.TratarNomeTabela().ToLower()}Routes.js", routes);
-
-                    var ajaxService = new NodeAjax(nomeTabela).GerarClasse().ToString();
-                    File.WriteAllText($"{salvar.SelectedPath}\\{nomeTabela.TratarNomeTabela().ToLower()}Ajax.js", ajaxService);
-
                 }
 
                 return new RequestMessage<string>()
