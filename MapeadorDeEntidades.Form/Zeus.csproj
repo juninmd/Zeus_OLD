@@ -161,7 +161,7 @@
     <Compile Include="Linguagens\CSharp\Firebird\Query\ChamadaCsharpFirebirdQuery.cs" />
     <Compile Include="Linguagens\CSharp\Firebird\Query\CSharpFirebirdQuery.cs" />
     <Compile Include="Linguagens\CSharp\Firebird\Entidade\CSharpFirebirdOrquestraEntidade.cs" />
-    <Compile Include="Linguagens\CSharp\Firebird\Entidade\CSharpSQLEntidade.cs" />
+    <Compile Include="Linguagens\CSharp\Firebird\Entidade\CSharpFirebirdEntidade.cs" />
     <Compile Include="Linguagens\CSharp\MYSQL\CSharpTypesMySql.cs" />
     <Compile Include="Linguagens\CSharp\MYSQL\Entidade\CSharpMySqlEntidade.cs" />
     <Compile Include="Linguagens\CSharp\MYSQL\Entidade\CSharpMySqlOrquestraEntidade.cs" />
@@ -174,6 +174,8 @@
     <Compile Include="Linguagens\CSharp\Oracle\Procedure\CsharpOracleProcedure.cs" />
     <Compile Include="Linguagens\CSharp\Oracle\Procedure\ChamadaCsharpOracleProcedure.cs" />
     <Compile Include="Linguagens\CSharp\Oracle\Entidade\CSharpOracleOrquestraEntidade.cs" />
+    <Compile Include="Linguagens\CSharp\Postgree\Entidade\CSharpPostgreEntidade.cs" />
+    <Compile Include="Linguagens\CSharp\Postgree\Entidade\CsharpPostgreOrquestraEntidade.cs" />
     <Compile Include="Linguagens\CSharp\SQL\Procedure\ChamadaCsharpSQLProcedure.cs" />
     <Compile Include="Linguagens\CSharp\SQL\Entidade\CSharpSQLEntidade.cs" />
     <Compile Include="Linguagens\CSharp\SQL\Entidade\CSharpSQLOrquestraEntidade.cs" />
@@ -253,7 +255,6 @@
   <ItemGroup>
     <Folder Include="Linguagens\CSharp\Firebird\Procedure\" />
     <Folder Include="Linguagens\CSharp\Oracle\Query\" />
-    <Folder Include="Linguagens\CSharp\Postgree\Entidade\" />
     <Folder Include="Linguagens\CSharp\Postgree\Procedure\" />
     <Folder Include="Linguagens\CSharp\Postgree\Query\" />
     <Folder Include="Linguagens\Java\MySql\Query\" />

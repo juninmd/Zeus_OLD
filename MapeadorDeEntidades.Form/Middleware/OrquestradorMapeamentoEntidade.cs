@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using Zeus.Core;
 using Zeus.Linguagens.CSharp.Firebird.Entidade;
 using Zeus.Linguagens.CSharp.Oracle.Entidade;
+using Zeus.Linguagens.CSharp.Postgree.Entidade;
 using Zeus.Linguagens.CSharp.SQL.Entidade;
 using Zeus.Linguagens.Java.MySql.Entidade;
 using Zeus.Linguagens.Java.Oracle.Entidade;
@@ -39,14 +40,6 @@ namespace Zeus.Middleware
                             case 2:
                                 {
                                     return new JavaOracleOrquestraEntidade().Java(salvar);
-                                }
-                            case 3:
-                                {
-                                    return new RequestMessage<string>()
-                                    {
-                                        StatusCode = HttpStatusCode.BadGateway,
-                                        Message = "Essa linguagem não tem mapeamento de entidade NODE JS."
-                                    };
                                 }
                             default:
                                 {
@@ -103,6 +96,24 @@ namespace Zeus.Middleware
                             case 1:
                                 {
                                     return new CSharpFirebirdOrquestraEntidade().CSharp(salvar);
+                                }
+                            default:
+                                {
+                                    return new RequestMessage<string>()
+                                    {
+                                        StatusCode = HttpStatusCode.BadGateway,
+                                        Message = "Essa linguagem não foi programada."
+                                    };
+                                }
+                        }
+                    }
+                case 5:
+                    {
+                        switch (ParamtersInput.Linguagem)
+                        {
+                            case 1:
+                                {
+                                    return new CsharpPostgreOrquestraEntidade().CSharp(salvar);
                                 }
                             default:
                                 {
