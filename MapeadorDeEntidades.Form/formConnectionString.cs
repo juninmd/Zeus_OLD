@@ -17,7 +17,7 @@ namespace Zeus
         public RadioButton Sql { get; set; }
         public RadioButton Mysql { get; set; }
         public RadioButton Firebird { get; set; }
-        public RadioButton Postgree { get; set; }
+        public RadioButton Postgre { get; set; }
 
         private void button1_Click(object sender, System.EventArgs e)
         {
@@ -45,9 +45,9 @@ namespace Zeus
                     FormPrincipal.Text = $"User={txt1.Text};Password={txt2.Text};Database={txt3.Text};DataSource={txt4.Text};Port={txt5.Text}";
                     Firebird.Checked = true;
                     break;
-                case "Postgree":
-                    FormPrincipal.Text = $"Host={txt1.Text};Database={txt2.Text};User={txt3.Text};Password={txt4.Text};Port={txt5.Text}";
-                    Postgree.Checked = true;
+                case "Postgre":
+                    FormPrincipal.Text = $"Host={txt1.Text};Database={txt2.Text};User ID={txt3.Text};Password={txt4.Text};Port={txt5.Text}";
+                    Postgre.Checked = true;
                     break;
             }
 
@@ -100,13 +100,13 @@ namespace Zeus
                         txt1.Visible = txt2.Visible = txt3.Visible = txt4.Visible = txt5.Visible = true;
                         return;
                     }
-                case "Postgree":
+                case "Postgre":
                     {
                         lbl1.Text = "Host";
                         lbl2.Text = "Database";
-                        lbl3.Text = "Password";
-                        lbl4.Text = "User ID";
-                        lbl5.Text = "Password";
+                        lbl3.Text = "User ID";
+                        lbl4.Text = "Password";
+                        lbl5.Text = "Port";
                         lbl5.Visible = lbl4.Visible = lbl3.Visible = lbl2.Visible = lbl1.Visible = true;
                         txt1.Visible = txt2.Visible = txt3.Visible = txt4.Visible = txt5.Visible = true;
                         return;
@@ -124,7 +124,7 @@ namespace Zeus
 
         private void ResetChecked()
         {
-            Oracle.Checked = Sql.Checked = Mysql.Checked = Firebird.Checked = Postgree.Checked = false;
+            Oracle.Checked = Sql.Checked = Mysql.Checked = Firebird.Checked = Postgre.Checked = false;
         }
 
         private void ddlDatabase_SelectedIndexChanged(object sender, EventArgs e)
