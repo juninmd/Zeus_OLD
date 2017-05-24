@@ -150,7 +150,7 @@
             this.groupBox5.Size = new System.Drawing.Size(463, 55);
             this.groupBox5.TabIndex = 4;
             this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "Postgree";
+            this.groupBox5.Text = "Postgre";
             // 
             // textBox5
             // 
@@ -234,14 +234,14 @@
             this.txt5.Location = new System.Drawing.Point(155, 184);
             this.txt5.Name = "txt5";
             this.txt5.Size = new System.Drawing.Size(275, 20);
-            this.txt5.TabIndex = 3;
+            this.txt5.TabIndex = 5;
             // 
             // txt4
             // 
             this.txt4.Location = new System.Drawing.Point(155, 158);
             this.txt4.Name = "txt4";
             this.txt4.Size = new System.Drawing.Size(275, 20);
-            this.txt4.TabIndex = 3;
+            this.txt4.TabIndex = 4;
             // 
             // txt3
             // 
@@ -255,14 +255,14 @@
             this.txt2.Location = new System.Drawing.Point(155, 106);
             this.txt2.Name = "txt2";
             this.txt2.Size = new System.Drawing.Size(275, 20);
-            this.txt2.TabIndex = 3;
+            this.txt2.TabIndex = 2;
             // 
             // txt1
             // 
             this.txt1.Location = new System.Drawing.Point(155, 80);
             this.txt1.Name = "txt1";
             this.txt1.Size = new System.Drawing.Size(275, 20);
-            this.txt1.TabIndex = 3;
+            this.txt1.TabIndex = 1;
             // 
             // button1
             // 
@@ -271,7 +271,7 @@
             this.button1.Location = new System.Drawing.Point(138, 260);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(202, 23);
-            this.button1.TabIndex = 2;
+            this.button1.TabIndex = 6;
             this.button1.Text = "Aplicar Connection String";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
@@ -293,7 +293,7 @@
             "SQL Server",
             "MYSQL",
             "Firebird",
-            "Postgree"});
+            "Postgre"});
             this.ddlDatabase.Location = new System.Drawing.Point(51, 34);
             this.ddlDatabase.Name = "ddlDatabase";
             this.ddlDatabase.Size = new System.Drawing.Size(379, 21);

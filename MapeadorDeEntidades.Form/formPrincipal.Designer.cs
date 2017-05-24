@@ -370,11 +370,12 @@ namespace Zeus
             this.radioSGBD5.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.radioSGBD5.Location = new System.Drawing.Point(7, 105);
             this.radioSGBD5.Name = "radioSGBD5";
-            this.radioSGBD5.Size = new System.Drawing.Size(72, 20);
+            this.radioSGBD5.Size = new System.Drawing.Size(66, 20);
             this.radioSGBD5.TabIndex = 3;
             this.radioSGBD5.TabStop = true;
-            this.radioSGBD5.Text = "Postgree";
+            this.radioSGBD5.Text = "Postgre";
             this.radioSGBD5.UseVisualStyleBackColor = true;
+            this.radioSGBD5.CheckedChanged += new System.EventHandler(this.CleanParamters);
             // 
             // radioSGBD4
             // 
@@ -387,6 +388,7 @@ namespace Zeus
             this.radioSGBD4.TabStop = true;
             this.radioSGBD4.Text = "Firebird";
             this.radioSGBD4.UseVisualStyleBackColor = true;
+            this.radioSGBD4.CheckedChanged += new System.EventHandler(this.CleanParamters);
             // 
             // groupBox7
             // 

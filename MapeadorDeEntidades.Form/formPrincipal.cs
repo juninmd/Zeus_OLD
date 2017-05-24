@@ -56,9 +56,9 @@ namespace Zeus
                 var mdChamdaProc = new OrquestradorChamadaProcedure().Generate(salvar);
                 Util.Status(mdChamdaProc.Message + " - " + mdChamdaProc.TechnicalMessage);
             }
-            else if(x == DialogResult.No)
+            else if (x == DialogResult.No)
             {
-                
+
             }
         }
 
@@ -92,7 +92,7 @@ namespace Zeus
             {
                 MessageBox.Show($@"{connectionDb.Message}");
 
-                if (ParamtersInput.SGBD != 3)
+                if (ParamtersInput.SGBD == (1 | 2 | 4))
                 {
                     ddlTabelas.Items.Clear();
                     ddlTabelas.Items.AddRange(connectionDb.Content.ToArray());
@@ -131,7 +131,7 @@ namespace Zeus
             ParamtersInput.NomeTabelas.Clear();
             ParamtersInput.ConnectionString = txtConnectionString.Text;
             ParamtersInput.Linguagem = radioCsharp.Checked ? 1 : radioJava.Checked ? 2 : radioNode.Checked ? 3 : 0;
-            ParamtersInput.SGBD = radioSGBD1.Checked ? 1 : radioSGBD2.Checked ? 2 : radioSGBD3.Checked ? 3 : radioSGBD4.Checked ? 4 : 0;
+            ParamtersInput.SGBD = radioSGBD1.Checked ? 1 : radioSGBD2.Checked ? 2 : radioSGBD3.Checked ? 3 : radioSGBD4.Checked ? 4 : radioSGBD5.Checked ? 5 : 0;
             ParamtersInput.TodasTabelas = btnChkTabela.Checked;
             ParamtersInput.DataBase = ddlDatabase?.SelectedItem?.ToString();
 
@@ -147,7 +147,7 @@ namespace Zeus
                 ParamtersInput.NomeTabelas.Add(ddlTabelas.SelectedItem.ToString());
             }
 
-            ddlDatabase.Enabled = radioSGBD3.Checked;
+            ddlDatabase.Enabled = radioSGBD3.Checked || radioSGBD5.Checked;
         }
 
 
@@ -163,7 +163,7 @@ namespace Zeus
                     Sql = radioSGBD2,
                     Mysql = radioSGBD3,
                     Firebird = radioSGBD4,
-                    Postgree = radioSGBD5
+                    Postgre = radioSGBD5
                 }.ShowDialog();
             else
             {
@@ -175,7 +175,7 @@ namespace Zeus
                     Sql = radioSGBD2,
                     Mysql = radioSGBD3,
                     Firebird = radioSGBD4,
-                    Postgree = radioSGBD5
+                    Postgre = radioSGBD5
                 }.ShowDialog();
             }
         }
@@ -185,6 +185,11 @@ namespace Zeus
             SetParamters();
             var mdProc = new OrquestradorTabelasSGBD().Connect();
             ddlTabelas.Items.Clear();
+            if (mdProc.IsError)
+            {
+                MessageBox.Show(mdProc.Message);
+                return;
+            }
             ddlTabelas.Items.AddRange(mdProc?.Content?.ToArray());
         }
 

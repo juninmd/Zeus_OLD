@@ -5,6 +5,7 @@ using Zeus.Core.SGBD.Firebird;
 using Zeus.Core.SGBD.Microsoft_SQL;
 using Zeus.Core.SGBD.MySql;
 using Zeus.Core.SGBD.Oracle;
+using Zeus.Core.SGBD.Postgre;
 
 namespace Zeus.Middleware
 {
@@ -33,6 +34,8 @@ namespace Zeus.Middleware
                         return new MySqlPing().ConnectaSQL();
                     case 4:
                         return new FirebirdPing().ConnectaSQL();
+                    case 5:
+                        return new PostgrePing().ConnectaPostgre();
                     default:
                         return new RequestMessage<List<string>>
                         {
