@@ -3,12 +3,12 @@ using System.Text;
 using Zeus.Core;
 using Zeus.Linguagens.Base;
 
-namespace Zeus.Linguagens.CSharp.Firebird.Direct
+namespace Zeus.Linguagens.CSharp.Firebird.Query
 {
-    public class CSharpFirebirdDirect : BaseFirebirdDAO
+    public class CSharpFirebirdQuery : BaseFirebirdDAO
     {
 
-        public CSharpFirebirdDirect(string nomeTabela) : base(nomeTabela)
+        public CSharpFirebirdQuery(string nomeTabela) : base(nomeTabela)
         {
         }
 

@@ -4,7 +4,7 @@ using System.Windows.Forms;
 using Zeus.Core;
 using Zeus.Utilidade;
 
-namespace Zeus.Linguagens.CSharp.MySql.Procedure
+namespace Zeus.Linguagens.CSharp.MYSQL.Procedure
 {
     public class ChamadaCsharpMySqlProcedure
     {

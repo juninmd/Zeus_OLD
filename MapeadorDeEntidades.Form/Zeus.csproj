@@ -34,16 +34,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="FirebirdSql.Data.FirebirdClient, Version=5.8.0.0, Culture=neutral, PublicKeyToken=3750abcc3150b00c, processorArchitecture=MSIL">
-      <HintPath>..\packages\FirebirdSql.Data.FirebirdClient.5.8.0\lib\net452\FirebirdSql.Data.FirebirdClient.dll</HintPath>
+    <Reference Include="FirebirdSql.Data.FirebirdClient, Version=5.9.1.0, Culture=neutral, PublicKeyToken=3750abcc3150b00c, processorArchitecture=MSIL">
+      <HintPath>..\packages\FirebirdSql.Data.FirebirdClient.5.9.1\lib\net452\FirebirdSql.Data.FirebirdClient.dll</HintPath>
     </Reference>
     <Reference Include="MySql.Data, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <HintPath>..\packages\MySql.Data.6.9.9\lib\net45\MySql.Data.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Oracle.DataAccess, Version=2.112.3.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
@@ -57,9 +56,8 @@
       <HintPath>..\packages\System.Data.Common.4.3.0\lib\net451\System.Data.Common.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.Data.SqlClient, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Data.SqlClient.4.3.0\lib\net46\System.Data.SqlClient.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="System.Data.SqlClient, Version=4.1.1.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.SqlClient.4.3.1\lib\net46\System.Data.SqlClient.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -144,14 +142,15 @@
     <Compile Include="formPrincipal.Designer.cs">
       <DependentUpon>formPrincipal.cs</DependentUpon>
     </Compile>
+    <Compile Include="Frontend\Angular\AngularTypeService.cs" />
     <Compile Include="Linguagens\Base\BaseFirebirdDAO.cs" />
     <Compile Include="Linguagens\Base\BaseMySqlDAO.cs" />
     <Compile Include="Linguagens\Base\BaseSQLDAO.cs" />
     <Compile Include="Linguagens\Base\BaseOracleDAO.cs" />
     <Compile Include="Linguagens\Base\BaseEntity.cs" />
     <Compile Include="Linguagens\CSharp\Firebird\CSharpTypesFirebird.cs" />
-    <Compile Include="Linguagens\CSharp\Firebird\Direct\ChamadaCsharpFirebirdProcedure.cs" />
-    <Compile Include="Linguagens\CSharp\Firebird\Direct\CSharpFirebirdDirect.cs" />
+    <Compile Include="Linguagens\CSharp\Firebird\Query\ChamadaCsharpFirebirdQuery.cs" />
+    <Compile Include="Linguagens\CSharp\Firebird\Query\CSharpFirebirdQuery.cs" />
     <Compile Include="Linguagens\CSharp\Firebird\Entidade\CSharpFirebirdOrquestraEntidade.cs" />
     <Compile Include="Linguagens\CSharp\Firebird\Entidade\CSharpSQLEntidade.cs" />
     <Compile Include="Linguagens\CSharp\MYSQL\CSharpTypesMySql.cs" />
@@ -190,7 +189,7 @@
     <Compile Include="Linguagens\Node\MySql\ChamadaNodeMySqlProcedure.cs" />
     <Compile Include="Linguagens\Node\MySql\Procedure\ChamadaNodeMySqlProcedure.cs" />
     <Compile Include="Linguagens\Node\MySql\Procedure\NodeMySqlProcedure.cs" />
-    <Compile Include="Linguagens\Node\NodeAjax.cs" />
+    <Compile Include="Frontend\Angular\AngularService.cs" />
     <Compile Include="Linguagens\Node\NodeRoutes.cs" />
     <Compile Include="Linguagens\Node\Oracle\Procedure\ChamadaNodeOracleProcedure.cs" />
     <Compile Include="Linguagens\Node\NodeController.cs" />
@@ -245,8 +244,25 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Core\SGBD\Postgre\" />
-    <Folder Include="Linguagens\Java\SQL\" />
-    <Folder Include="Linguagens\Node\SQL\" />
+    <Folder Include="Linguagens\CSharp\Firebird\Procedure\" />
+    <Folder Include="Linguagens\CSharp\Oracle\Query\" />
+    <Folder Include="Linguagens\CSharp\Postgree\Entidade\" />
+    <Folder Include="Linguagens\CSharp\Postgree\Procedure\" />
+    <Folder Include="Linguagens\CSharp\Postgree\Query\" />
+    <Folder Include="Linguagens\Java\MySql\Query\" />
+    <Folder Include="Linguagens\Java\Oracle\Query\" />
+    <Folder Include="Linguagens\Java\Postgree\Entidade\" />
+    <Folder Include="Linguagens\Java\Postgree\Procedure\" />
+    <Folder Include="Linguagens\Java\Postgree\Query\" />
+    <Folder Include="Linguagens\Java\SQL\Entidade\" />
+    <Folder Include="Linguagens\Java\SQL\Procedure\" />
+    <Folder Include="Linguagens\Java\SQL\Query\" />
+    <Folder Include="Linguagens\Node\MySql\Query\" />
+    <Folder Include="Linguagens\Node\Oracle\Query\" />
+    <Folder Include="Linguagens\Node\Postgree\Procedure\" />
+    <Folder Include="Linguagens\Node\Postgree\Query\" />
+    <Folder Include="Linguagens\Node\SQL\Procedure\" />
+    <Folder Include="Linguagens\Node\SQL\Query\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="zeus.wav">

@@ -2,7 +2,7 @@
 using System.Net;
 using System.Windows.Forms;
 using Zeus.Core;
-using Zeus.Linguagens.CSharp.Firebird.Direct;
+using Zeus.Linguagens.CSharp.Firebird.Query;
 using Zeus.Linguagens.CSharp.MYSQL.Query;
 using Zeus.Linguagens.CSharp.Oracle.Procedure;
 using Zeus.Linguagens.CSharp.SQL.Procedure;
@@ -115,7 +115,7 @@ namespace Zeus.Middleware
                         {
                             case 1:
                                 {
-                                    return new ChamadaCsharpFirebirdProcedure().CSharp(salvar);
+                                    return new ChamadaCsharpFirebirdQuery().CSharp(salvar);
                                 }
                             default:
                                 {

@@ -4,9 +4,9 @@ using System.Windows.Forms;
 using Zeus.Core;
 using Zeus.Utilidade;
 
-namespace Zeus.Linguagens.CSharp.Firebird.Direct
+namespace Zeus.Linguagens.CSharp.Firebird.Query
 {
-    public class ChamadaCsharpFirebirdProcedure
+    public class ChamadaCsharpFirebirdQuery
     {
         public RequestMessage<string> CSharp(FolderBrowserDialog salvar)
         {
@@ -23,7 +23,7 @@ namespace Zeus.Linguagens.CSharp.Firebird.Direct
                     Util.Status($"Processando tabela: {nomeTabela}");
 
 
-                    var instancia = new CSharpFirebirdDirect(nomeTabela);
+                    var instancia = new CSharpFirebirdQuery(nomeTabela);
 
                     var classe = instancia.GerarClasse().ToString();
                     File.WriteAllText(local + nomeTabela.ToFirstCharToUpper() + "Dao.cs", classe);
