@@ -92,12 +92,15 @@ namespace Zeus
             {
                 MessageBox.Show($@"{connectionDb.Message}");
 
-                if (ParamtersInput.SGBD == (1 | 2 | 4))
+                switch (ParamtersInput.SGBD)
                 {
-                    ddlTabelas.Items.Clear();
-                    ddlTabelas.Items.AddRange(connectionDb.Content.ToArray());
-                    ddlDatabase.Items.Clear();
-                    return;
+                    case 1:
+                    case 2:
+                    case 4:
+                        ddlTabelas.Items.Clear();
+                        ddlTabelas.Items.AddRange(connectionDb.Content.ToArray());
+                        ddlDatabase.Items.Clear();
+                        return;
                 }
 
                 ddlDatabase.Items.Clear();
