@@ -236,5 +236,10 @@ namespace Zeus
             txtConnectionString.Text = Settings.Default.ConnectionStringDefault;
             ddlUnificar.SelectedItem = Settings.Default.UnificarOutput ? "SIM" : "NÃO";
         }
+
+        private void btnAngular_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

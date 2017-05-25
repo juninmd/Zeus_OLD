@@ -44,7 +44,7 @@ namespace Zeus.Core.SGBD.Postgre
                     {
                         column_name = r.GetValueOrDefault<string>("column_name").Trim(),
                         data_type = r.GetValueOrDefault<string>("data_type"),
-                        character_maximum_length = r.GetValueOrDefault<int>("character_maximum_length"),
+                        character_maximum_length = r.GetValueOrDefault<int?>("character_maximum_length"),
                     });
                 };
             CloseConnection();
