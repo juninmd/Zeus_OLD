@@ -68,7 +68,7 @@ namespace Zeus.Core.SGBD.Postgre
         {
             try
             {
-                return (T) r[columnName];
+                return r[columnName] is T ? (T) r[columnName] : default(T);
             }
             catch (Exception ex) when (ex.Message == "Unable to find specified column in result set")
             {

@@ -70,6 +70,8 @@ namespace Zeus
             this.groupBox11 = new System.Windows.Forms.GroupBox();
             this.groupBox12 = new System.Windows.Forms.GroupBox();
             this.btnConfiguracoes = new System.Windows.Forms.Button();
+            this.groupBox13 = new System.Windows.Forms.GroupBox();
+            this.btnAngular = new System.Windows.Forms.Button();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox5.SuspendLayout();
@@ -82,6 +84,7 @@ namespace Zeus
             this.groupBox10.SuspendLayout();
             this.groupBox11.SuspendLayout();
             this.groupBox12.SuspendLayout();
+            this.groupBox13.SuspendLayout();
             this.SuspendLayout();
             // 
             // ddlTabelas
@@ -498,7 +501,7 @@ namespace Zeus
             this.groupBox12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(150)))));
             this.groupBox12.Location = new System.Drawing.Point(469, 209);
             this.groupBox12.Name = "groupBox12";
-            this.groupBox12.Size = new System.Drawing.Size(471, 55);
+            this.groupBox12.Size = new System.Drawing.Size(261, 55);
             this.groupBox12.TabIndex = 18;
             this.groupBox12.TabStop = false;
             this.groupBox12.Text = "11 - Extras";
@@ -514,12 +517,36 @@ namespace Zeus
             this.btnConfiguracoes.UseVisualStyleBackColor = true;
             this.btnConfiguracoes.Click += new System.EventHandler(this.btnConfiguracoes_Click_1);
             // 
+            // groupBox13
+            // 
+            this.groupBox13.Controls.Add(this.btnAngular);
+            this.groupBox13.Font = new System.Drawing.Font("Gill Sans MT", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox13.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(150)))));
+            this.groupBox13.Location = new System.Drawing.Point(736, 209);
+            this.groupBox13.Name = "groupBox13";
+            this.groupBox13.Size = new System.Drawing.Size(204, 55);
+            this.groupBox13.TabIndex = 20;
+            this.groupBox13.TabStop = false;
+            this.groupBox13.Text = "12 - Frontend";
+            // 
+            // btnAngular
+            // 
+            this.btnAngular.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnAngular.Location = new System.Drawing.Point(6, 19);
+            this.btnAngular.Name = "btnAngular";
+            this.btnAngular.Size = new System.Drawing.Size(185, 23);
+            this.btnAngular.TabIndex = 19;
+            this.btnAngular.Text = "Service Angular";
+            this.btnAngular.UseVisualStyleBackColor = true;
+            this.btnAngular.Click += new System.EventHandler(this.btnAngular_Click);
+            // 
             // formPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.ClientSize = new System.Drawing.Size(956, 279);
+            this.Controls.Add(this.groupBox13);
             this.Controls.Add(this.groupBox12);
             this.Controls.Add(this.groupBox11);
             this.Controls.Add(this.groupBox3);
@@ -557,6 +584,7 @@ namespace Zeus
             this.groupBox10.PerformLayout();
             this.groupBox11.ResumeLayout(false);
             this.groupBox12.ResumeLayout(false);
+            this.groupBox13.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -601,6 +629,8 @@ namespace Zeus
         private System.Windows.Forms.Button btnConfiguracoes;
         private System.Windows.Forms.RadioButton radioSGBD4;
         private System.Windows.Forms.RadioButton radioSGBD5;
+        private System.Windows.Forms.GroupBox groupBox13;
+        private System.Windows.Forms.Button btnAngular;
     }
 }
 
