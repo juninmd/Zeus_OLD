@@ -38,7 +38,7 @@ namespace Zeus.Core.SGBD.Postgre
 
                 return dr;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 _connection.Close();
                 throw;
@@ -72,16 +72,16 @@ namespace Zeus.Core.SGBD.Postgre
             }
             catch (Exception ex) when (ex.Message == "Unable to find specified column in result set")
             {
-                throw new Exception($"{ex.Message}\nNão foi possível encontrar o paramêtro: [{columnName}] da procedure\nClasse: {sourceFilePath}");
+                throw new Exception($"{ex.Message}\nNão foi possível encontrar o paramêtro: [{columnName}]\nClasse: {sourceFilePath}");
             }
             catch (Exception ex)
             {
                 if (default(T) == null)
                 {
-                    throw new Exception($"{ex.Message}\nFalha ao converter parametro: [{columnName}] da procedure. onde deveria ser: {r[columnName].GetType().Name}\nClasse: {sourceFilePath}");
+                    throw new Exception($"{ex.Message}\nFalha ao converter parametro: [{columnName}] onde deveria ser: {r[columnName].GetType().Name}\nClasse: {sourceFilePath}");
 
                 }
-                throw new Exception($"{ex.Message}\nFalha ao converter parametro: [{columnName }] da procedure, para o tipo: {default(T).GetType().Name} / Onde deveria ser: {r[columnName].GetType().Name}\nClasse: {sourceFilePath}");
+                throw new Exception($"{ex.Message}\nFalha ao converter parametro: [{columnName }], para o tipo: {default(T)?.GetType().Name} / Onde deveria ser: {r[columnName].GetType().Name}\nClasse: {sourceFilePath}");
             }
         }
 

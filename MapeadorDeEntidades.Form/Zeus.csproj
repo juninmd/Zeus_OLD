@@ -138,6 +138,20 @@
     <Compile Include="Core\SGBD\Postgre\PostgreTables.cs" />
     <Compile Include="Core\SGBD\Postgre\PostgreRepository.cs" />
     <Compile Include="Core\SGBD\Postgre\PostgrePing.cs" />
+    <Compile Include="Core\SGBD\Postgre\Procedure\Comum\PostgreBuscaParamters.cs" />
+    <Compile Include="Core\SGBD\Postgre\Procedure\Comum\PostgreDeleteParamters.cs" />
+    <Compile Include="Core\SGBD\Postgre\Procedure\Comum\PostgreInsertParamters.cs" />
+    <Compile Include="Core\SGBD\Postgre\Procedure\Comum\PostgreParametros.cs" />
+    <Compile Include="Core\SGBD\Postgre\Procedure\Comum\PostgreSelectParamters.cs" />
+    <Compile Include="Core\SGBD\Postgre\Procedure\Comum\PostgreSumario.cs" />
+    <Compile Include="Core\SGBD\Postgre\Procedure\Comum\PostgreUpdateParamters.cs" />
+    <Compile Include="Core\SGBD\Postgre\Procedure\PostgreOrquestradorProcedures.cs" />
+    <Compile Include="Core\SGBD\Postgre\Procedure\PostgreProcedure.cs" />
+    <Compile Include="Core\SGBD\Postgre\Procedure\Verbos\PostgreBuscar.cs" />
+    <Compile Include="Core\SGBD\Postgre\Procedure\Verbos\PostgreDelete.cs" />
+    <Compile Include="Core\SGBD\Postgre\Procedure\Verbos\PostgreGet.cs" />
+    <Compile Include="Core\SGBD\Postgre\Procedure\Verbos\PostgreInsert.cs" />
+    <Compile Include="Core\SGBD\Postgre\Procedure\Verbos\PostgreUpdate.cs" />
     <Compile Include="Core\Tratamentos.cs" />
     <Compile Include="formConnectionString.cs">
       <SubType>Form</SubType>
