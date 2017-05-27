@@ -36,7 +36,6 @@ namespace Zeus.Linguagens.CSharp.Firebird.Query
             var get = new StringBuilder();
             get.Append($"    	public DataTable GetAll(){N}");
             get.Append($"    	{{{N}");
-            get.Append($"    	 	var datatable = new DataTable();{N}");
             get.Append($"    	 	var sql = $\"SELECT * FROM {NomeTabela}\";{N}");
             get.Append($"    	 	return ExecuteReaderDt(sql);{N}");
             get.Append($"    	}}{N}");

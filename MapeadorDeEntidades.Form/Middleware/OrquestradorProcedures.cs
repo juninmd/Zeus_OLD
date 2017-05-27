@@ -5,6 +5,7 @@ using Zeus.Core;
 using Zeus.Core.SGBD.Microsoft_SQL.Procedure;
 using Zeus.Core.SGBD.MySql.Procedure;
 using Zeus.Core.SGBD.Oracle.Procedure;
+using Zeus.Core.SGBD.Postgre.Procedure;
 using Zeus.Utilidade;
 
 namespace Zeus.Middleware
@@ -39,6 +40,10 @@ namespace Zeus.Middleware
                 case 3:
                     {
                         return new MySqlOrquestradorProcedures().MySql(salvar);
+                    }
+                case 5:
+                    {
+                        return new PostgreOrquestradorProcedures().Postgre(salvar);
                     }
                 default:
                     {
