@@ -22,7 +22,7 @@ namespace Zeus
             InitConfigurations();
             Session.lblStatus = lblStatus;
             Session.progressBar1 = progressBar1;
-            Session.listaStatus = listBox1;
+            Session.listaStatus = listaStatus;
             ParamtersInput.NomeTabelas = new List<string>();
             txtConnectionString.Text = Settings.Default.ConnectionStringDefault;
         }
@@ -53,6 +53,8 @@ namespace Zeus
             SetParamters();
             var x = MessageBox.Show("Deseja efetuar as chamadas via Procedure?", "Qual forma de acesso?", MessageBoxButtons.YesNoCancel);
             ParamtersInput.Procedure = x == DialogResult.Yes;
+            if (x == DialogResult.Cancel)
+                return;
             var chamada = new OrquestradorChamada().Generate(salvar);
             Util.Status(chamada.Message + " - " + chamada.TechnicalMessage);
         }
