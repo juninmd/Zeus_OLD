@@ -22,7 +22,7 @@ namespace Zeus.Core.SGBD.Postgre.Procedure.Verbos
         {
             var desc = new StringBuilder();
             desc.Append(new PostgreSumario().Init(nomeProcedure, nomeTabela));
-            desc.Append($" CREATE PROCEDURE `{nomeProcedure}` (IN P_{listaAtributos.First().column_name} {listaAtributos.First().data_type})"+N);
+            desc.Append($" CREATE PROCEDURE `{nomeProcedure}` (IN P_{listaAtributos.First().COLUMN_NAME} {listaAtributos.First().DATA_TYPE})"+N);
             desc.Append("	BEGIN" + N + N);
             desc.Append(new PostgreBuscaParamters().Init(nomeTabela, listaAtributos));
             desc.Append("	END$$" + N + N);

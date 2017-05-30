@@ -17,21 +17,21 @@ namespace Zeus.Core.SGBD.Postgre.Procedure.Comum
 
             param.Append($"	     INSERT INTO {nomeTabela}" + N);
             param.Append($"					 ");
-            param.Append($"({listaAtributos[0].column_name},{N}");
+            param.Append($"({listaAtributos[0].COLUMN_NAME},{N}");
             for (int i = 1; i < count - 1; i++)
             {
-                param.Append($"					  {listaAtributos[i].column_name},{N}");
+                param.Append($"					  {listaAtributos[i].COLUMN_NAME},{N}");
             }
-            param.Append($"					  {listaAtributos[count - 1].column_name}");
+            param.Append($"					  {listaAtributos[count - 1].COLUMN_NAME}");
             param.Append($")" + N);
 
             param.Append($"			   VALUES");
             param.Append($"(null,{N}");
             for (int i = 1; i < count - 1; i++)
             {
-                param.Append($"					  P_{listaAtributos[i].column_name},{N}");
+                param.Append($"					  P_{listaAtributos[i].COLUMN_NAME},{N}");
             }
-            param.Append($"					  P_{listaAtributos[count - 1].column_name}");
+            param.Append($"					  P_{listaAtributos[count - 1].COLUMN_NAME}");
             param.Append($");{N}{N}");
             return param;
         }

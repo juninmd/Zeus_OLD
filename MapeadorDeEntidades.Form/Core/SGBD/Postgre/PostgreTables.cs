@@ -35,16 +35,16 @@ namespace Zeus.Core.SGBD.Postgre
         public List<PostgreEntidadeTabela> ListarAtributos(string nomeTabela)
         {
             var lista = new List<PostgreEntidadeTabela>();
-            var sql = $"select column_name, data_type, character_maximum_length from INFORMATION_SCHEMA.COLUMNS where table_name = '{nomeTabela}'";
+            var sql = $"select COLUMN_NAME, DATA_TYPE, CHARACTER_MAXIMUN_LENGTH from INFORMATION_SCHEMA.COLUMNS where table_name = '{nomeTabela}'";
 
             using (var r = ExecuteReader(sql))
                 while (r.Read())
                 {
                     lista.Add(new PostgreEntidadeTabela
                     {
-                        column_name = r.GetValueOrDefault<string>("column_name").Trim(),
-                        data_type = r.GetValueOrDefault<string>("data_type"),
-                        character_maximum_length = r.GetValueOrDefault<int?>("character_maximum_length"),
+                        COLUMN_NAME = r.GetValueOrDefault<string>("COLUMN_NAME").Trim(),
+                        DATA_TYPE = r.GetValueOrDefault<string>("DATA_TYPE"),
+                        CHARACTER_MAXIMUN_LENGTH = r.GetValueOrDefault<int?>("CHARACTER_MAXIMUN_LENGTH"),
                     });
                 };
             CloseConnection();

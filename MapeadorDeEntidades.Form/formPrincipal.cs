@@ -22,6 +22,7 @@ namespace Zeus
             InitConfigurations();
             Session.lblStatus = lblStatus;
             Session.progressBar1 = progressBar1;
+            Session.listaStatus = listBox1;
             ParamtersInput.NomeTabelas = new List<string>();
             txtConnectionString.Text = Settings.Default.ConnectionStringDefault;
         }
@@ -51,15 +52,9 @@ namespace Zeus
         {
             SetParamters();
             var x = MessageBox.Show("Deseja efetuar as chamadas via Procedure?", "Qual forma de acesso?", MessageBoxButtons.YesNoCancel);
-            if (x == DialogResult.Yes)
-            {
-                var mdChamdaProc = new OrquestradorChamadaProcedure().Generate(salvar);
-                Util.Status(mdChamdaProc.Message + " - " + mdChamdaProc.TechnicalMessage);
-            }
-            else if (x == DialogResult.No)
-            {
-
-            }
+            ParamtersInput.Procedure = x == DialogResult.Yes;
+            var chamada = new OrquestradorChamada().Generate(salvar);
+            Util.Status(chamada.Message + " - " + chamada.TechnicalMessage);
         }
 
         private void btnProcSql_Click(object sender, EventArgs e)
@@ -91,7 +86,7 @@ namespace Zeus
             if (!connectionDb.IsError)
             {
                 MessageBox.Show($@"{connectionDb.Message}");
-
+                Util.Status(connectionDb.TechnicalMessage ?? connectionDb.Message);
                 switch (ParamtersInput.SGBD)
                 {
                     case 1:
@@ -107,6 +102,7 @@ namespace Zeus
                 ddlDatabase.Items.AddRange(connectionDb.Content.ToArray());
                 return;
             }
+            Util.Status(connectionDb.TechnicalMessage ?? connectionDb.Message);
             MessageBox.Show(connectionDb.TechnicalMessage ?? connectionDb.Message);
         }
 

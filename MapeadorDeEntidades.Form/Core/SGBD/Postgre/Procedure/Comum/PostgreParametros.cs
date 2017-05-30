@@ -15,18 +15,18 @@ namespace Zeus.Core.SGBD.Postgre.Procedure.Comum
             for (int index = (full ? 0 : 1); index < parametro.Count; index++)
             {
                 var item = parametro[index];
-                desc.Append($"IN P_{item.column_name} {TrataTipo(item)}{Virgula(parametro.Count, index, full)}");
+                desc.Append($"IN P_{item.COLUMN_NAME} {TrataTipo(item)}{Virgula(parametro.Count, index, full)}");
             }
             return desc;
         }
 
         private string TrataTipo(PostgreEntidadeTabela tipo)
         {
-            if (tipo.data_type == "varchar")
+            if (tipo.DATA_TYPE == "varchar")
             {
-                return $"{tipo.data_type}({tipo.character_maximum_length ?? 255})";
+                return $"{tipo.DATA_TYPE}({tipo.CHARACTER_MAXIMUN_LENGTH ?? 255})";
             }
-            return tipo.data_type;
+            return tipo.DATA_TYPE;
         }
 
 

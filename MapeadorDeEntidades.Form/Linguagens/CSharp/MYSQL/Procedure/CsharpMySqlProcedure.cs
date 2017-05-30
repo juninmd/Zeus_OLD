@@ -1,11 +1,12 @@
 ﻿using System.Text;
 using Zeus.Linguagens.Base;
+using Zeus.Properties;
 
 namespace Zeus.Linguagens.CSharp.MYSQL.Procedure
 {
-    public class CsharpMySqlProcedure : BaseMySqlDAO
+    public class CSharpMySqlProcedure : BaseMySqlDAO
     {
-        public CsharpMySqlProcedure(string nomeTabela) : base(nomeTabela)
+        public CSharpMySqlProcedure(string nomeTabela) : base(nomeTabela)
         {
         }
 
@@ -29,9 +30,9 @@ namespace Zeus.Linguagens.CSharp.MYSQL.Procedure
 
         #region CLASSE 
 
-        public StringBuilder GerarBodyCSharpProc()
+        public StringBuilder GerarClasse()
         {
-            var nomeProcBase = NomeTabela.Replace(Properties.Settings.Default.PrefixoTabela, "");
+            var nomeProcBase = NomeTabela.Replace(Settings.Default.PrefixoTabela, "");
 
             var classe = new StringBuilder();
             classe.Append("using System.Net;" + N);
@@ -177,7 +178,7 @@ namespace Zeus.Linguagens.CSharp.MYSQL.Procedure
 
         public StringBuilder GerarInterfaceSharProc()
         {
-            var nomeProcBase = NomeTabela.Replace(Properties.Settings.Default.PrefixoTabela, "");
+            var nomeProcBase = NomeTabela.Replace(Settings.Default.PrefixoTabela, "");
 
             var classe = new StringBuilder();
             classe.Append("using System;" + N + N);
