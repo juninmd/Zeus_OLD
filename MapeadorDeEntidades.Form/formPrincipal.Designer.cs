@@ -72,7 +72,7 @@ namespace Zeus
             this.btnConfiguracoes = new System.Windows.Forms.Button();
             this.groupBox13 = new System.Windows.Forms.GroupBox();
             this.btnAngular = new System.Windows.Forms.Button();
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.listaStatus = new System.Windows.Forms.ListBox();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox5.SuspendLayout();
@@ -541,13 +541,13 @@ namespace Zeus
             this.btnAngular.UseVisualStyleBackColor = true;
             this.btnAngular.Click += new System.EventHandler(this.btnAngular_Click);
             // 
-            // listBox1
+            // listaStatus
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(21, 270);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(919, 43);
-            this.listBox1.TabIndex = 16;
+            this.listaStatus.FormattingEnabled = true;
+            this.listaStatus.Location = new System.Drawing.Point(21, 270);
+            this.listaStatus.Name = "listaStatus";
+            this.listaStatus.Size = new System.Drawing.Size(919, 43);
+            this.listaStatus.TabIndex = 16;
             // 
             // formPrincipal
             // 
@@ -555,7 +555,7 @@ namespace Zeus
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.ClientSize = new System.Drawing.Size(956, 318);
-            this.Controls.Add(this.listBox1);
+            this.Controls.Add(this.listaStatus);
             this.Controls.Add(this.groupBox13);
             this.Controls.Add(this.groupBox12);
             this.Controls.Add(this.groupBox11);
@@ -641,7 +641,7 @@ namespace Zeus
         private System.Windows.Forms.RadioButton radioSGBD5;
         private System.Windows.Forms.GroupBox groupBox13;
         private System.Windows.Forms.Button btnAngular;
-        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ListBox listaStatus;
     }
 }
 
