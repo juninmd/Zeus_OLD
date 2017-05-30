@@ -17,7 +17,7 @@ namespace Zeus.Core.SGBD.Postgre.Procedure.Comum
                 return param;
 
             param.Append($"	     DELETE FROM {nomeTabela}{N}");
-            param.Append($"               WHERE {listaAtributos.First().column_name} = P_{listaAtributos.First().column_name};{N}{N}");
+            param.Append($"               WHERE {listaAtributos.First().COLUMN_NAME} = P_{listaAtributos.First().COLUMN_NAME};{N}{N}");
             return param;
         }
     }

@@ -1,22 +1,15 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Text;
 using Zeus.Core;
 using Zeus.Linguagens.Base;
-using Zeus.Properties;
 
-namespace Zeus.Linguagens.Java.MySql.Procedure
+namespace Zeus.Linguagens.Java.Firebird.Query
 {
-    public class ex : BaseMySqlDAO
+    public class JavaFirebirdQuery : BaseMySqlDAO
     {
-        private string MySqlType(string tipo)
-        {
-            if (tipo == "VARCHAR2")
-            {
-                tipo = "VARCHAR";
-            }
-            return tipo.ToUpper();
-        }
-        public ex(string nomeTabela) : base(nomeTabela)
+
+        public JavaFirebirdQuery(string nomeTabela) : base(nomeTabela)
         {
         }
 
@@ -25,44 +18,26 @@ namespace Zeus.Linguagens.Java.MySql.Procedure
             var imports = new StringBuilder();
             imports.Append($"import java.sql.ResultSet;{N}");
             imports.Append($"import java.util.List;{N}");
-            imports.Append($"import model.{NomeTabela};{N}");
+            imports.Append($"import java.sql.PreparedStatement;{N}");
             return imports;
-        }
-
-        private StringBuilder ProceduresNames()
-        {
-            var baseProc = NomeTabela.TratarNomeTabela().ToUpper();
-            var proc = new StringBuilder();
-            proc.Append($"	private enum Proc{N}");
-            proc.Append($"	{{{N}");
-            proc.Append($"		{Settings.Default.PrefixoProcedure}S_{baseProc}_ID,{N}");
-            proc.Append($"		{Settings.Default.PrefixoProcedure}S_{baseProc},{N}");
-            proc.Append($"		{Settings.Default.PrefixoProcedure}I_{baseProc},{N}");
-            proc.Append($"		{Settings.Default.PrefixoProcedure}U_{baseProc},{N}");
-            proc.Append($"		{Settings.Default.PrefixoProcedure}D_{baseProc}{N}");
-            proc.Append($"	}}{N}");
-            return proc;
         }
 
         private StringBuilder GetById()
         {
-            var nameProc = $"{Settings.Default.PrefixoProcedure}S_{NomeTabela.TratarNomeTabela().ToUpper()}_ID";
-
             var get = new StringBuilder();
-            get.Append($"	public {NomeTabela} GetById(int id) throws Exception{N}");
+            get.Append($"	public {NomeTabela} GetById(int ID) throws Exception{N}");
             get.Append($"	{{{N}");
             get.Append($"		try{{{N}");
-            get.Append($"			BeginNewStatement(Proc.{nameProc}, \"{ParamtersInput.DataBase}\");{N}");
-            get.Append($"			AddParamter(new Paramter(\"P_{ListaAtributosTabela.First().COLUMN_NAME}\", java.sql.Types.NUMERIC, id));{N}{N}");
-            get.Append($"			ResultSet rs = super.ExecuteReader();{N}{N}");
+            get.Append($"			PreparedStatement conn = BeginNewStatement(\"SELECT * FROM {NomeTabela} WHERE {ListaAtributosTabela.First().COLUMN_NAME} =\"+ ID);{N}");
+            get.Append($"			ResultSet rs = conn.executeQuery();{N}");
             get.Append($"			if(rs.next()){{{N}");
             get.Append($"				{NomeTabela} resposta = new {NomeTabela}();{N}");
             foreach (var att in ListaAtributosTabela)
             {
-                get.Append($"				resposta.set{att.COLUMN_NAME}(rs.get{JavaTypesMySql.GetTypeAtribute((att))}(\"{att.COLUMN_NAME}\"));{N}");
+                get.Append($"				resposta.set{att.COLUMN_NAME.ToFirstCharToUpper()}(rs.get{JavaTypesMySql.GetTypeAtribute((att)).ToFirstCharToUpper()}(\"{att.COLUMN_NAME}\"));{N}");
             }
             get.Append($"				return resposta;{N}");
-            get.Append($"			}};{N}");
+            get.Append($"			}}{N}");
             get.Append($"			return null;{N}");
             get.Append($"		}}{N}");
             get.Append($"		catch (Exception ex){{{N}");
@@ -77,23 +52,21 @@ namespace Zeus.Linguagens.Java.MySql.Procedure
 
         private StringBuilder GetAll()
         {
-            var nameProc = $"{Settings.Default.PrefixoProcedure}S_{NomeTabela.TratarNomeTabela().ToUpper()}";
-
             var get = new StringBuilder();
             get.Append($"	public List<{NomeTabela}> GetAll() throws Exception{N}");
             get.Append($"	{{{N}");
             get.Append($"		try{{{N}");
             get.Append($"			List<{NomeTabela}> lista = new java.util.ArrayList<{NomeTabela}>();{N}{N}");
-            get.Append($"			BeginNewStatement(Proc.{nameProc}, \"{ParamtersInput.DataBase}\");{N}");
-            get.Append($"			ResultSet rs = super.ExecuteReader();{N}{N}");
+            get.Append($"			PreparedStatement conn = BeginNewStatement(\"SELECT * FROM {NomeTabela}\");{N}");
+            get.Append($"			ResultSet rs = conn.executeQuery();{N}");
             get.Append($"			while(rs.next()){{{N}");
             get.Append($"				{NomeTabela} resposta = new {NomeTabela}();{N}");
             foreach (var att in ListaAtributosTabela)
             {
-                get.Append($"				resposta.set{att.COLUMN_NAME}(rs.get{JavaTypesMySql.GetTypeAtribute(att)}(\"{att.COLUMN_NAME}\"));{N}");
+                get.Append($"				resposta.set{att.COLUMN_NAME.ToFirstCharToUpper()}(rs.get{JavaTypesMySql.GetTypeAtribute((att)).ToFirstCharToUpper()}(\"{att.COLUMN_NAME}\"));{N}");
             }
             get.Append($"				lista.add(resposta);{N}");
-            get.Append($"			}};{N}");
+            get.Append($"			}}{N}");
             get.Append($"			return lista;{N}");
             get.Append($"		}}{N}");
             get.Append($"		catch (Exception ex){{{N}");
@@ -108,19 +81,19 @@ namespace Zeus.Linguagens.Java.MySql.Procedure
 
         private StringBuilder Add()
         {
-            var nameProc = $"{Settings.Default.PrefixoProcedure}I_{NomeTabela.TratarNomeTabela().ToUpper()}";
-
             var get = new StringBuilder();
             get.Append($"	public void Add({NomeTabela} entidade) throws Exception{N}");
             get.Append($"	{{{N}");
             get.Append($"		try{{{N}");
-            get.Append($"			BeginNewStatement(Proc.{nameProc}, \"{ParamtersInput.DataBase}\");{N}");
-            get.Append($"			AddParamter(new Paramter(\"P_RESULT\", java.sql.Types.VARCHAR, null,\"OUT\"));{N}{N}");
-            foreach (var att in ListaAtributosTabela)
+            get.Append($"			PreparedStatement conn = BeginNewStatement(\"INSERT INTO {NomeTabela} ({String.Join(", ", ListaAtributosTabela.Where(e => e.COLUMN_NAME != ListaAtributosTabela.First().COLUMN_NAME).Select(e => e.COLUMN_NAME))}) values ({String.Join(", ", ListaAtributosTabela.Where(e => e.COLUMN_NAME != ListaAtributosTabela.First().COLUMN_NAME).Select(q => "?"))})\");{N}");
+
+            for (int index = 1; index < ListaAtributosTabela.Count; index++)
             {
-                get.Append($"			AddParamter(new Paramter(\"P_{att.COLUMN_NAME}\", java.sql.Types.{MySqlType(att.DATA_TYPE)}, entidade.get{att.COLUMN_NAME}()));{N}");
+                var att = ListaAtributosTabela[index];
+                get.Append($"			conn.set{JavaTypesMySql.GetTypeAtribute(att).ToFirstCharToUpper()}({index}, entidade.get{att.COLUMN_NAME.ToFirstCharToUpper()}());{N}");
             }
-            get.Append($"			RequestProc();{N}");
+            get.Append($"			conn.execute();{N}");
+            get.Append($"			commit();{N}");
             get.Append($"		}}{N}");
             get.Append($"		catch (Exception ex){{{N}");
             get.Append($"			throw ex;{N}");
@@ -134,19 +107,18 @@ namespace Zeus.Linguagens.Java.MySql.Procedure
 
         private StringBuilder Update()
         {
-            var nameProc = $"{Settings.Default.PrefixoProcedure}U_{NomeTabela.TratarNomeTabela().ToUpper()}";
-
             var get = new StringBuilder();
             get.Append($"	public void Update({NomeTabela} entidade) throws Exception{N}");
             get.Append($"	{{{N}");
             get.Append($"		try{{{N}");
-            get.Append($"			BeginNewStatement(Proc.{nameProc}, \"{ParamtersInput.DataBase}\");{N}");
-            get.Append($"			AddParamter(new Paramter(\"P_RESULT\", java.sql.Types.VARCHAR, null,\"OUT\"));{N}{N}");
-            foreach (var att in ListaAtributosTabela)
+            get.Append($"			PreparedStatement conn = BeginNewStatement(\"UPDATE {NomeTabela} SET {String.Join(", ", ListaAtributosTabela.Where(e => e.COLUMN_NAME != ListaAtributosTabela.First().COLUMN_NAME).Select(e => e.COLUMN_NAME + " = ?"))} WHERE {ListaAtributosTabela.First().COLUMN_NAME} = \" +  entidade.get{ListaAtributosTabela.First().COLUMN_NAME.ToFirstCharToUpper()}());{N}");
+            for (int index = 1; index < ListaAtributosTabela.Count; index++)
             {
-                get.Append($"			AddParamter(new Paramter(\"P_{att.COLUMN_NAME}\", java.sql.Types.{MySqlType(att.DATA_TYPE)}, entidade.get{att.COLUMN_NAME}()));{N}");
+                var att = ListaAtributosTabela[index];
+                get.Append($"			conn.set{JavaTypesMySql.GetTypeAtribute(att).ToFirstCharToUpper()}({index}, entidade.get{att.COLUMN_NAME.ToFirstCharToUpper()}());{N}");
             }
-            get.Append($"			RequestProc();{N}");
+            get.Append($"			conn.execute();{N}");
+            get.Append($"			commit();{N}");
             get.Append($"		}}{N}");
             get.Append($"		catch (Exception ex){{{N}");
             get.Append($"			throw ex;{N}");
@@ -159,15 +131,15 @@ namespace Zeus.Linguagens.Java.MySql.Procedure
         }
         private StringBuilder Delete()
         {
-            var nameProc = $"{Settings.Default.PrefixoProcedure}U_{NomeTabela.TratarNomeTabela().ToUpper()}";
 
             var get = new StringBuilder();
             get.Append($"	public void Delete(int ID) throws Exception{N}");
             get.Append($"	{{{N}");
             get.Append($"		try{{{N}");
-            get.Append($"			BeginNewStatement(Proc.{nameProc}, \"{ParamtersInput.DataBase}\");{N}");
-            get.Append($"			AddParamter(new Paramter(\"P_RESULT\", java.sql.Types.VARCHAR, null,\"OUT\"));{N}{N}");
-            get.Append($"			RequestProc();{N}");
+            get.Append($"			PreparedStatement conn = BeginNewStatement(\"DELETE FROM {NomeTabela} WHERE {ListaAtributosTabela.First().COLUMN_NAME} = ?\");{N}");
+            get.Append($"			conn.setInt({1}, ID);{N}");
+            get.Append($"			conn.execute();{N}");
+            get.Append($"			commit();{N}");
             get.Append($"		}}{N}");
             get.Append($"		catch (Exception ex){{{N}");
             get.Append($"			throw ex;{N}");
@@ -186,7 +158,6 @@ namespace Zeus.Linguagens.Java.MySql.Procedure
             classe.Append($"package br.fatecfranca.dao;{N}");
             classe.Append(Imports());
             classe.Append($"public class {NomeTabela}Dao extends ComumDao {{ {N}{N}");
-            classe.Append(ProceduresNames());
             classe.Append(GetById());
             classe.Append(GetAll());
             classe.Append(Add());

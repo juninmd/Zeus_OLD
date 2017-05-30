@@ -14,6 +14,11 @@ namespace Zeus.Core
         public static int Linguagem { get; set; }
 
         /// <summary>
+        /// É acesso via Procedure?
+        /// </summary>
+        public static bool Procedure { get; set; }
+
+        /// <summary>
         /// 1 - Oracle        |
         /// 2 - Microsoft SQL |
         /// 3 - MYSQL         |

@@ -2,11 +2,12 @@
 using System.IO;
 using System.Windows.Forms;
 using Zeus.Core;
+using Zeus.Linguagens.Java.MySql.Entidade;
 using Zeus.Utilidade;
 
-namespace Zeus.Linguagens.Java.MySql.Procedure
+namespace Zeus.Linguagens.Java.Firebird.Entidade
 {
-    public class ChamadaJavaMySqlProcedure
+    public class JavaFirebirdOrquestraEntidade
     {
         public RequestMessage<string> Java(FolderBrowserDialog salvar)
         {
@@ -16,17 +17,13 @@ namespace Zeus.Linguagens.Java.MySql.Procedure
                 var i = 0;
                 foreach (var nomeTabela in ParamtersInput.NomeTabelas)
                 {
-
                     i++;
                     Util.Barra((int)((((decimal)i / max) * 100)));
                     Util.Status($"Processando tabela: {nomeTabela}");
 
-                    var instancia = new JavaMySqlProcedure(nomeTabela);
-
-                    var classe = instancia.GerarClasse().ToString();
-                    File.WriteAllText($"{salvar.SelectedPath}\\{nomeTabela.TratarNomeTabela().ToLower()}Dao.java", classe);
+                    var classe = new JavaMySqlEntidade().GerarBody(nomeTabela).ToString();
+                    File.WriteAllText($"{salvar.SelectedPath}\\{nomeTabela}.java", classe);
                 }
-
                 return new RequestMessage<string>()
                 {
                     Message = "Processamento concluído com sucesso!",
@@ -41,7 +38,7 @@ namespace Zeus.Linguagens.Java.MySql.Procedure
                     TechnicalMessage = ex.Message,
                     StatusCode = System.Net.HttpStatusCode.InternalServerError
                 };
-            }
+            };
         }
     }
 }

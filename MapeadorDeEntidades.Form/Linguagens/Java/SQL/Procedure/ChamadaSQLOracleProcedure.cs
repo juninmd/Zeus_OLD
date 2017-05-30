@@ -2,32 +2,30 @@
 using System.IO;
 using System.Windows.Forms;
 using Zeus.Core;
+using Zeus.Linguagens.Java.Oracle.Procedure;
 using Zeus.Utilidade;
 
-namespace Zeus.Linguagens.CSharp.Firebird.Query
+namespace Zeus.Linguagens.Java.SQL.Procedure
 {
-    public class ChamadaCsharpFirebirdQuery
+    public class ChamadaJavaOracleProcedure
     {
-        public RequestMessage<string> CSharp(FolderBrowserDialog salvar)
+        public RequestMessage<string> Java(FolderBrowserDialog salvar)
         {
             try
             {
                 int max = ParamtersInput.NomeTabelas.Count;
                 var i = 0;
-                var local = salvar.SelectedPath + "\\";
-
                 foreach (var nomeTabela in ParamtersInput.NomeTabelas)
                 {
+
                     i++;
                     Util.Barra((int)((((decimal)i / max) * 100)));
                     Util.Status($"Processando tabela: {nomeTabela}");
 
-
-                    var instancia = new CSharpFirebirdQuery(nomeTabela);
+                    var instancia = new JavaOracleProcedure(nomeTabela);
 
                     var classe = instancia.GerarClasse().ToString();
-                    File.WriteAllText(local + nomeTabela.ToFirstCharToUpper() + "Dao.cs", classe);
-                   
+                    File.WriteAllText($"{salvar.SelectedPath}\\{nomeTabela.ToLower()}Dao.java", classe);
                 }
 
                 return new RequestMessage<string>()

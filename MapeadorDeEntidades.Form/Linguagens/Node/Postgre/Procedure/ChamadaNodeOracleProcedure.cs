@@ -2,12 +2,11 @@
 using System.IO;
 using System.Windows.Forms;
 using Zeus.Core;
-using Zeus.Linguagens.Node.MySql.Procedure;
 using Zeus.Utilidade;
 
-namespace Zeus.Linguagens.Node.MySql
+namespace Zeus.Linguagens.Node.Postgre.Procedure
 {
-    public class ChamadaNodeMySqlProcedure
+    public class ChamadaNodeOracleProcedure
     {
         public RequestMessage<string> Node(FolderBrowserDialog salvar)
         {
@@ -22,10 +21,16 @@ namespace Zeus.Linguagens.Node.MySql
                     Util.Barra((int)((((decimal)i / max) * 100)));
                     Util.Status($"Processando tabela: {nomeTabela}");
 
-                    var instancia = new NodeMySqlProcedure(nomeTabela);
+                    var instancia = new NodePostgreProcedure(nomeTabela);
 
                     var classe = instancia.GerarClasse().ToString();
-                    File.WriteAllText($"{salvar.SelectedPath}\\{nomeTabela.TratarNomeTabela().Replace("_", "").ToLower()}Repository.js", classe);
+                    File.WriteAllText($"{salvar.SelectedPath}\\{nomeTabela.TratarNomeTabela().ToLower()}Repository.js", classe);
+
+                    var controller = new NodeController(nomeTabela).GerarClasse().ToString();
+                    File.WriteAllText($"{salvar.SelectedPath}\\{nomeTabela.TratarNomeTabela().ToLower()}Ctl.js", controller);
+
+                    var routes = new NodeRoutes(nomeTabela).GerarClasse().ToString();
+                    File.WriteAllText($"{salvar.SelectedPath}\\{nomeTabela.TratarNomeTabela().ToLower()}Routes.js", routes);
                 }
 
                 return new RequestMessage<string>()
@@ -44,6 +49,5 @@ namespace Zeus.Linguagens.Node.MySql
                 };
             }
         }
-
     }
 }

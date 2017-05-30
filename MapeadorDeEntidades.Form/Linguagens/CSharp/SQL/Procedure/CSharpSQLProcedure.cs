@@ -4,15 +4,15 @@ using Zeus.Linguagens.Base;
 
 namespace Zeus.Linguagens.CSharp.SQL.Procedure
 {
-    public class CSharpProcSQL : BaseSQLDAO
+    public class CSharpSQLProcedure : BaseSQLDAO
     {
-        public CSharpProcSQL(string nomeTabela) : base(nomeTabela)
+        public CSharpSQLProcedure(string nomeTabela) : base(nomeTabela)
         {
         }
 
         #region CLASSE 
 
-        public StringBuilder GerarBodyCSharpProc()
+        public StringBuilder GerarClasse()
         {
             var nomeProcBase = NomeTabela.TratarNomeSQL();
 

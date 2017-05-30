@@ -2,29 +2,32 @@
 using System.IO;
 using System.Windows.Forms;
 using Zeus.Core;
+using Zeus.Linguagens.Java.Oracle.Procedure;
 using Zeus.Utilidade;
 
-namespace Zeus.Linguagens.CSharp.Postgree.Entidade
+namespace Zeus.Linguagens.Java.Postgre.Procedure
 {
-    public class CsharpPostgreOrquestraEntidade
+    public class ChamadaJavaOracleProcedure
     {
-        public CSharpPostgreEntidade CSharpPostgreEntidade = new CSharpPostgreEntidade();
-
-        public RequestMessage<string> CSharp(FolderBrowserDialog salvar)
+        public RequestMessage<string> Java(FolderBrowserDialog salvar)
         {
             try
             {
                 int max = ParamtersInput.NomeTabelas.Count;
                 var i = 0;
-
                 foreach (var nomeTabela in ParamtersInput.NomeTabelas)
                 {
+
                     i++;
                     Util.Barra((int)((((decimal)i / max) * 100)));
                     Util.Status($"Processando tabela: {nomeTabela}");
-                    var classe = CSharpPostgreEntidade.GerarBody(nomeTabela);
-                    File.WriteAllText($"{salvar.SelectedPath}\\{nomeTabela.ToFirstCharToUpper()}Model.cs", classe);
+
+                    var instancia = new JavaOracleProcedure(nomeTabela);
+
+                    var classe = instancia.GerarClasse().ToString();
+                    File.WriteAllText($"{salvar.SelectedPath}\\{nomeTabela.ToLower()}Dao.java", classe);
                 }
+
                 return new RequestMessage<string>()
                 {
                     Message = "Processamento concluído com sucesso!",

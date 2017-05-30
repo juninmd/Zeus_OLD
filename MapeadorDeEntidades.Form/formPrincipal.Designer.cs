@@ -72,6 +72,7 @@ namespace Zeus
             this.btnConfiguracoes = new System.Windows.Forms.Button();
             this.groupBox13 = new System.Windows.Forms.GroupBox();
             this.btnAngular = new System.Windows.Forms.Button();
+            this.listBox1 = new System.Windows.Forms.ListBox();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox5.SuspendLayout();
@@ -330,7 +331,7 @@ namespace Zeus
             // progressBar1
             // 
             this.progressBar1.ForeColor = System.Drawing.Color.Maroon;
-            this.progressBar1.Location = new System.Drawing.Point(6, 35);
+            this.progressBar1.Location = new System.Drawing.Point(6, 39);
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(430, 10);
             this.progressBar1.TabIndex = 14;
@@ -540,12 +541,21 @@ namespace Zeus
             this.btnAngular.UseVisualStyleBackColor = true;
             this.btnAngular.Click += new System.EventHandler(this.btnAngular_Click);
             // 
+            // listBox1
+            // 
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.Location = new System.Drawing.Point(21, 270);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(919, 43);
+            this.listBox1.TabIndex = 16;
+            // 
             // formPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.ClientSize = new System.Drawing.Size(956, 279);
+            this.ClientSize = new System.Drawing.Size(956, 318);
+            this.Controls.Add(this.listBox1);
             this.Controls.Add(this.groupBox13);
             this.Controls.Add(this.groupBox12);
             this.Controls.Add(this.groupBox11);
@@ -564,7 +574,7 @@ namespace Zeus
             this.MaximizeBox = false;
             this.Name = "formPrincipal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Zeus - 0.8";
+            this.Text = "Zeus - 0.9";
             this.groupBox3.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
@@ -631,6 +641,7 @@ namespace Zeus
         private System.Windows.Forms.RadioButton radioSGBD5;
         private System.Windows.Forms.GroupBox groupBox13;
         private System.Windows.Forms.Button btnAngular;
+        private System.Windows.Forms.ListBox listBox1;
     }
 }
 

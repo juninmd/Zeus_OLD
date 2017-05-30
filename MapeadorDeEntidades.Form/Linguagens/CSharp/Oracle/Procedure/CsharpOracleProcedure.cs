@@ -4,9 +4,9 @@ using Zeus.Properties;
 
 namespace Zeus.Linguagens.CSharp.Oracle.Procedure
 {
-    public class CsharpOracleProcedure : BaseOracleDAO
+    public class CSharpOracleProcedure : BaseOracleDAO
     {
-        public CsharpOracleProcedure(string nomeTabela) : base(nomeTabela)
+        public CSharpOracleProcedure(string nomeTabela) : base(nomeTabela)
         {
         }
 
@@ -26,13 +26,13 @@ namespace Zeus.Linguagens.CSharp.Oracle.Procedure
                     return "string";
             }
         }
-    
+
 
         #region CLASSE 
 
-        public StringBuilder GerarBodyCSharpProc()
+        public StringBuilder GerarClasse()
         {
-            var nomeProcBase =NomeTabela.Replace(Settings.Default.PrefixoTabela, "");
+            var nomeProcBase = NomeTabela.Replace(Settings.Default.PrefixoTabela, "");
 
             var classe = new StringBuilder();
             classe.Append("using System.Net;" + N);
@@ -176,7 +176,7 @@ namespace Zeus.Linguagens.CSharp.Oracle.Procedure
 
         public StringBuilder GerarInterfaceSharProc()
         {
-            var nomeProcBase =NomeTabela.Replace(Settings.Default.PrefixoTabela, "");
+            var nomeProcBase = NomeTabela.Replace(Settings.Default.PrefixoTabela, "");
 
             var classe = new StringBuilder();
             classe.Append("using System;" + N + N);

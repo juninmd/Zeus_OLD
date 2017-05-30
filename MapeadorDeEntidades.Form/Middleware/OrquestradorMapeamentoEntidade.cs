@@ -4,10 +4,11 @@ using System.Windows.Forms;
 using Zeus.Core;
 using Zeus.Linguagens.CSharp.Firebird.Entidade;
 using Zeus.Linguagens.CSharp.Oracle.Entidade;
-using Zeus.Linguagens.CSharp.Postgree.Entidade;
+using Zeus.Linguagens.CSharp.Postgre.Entidade;
 using Zeus.Linguagens.CSharp.SQL.Entidade;
 using Zeus.Linguagens.Java.MySql.Entidade;
 using Zeus.Linguagens.Java.Oracle.Entidade;
+using Zeus.Linguagens.Java.Postgre.Entidade;
 
 namespace Zeus.Middleware
 {
@@ -114,6 +115,10 @@ namespace Zeus.Middleware
                             case 1:
                                 {
                                     return new CsharpPostgreOrquestraEntidade().CSharp(salvar);
+                                }
+                            case 2:
+                                {
+                                    return new JavaPostgreOrquestraEntidade().Java(salvar);
                                 }
                             default:
                                 {

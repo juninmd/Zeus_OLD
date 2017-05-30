@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using System.Windows.Forms;
 using Zeus.Core;
 
 namespace Zeus.Utilidade
@@ -8,6 +9,7 @@ namespace Zeus.Utilidade
         public static void Status(string text)
         {
             Session.lblStatus.Text = text;
+            Session.listaStatus.Items.Insert(0, $"{DateTime.Now.ToShortDateString()} - {DateTime.Now.ToShortTimeString()} - {text}");
             Application.DoEvents();
         }
         public static void Barra(int valor)

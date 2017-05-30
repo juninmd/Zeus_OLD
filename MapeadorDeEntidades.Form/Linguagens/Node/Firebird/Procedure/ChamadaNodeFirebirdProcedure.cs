@@ -2,35 +2,30 @@
 using System.IO;
 using System.Windows.Forms;
 using Zeus.Core;
+using Zeus.Linguagens.Node.MySql.Procedure;
 using Zeus.Utilidade;
 
-namespace Zeus.Linguagens.CSharp.MYSQL.Procedure
+namespace Zeus.Linguagens.Node.Firebird.Procedure
 {
-    public class ChamadaCsharpMySqlProcedure
+    public class ChamadaNodeFirebirdProcedure
     {
-        public RequestMessage<string> CSharp(FolderBrowserDialog salvar)
+        public RequestMessage<string> Node(FolderBrowserDialog salvar)
         {
             try
             {
                 int max = ParamtersInput.NomeTabelas.Count;
                 var i = 0;
-                var local = salvar.SelectedPath + "\\";
-
                 foreach (var nomeTabela in ParamtersInput.NomeTabelas)
                 {
+
                     i++;
                     Util.Barra((int)((((decimal)i / max) * 100)));
                     Util.Status($"Processando tabela: {nomeTabela}");
 
+                    var instancia = new NodeMySqlProcedure(nomeTabela);
 
-                    var instancia = new CsharpMySqlProcedure(nomeTabela);
-
-                    var classe = instancia.GerarBodyCSharpProc().ToString();
-                    File.WriteAllText(local + nomeTabela.ToLower() + "Repository.cs", classe);
-
-
-                    var interfacename = instancia.GerarInterfaceSharProc().ToString();
-                    File.WriteAllText(local + "I" + nomeTabela.ToLower() + "Repository.cs", interfacename);
+                    var classe = instancia.GerarClasse().ToString();
+                    File.WriteAllText($"{salvar.SelectedPath}\\{nomeTabela.TratarNomeTabela().ToLower()}Repository.js", classe);
                 }
 
                 return new RequestMessage<string>()

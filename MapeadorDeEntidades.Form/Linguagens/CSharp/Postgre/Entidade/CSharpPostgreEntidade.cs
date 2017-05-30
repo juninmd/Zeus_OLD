@@ -3,7 +3,7 @@ using Zeus.Core;
 using Zeus.Core.SGBD.Postgre;
 using Zeus.Linguagens.Base;
 
-namespace Zeus.Linguagens.CSharp.Postgree.Entidade
+namespace Zeus.Linguagens.CSharp.Postgre.Entidade
 {
     public class CSharpPostgreEntidade : BaseEntity
     {
@@ -27,7 +27,7 @@ namespace Zeus.Linguagens.CSharp.Postgree.Entidade
 
             foreach (var item in atributos)
             {
-                classe.Append($"         public string {item.column_name} {{ get; set; }}" + N);
+                classe.Append($"         public string {item.COLUMN_NAME} {{ get; set; }}" + N);
                 classe.Append(N);
             }
             classe.Append("    }" + N);

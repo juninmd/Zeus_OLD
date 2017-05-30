@@ -54,7 +54,7 @@ namespace Zeus.Core.SGBD.MySql
                         COLUMN_DEFAULT = r.GetValueOrDefault<int?>("COLUMN_DEFAULT"),
                         IS_NULLABLE = r.GetValueOrDefault<string>("IS_NULLABLE"),
                         DATA_TYPE = r.GetValueOrDefault<string>("DATA_TYPE"),
-                      //  CHARACTER_MAXIMUM_LENGTH = r.GetInt32(r.GetOrdinal("CHARACTER_MAXIMUM_LENGTH")),
+                      //  CHARACTER_MAXIMUN_LENGTH = r.GetInt32(r.GetOrdinal("CHARACTER_MAXIMUN_LENGTH")),
                        // CHARACTER_OCTET_LENGTH = r.GetValueOrDefault<int?>("CHARACTER_OCTET_LENGTH"),
                  //       NUMERIC_PRECISION = r.GetInt32(r.GetOrdinal("NUMERIC_PRECISION")),
                         COLUMN_COMMENT = r.GetValueOrDefault<string>("COLUMN_COMMENT"),

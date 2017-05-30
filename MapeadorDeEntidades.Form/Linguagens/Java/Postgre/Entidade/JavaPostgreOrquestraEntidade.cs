@@ -2,38 +2,27 @@
 using System.IO;
 using System.Windows.Forms;
 using Zeus.Core;
-using Zeus.Core.SGBD.Microsoft_SQL;
 using Zeus.Utilidade;
 
-namespace Zeus.Linguagens.CSharp.SQL.Procedure
+namespace Zeus.Linguagens.Java.Postgre.Entidade
 {
-    public class ChamadaCsharpSQLProcedure
+    public class JavaPostgreOrquestraEntidade
     {
-        public RequestMessage<string> CSharp(FolderBrowserDialog salvar)
+        public RequestMessage<string> Java(FolderBrowserDialog salvar)
         {
             try
             {
                 int max = ParamtersInput.NomeTabelas.Count;
                 var i = 0;
-                var local = salvar.SelectedPath + "\\";
-
                 foreach (var nomeTabela in ParamtersInput.NomeTabelas)
                 {
                     i++;
                     Util.Barra((int)((((decimal)i / max) * 100)));
                     Util.Status($"Processando tabela: {nomeTabela}");
 
-
-                    var instancia = new CSharpProcSQL(nomeTabela);
-
-                    var classe = instancia.GerarBodyCSharpProc().ToString();
-                    File.WriteAllText(local + nomeTabela.TratarNomeSQL().ToLower() + "Repository.cs", classe);
-
-
-                    var interfacename = instancia.GerarInterfaceSharProc().ToString();
-                    File.WriteAllText(local + "I" + nomeTabela.TratarNomeSQL().ToLower() + "Repository.cs", interfacename);
+                    var classe = new JavaPostgreEntidade().GerarBody(nomeTabela).ToString();
+                    File.WriteAllText($"{salvar.SelectedPath}\\{nomeTabela}.java", classe);
                 }
-
                 return new RequestMessage<string>()
                 {
                     Message = "Processamento concluído com sucesso!",
@@ -48,7 +37,7 @@ namespace Zeus.Linguagens.CSharp.SQL.Procedure
                     TechnicalMessage = ex.Message,
                     StatusCode = System.Net.HttpStatusCode.InternalServerError
                 };
-            }
+            };
         }
     }
 }
