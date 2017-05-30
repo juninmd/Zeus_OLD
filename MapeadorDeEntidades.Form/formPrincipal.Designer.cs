@@ -104,8 +104,8 @@ namespace Zeus
             this.btnEntidade.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnEntidade.Location = new System.Drawing.Point(369, 17);
             this.btnEntidade.Name = "btnEntidade";
-            this.btnEntidade.Size = new System.Drawing.Size(89, 30);
-            this.btnEntidade.TabIndex = 13;
+            this.btnEntidade.Size = new System.Drawing.Size(108, 30);
+            this.btnEntidade.TabIndex = 10;
             this.btnEntidade.Text = "Entidade";
             this.btnEntidade.UseVisualStyleBackColor = true;
             this.btnEntidade.Click += new System.EventHandler(this.btnEntidade_Click);
@@ -116,7 +116,7 @@ namespace Zeus
             this.btnChamadaProc.Location = new System.Drawing.Point(11, 17);
             this.btnChamadaProc.Name = "btnChamadaProc";
             this.btnChamadaProc.Size = new System.Drawing.Size(216, 30);
-            this.btnChamadaProc.TabIndex = 11;
+            this.btnChamadaProc.TabIndex = 10;
             this.btnChamadaProc.Text = "Classe de acesso ao banco de dados";
             this.btnChamadaProc.UseVisualStyleBackColor = true;
             this.btnChamadaProc.Click += new System.EventHandler(this.btnChamadaProc_Click);
@@ -127,7 +127,7 @@ namespace Zeus
             this.btnProc.Location = new System.Drawing.Point(233, 17);
             this.btnProc.Name = "btnProc";
             this.btnProc.Size = new System.Drawing.Size(130, 30);
-            this.btnProc.TabIndex = 12;
+            this.btnProc.TabIndex = 10;
             this.btnProc.Text = "Procedure";
             this.btnProc.UseVisualStyleBackColor = true;
             this.btnProc.Click += new System.EventHandler(this.btnProcSql_Click);
@@ -140,7 +140,7 @@ namespace Zeus
             this.radioCsharp.Location = new System.Drawing.Point(6, 28);
             this.radioCsharp.Name = "radioCsharp";
             this.radioCsharp.Size = new System.Drawing.Size(43, 20);
-            this.radioCsharp.TabIndex = 1;
+            this.radioCsharp.TabIndex = 0;
             this.radioCsharp.TabStop = true;
             this.radioCsharp.Text = "C #";
             this.radioCsharp.UseVisualStyleBackColor = true;
@@ -225,7 +225,7 @@ namespace Zeus
             this.groupBox3.Location = new System.Drawing.Point(21, 209);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(488, 55);
-            this.groupBox3.TabIndex = 11;
+            this.groupBox3.TabIndex = 10;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "10 - Gerar";
             // 
@@ -275,7 +275,7 @@ namespace Zeus
             this.groupBox5.Location = new System.Drawing.Point(240, 12);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(704, 66);
-            this.groupBox5.TabIndex = 13;
+            this.groupBox5.TabIndex = 3;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "3 - Connection String";
             // 
@@ -285,7 +285,7 @@ namespace Zeus
             this.btnExemplo.Location = new System.Drawing.Point(673, 19);
             this.btnExemplo.Name = "btnExemplo";
             this.btnExemplo.Size = new System.Drawing.Size(21, 29);
-            this.btnExemplo.TabIndex = 2;
+            this.btnExemplo.TabIndex = 3;
             this.btnExemplo.Text = "?";
             this.btnExemplo.UseVisualStyleBackColor = true;
             this.btnExemplo.Click += new System.EventHandler(this.btnExemplo_Click);
@@ -296,7 +296,7 @@ namespace Zeus
             this.btnConnection.Location = new System.Drawing.Point(594, 19);
             this.btnConnection.Name = "btnConnection";
             this.btnConnection.Size = new System.Drawing.Size(75, 29);
-            this.btnConnection.TabIndex = 3;
+            this.btnConnection.TabIndex = 2;
             this.btnConnection.Text = "Conectar";
             this.btnConnection.UseVisualStyleBackColor = true;
             this.btnConnection.Click += new System.EventHandler(this.btnConnection_Click);
@@ -309,7 +309,7 @@ namespace Zeus
             this.txtConnectionString.Location = new System.Drawing.Point(9, 24);
             this.txtConnectionString.Name = "txtConnectionString";
             this.txtConnectionString.Size = new System.Drawing.Size(579, 20);
-            this.txtConnectionString.TabIndex = 3;
+            this.txtConnectionString.TabIndex = 1;
             // 
             // groupBox6
             // 
@@ -319,7 +319,7 @@ namespace Zeus
             this.groupBox6.Location = new System.Drawing.Point(21, 270);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Size = new System.Drawing.Size(923, 77);
-            this.groupBox6.TabIndex = 11;
+            this.groupBox6.TabIndex = 13;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Status";
             // 
@@ -329,7 +329,9 @@ namespace Zeus
             this.progressBar1.Location = new System.Drawing.Point(21, 353);
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(923, 12);
+            this.progressBar1.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
             this.progressBar1.TabIndex = 14;
+            this.progressBar1.UseWaitCursor = true;
             // 
             // groupBox1
             // 
@@ -341,7 +343,7 @@ namespace Zeus
             this.groupBox1.Location = new System.Drawing.Point(21, 12);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(111, 131);
-            this.groupBox1.TabIndex = 9;
+            this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "1 - Linguagem";
             // 
@@ -357,7 +359,7 @@ namespace Zeus
             this.groupBox2.Location = new System.Drawing.Point(131, 12);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(110, 131);
-            this.groupBox2.TabIndex = 10;
+            this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "2 - SGBD";
             // 
@@ -395,7 +397,7 @@ namespace Zeus
             this.groupBox7.Location = new System.Drawing.Point(240, 77);
             this.groupBox7.Name = "groupBox7";
             this.groupBox7.Size = new System.Drawing.Size(328, 66);
-            this.groupBox7.TabIndex = 14;
+            this.groupBox7.TabIndex = 4;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "4 - Schema";
             // 
@@ -431,7 +433,7 @@ namespace Zeus
             this.groupBox8.Location = new System.Drawing.Point(565, 77);
             this.groupBox8.Name = "groupBox8";
             this.groupBox8.Size = new System.Drawing.Size(175, 66);
-            this.groupBox8.TabIndex = 0;
+            this.groupBox8.TabIndex = 5;
             this.groupBox8.TabStop = false;
             this.groupBox8.Text = "5 - Pré-Fixo Procedures";
             // 
@@ -453,9 +455,9 @@ namespace Zeus
             this.groupBox9.Location = new System.Drawing.Point(635, 143);
             this.groupBox9.Name = "groupBox9";
             this.groupBox9.Size = new System.Drawing.Size(167, 60);
-            this.groupBox9.TabIndex = 1;
+            this.groupBox9.TabIndex = 8;
             this.groupBox9.TabStop = false;
-            this.groupBox9.Text = "7 - Pré-Fixo Tabelas";
+            this.groupBox9.Text = "8 - Pré-Fixo Tabelas";
             // 
             // txtPreFixoPackages
             // 
@@ -475,7 +477,7 @@ namespace Zeus
             this.groupBox10.Location = new System.Drawing.Point(740, 77);
             this.groupBox10.Name = "groupBox10";
             this.groupBox10.Size = new System.Drawing.Size(204, 66);
-            this.groupBox10.TabIndex = 2;
+            this.groupBox10.TabIndex = 6;
             this.groupBox10.TabStop = false;
             this.groupBox10.Text = "6 - Pré-Fixo Packages (Oracle)";
             // 
@@ -502,9 +504,9 @@ namespace Zeus
             this.groupBox11.Location = new System.Drawing.Point(802, 143);
             this.groupBox11.Name = "groupBox11";
             this.groupBox11.Size = new System.Drawing.Size(142, 60);
-            this.groupBox11.TabIndex = 3;
+            this.groupBox11.TabIndex = 9;
             this.groupBox11.TabStop = false;
-            this.groupBox11.Text = "8 - Unificar Output";
+            this.groupBox11.Text = "9 - Unificar Output";
             // 
             // groupBox12
             // 
@@ -515,7 +517,7 @@ namespace Zeus
             this.groupBox12.Location = new System.Drawing.Point(504, 209);
             this.groupBox12.Name = "groupBox12";
             this.groupBox12.Size = new System.Drawing.Size(270, 55);
-            this.groupBox12.TabIndex = 18;
+            this.groupBox12.TabIndex = 11;
             this.groupBox12.TabStop = false;
             this.groupBox12.Text = "11 - Extras";
             // 
@@ -538,7 +540,7 @@ namespace Zeus
             this.groupBox13.Location = new System.Drawing.Point(774, 209);
             this.groupBox13.Name = "groupBox13";
             this.groupBox13.Size = new System.Drawing.Size(170, 55);
-            this.groupBox13.TabIndex = 20;
+            this.groupBox13.TabIndex = 12;
             this.groupBox13.TabStop = false;
             this.groupBox13.Text = "12 - Frontend";
             // 
