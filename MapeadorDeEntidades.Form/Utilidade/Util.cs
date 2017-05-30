@@ -8,8 +8,8 @@ namespace Zeus.Utilidade
     {
         public static void Status(string text)
         {
-            Session.lblStatus.Text = text;
-            Session.listaStatus.Items.Insert(0, $"{DateTime.Now.ToShortDateString()} - {DateTime.Now.ToShortTimeString()} - {text}");
+            var data = DateTime.Now;
+            Session.listaStatus.Items.Insert(0, $"{data.ToShortDateString()} - {data:hh:mm:ss} - {text}");
             Application.DoEvents();
         }
         public static void Barra(int valor)

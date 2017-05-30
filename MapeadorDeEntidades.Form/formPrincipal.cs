@@ -20,7 +20,6 @@ namespace Zeus
             Application.EnableVisualStyles();
             Som();
             InitConfigurations();
-            Session.lblStatus = lblStatus;
             Session.progressBar1 = progressBar1;
             Session.listaStatus = listaStatus;
             ParamtersInput.NomeTabelas = new List<string>();
@@ -233,6 +232,7 @@ namespace Zeus
             txtPrefixoTabela.Text = Settings.Default.PrefixoTabela;
             txtConnectionString.Text = Settings.Default.ConnectionStringDefault;
             ddlUnificar.SelectedItem = Settings.Default.UnificarOutput ? "SIM" : "NÃO";
+            txtConnectionString.Focus();
         }
 
         private void btnAngular_Click(object sender, EventArgs e)
