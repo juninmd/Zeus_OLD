@@ -8,14 +8,6 @@ namespace Zeus.Linguagens.Java.MySql.Procedure
 {
     public class JavaMySqlProcedure : BaseMySqlDAO
     {
-        private string MySqlType(string tipo)
-        {
-            if (tipo == "VARCHAR2")
-            {
-                tipo = "VARCHAR";
-            }
-            return tipo.ToUpper();
-        }
         public JavaMySqlProcedure(string nomeTabela) : base(nomeTabela)
         {
         }
@@ -118,7 +110,7 @@ namespace Zeus.Linguagens.Java.MySql.Procedure
             get.Append($"			AddParamter(new Paramter(\"P_RESULT\", java.sql.Types.VARCHAR, null,\"OUT\"));{N}{N}");
             foreach (var att in ListaAtributosTabela)
             {
-                get.Append($"			AddParamter(new Paramter(\"P_{att.COLUMN_NAME}\", java.sql.Types.{MySqlType(att.DATA_TYPE)}, entidade.get{att.COLUMN_NAME}()));{N}");
+                get.Append($"			AddParamter(new Paramter(\"P_{att.COLUMN_NAME}\", java.sql.Types.{JavaTypesMySql.GetTypeAtribute(att)}, entidade.get{att.COLUMN_NAME}()));{N}");
             }
             get.Append($"			RequestProc();{N}");
             get.Append($"		}}{N}");
@@ -144,7 +136,7 @@ namespace Zeus.Linguagens.Java.MySql.Procedure
             get.Append($"			AddParamter(new Paramter(\"P_RESULT\", java.sql.Types.VARCHAR, null,\"OUT\"));{N}{N}");
             foreach (var att in ListaAtributosTabela)
             {
-                get.Append($"			AddParamter(new Paramter(\"P_{att.COLUMN_NAME}\", java.sql.Types.{MySqlType(att.DATA_TYPE)}, entidade.get{att.COLUMN_NAME}()));{N}");
+                get.Append($"			AddParamter(new Paramter(\"P_{att.COLUMN_NAME}\", java.sql.Types.{JavaTypesMySql.GetTypeAtribute(att)}, entidade.get{att.COLUMN_NAME}()));{N}");
             }
             get.Append($"			RequestProc();{N}");
             get.Append($"		}}{N}");
@@ -183,7 +175,7 @@ namespace Zeus.Linguagens.Java.MySql.Procedure
         public StringBuilder GerarClasse()
         {
             var classe = new StringBuilder();
-            classe.Append($"package br.fatecfranca.dao;{N}");
+            classe.Append($"package br.meuprojeto.dao;{N}");
             classe.Append(Imports());
             classe.Append($"public class {NomeTabela}Dao extends ComumDao {{ {N}{N}");
             classe.Append(ProceduresNames());

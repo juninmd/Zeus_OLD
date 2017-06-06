@@ -10,24 +10,6 @@ namespace Zeus.Linguagens.CSharp.Postgre.Procedure
         {
         }
 
-        public string IsNullabe(string aceitaNull)
-        {
-            return aceitaNull == "Y" ? "?" : "";
-        }
-        public string GetTypeAtribute(string tipoAttr, string aceitaNull)
-        {
-            switch (tipoAttr)
-            {
-                case "DATE":
-                    return "DateTime" + IsNullabe(aceitaNull);
-                case "NUMBER":
-                    return "long" + IsNullabe(aceitaNull);
-                default:
-                    return "string";
-            }
-        }
-    
-
         #region CLASSE 
 
         public StringBuilder GerarClasse()
@@ -114,7 +96,7 @@ namespace Zeus.Linguagens.CSharp.Postgre.Procedure
             var atributoText = new StringBuilder();
             foreach (var item in ListaAtributosTabela)
             {
-                atributoText.Append($"                        {item.COLUMN_NAME} = \"{item.COLUMN_NAME}\".GetValueOrDefault<{GetTypeAtribute(item.DATA_TYPE, "")}>(reader)," + N);
+                atributoText.Append($"                        {item.COLUMN_NAME} = \"{item.COLUMN_NAME}\".GetValueOrDefault<{CSharpTypesPostgre.GetTypeAtribute(item.DATA_TYPE, "")}>(reader)," + N);
             }
             return atributoText;
         }

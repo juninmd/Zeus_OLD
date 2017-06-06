@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Zeus.Core.SGBD.Oracle;
+using Zeus.Core;
+using Zeus.Core.SGBD.Microsoft_SQL;
 using Zeus.Linguagens.Base;
-using Zeus.Linguagens.Java.Oracle;
+using Zeus.Linguagens.Java.SQL;
 
 namespace Zeus.Linguagens.Java.SQL.Entidade
 {
-    public class JavaOracleEntidade : BaseEntity
+    public class JavaSQLEntidade : BaseEntity
     {
         private StringBuilder Imports()
         {
@@ -20,19 +21,19 @@ namespace Zeus.Linguagens.Java.SQL.Entidade
             return imports;
         }
 
-        private StringBuilder AtributosHeader(List<OracleEntidadeTabela> entidadeTabela)
+        private StringBuilder AtributosHeader(List<SQLEntidadeTabela> entidadeTabela)
         {
             var atributosHeader = new StringBuilder();
 
             foreach (var att in entidadeTabela)
             {
-                atributosHeader.Append($"	private {JavaTypesOracle.GetTypeAtribute(att)} {att.COLUMN_NAME};{N}");
+                atributosHeader.Append($"	private {JavaTypesSQL.GetTypeAtribute(att)} {att.COLUMN_NAME};{N}");
             }
             atributosHeader.Append($"{N}");
             return atributosHeader;
         }
 
-        private StringBuilder AtributosBody(List<OracleEntidadeTabela> entidadeTabela)
+        private StringBuilder AtributosBody(List<SQLEntidadeTabela> entidadeTabela)
         {
             var atributoBody = new StringBuilder();
 
@@ -42,7 +43,7 @@ namespace Zeus.Linguagens.Java.SQL.Entidade
                 atributoBody.Append($"	 * {N}");
                 atributoBody.Append($"	 * @Descrição {att.COMMENTS} {N}");
                 atributoBody.Append($"	 */{N}");
-                atributoBody.Append($"	public {JavaTypesOracle.GetTypeAtribute(att)} get{att.COLUMN_NAME}() {{{N}");
+                atributoBody.Append($"	public {JavaTypesSQL.GetTypeAtribute(att)} get{att.COLUMN_NAME.ToFirstCharToUpper()}() {{{N}");
                 atributoBody.Append($"		return {att.COLUMN_NAME};{N}");
                 atributoBody.Append($"	}}{N}");
                 atributoBody.Append($"{N}");
@@ -51,7 +52,7 @@ namespace Zeus.Linguagens.Java.SQL.Entidade
                 atributoBody.Append($"	 * {N}");
                 atributoBody.Append($"	 * @Descrição {att.COMMENTS} {N}");
                 atributoBody.Append($"	 */{N}");
-                atributoBody.Append($"	public void set{att.COLUMN_NAME}({JavaTypesOracle.GetTypeAtribute(att)} {att.COLUMN_NAME}) {{{N}");
+                atributoBody.Append($"	public void set{att.COLUMN_NAME.ToFirstCharToUpper()}({JavaTypesSQL.GetTypeAtribute(att)} {att.COLUMN_NAME}) {{{N}");
                 atributoBody.Append($"		this.{att.COLUMN_NAME} = {att.COLUMN_NAME};{N}");
                 atributoBody.Append($"	}}{N}");
                 atributoBody.Append($"{N}");
@@ -60,21 +61,21 @@ namespace Zeus.Linguagens.Java.SQL.Entidade
             return atributoBody;
         }
 
-        public StringBuilder GerarBody(string nomeTabela)
+        public string GerarBody(string nomeTabela)
         {
-            var atributos = new OracleTables().ListarAtributos(nomeTabela);
+            var atributos = new SQLTables().ListarAtributos(nomeTabela.TratarNomeSQL());
 
             var classe = new StringBuilder();
             classe.Append($"package model;{N}{N}");
 
             classe.Append(Imports());
             classe.Append("@XmlRootElement" + N);
-            classe.Append($"public class {nomeTabela} {{{N}");
+            classe.Append($"public class {nomeTabela.TratarNomeSQL().ToFirstCharToUpper()} {{{N}");
             classe.Append(AtributosHeader(atributos));
             classe.Append(AtributosBody(atributos));
             classe.Append("}" + Environment.NewLine);
 
-            return classe;
+            return classe.ToString();
         }
     }
 }

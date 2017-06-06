@@ -6,14 +6,7 @@ namespace Zeus.Linguagens.Java.Postgre.Procedure
 {
     public class JavaPostgreProcedure : BasePostgreDAO
     {
-        private string PostgreType(string tipo)
-        {
-            if (tipo == "VARCHAR2")
-            {
-                tipo = "VARCHAR";
-            }
-            return tipo;
-        }
+     
         public JavaPostgreProcedure(string nomeTabela) : base(nomeTabela)
         {
         }
@@ -110,7 +103,7 @@ namespace Zeus.Linguagens.Java.Postgre.Procedure
             get.Append($"			AddParamter(new Parameter(\"P_RESULT\", PostgreTypes.VARCHAR, null,\"OUT\"));{N}{N}");
             foreach (var att in ListaAtributosTabela)
             {
-                get.Append($"			AddParamter(new Parameter(\"P_{att.COLUMN_NAME}\", PostgreTypes.{PostgreType(att.DATA_TYPE)}, entidade.get{att.COLUMN_NAME}()));{N}");
+                get.Append($"			AddParamter(new Parameter(\"P_{att.COLUMN_NAME}\", PostgreTypes.{JavaTypesPostgre.GetTypeAtribute(att)}, entidade.get{att.COLUMN_NAME}()));{N}");
             }
             get.Append($"			return RequestProc();{N}");
             get.Append($"		}}{N}");
@@ -136,7 +129,7 @@ namespace Zeus.Linguagens.Java.Postgre.Procedure
             get.Append($"			AddParamter(new Parameter(\"P_ID\", PostgreTypes.NUMBER, entidade.ID));{N}{N}");
             foreach (var att in ListaAtributosTabela)
             {
-                get.Append($"			AddParamter(new Parameter(\"P_{att.COLUMN_NAME}\", PostgreTypes.{PostgreType(att.DATA_TYPE)}, entidade.get{att.COLUMN_NAME}()));{N}");
+                get.Append($"			AddParamter(new Parameter(\"P_{att.COLUMN_NAME}\", PostgreTypes.{JavaTypesPostgre.GetTypeAtribute(att)}, entidade.get{att.COLUMN_NAME}()));{N}");
             }
             get.Append($"			return RequestProc();{N}");
             get.Append($"		}}{N}");

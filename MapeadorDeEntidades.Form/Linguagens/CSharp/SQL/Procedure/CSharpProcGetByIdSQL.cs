@@ -53,7 +53,7 @@ namespace Zeus.Linguagens.CSharp.SQL.Procedure
             var atributoText = new StringBuilder();
             foreach (var item in ListaAtributosTabela)
             {
-                atributoText.Append($"                        {item.COLUMN_NAME} = \"{item.COLUMN_NAME}\".GetValueOrDefault<{CSharpTypesSQL.GetTypeAtribute(item.DATA_TYPE, item.NULLABLE)}>(reader)," + N);
+                atributoText.Append($"                        {item.COLUMN_NAME} = \"{item.COLUMN_NAME}\".GetValueOrDefault<{CSharpTypesSQL.GetTypeAtribute(item.DATA_TYPE, item.IS_NULLABLE)}>(reader)," + N);
             }
             return atributoText;
         }

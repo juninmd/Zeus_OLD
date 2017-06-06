@@ -10,24 +10,6 @@ namespace Zeus.Linguagens.CSharp.Firebird.Procedure
         {
         }
 
-        public string IsNullabe(string aceitaNull)
-        {
-            return aceitaNull == "Y" ? "?" : "";
-        }
-        public string GetTypeAtribute(string tipoAttr, string aceitaNull)
-        {
-            switch (tipoAttr)
-            {
-                case "DATE":
-                    return "DateTime" + IsNullabe(aceitaNull);
-                case "NUMBER":
-                    return "long" + IsNullabe(aceitaNull);
-                default:
-                    return "string";
-            }
-        }
-
-
         #region CLASSE 
 
         public StringBuilder GerarClasse()
@@ -116,7 +98,7 @@ namespace Zeus.Linguagens.CSharp.Firebird.Procedure
             var atributoText = new StringBuilder();
             foreach (var item in ListaAtributosTabela)
             {
-                atributoText.Append($"                        {item.COLUMN_NAME} = \"{item.COLUMN_NAME}\".GetValueOrDefault<{GetTypeAtribute(item.DATA_TYPE, item.IS_NULLABLE)}>(reader)," + N);
+                atributoText.Append($"                        {item.COLUMN_NAME} = \"{item.COLUMN_NAME}\".GetValueOrDefault<{CSharpTypesFirebird.GetTypeAtribute(item.DATA_TYPE, item.IS_NULLABLE == "Y")}>(reader)," + N);
             }
             return atributoText;
         }

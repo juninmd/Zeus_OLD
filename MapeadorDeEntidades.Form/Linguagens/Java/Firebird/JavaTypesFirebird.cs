@@ -1,26 +1,19 @@
-﻿using Zeus.Core.SGBD.MySql;
+﻿using Zeus.Core.SGBD.Firebird;
 
 namespace Zeus.Linguagens.Java.Firebird
 {
-    public static class JavaTypesMySql
+    public static class JavaTypesFirebird
     {
 
-        public static string GetTypeAtribute(MySqlEntidadeTabela prop)
+        public static string GetTypeAtribute(FirebirdEntidadeTabela prop)
         {
-            switch (prop.DATA_TYPE)
+            switch (prop.FIELD_NAME)
             {
                 case "date":
                     return "Date";
                 case "int":
                     {
-                        if (prop.NUMERIC_PRECISION <= 4)
-                        {
-                            return (prop.IS_NULLABLE == "Y") ? "Integer" : "int";
-                        }
-                        else if (prop.NUMERIC_PRECISION <= 15)
-                        {
-                            return (prop.IS_NULLABLE == "Y") ? "Long" : "long";
-                        }
+                      
                         return "int";
                     }
 

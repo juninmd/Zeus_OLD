@@ -5,14 +5,7 @@ namespace Zeus.Linguagens.Java.Oracle.Procedure
 {
     public class JavaOracleProcedure : BaseOracleDAO
     {
-        private string OracleType(string tipo)
-        {
-            if (tipo == "VARCHAR2")
-            {
-                tipo = "VARCHAR";
-            }
-            return tipo;
-        }
+    
         public JavaOracleProcedure(string nomeTabela) : base(nomeTabela)
         {
         }
@@ -109,7 +102,7 @@ namespace Zeus.Linguagens.Java.Oracle.Procedure
             get.Append($"			AddParamter(new Parameter(\"P_RESULT\", OracleTypes.VARCHAR, null,\"OUT\"));{N}{N}");
             foreach (var att in ListaAtributosTabela)
             {
-                get.Append($"			AddParamter(new Parameter(\"P_{att.COLUMN_NAME}\", OracleTypes.{OracleType(att.DATA_TYPE)}, entidade.get{att.COLUMN_NAME}()));{N}");
+                get.Append($"			AddParamter(new Parameter(\"P_{att.COLUMN_NAME}\", OracleTypes.{JavaTypesOracle.GetTypeAtribute(att)}, entidade.get{att.COLUMN_NAME}()));{N}");
             }
             get.Append($"			return RequestProc();{N}");
             get.Append($"		}}{N}");
@@ -135,7 +128,7 @@ namespace Zeus.Linguagens.Java.Oracle.Procedure
             get.Append($"			AddParamter(new Parameter(\"P_ID\", OracleTypes.NUMBER, entidade.ID));{N}{N}");
             foreach (var att in ListaAtributosTabela)
             {
-                get.Append($"			AddParamter(new Parameter(\"P_{att.COLUMN_NAME}\", OracleTypes.{OracleType(att.DATA_TYPE)}, entidade.get{att.COLUMN_NAME}()));{N}");
+                get.Append($"			AddParamter(new Parameter(\"P_{att.COLUMN_NAME}\", OracleTypes.{JavaTypesOracle.GetTypeAtribute(att)}, entidade.get{att.COLUMN_NAME}()));{N}");
             }
             get.Append($"			return RequestProc();{N}");
             get.Append($"		}}{N}");

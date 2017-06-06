@@ -14,13 +14,9 @@ namespace Zeus.Linguagens.Java.Oracle
                 case "NUMBER":
                     {
                         if (prop.DATA_PRECISION == null || prop.DATA_PRECISION <= 4)
-                        {
-                            return (prop.NULLABLE == "Y") ? "Integer" : "int";
-                        }
-                        else if (prop.DATA_PRECISION <= 15)
-                        {
-                            return (prop.NULLABLE == "Y") ? "Long" : "long";
-                        }
+                            return "Integer";
+                        if (prop.DATA_PRECISION <= 15)
+                            return "Long";
                         return "BigDecimal";
                     }
 

@@ -5,6 +5,7 @@ using System.Text;
 using Zeus.Core;
 using Zeus.Core.SGBD.MySql;
 using Zeus.Linguagens.Base;
+using Zeus.Linguagens.Java.MySql;
 
 namespace Zeus.Linguagens.Java.Firebird.Entidade
 {
@@ -63,7 +64,7 @@ namespace Zeus.Linguagens.Java.Firebird.Entidade
             return atributoBody;
         }
 
-        public StringBuilder GerarBody(string nomeTabela)
+        public string GerarBody(string nomeTabela)
         {
             var atributos = new MySqlTables().ListarAtributos(nomeTabela);
 
@@ -76,7 +77,7 @@ namespace Zeus.Linguagens.Java.Firebird.Entidade
             classe.Append(AtributosBody(atributos));
             classe.Append("}" + Environment.NewLine);
 
-            return classe;
+            return classe.ToString();
         }
     }
 }

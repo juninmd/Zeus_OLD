@@ -22,14 +22,14 @@ namespace Zeus.Linguagens.CSharp.SQL.Entidade
             classe.Append($"    public class {nomeTabela.TratarNomeSQL()}" + N);
             classe.Append("    {" + N + N);
 
-            var atributos = new SQLTables().ListarAtributos(nomeTabela);
+            var atributos = new SQLTables().ListarAtributos(nomeTabela.TratarNomeSQL());
 
             foreach (var item in atributos)
             {
                 classe.Append("         /// <summary>" + N);
                 classe.Append($"         /// {item.COMMENTS}" + N);
                 classe.Append("         /// </summary>" + N);
-                classe.Append($"         public {CSharpTypesSQL.GetTypeAtribute(item.DATA_TYPE, item.NULLABLE)} {item.COLUMN_NAME} {{ get; set; }}" + N);
+                classe.Append($"         public {CSharpTypesSQL.GetTypeAtribute(item.DATA_TYPE, item.IS_NULLABLE)} {item.COLUMN_NAME} {{ get; set; }}" + N);
                 classe.Append(N);
             }
             classe.Append("    }" + N);
