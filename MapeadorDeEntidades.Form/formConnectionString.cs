@@ -45,6 +45,7 @@ namespace Zeus
                     Mysql.Checked = true;
                     break;
                 case "Firebird":
+                    //User=SYSDBA;Password=masterkey;Database=D:\\Meus Projetos\\Solutions\\Trabalho Fernando\\BANCO.fdb;DataSource=localhost;Port=3050
                     FormPrincipal.Text = $"User={txt1.Text};Password={txt2.Text};Database={txt3.Text};DataSource={txt4.Text};Port={txt5.Text}";
                     Firebird.Checked = true;
                     break;

@@ -3,22 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Zeus.Core;
-using Zeus.Core.SGBD.MySql;
+using Zeus.Core.SGBD.Firebird;
 using Zeus.Linguagens.Base;
-using Zeus.Linguagens.Java.MySql;
+using Zeus.Linguagens.Java.Firebird;
 
 namespace Zeus.Linguagens.Java.Firebird.Entidade
 {
     public class JavaFirebirdEntidade : BaseEntity
     {
-        private StringBuilder Imports(List<MySqlEntidadeTabela> entidadeTabela)
+        private StringBuilder Imports(List<FirebirdEntidadeTabela> entidadeTabela)
         {
             var imports = new StringBuilder();
-            if (entidadeTabela.FirstOrDefault(q => q.DATA_TYPE == "date") != null)
+            if (entidadeTabela.FirstOrDefault(q => q.FIELD_NAME == "date") != null)
             {
                 imports.Append($"import java.util.Date;{N}");
             }
-            if (entidadeTabela.FirstOrDefault(q => q.DATA_TYPE == "long") != null)
+            if (entidadeTabela.FirstOrDefault(q => q.FIELD_NAME == "long") != null)
             {
                 imports.Append($"import java.math.BigDecimal;{N}");
             }
@@ -28,19 +28,19 @@ namespace Zeus.Linguagens.Java.Firebird.Entidade
             return imports;
         }
 
-        private StringBuilder AtributosHeader(List<MySqlEntidadeTabela> entidadeTabela)
+        private StringBuilder AtributosHeader(List<FirebirdEntidadeTabela> entidadeTabela)
         {
             var atributosHeader = new StringBuilder();
 
             foreach (var att in entidadeTabela)
             {
-                atributosHeader.Append($"	private {JavaTypesMySql.GetTypeAtribute(att)} {att.COLUMN_NAME};{N}");
+                atributosHeader.Append($"	private {JavaTypesFirebird.GetTypeAtribute(att)} {att.FIELD_NAME};{N}");
             }
             atributosHeader.Append($"{N}");
             return atributosHeader;
         }
 
-        private StringBuilder AtributosBody(List<MySqlEntidadeTabela> entidadeTabela)
+        private StringBuilder AtributosBody(List<FirebirdEntidadeTabela> entidadeTabela)
         {
             var atributoBody = new StringBuilder();
 
@@ -51,13 +51,13 @@ namespace Zeus.Linguagens.Java.Firebird.Entidade
                 atributoBody.Append($"	 * @return {N}");
                 atributoBody.Append($"	 * @Descrição {att.COLUMN_COMMENT} {N}");
                 atributoBody.Append($"	 */{N}");
-                atributoBody.Append($"	public {JavaTypesMySql.GetTypeAtribute(att)} get{att.COLUMN_NAME.ToFirstCharToUpper()}() {{{N}");
-                atributoBody.Append($"		return {att.COLUMN_NAME};{N}");
+                atributoBody.Append($"	public {JavaTypesFirebird.GetTypeAtribute(att)} get{att.FIELD_NAME.ToFirstCharToUpper()}() {{{N}");
+                atributoBody.Append($"		return {att.FIELD_NAME};{N}");
                 atributoBody.Append($"	}}{N}");
                 atributoBody.Append($"{N}");
 
-                atributoBody.Append($"	public void set{att.COLUMN_NAME.ToFirstCharToUpper()}({JavaTypesMySql.GetTypeAtribute(att)} {att.COLUMN_NAME}) {{{N}");
-                atributoBody.Append($"		this.{att.COLUMN_NAME} = {att.COLUMN_NAME};{N}");
+                atributoBody.Append($"	public void set{att.FIELD_NAME.ToFirstCharToUpper()}({JavaTypesFirebird.GetTypeAtribute(att)} {att.FIELD_NAME}) {{{N}");
+                atributoBody.Append($"		this.{att.FIELD_NAME} = {att.FIELD_NAME};{N}");
                 atributoBody.Append($"	}}{N}");
                 atributoBody.Append($"{N}");
             }
@@ -66,7 +66,7 @@ namespace Zeus.Linguagens.Java.Firebird.Entidade
 
         public string GerarBody(string nomeTabela)
         {
-            var atributos = new MySqlTables().ListarAtributos(nomeTabela);
+            var atributos = new FirebirdTables().ListarAtributos(nomeTabela);
 
             var classe = new StringBuilder();
             classe.Append($"package model;{N}{N}");
