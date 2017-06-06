@@ -50,6 +50,7 @@ namespace Zeus
                     Firebird.Checked = true;
                     break;
                 case "Postgre":
+                    //Host=localhost;Database=postgres;User ID=postgres;Password=root;Port=5432
                     FormPrincipal.Text = $"Host={txt1.Text};Database={txt2.Text};User ID={txt3.Text};Password={txt4.Text};Port={txt5.Text}";
                     Postgre.Checked = true;
                     break;
