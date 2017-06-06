@@ -155,7 +155,7 @@ namespace Zeus.Linguagens.Java.MySql.Query
         public StringBuilder GerarClasse()
         {
             var classe = new StringBuilder();
-            classe.Append($"package br.fatecfranca.dao;{N}");
+            classe.Append($"package meu.projeto;{N}");
             classe.Append(Imports());
             classe.Append($"public class {NomeTabela}Dao extends ComumDao {{ {N}{N}");
             classe.Append(GetById());

@@ -1,10 +1,21 @@
-﻿namespace Zeus.Core.SGBD.Microsoft_SQL
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace Zeus.Core.SGBD.Microsoft_SQL
 {
     public static class SQLUtil
     {
         public static string TratarNomeSQL(this string nome)
         {
             return nome.Split('.')[1].Replace("[", "").Replace("]", ""); ;
+        }
+        //Database=
+        public static string TratarNomeSQLDatabase()
+        {
+            return ParamtersInput.ConnectionString.Split(';')
+                .Select(value => value.Split('='))
+                .ToDictionary(pair => pair[0], pair => pair[1])["Database"];
         }
     }
 }

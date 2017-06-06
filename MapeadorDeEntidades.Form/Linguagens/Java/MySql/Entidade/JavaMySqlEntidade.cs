@@ -63,7 +63,7 @@ namespace Zeus.Linguagens.Java.MySql.Entidade
             return atributoBody;
         }
 
-        public StringBuilder GerarBody(string nomeTabela)
+        public string GerarBody(string nomeTabela)
         {
             var atributos = new MySqlTables().ListarAtributos(nomeTabela);
 
@@ -76,7 +76,7 @@ namespace Zeus.Linguagens.Java.MySql.Entidade
             classe.Append(AtributosBody(atributos));
             classe.Append("}" + Environment.NewLine);
 
-            return classe;
+            return classe.ToString();
         }
     }
 }

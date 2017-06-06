@@ -4,7 +4,6 @@ namespace Zeus.Linguagens.Java.Postgre
 {
     public static class JavaTypesPostgre
     {
-
         public static string GetTypeAtribute(PostgreEntidadeTabela prop)
         {
             switch (prop.DATA_TYPE)

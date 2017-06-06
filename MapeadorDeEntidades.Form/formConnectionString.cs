@@ -30,14 +30,17 @@ namespace Zeus
             switch (ddlDatabase.Text)
             {
                 case "Oracle":
+                    //User Id=USR_BIRL;Data Source=localhost;Password=!USR_BIRL!
                     FormPrincipal.Text = $"User Id={txt1.Text};Data Source={txt2.Text};Password={txt3.Text}";
                     Oracle.Checked = true;
                     break;
                 case "SQL Server":
+                    //Server=localhost;Database=Aula1;Trusted_Connection=True
                     FormPrincipal.Text = $"Server={txt1.Text};uid={txt2.Text};pwd={txt3.Text};database={txt4.Text}";
                     Sql.Checked = true;
                     break;
                 case "MYSQL":
+                    //Server=localhost;Uid=mysql;Pwd=;Port=5500
                     FormPrincipal.Text = $"Server={txt1.Text};Uid={txt2.Text};Pwd={txt3.Text};Port={txt4.Text}";
                     Mysql.Checked = true;
                     break;
