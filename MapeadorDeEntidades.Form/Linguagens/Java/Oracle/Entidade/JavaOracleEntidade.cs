@@ -7,7 +7,7 @@ using Zeus.Linguagens.Base;
 
 namespace Zeus.Linguagens.Java.Oracle.Entidade
 {
-    public class JavaOracleEntidade : BaseEntity
+    public class JavaOracleEntidade : BaseOracleDAO
     {
         private StringBuilder Imports()
         {
@@ -60,21 +60,23 @@ namespace Zeus.Linguagens.Java.Oracle.Entidade
             return atributoBody;
         }
 
-        public string GerarBody(string nomeTabela)
+        public string GerarBody()
         {
-            var atributos = new OracleTables().ListarAtributos(nomeTabela);
-
             var classe = new StringBuilder();
             classe.Append($"package model;{N}{N}");
 
             classe.Append(Imports());
             classe.Append("@XmlRootElement" + N);
-            classe.Append($"public class {nomeTabela} {{{N}");
-            classe.Append(AtributosHeader(atributos));
-            classe.Append(AtributosBody(atributos));
+            classe.Append($"public class {NomeTabela} {{{N}");
+            classe.Append(AtributosHeader(ListaAtributosTabela));
+            classe.Append(AtributosBody(ListaAtributosTabela));
             classe.Append("}" + Environment.NewLine);
 
             return classe.ToString();
+        }
+
+        public JavaOracleEntidade(string nomeTabela) : base(nomeTabela)
+        {
         }
     }
 }

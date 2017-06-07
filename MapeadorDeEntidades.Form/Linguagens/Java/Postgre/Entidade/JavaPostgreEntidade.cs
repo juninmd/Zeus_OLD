@@ -8,7 +8,7 @@ using Zeus.Linguagens.Base;
 
 namespace Zeus.Linguagens.Java.Postgre.Entidade
 {
-    public class JavaPostgreEntidade : BaseEntity
+    public class JavaPostgreEntidade : BasePostgreDAO
     {
         private StringBuilder Imports(List<PostgreEntidadeTabela> entidadeTabela)
         {
@@ -63,20 +63,22 @@ namespace Zeus.Linguagens.Java.Postgre.Entidade
             return atributoBody;
         }
 
-        public string GerarBody(string nomeTabela)
+        public string GerarBody()
         {
-            var atributos = new PostgreTables().ListarAtributos(nomeTabela);
-
             var classe = new StringBuilder();
             classe.Append($"package model;{N}{N}");
 
-            classe.Append(Imports(atributos));
-            classe.Append($"public class {nomeTabela} {{{N}");
-            classe.Append(AtributosHeader(atributos));
-            classe.Append(AtributosBody(atributos));
+            classe.Append(Imports(ListaAtributosTabela));
+            classe.Append($"public class {NomeTabela} {{{N}");
+            classe.Append(AtributosHeader(ListaAtributosTabela));
+            classe.Append(AtributosBody(ListaAtributosTabela));
             classe.Append("}" + Environment.NewLine);
 
             return classe.ToString();
+        }
+
+        public JavaPostgreEntidade(string nomeTabela) : base(nomeTabela)
+        {
         }
     }
 }

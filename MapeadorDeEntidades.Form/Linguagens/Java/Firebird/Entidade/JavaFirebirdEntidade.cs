@@ -9,7 +9,7 @@ using Zeus.Linguagens.Java.Firebird;
 
 namespace Zeus.Linguagens.Java.Firebird.Entidade
 {
-    public class JavaFirebirdEntidade : BaseEntity
+    public class JavaFirebirdEntidade : BaseFirebirdDAO
     {
         private StringBuilder Imports(List<FirebirdEntidadeTabela> entidadeTabela)
         {
@@ -64,20 +64,23 @@ namespace Zeus.Linguagens.Java.Firebird.Entidade
             return atributoBody;
         }
 
-        public string GerarBody(string nomeTabela)
+        public string GerarBody()
         {
-            var atributos = new FirebirdTables().ListarAtributos(nomeTabela);
 
             var classe = new StringBuilder();
             classe.Append($"package model;{N}{N}");
 
-            classe.Append(Imports(atributos));
-            classe.Append($"public class {nomeTabela} {{{N}");
-            classe.Append(AtributosHeader(atributos));
-            classe.Append(AtributosBody(atributos));
+            classe.Append(Imports(ListaAtributosTabela));
+            classe.Append($"public class {NomeTabela} {{{N}");
+            classe.Append(AtributosHeader(ListaAtributosTabela));
+            classe.Append(AtributosBody(ListaAtributosTabela));
             classe.Append("}" + Environment.NewLine);
 
             return classe.ToString();
+        }
+
+        public JavaFirebirdEntidade(string nomeTabela) : base(nomeTabela)
+        {
         }
     }
 }

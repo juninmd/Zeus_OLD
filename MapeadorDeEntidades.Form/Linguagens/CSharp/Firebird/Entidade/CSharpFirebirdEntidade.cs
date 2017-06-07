@@ -1,12 +1,15 @@
 ﻿using System.Text;
 using Zeus.Core;
-using Zeus.Core.SGBD.Firebird;
 using Zeus.Linguagens.Base;
 
 namespace Zeus.Linguagens.CSharp.Firebird.Entidade
 {
-    public class CSharpFirebirdEntidade : BaseEntity
+    public class CSharpFirebirdEntidade : BaseFirebirdDAO
     {
+        public CSharpFirebirdEntidade(string nomeTabela) : base(nomeTabela)
+        {
+        }
+
         private StringBuilder GerarUsing()
         {
             var texto = new StringBuilder();
@@ -15,17 +18,16 @@ namespace Zeus.Linguagens.CSharp.Firebird.Entidade
             return texto;
         }
 
-        public string GerarBody(string nomeTabela)
+        public string GerarBody()
         {
             var classe = new StringBuilder();
             classe.Append("namespace Model" + N);
             classe.Append("{" + N);
-            classe.Append($"    public class {nomeTabela.ToFirstCharToUpper()}" + N);
+            classe.Append($"    public class {NomeTabela.ToFirstCharToUpper()}" + N);
             classe.Append("    {" + N + N);
 
-            var atributos = new FirebirdTables().ListarAtributos(nomeTabela);
 
-            foreach (var item in atributos)
+            foreach (var item in ListaAtributosTabela)
             {
                 classe.Append($"         public string {item.FIELD_NAME} {{ get; set; }}" + N);
                 classe.Append(N);
@@ -35,7 +37,5 @@ namespace Zeus.Linguagens.CSharp.Firebird.Entidade
 
             return GerarUsing() + classe.ToString();
         }
-
-
     }
 }
