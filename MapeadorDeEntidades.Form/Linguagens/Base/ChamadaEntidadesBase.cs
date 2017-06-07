@@ -58,8 +58,8 @@ namespace Zeus.Linguagens.Base
             {
                 if (ParamtersInput.SGBD == 1)
                 {
-                    var instancia = new CSharpOracleEntidade();
-                    var classe = instancia.GerarBody(nomeTabela);
+                    var instancia = new CSharpOracleEntidade(nomeTabela);
+                    var classe = instancia.GerarBody();
                     File.WriteAllText($"{local}\\{nomeTabela}.cs", classe);
                 }
                 else if (ParamtersInput.SGBD == 2)
@@ -70,20 +70,20 @@ namespace Zeus.Linguagens.Base
                 }
                 else if (ParamtersInput.SGBD == 3)
                 {
-                    var instancia = new CSharpMySqlEntidade();
-                    var classe = instancia.GerarBody(nomeTabela);
+                    var instancia = new CSharpMySqlEntidade(nomeTabela);
+                    var classe = instancia.GerarBody();
                     File.WriteAllText($"{local}\\{nomeTabela}.cs", classe);
                 }
                 else if (ParamtersInput.SGBD == 4)
                 {
-                    var instancia = new CSharpFirebirdEntidade();
-                    var classe = instancia.GerarBody(nomeTabela);
+                    var instancia = new CSharpFirebirdEntidade(nomeTabela);
+                    var classe = instancia.GerarBody();
                     File.WriteAllText($"{local}\\{nomeTabela}.cs", classe);
                 }
                 else if (ParamtersInput.SGBD == 5)
                 {
-                    var instancia = new CSharpPostgreEntidade();
-                    var classe = instancia.GerarBody(nomeTabela);
+                    var instancia = new CSharpPostgreEntidade(nomeTabela);
+                    var classe = instancia.GerarBody();
                     File.WriteAllText($"{local}\\{nomeTabela}.cs", classe);
                 }
             }
@@ -91,8 +91,8 @@ namespace Zeus.Linguagens.Base
             {
                 if (ParamtersInput.SGBD == 1)
                 {
-                    var instancia = new JavaOracleEntidade();
-                    var classe = instancia.GerarBody(nomeTabela);
+                    var instancia = new JavaOracleEntidade(nomeTabela);
+                    var classe = instancia.GerarBody();
                     File.WriteAllText($"{local}\\{nomeTabela}.java", classe);
                 }
                 else if (ParamtersInput.SGBD == 2)
@@ -103,20 +103,20 @@ namespace Zeus.Linguagens.Base
                 }
                 else if (ParamtersInput.SGBD == 3)
                 {
-                    var instancia = new JavaMySqlEntidade();
-                    var classe = instancia.GerarBody(nomeTabela);
+                    var instancia = new JavaMySqlEntidade(nomeTabela);
+                    var classe = instancia.GerarBody();
                     File.WriteAllText($"{local}\\{nomeTabela}.java", classe);
                 }
                 else if (ParamtersInput.SGBD == 4)
                 {
-                    var instancia = new JavaFirebirdEntidade();
-                    var classe = instancia.GerarBody(nomeTabela);
+                    var instancia = new JavaFirebirdEntidade(nomeTabela);
+                    var classe = instancia.GerarBody();
                     File.WriteAllText($"{local}\\{nomeTabela}.java", classe);
                 }
                 else if (ParamtersInput.SGBD == 5)
                 {
-                    var instancia = new JavaPostgreEntidade();
-                    var classe = instancia.GerarBody(nomeTabela);
+                    var instancia = new JavaPostgreEntidade(nomeTabela);
+                    var classe = instancia.GerarBody();
                     File.WriteAllText($"{local}\\{nomeTabela}.java", classe);
                 }
             }

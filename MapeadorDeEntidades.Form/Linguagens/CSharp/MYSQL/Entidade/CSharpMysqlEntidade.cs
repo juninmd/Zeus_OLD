@@ -4,7 +4,7 @@ using Zeus.Linguagens.Base;
 
 namespace Zeus.Linguagens.CSharp.MYSQL.Entidade
 {
-    public class CSharpMySqlEntidade : BaseEntity
+    public class CSharpMySqlEntidade : BaseMySqlDAO
     {
         private StringBuilder GerarUsing()
         {
@@ -14,17 +14,15 @@ namespace Zeus.Linguagens.CSharp.MYSQL.Entidade
             return texto;
         }
 
-        public string GerarBody(string nomeTabela)
+        public string GerarBody()
         {
             var classe = new StringBuilder();
             classe.Append("namespace Model" + N);
             classe.Append("{" + N);
-            classe.Append($"    public class {nomeTabela}" + N);
+            classe.Append($"    public class {NomeTabela}" + N);
             classe.Append("    {" + N + N);
 
-            var atributos = new MySqlTables().ListarAtributos(nomeTabela);
-
-            foreach (var item in atributos)
+            foreach (var item in ListaAtributosTabela)
             {
                 classe.Append("         /// <summary>" + N);
                 classe.Append($"         /// {item.COLUMN_COMMENT}" + N);
@@ -39,5 +37,8 @@ namespace Zeus.Linguagens.CSharp.MYSQL.Entidade
         }
 
 
+        public CSharpMySqlEntidade(string nomeTabela) : base(nomeTabela)
+        {
+        }
     }
 }

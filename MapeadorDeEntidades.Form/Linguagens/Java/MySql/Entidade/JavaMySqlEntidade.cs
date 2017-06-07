@@ -8,7 +8,7 @@ using Zeus.Linguagens.Base;
 
 namespace Zeus.Linguagens.Java.MySql.Entidade
 {
-    public class JavaMySqlEntidade : BaseEntity
+    public class JavaMySqlEntidade : BaseMySqlDAO
     {
         private StringBuilder Imports(List<MySqlEntidadeTabela> entidadeTabela)
         {
@@ -63,20 +63,22 @@ namespace Zeus.Linguagens.Java.MySql.Entidade
             return atributoBody;
         }
 
-        public string GerarBody(string nomeTabela)
+        public string GerarBody()
         {
-            var atributos = new MySqlTables().ListarAtributos(nomeTabela);
-
             var classe = new StringBuilder();
             classe.Append($"package model;{N}{N}");
 
-            classe.Append(Imports(atributos));
-            classe.Append($"public class {nomeTabela} {{{N}");
-            classe.Append(AtributosHeader(atributos));
-            classe.Append(AtributosBody(atributos));
+            classe.Append(Imports(ListaAtributosTabela));
+            classe.Append($"public class {NomeTabela} {{{N}");
+            classe.Append(AtributosHeader(ListaAtributosTabela));
+            classe.Append(AtributosBody(ListaAtributosTabela));
             classe.Append("}" + Environment.NewLine);
 
             return classe.ToString();
+        }
+
+        public JavaMySqlEntidade(string nomeTabela) : base(nomeTabela)
+        {
         }
     }
 }

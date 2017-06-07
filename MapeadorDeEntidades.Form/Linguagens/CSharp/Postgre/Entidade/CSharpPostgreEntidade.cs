@@ -5,7 +5,7 @@ using Zeus.Linguagens.Base;
 
 namespace Zeus.Linguagens.CSharp.Postgre.Entidade
 {
-    public class CSharpPostgreEntidade : BaseEntity
+    public class CSharpPostgreEntidade : BasePostgreDAO
     {
         private StringBuilder GerarUsing()
         {
@@ -15,17 +15,15 @@ namespace Zeus.Linguagens.CSharp.Postgre.Entidade
             return texto;
         }
 
-        public string GerarBody(string nomeTabela)
+        public string GerarBody()
         {
             var classe = new StringBuilder();
             classe.Append("namespace Model" + N);
             classe.Append("{" + N);
-            classe.Append($"    public class {nomeTabela.ToFirstCharToUpper()}" + N);
+            classe.Append($"    public class {NomeTabela.ToFirstCharToUpper()}" + N);
             classe.Append("    {" + N + N);
 
-            var atributos = new PostgreTables().ListarAtributos(nomeTabela);
-
-            foreach (var item in atributos)
+            foreach (var item in ListaAtributosTabela)
             {
                 classe.Append($"         public string {item.COLUMN_NAME} {{ get; set; }}" + N);
                 classe.Append(N);
@@ -34,6 +32,10 @@ namespace Zeus.Linguagens.CSharp.Postgre.Entidade
             classe.Append("}" + N);
 
             return GerarUsing() + classe.ToString();
+        }
+
+        public CSharpPostgreEntidade(string nomeTabela) : base(nomeTabela)
+        {
         }
     }
 }
