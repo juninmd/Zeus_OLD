@@ -167,7 +167,6 @@
     <Compile Include="Linguagens\Base\BasePostgreDAO.cs" />
     <Compile Include="Linguagens\Base\BaseSQLDAO.cs" />
     <Compile Include="Linguagens\Base\BaseOracleDAO.cs" />
-    <Compile Include="Linguagens\Base\BaseEntity.cs" />
     <Compile Include="Linguagens\Base\ChamadaProceduresBase.cs" />
     <Compile Include="Linguagens\Base\ChamadaEntidadesBase.cs" />
     <Compile Include="Linguagens\Base\ChamadaAcessoDaoBase.cs" />

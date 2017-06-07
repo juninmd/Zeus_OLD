@@ -14,7 +14,7 @@ namespace Zeus.Middleware
                 return validate;
 
             var dataInicial = DateTime.Now;
-            var init = new ChamadaEntidadesBase().Orquestrar(salvar);
+            var init = new ChamadaEntidadesBase().Orquestrar(salvar.SelectedPath + "\\");
             init.TechnicalMessage = ($"Tempo de processamento: {(DateTime.Now - dataInicial).Seconds}s - Tabelas: {ParamtersInput.NomeTabelas.Count}");
             return init;
         }
