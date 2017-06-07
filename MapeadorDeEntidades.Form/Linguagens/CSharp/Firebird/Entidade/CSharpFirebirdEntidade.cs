@@ -20,7 +20,7 @@ namespace Zeus.Linguagens.CSharp.Firebird.Entidade
             var classe = new StringBuilder();
             classe.Append("namespace Model" + N);
             classe.Append("{" + N);
-            classe.Append($"    public class {nomeTabela.ToFirstCharToUpper()}Model" + N);
+            classe.Append($"    public class {nomeTabela.ToFirstCharToUpper()}" + N);
             classe.Append("    {" + N + N);
 
             var atributos = new FirebirdTables().ListarAtributos(nomeTabela);

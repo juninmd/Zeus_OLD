@@ -96,7 +96,6 @@
     <Compile Include="Core\SGBD\Microsoft SQL\Procedure\Verbos\SQLInsert.cs" />
     <Compile Include="Core\SGBD\Microsoft SQL\Procedure\Verbos\SQLGet.cs" />
     <Compile Include="Core\SGBD\Microsoft SQL\Procedure\Comum\SQLSumario.cs" />
-    <Compile Include="Core\SGBD\Microsoft SQL\Procedure\SQLOrquestradorProcedures.cs" />
     <Compile Include="Core\SGBD\Microsoft SQL\Procedure\SQLProcedure.cs" />
     <Compile Include="Core\SGBD\Microsoft SQL\SQLPing.cs" />
     <Compile Include="Core\SGBD\Microsoft SQL\SQLRepository.cs" />
@@ -115,7 +114,6 @@
     <Compile Include="Core\SGBD\MySql\Procedure\Comum\MySqlSelectParamters.cs" />
     <Compile Include="Core\SGBD\MySql\Procedure\Comum\MySqlSumario.cs" />
     <Compile Include="Core\SGBD\MySql\Procedure\Comum\MySqlUpdateParamters.cs" />
-    <Compile Include="Core\SGBD\MySql\Procedure\MySqlOrquestradorProcedures.cs" />
     <Compile Include="Core\SGBD\MySql\Procedure\MySqlProcedure.cs" />
     <Compile Include="Core\SGBD\MySql\Procedure\Verbos\MySqlBuscar.cs" />
     <Compile Include="Core\SGBD\MySql\Procedure\Verbos\MySqlDelete.cs" />
@@ -131,7 +129,6 @@
     <Compile Include="Core\ParamtersInput.cs" />
     <Compile Include="Core\SGBD\Oracle\OracleEntidadeTabela.cs" />
     <Compile Include="Core\SGBD\Oracle\OracleUtil.cs" />
-    <Compile Include="Core\SGBD\Oracle\Procedure\OracleOrquestradorProcedures.cs" />
     <Compile Include="Core\SGBD\Oracle\Sequence\OracleOrquestradorSequence.cs" />
     <Compile Include="Core\SGBD\Oracle\Sequence\OracleSequence.cs" />
     <Compile Include="Core\SGBD\Postgre\PostgreEntidadeTabela.cs" />
@@ -145,7 +142,6 @@
     <Compile Include="Core\SGBD\Postgre\Procedure\Comum\PostgreSelectParamters.cs" />
     <Compile Include="Core\SGBD\Postgre\Procedure\Comum\PostgreSumario.cs" />
     <Compile Include="Core\SGBD\Postgre\Procedure\Comum\PostgreUpdateParamters.cs" />
-    <Compile Include="Core\SGBD\Postgre\Procedure\PostgreOrquestradorProcedures.cs" />
     <Compile Include="Core\SGBD\Postgre\Procedure\PostgreProcedure.cs" />
     <Compile Include="Core\SGBD\Postgre\Procedure\Verbos\PostgreBuscar.cs" />
     <Compile Include="Core\SGBD\Postgre\Procedure\Verbos\PostgreDelete.cs" />
@@ -172,6 +168,7 @@
     <Compile Include="Linguagens\Base\BaseSQLDAO.cs" />
     <Compile Include="Linguagens\Base\BaseOracleDAO.cs" />
     <Compile Include="Linguagens\Base\BaseEntity.cs" />
+    <Compile Include="Linguagens\Base\ChamadaProceduresBase.cs" />
     <Compile Include="Linguagens\Base\ChamadaEntidadesBase.cs" />
     <Compile Include="Linguagens\Base\ChamadaAcessoDaoBase.cs" />
     <Compile Include="Linguagens\CSharp\Firebird\CSharpTypesFirebird.cs" />

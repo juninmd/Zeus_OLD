@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Net;
 using System.Windows.Forms;
 using Zeus.Core;
 using Zeus.Linguagens.CSharp.Firebird.Procedure;
@@ -38,19 +39,19 @@ namespace Zeus.Linguagens.Base
                     Implementar(local, nomeTabela);
                 }
 
-                return new RequestMessage<string>()
+                return new RequestMessage<string>
                 {
                     Message = "Processamento concluído com sucesso!",
-                    StatusCode = System.Net.HttpStatusCode.OK
+                    StatusCode = HttpStatusCode.OK
                 };
             }
             catch (Exception ex)
             {
-                return new RequestMessage<string>()
+                return new RequestMessage<string>
                 {
                     Message = "Falha no sistema!",
                     TechnicalMessage = ex.Message,
-                    StatusCode = System.Net.HttpStatusCode.InternalServerError
+                    StatusCode = HttpStatusCode.InternalServerError
                 };
             }
         }

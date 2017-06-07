@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Zeus.Core.SGBD.Microsoft_SQL;
 using Zeus.Core.SGBD.Postgre;
 
 namespace Zeus.Linguagens.Base

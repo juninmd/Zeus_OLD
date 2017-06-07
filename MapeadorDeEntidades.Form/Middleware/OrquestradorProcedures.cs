@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Net;
 using System.Windows.Forms;
 using Zeus.Core;
-using Zeus.Core.SGBD.Microsoft_SQL.Procedure;
-using Zeus.Core.SGBD.MySql.Procedure;
-using Zeus.Core.SGBD.Oracle.Procedure;
-using Zeus.Core.SGBD.Postgre.Procedure;
+using Zeus.Linguagens.Base;
 using Zeus.Utilidade;
 
 namespace Zeus.Middleware
@@ -19,41 +15,10 @@ namespace Zeus.Middleware
                 return validate;
 
             var dataInicial = DateTime.Now;
-            var init = Init(salvar);
+            var init = new ChamadaProceduresBase().Orquestrar(salvar);
             var dataFinal = DateTime.Now;
             Util.Status($"Tempo de processamento: {(dataFinal - dataInicial).Seconds}s - Tabelas: {ParamtersInput.NomeTabelas.Count}");
             return init;
-
-        }
-        public RequestMessage<string> Init(FolderBrowserDialog salvar)
-        {
-            switch (ParamtersInput.SGBD)
-            {
-                case 1:
-                    {
-                        return new OracleOrquestradorProcedures().Oracle(salvar);
-                    }
-                case 2:
-                    {
-                        return new SQLOrquestradorProcedures().SQL(salvar);
-                    }
-                case 3:
-                    {
-                        return new MySqlOrquestradorProcedures().MySql(salvar);
-                    }
-                case 5:
-                    {
-                        return new PostgreOrquestradorProcedures().Postgre(salvar);
-                    }
-                default:
-                    {
-                        return new RequestMessage<string>()
-                        {
-                            StatusCode = HttpStatusCode.InternalServerError,
-                            Message = "Essa linguagem não foi programada!"
-                        };
-                    }
-            }
         }
     }
 }

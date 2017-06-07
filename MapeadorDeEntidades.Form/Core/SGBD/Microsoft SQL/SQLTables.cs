@@ -21,7 +21,8 @@ namespace Zeus.Core.SGBD.Microsoft_SQL
 
         public List<SQLEntidadeTabela> ListarAtributos(string nomeTabela)
         {
-            BeginNewStatement("select * from information_schema.columns " +
+            BeginNewStatement($"use {SQLUtil.TratarNomeSQLDatabase()};" +
+                              "select * from information_schema.columns " +
                               $"where TABLE_CATALOG = '{SQLUtil.TratarNomeSQLDatabase()}' " +
                               $"and TABLE_NAME = '{nomeTabela}'" +
                               "order by table_name, ordinal_position");
