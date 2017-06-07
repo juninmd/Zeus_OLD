@@ -2,25 +2,18 @@
 using System.Collections.Generic;
 using System.Text;
 using Zeus.Core.SGBD.Postgre.Procedure.Verbos;
+using Zeus.Linguagens.Base;
 using Zeus.Properties;
 
 namespace Zeus.Core.SGBD.Postgre.Procedure
 {
-    public class PostgreProcedure
+    public class PostgreProcedure : BasePostgreDAO
     {
-        private string N => Environment.NewLine;
-
-        public string NomeTabela { get; set; }
-
-        public List<PostgreEntidadeTabela> ListaAtributosTabela { get; set; }
-
-        public PostgreProcedure(string nomeTabela, List<PostgreEntidadeTabela> atributosTabela)
+        public PostgreProcedure(string nomeTabela) : base(nomeTabela)
         {
-            NomeTabela = nomeTabela;
-            ListaAtributosTabela = atributosTabela;
         }
 
-        public StringBuilder GerarPackageBody()
+        public string GerarBody()
         {
             var baseProc = NomeTabela.TratarNomeTabela().ToUpper();
             var header = new StringBuilder();
@@ -29,8 +22,7 @@ namespace Zeus.Core.SGBD.Postgre.Procedure
             header.Append(new PostgreInsert().Init($"{Settings.Default.PrefixoProcedure}I_{baseProc}", NomeTabela, ListaAtributosTabela));
             header.Append(new PostgreUpdate().Init($"{Settings.Default.PrefixoProcedure}U_{baseProc}", NomeTabela, ListaAtributosTabela));
             header.Append(new PostgreDelete().Init($"{Settings.Default.PrefixoProcedure}D_{baseProc}", NomeTabela, ListaAtributosTabela));
-            return header;
+            return header.ToString();
         }
-
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Net;
 using System.Windows.Forms;
 using Zeus.Core;
 using Zeus.Core.SGBD.Microsoft_SQL;
@@ -35,19 +36,19 @@ namespace Zeus.Linguagens.Base
                     Implementar(local, nomeTabela);
                 }
 
-                return new RequestMessage<string>()
+                return new RequestMessage<string>
                 {
                     Message = "Processamento concluído com sucesso!",
-                    StatusCode = System.Net.HttpStatusCode.OK
+                    StatusCode = HttpStatusCode.OK
                 };
             }
             catch (Exception ex)
             {
-                return new RequestMessage<string>()
+                return new RequestMessage<string>
                 {
                     Message = "Falha no sistema!",
                     TechnicalMessage = ex.Message,
-                    StatusCode = System.Net.HttpStatusCode.InternalServerError
+                    StatusCode = HttpStatusCode.InternalServerError
                 };
             }
         }
@@ -63,9 +64,9 @@ namespace Zeus.Linguagens.Base
                 }
                 else if (ParamtersInput.SGBD == 2)
                 {
-                    var instancia = new CSharpSQLEntidade();
-                    var classe = instancia.GerarBody(nomeTabela);
-                    File.WriteAllText($"{local}\\{nomeTabela}.cs", classe);
+                    var instancia = new CSharpSQLEntidade(nomeTabela);
+                    var classe = instancia.GerarBody();
+                    File.WriteAllText($"{local}\\{nomeTabela.TratarNomeSQL()}.cs", classe);
                 }
                 else if (ParamtersInput.SGBD == 3)
                 {
@@ -96,8 +97,8 @@ namespace Zeus.Linguagens.Base
                 }
                 else if (ParamtersInput.SGBD == 2)
                 {
-                    var instancia = new JavaSQLEntidade();
-                    var classe = instancia.GerarBody(nomeTabela);
+                    var instancia = new JavaSQLEntidade(nomeTabela);
+                    var classe = instancia.GerarBody();
                     File.WriteAllText($"{local}\\{nomeTabela.TratarNomeSQL().ToFirstCharToUpper()}.java", classe);
                 }
                 else if (ParamtersInput.SGBD == 3)

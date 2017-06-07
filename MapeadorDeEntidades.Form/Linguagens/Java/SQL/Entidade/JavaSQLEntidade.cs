@@ -4,11 +4,10 @@ using System.Text;
 using Zeus.Core;
 using Zeus.Core.SGBD.Microsoft_SQL;
 using Zeus.Linguagens.Base;
-using Zeus.Linguagens.Java.SQL;
 
 namespace Zeus.Linguagens.Java.SQL.Entidade
 {
-    public class JavaSQLEntidade : BaseEntity
+    public class JavaSQLEntidade : BaseSQLDAO
     {
         private StringBuilder Imports()
         {
@@ -61,21 +60,25 @@ namespace Zeus.Linguagens.Java.SQL.Entidade
             return atributoBody;
         }
 
-        public string GerarBody(string nomeTabela)
+        public string GerarBody()
         {
-            var atributos = new SQLTables().ListarAtributos(nomeTabela.TratarNomeSQL());
+            var atributos = new SQLTables().ListarAtributos(NomeTabela);
 
             var classe = new StringBuilder();
             classe.Append($"package model;{N}{N}");
 
             classe.Append(Imports());
             classe.Append("@XmlRootElement" + N);
-            classe.Append($"public class {nomeTabela.TratarNomeSQL().ToFirstCharToUpper()} {{{N}");
+            classe.Append($"public class {NomeTabela.ToFirstCharToUpper()} {{{N}");
             classe.Append(AtributosHeader(atributos));
             classe.Append(AtributosBody(atributos));
             classe.Append("}" + Environment.NewLine);
 
             return classe.ToString();
+        }
+
+        public JavaSQLEntidade(string nomeTabela) : base(nomeTabela)
+        {
         }
     }
 }

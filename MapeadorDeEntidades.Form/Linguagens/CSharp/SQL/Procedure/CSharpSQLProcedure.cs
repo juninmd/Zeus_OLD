@@ -6,7 +6,7 @@ namespace Zeus.Linguagens.CSharp.SQL.Procedure
 {
     public class CSharpSQLProcedure : BaseSQLDAO
     {
-        public CSharpSQLProcedure(string nomeTabela) : base(nomeTabela)
+        public CSharpSQLProcedure(string NomeTabela) : base(NomeTabela)
         {
         }
 
@@ -14,7 +14,7 @@ namespace Zeus.Linguagens.CSharp.SQL.Procedure
 
         public StringBuilder GerarClasse()
         {
-            var nomeProcBase = NomeTabela.TratarNomeSQL();
+            var nomeProcBase = NomeTabela;
 
             var classe = new StringBuilder();
             classe.Append("using System.Net;" + N);
@@ -59,7 +59,7 @@ namespace Zeus.Linguagens.CSharp.SQL.Procedure
 
         public StringBuilder GerarInterfaceSharProc()
         {
-            var nomeProcBase = NomeTabela.TratarNomeSQL();
+            var nomeProcBase = NomeTabela;
 
             var classe = new StringBuilder();
             classe.Append("using System;" + N + N);
@@ -77,10 +77,10 @@ namespace Zeus.Linguagens.CSharp.SQL.Procedure
         private StringBuilder GetInterfacesMethod()
         {
             var assinatura = new StringBuilder();
-            assinatura.Append($"        RequestMessage<{NomeTabela.TratarNomeSQL()}> GetById(long id);" + N + N);
-            assinatura.Append($"        RequestMessage<List<{NomeTabela.TratarNomeSQL()}>> GetAll();" + N + N);
-            assinatura.Append($"        RequestMessage<string> Add({NomeTabela.TratarNomeSQL()} entidade, bool commit = false);" + N + N);
-            assinatura.Append($"        RequestMessage<string> Update({NomeTabela.TratarNomeSQL()} entidade, bool commit = false);" + N + N);
+            assinatura.Append($"        RequestMessage<{NomeTabela}> GetById(long id);" + N + N);
+            assinatura.Append($"        RequestMessage<List<{NomeTabela}>> GetAll();" + N + N);
+            assinatura.Append($"        RequestMessage<string> Add({NomeTabela} entidade, bool commit = false);" + N + N);
+            assinatura.Append($"        RequestMessage<string> Update({NomeTabela} entidade, bool commit = false);" + N + N);
             assinatura.Append($"        RequestMessage<string> Delete(long id, bool commit = false);" + N + N);
             return assinatura;
         }
