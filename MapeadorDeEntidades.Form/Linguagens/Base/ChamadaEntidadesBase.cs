@@ -20,13 +20,12 @@ namespace Zeus.Linguagens.Base
 {
     public class ChamadaEntidadesBase
     {
-        public RequestMessage<string> Orquestrar(FolderBrowserDialog salvar)
+        public RequestMessage<string> Orquestrar(string local)
         {
             try
             {
                 int max = ParamtersInput.NomeTabelas.Count;
                 var i = 0;
-                var local = salvar.SelectedPath + "\\";
 
                 foreach (var nomeTabela in ParamtersInput.NomeTabelas)
                 {
