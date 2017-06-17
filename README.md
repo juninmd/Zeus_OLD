@@ -1,5 +1,6 @@
 # Zeus
-Gerador de código C#, NodeJs, Java + Oracle, Postgree, Sql Server, Mysql e Firebird.
+É um gerador de código desenvolvido em C#  
+Que tem o objetivo de facilitar a vida de quem deseja fazer um crud tendo seu banco já criado.
 
 ## Funcionalidades   
 - Geração de Procedures   
