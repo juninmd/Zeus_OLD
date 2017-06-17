@@ -25,7 +25,7 @@ namespace Zeus.Core.SGBD.Microsoft_SQL
                     return new RequestMessage<List<string>>
                     {
                         StatusCode = System.Net.HttpStatusCode.OK,
-                        Message = "Connectado com sucesso!"
+                        Message = "Conexão com SQL SERVER efetuada com sucesso!"
                     };
                 };
             return new RequestMessage<List<string>>

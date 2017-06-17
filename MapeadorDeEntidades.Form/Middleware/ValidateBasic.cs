@@ -19,7 +19,7 @@ namespace Zeus.Middleware
                 };
             }
 
-            if (ParamtersInput.SGBD == 3 && String.IsNullOrEmpty(ParamtersInput.DataBase))
+            if ((ParamtersInput.SGBD == 3 || ParamtersInput.SGBD == 5) && String.IsNullOrEmpty(ParamtersInput.DataBase))
             {
                 return new RequestMessage<string>()
                 {

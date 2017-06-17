@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Zeus.Core;
 using Zeus.Core.SGBD.Oracle;
 using Zeus.Linguagens.Base;
 
 namespace Zeus.Linguagens.Java.Oracle.Entidade
 {
-    public class JavaOracleEntidade : BaseEntity
+    public class JavaOracleEntidade : BaseOracleDAO
     {
         private StringBuilder Imports()
         {
@@ -41,7 +42,7 @@ namespace Zeus.Linguagens.Java.Oracle.Entidade
                 atributoBody.Append($"	 * {N}");
                 atributoBody.Append($"	 * @Descrição {att.COMMENTS} {N}");
                 atributoBody.Append($"	 */{N}");
-                atributoBody.Append($"	public {JavaTypesOracle.GetTypeAtribute(att)} get{att.COLUMN_NAME}() {{{N}");
+                atributoBody.Append($"	public {JavaTypesOracle.GetTypeAtribute(att)} get{att.COLUMN_NAME.ToFirstCharToUpper()}() {{{N}");
                 atributoBody.Append($"		return {att.COLUMN_NAME};{N}");
                 atributoBody.Append($"	}}{N}");
                 atributoBody.Append($"{N}");
@@ -50,7 +51,7 @@ namespace Zeus.Linguagens.Java.Oracle.Entidade
                 atributoBody.Append($"	 * {N}");
                 atributoBody.Append($"	 * @Descrição {att.COMMENTS} {N}");
                 atributoBody.Append($"	 */{N}");
-                atributoBody.Append($"	public void set{att.COLUMN_NAME}({JavaTypesOracle.GetTypeAtribute(att)} {att.COLUMN_NAME}) {{{N}");
+                atributoBody.Append($"	public void set{att.COLUMN_NAME.ToFirstCharToUpper()}({JavaTypesOracle.GetTypeAtribute(att)} {att.COLUMN_NAME}) {{{N}");
                 atributoBody.Append($"		this.{att.COLUMN_NAME} = {att.COLUMN_NAME};{N}");
                 atributoBody.Append($"	}}{N}");
                 atributoBody.Append($"{N}");
@@ -59,21 +60,23 @@ namespace Zeus.Linguagens.Java.Oracle.Entidade
             return atributoBody;
         }
 
-        public StringBuilder GerarBody(string nomeTabela)
+        public string GerarBody()
         {
-            var atributos = new OracleTables().ListarAtributos(nomeTabela);
-
             var classe = new StringBuilder();
             classe.Append($"package model;{N}{N}");
 
             classe.Append(Imports());
             classe.Append("@XmlRootElement" + N);
-            classe.Append($"public class {nomeTabela} {{{N}");
-            classe.Append(AtributosHeader(atributos));
-            classe.Append(AtributosBody(atributos));
+            classe.Append($"public class {NomeTabela} {{{N}");
+            classe.Append(AtributosHeader(ListaAtributosTabela));
+            classe.Append(AtributosBody(ListaAtributosTabela));
             classe.Append("}" + Environment.NewLine);
 
-            return classe;
+            return classe.ToString();
+        }
+
+        public JavaOracleEntidade(string nomeTabela) : base(nomeTabela)
+        {
         }
     }
 }

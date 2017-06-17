@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Runtime.InteropServices;
 using Zeus.Core;
 using Zeus.Core.SGBD.Firebird;
 using Zeus.Core.SGBD.Microsoft_SQL;
 using Zeus.Core.SGBD.MySql;
 using Zeus.Core.SGBD.Oracle;
+using Zeus.Core.SGBD.Postgre;
 
 namespace Zeus.Middleware
 {
@@ -36,11 +34,13 @@ namespace Zeus.Middleware
                         return new MySqlPing().ConnectaSQL();
                     case 4:
                         return new FirebirdPing().ConnectaSQL();
+                    case 5:
+                        return new PostgrePing().ConnectaPostgre();
                     default:
                         return new RequestMessage<List<string>>
                         {
                             StatusCode = System.Net.HttpStatusCode.InternalServerError,
-                            Message = "Esse banco de dados não foi programado",
+                            Message = "Esse banco de dados não foi programado para essa linguagem de programação",
                         };
 
                 }

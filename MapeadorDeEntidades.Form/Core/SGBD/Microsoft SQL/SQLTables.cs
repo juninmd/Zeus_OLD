@@ -21,8 +21,9 @@ namespace Zeus.Core.SGBD.Microsoft_SQL
 
         public List<SQLEntidadeTabela> ListarAtributos(string nomeTabela)
         {
-            BeginNewStatement("select * from information_schema.columns " +
-                              "where table_schema = 'fatecjava' " +
+            BeginNewStatement($"use {SQLUtil.TratarNomeSQLDatabase()};" +
+                              "select * from information_schema.columns " +
+                              $"where TABLE_CATALOG = '{SQLUtil.TratarNomeSQLDatabase()}' " +
                               $"and TABLE_NAME = '{nomeTabela}'" +
                               "order by table_name, ordinal_position");
 
@@ -37,10 +38,10 @@ namespace Zeus.Core.SGBD.Microsoft_SQL
                     {
                         COLUMN_NAME = r.GetValueOrDefault<string>("COLUMN_NAME"),
                         DATA_TYPE = r.GetValueOrDefault<string>("DATA_TYPE"),
-                        CHAR_LENGTH = r.GetValueOrDefault<short>("CHAR_LENGTH"),
-                        DATA_PRECISION = r.GetValueOrDefault<byte?>("DATA_PRECISION"),
-                        DATA_SCALE = r.GetValueOrDefault<byte?>("DATA_SCALE"),
-                        NULLABLE = r.GetValueOrDefault<bool>("NULLABLE"),
+                        CHARACTER_MAXIMUM_LENGTH = r.GetValueOrDefault<int>("CHARACTER_MAXIMUM_LENGTH"),
+                        NUMERIC_PRECISION = r.GetValueOrDefault<byte?>("NUMERIC_PRECISION"),
+                        NUMERIC_SCALE = r.GetValueOrDefault<int?>("NUMERIC_SCALE"),
+                        IS_NULLABLE = r.GetValueOrDefault<string>("IS_NULLABLE") == "YES",
                         COMMENTS = "",
                     });
                 };

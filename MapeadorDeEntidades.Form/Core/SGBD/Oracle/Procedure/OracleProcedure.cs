@@ -1,20 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Text;
+using Zeus.Linguagens.Base;
 using Zeus.Properties;
 
 namespace Zeus.Core.SGBD.Oracle.Procedure
 {
-    public class OracleProcedure
+    public class OracleProcedure : BaseOracleDAO
     {
-        public string NomeTabela { get; set; }
-
-        public List<OracleEntidadeTabela> ListaAtributosTabela { get; set; }
-
-        public OracleProcedure(string nomeTabela, List<OracleEntidadeTabela> atributosTabela)
+        public OracleProcedure(string nomeTabela) : base(nomeTabela)
         {
-            NomeTabela = nomeTabela;
-            ListaAtributosTabela = atributosTabela;
         }
 
         #region PRIVATE 
@@ -325,7 +319,7 @@ namespace Zeus.Core.SGBD.Oracle.Procedure
             header.Append($"create or replace package {NomeTabela.TratarNomePackage()} is" + Environment.NewLine + Environment.NewLine);
             header.Append("  TYPE TP_CURSOR IS REF CURSOR;" + Environment.NewLine + Environment.NewLine);
             header.Append(AdicionaCabecalho(Settings.Default.PrefixoProcedure + "I_" + NomeTabela.TratarNomeTabela(), true, false, false, false, true));
-            header.Append(AdicionaCabecalho(Settings.Default.PrefixoProcedure + "U_" + NomeTabela.TratarNomeTabela(), true, false, false));
+            header.Append(AdicionaCabecalho(Settings.Default.PrefixoProcedure + "U_" + NomeTabela.TratarNomeTabela(), true));
             header.Append(AdicionaCabecalho(Settings.Default.PrefixoProcedure + "D_" + NomeTabela.TratarNomeTabela(), true, false, true));
             header.Append(AdicionaCabecalho(Settings.Default.PrefixoProcedure + "S_" + NomeTabela.TratarNomeTabela(), true, true, true, true));
             header.Append(AdicionaCabecalho(Settings.Default.PrefixoProcedure + "S_" + NomeTabela.TratarNomeTabela() + "_ID", true, true, true));
@@ -334,7 +328,7 @@ namespace Zeus.Core.SGBD.Oracle.Procedure
             return header;
         }
 
-        public StringBuilder GerarPackageBody()
+        public string GerarBody()
         {
             var header = new StringBuilder();
             header.Append($"create or replace package BODY {NomeTabela.TratarNomePackage()} is" + Environment.NewLine + Environment.NewLine);
@@ -344,8 +338,7 @@ namespace Zeus.Core.SGBD.Oracle.Procedure
             header.Append(BodySelect(true));
             header.Append(BodySelect());
             header.Append($"end {NomeTabela.TratarNomePackage()};" + Environment.NewLine);
-            return header;
+            return header.ToString();
         }
-
     }
 }

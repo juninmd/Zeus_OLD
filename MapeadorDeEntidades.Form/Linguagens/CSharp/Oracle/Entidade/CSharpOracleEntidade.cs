@@ -1,10 +1,9 @@
 ﻿using System.Text;
-using Zeus.Core.SGBD.Oracle;
 using Zeus.Linguagens.Base;
 
 namespace Zeus.Linguagens.CSharp.Oracle.Entidade
 {
-    public class CSharpOracleEntity : BaseEntity
+    public class CSharpOracleEntidade : BaseOracleDAO
     {
         private StringBuilder GerarUsing()
         {
@@ -14,17 +13,15 @@ namespace Zeus.Linguagens.CSharp.Oracle.Entidade
             return texto;
         }
 
-        public string GerarBody(string nomeTabela)
+        public string GerarBody()
         {
             var classe = new StringBuilder();
             classe.Append("namespace Model" + N);
             classe.Append("{" + N);
-            classe.Append($"    public class {nomeTabela}" + N);
+            classe.Append($"    public class {NomeTabela}" + N);
             classe.Append("    {" + N + N);
 
-            var atributos = new OracleTables().ListarAtributos(nomeTabela);
-
-            foreach (var item in atributos)
+            foreach (var item in ListaAtributosTabela)
             {
                 classe.Append("         /// <summary>" + N);
                 classe.Append($"         /// {item.COMMENTS}" + N);
@@ -39,5 +36,8 @@ namespace Zeus.Linguagens.CSharp.Oracle.Entidade
         }
 
 
+        public CSharpOracleEntidade(string nomeTabela) : base(nomeTabela)
+        {
+        }
     }
 }

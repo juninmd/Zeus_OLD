@@ -4,6 +4,7 @@ using Zeus.Core;
 using Zeus.Core.SGBD.Microsoft_SQL;
 using Zeus.Core.SGBD.MySql;
 using Zeus.Core.SGBD.Oracle;
+using Zeus.Core.SGBD.Postgre;
 
 namespace Zeus.Middleware
 {
@@ -29,6 +30,11 @@ namespace Zeus.Middleware
                         return new RequestMessage<List<string>>()
                         {
                             Content = new MySqlTables().ListaTabelas(ParamtersInput.DataBase)
+                        };
+                    case 5:
+                        return new RequestMessage<List<string>>()
+                        {
+                            Content = new PostgreTables().ListaTabelas(ParamtersInput.DataBase)
                         };
                     default:
                         return new RequestMessage<List<string>>
