@@ -25,7 +25,7 @@ namespace Zeus.Core.SGBD.Oracle
                     return new RequestMessage<List<string>>
                     {
                         StatusCode = System.Net.HttpStatusCode.OK,
-                        Message = "Connectado com sucesso!"
+                        Message = "Conexão com ORACLE efetuada com sucesso!"
                     };
                 };
             return new RequestMessage<List<string>>

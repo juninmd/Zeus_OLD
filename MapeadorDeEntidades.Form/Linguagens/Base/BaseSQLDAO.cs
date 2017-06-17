@@ -9,7 +9,7 @@ namespace Zeus.Linguagens.Base
         protected static string N => Environment.NewLine;
         public BaseSQLDAO(string nomeTabela)
         {
-            NomeTabela = nomeTabela;
+            NomeTabela = nomeTabela.TratarNomeSQL();
         }
         public string NomeTabela { get; set; }
         public List<SQLEntidadeTabela> ListaAtributosTabela => new SQLTables().ListarAtributos(NomeTabela);

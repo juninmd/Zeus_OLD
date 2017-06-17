@@ -4,8 +4,12 @@ using Zeus.Linguagens.Base;
 
 namespace Zeus.Linguagens.CSharp.SQL.Entidade
 {
-    public class CSharpSQLEntidade : BaseEntity
+    public class CSharpSQLEntidade : BaseSQLDAO
     {
+        public CSharpSQLEntidade(string nomeTabela) : base(nomeTabela)
+        {
+        }
+
         private StringBuilder GerarUsing()
         {
             var texto = new StringBuilder();
@@ -14,22 +18,22 @@ namespace Zeus.Linguagens.CSharp.SQL.Entidade
             return texto;
         }
 
-        public string GerarBody(string nomeTabela)
+        public string GerarBody()
         {
             var classe = new StringBuilder();
             classe.Append("namespace Model" + N);
             classe.Append("{" + N);
-            classe.Append($"    public class {nomeTabela.TratarNomeSQL()}" + N);
+            classe.Append($"    public class {NomeTabela}" + N);
             classe.Append("    {" + N + N);
 
-            var atributos = new SQLTables().ListarAtributos(nomeTabela);
+            var atributos = new SQLTables().ListarAtributos(NomeTabela);
 
             foreach (var item in atributos)
             {
                 classe.Append("         /// <summary>" + N);
                 classe.Append($"         /// {item.COMMENTS}" + N);
                 classe.Append("         /// </summary>" + N);
-                classe.Append($"         public {CSharpTypesSQL.GetTypeAtribute(item.DATA_TYPE, item.NULLABLE)} {item.COLUMN_NAME} {{ get; set; }}" + N);
+                classe.Append($"         public {CSharpTypesSQL.GetTypeAtribute(item.DATA_TYPE, item.IS_NULLABLE)} {item.COLUMN_NAME} {{ get; set; }}" + N);
                 classe.Append(N);
             }
             classe.Append("    }" + N);
@@ -37,7 +41,5 @@ namespace Zeus.Linguagens.CSharp.SQL.Entidade
 
             return GerarUsing() + classe.ToString();
         }
-
-
     }
 }

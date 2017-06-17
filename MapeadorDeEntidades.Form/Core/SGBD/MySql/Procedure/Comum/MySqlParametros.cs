@@ -24,7 +24,7 @@ namespace Zeus.Core.SGBD.MySql.Procedure.Comum
         {
             if (tipo.DATA_TYPE == "varchar")
             {
-                return $"{tipo.DATA_TYPE}({tipo.CHARACTER_MAXIMUM_LENGTH ?? 255})";
+                return $"{tipo.DATA_TYPE}({tipo.CHARACTER_MAXIMUN_LENGTH ?? 255})";
             }
             return tipo.DATA_TYPE;
         }

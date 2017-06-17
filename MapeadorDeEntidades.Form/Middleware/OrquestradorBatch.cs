@@ -2,7 +2,6 @@
 using System.Windows.Forms;
 using Zeus.Core;
 using Zeus.Core.SGBD.Oracle.Batch;
-using Zeus.Utilidade;
 
 namespace Zeus.Middleware
 {

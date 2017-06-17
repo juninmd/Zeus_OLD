@@ -6,21 +6,21 @@
 
         public string DATA_TYPE { get; set; }
 
-        public short CHAR_LENGTH { get; set; }
+        public int CHARACTER_MAXIMUM_LENGTH { get; set; }
 
-        public bool NULLABLE { get; set; }
+        public bool IS_NULLABLE { get; set; }
 
         public string COMMENTS { get; set; }
 
         /// <summary>
         /// Para descobrir a precisão do campo. EX: NUMBER(9,*);
         /// </summary>
-        public decimal? DATA_PRECISION { get; set; }
+        public decimal? NUMERIC_PRECISION { get; set; }
 
         /// <summary>
         ///  Para descobrir a precisão do campo. EX: NUMBER(*,2);
         /// </summary>
-        public decimal? DATA_SCALE { get; set; }
+        public int? NUMERIC_SCALE { get; set; }
 
 
 

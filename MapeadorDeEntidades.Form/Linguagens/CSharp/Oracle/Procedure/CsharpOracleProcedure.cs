@@ -1,37 +1,20 @@
 ﻿using System.Text;
 using Zeus.Linguagens.Base;
+using Zeus.Properties;
 
 namespace Zeus.Linguagens.CSharp.Oracle.Procedure
 {
-    public class CsharpOracleProcedure : BaseOracleDAO
+    public class CSharpOracleProcedure : BaseOracleDAO
     {
-        public CsharpOracleProcedure(string nomeTabela) : base(nomeTabela)
+        public CSharpOracleProcedure(string nomeTabela) : base(nomeTabela)
         {
         }
-
-        public string IsNullabe(string aceitaNull)
-        {
-            return aceitaNull == "Y" ? "?" : "";
-        }
-        public string GetTypeAtribute(string tipoAttr, string aceitaNull)
-        {
-            switch (tipoAttr)
-            {
-                case "DATE":
-                    return "DateTime" + IsNullabe(aceitaNull);
-                case "NUMBER":
-                    return "long" + IsNullabe(aceitaNull);
-                default:
-                    return "string";
-            }
-        }
-    
 
         #region CLASSE 
 
-        public StringBuilder GerarBodyCSharpProc()
+        public StringBuilder GerarClasse()
         {
-            var nomeProcBase = NomeTabela.Replace("MAG_T_PDL", "").Replace("_", "");
+            var nomeProcBase = NomeTabela.Replace(Settings.Default.PrefixoTabela, "");
 
             var classe = new StringBuilder();
             classe.Append("using System.Net;" + N);
@@ -60,9 +43,11 @@ namespace Zeus.Linguagens.CSharp.Oracle.Procedure
             proc.Append(N);
             proc.Append("        private enum Procedures" + N);
             proc.Append("        {" + N);
-            proc.Append($"            MAG_SP_PDL_S_{nomeProcBase}," + N);
-            proc.Append($"            MAG_SP_PDL_I_{nomeProcBase}," + N);
-            proc.Append($"            MAG_SP_PDL_U_{nomeProcBase}" + N);
+            proc.Append($"            S_{nomeProcBase}_ID," + N);
+            proc.Append($"            S_{nomeProcBase}," + N);
+            proc.Append($"            I_{nomeProcBase}," + N);
+            proc.Append($"            U_{nomeProcBase}," + N);
+            proc.Append($"            D_{nomeProcBase}" + N);
             proc.Append("        }" + N + N);
             return proc;
         }
@@ -78,7 +63,7 @@ namespace Zeus.Linguagens.CSharp.Oracle.Procedure
             methodo.Append("        {" + N);
             methodo.Append($"            var result = new RequestMessage<{NomeTabela}>" + N);
             methodo.Append("            {" + N);
-            methodo.Append($"                Procedure = $\"{{PackageName}}.{{Procedures.MAG_SP_PDL_S_{nomeProcedure}}}\"," + N);
+            methodo.Append($"                Procedure = $\"{{PackageName}}.{{Procedures.S_{nomeProcedure}}}_ID\"," + N);
             methodo.Append($"                MethodApi = GetClass.GetMethod()" + N);
             methodo.Append("            };" + N);
             methodo.Append(N);
@@ -113,12 +98,51 @@ namespace Zeus.Linguagens.CSharp.Oracle.Procedure
             var atributoText = new StringBuilder();
             foreach (var item in ListaAtributosTabela)
             {
-                atributoText.Append($"                        {item.COLUMN_NAME} = \"{item.COLUMN_NAME}\".GetValueOrDefault<{GetTypeAtribute(item.DATA_TYPE, item.NULLABLE)}>(reader)," + N);
+                atributoText.Append($"                        {item.COLUMN_NAME} = \"{item.COLUMN_NAME}\".GetValueOrDefault<{CSharpTypesOracle.GetTypeAtribute(item.DATA_TYPE, item.NULLABLE)}>(reader)," + N);
             }
             return atributoText;
         }
         #endregion
 
+        #region ::: Get All :::
+        private StringBuilder GetAll(string nomeProcedure)
+        {
+            var methodo = new StringBuilder();
+            methodo.Append(N);
+            methodo.Append($"        public RequestMessage<{NomeTabela}> GetById(long ID)" + N);
+            methodo.Append("        {" + N);
+            methodo.Append($"            var result = new RequestMessage<{NomeTabela}>" + N);
+            methodo.Append("            {" + N);
+            methodo.Append($"                Procedure = $\"{{PackageName}}.{{Procedures.S_{nomeProcedure}}}\"," + N);
+            methodo.Append($"                MethodApi = GetClass.GetMethod()" + N);
+            methodo.Append("            };" + N);
+            methodo.Append(N);
+            methodo.Append("            BeginNewStatement(result.Procedure);" + N);
+            methodo.Append(N);
+            methodo.Append("            OpenConnection();" + N);
+            methodo.Append("            using (var reader = ExecuteReader())" + N);
+            methodo.Append("            {" + N);
+            methodo.Append("                if (reader.Read())" + N);
+            methodo.Append($"               {{" + N);
+            methodo.Append($"                    result.Content = new {NomeTabela}" + N);
+            methodo.Append("                    {" + N);
+            methodo.Append(GetListaItensGetById());
+            methodo.Append("                    };" + N);
+            methodo.Append("                return result;" + N);
+            methodo.Append($"               }}" + N);
+            methodo.Append("            }" + N);
+            methodo.Append(N);
+            methodo.Append("            result.Message = $\"O request de {ID} não foi encontrada.\";" + N);
+            methodo.Append("            result.StatusCode = HttpStatusCode.NoContent;" + N);
+            methodo.Append($"            result.Content = new {NomeTabela}();" + N);
+            methodo.Append(N);
+            methodo.Append("            return result;" + N);
+            methodo.Append("       }" + N);
+            methodo.Append(N);
+            return methodo;
+        }
+ 
+        #endregion
         #region ::: ADD :::
         private StringBuilder Add(string nomeProcedure)
         {
@@ -127,7 +151,7 @@ namespace Zeus.Linguagens.CSharp.Oracle.Procedure
             methodo.Append($"        public RequestMessage<string> Add({NomeTabela} entidade, bool commit = false)" + N);
             methodo.Append("        {" + N + N);
 
-            methodo.Append($"            BeginNewStatement(PackageName, Procedures.MAG_SP_PDL_I_{nomeProcedure});" + N);
+            methodo.Append($"            BeginNewStatement(PackageName, Procedures.I_{nomeProcedure});" + N);
 
             methodo.Append(N);
             methodo.Append("            AddResult();" + N);
@@ -158,7 +182,7 @@ namespace Zeus.Linguagens.CSharp.Oracle.Procedure
             methodo.Append($"        public RequestMessage<string> Update({NomeTabela} entidade, bool commit = false)" + N);
             methodo.Append("        {" + N + N);
 
-            methodo.Append($"            BeginNewStatement(PackageName, Procedures.MAG_SP_PDL_U_{nomeProcedure});" + N);
+            methodo.Append($"            BeginNewStatement(PackageName, Procedures.U__{nomeProcedure});" + N);
 
             methodo.Append(N);
             methodo.Append("            AddResult();" + N);
@@ -175,7 +199,7 @@ namespace Zeus.Linguagens.CSharp.Oracle.Procedure
 
         public StringBuilder GerarInterfaceSharProc()
         {
-            var nomeProcBase = NomeTabela.Replace("MAG_T_PDL", "").Replace("_", "");
+            var nomeProcBase = NomeTabela.Replace(Settings.Default.PrefixoTabela, "");
 
             var classe = new StringBuilder();
             classe.Append("using System;" + N + N);

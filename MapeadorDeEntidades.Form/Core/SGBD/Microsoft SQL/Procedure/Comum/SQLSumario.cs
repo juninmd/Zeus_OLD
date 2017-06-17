@@ -31,7 +31,7 @@ namespace Zeus.Core.SGBD.Microsoft_SQL.Procedure.Comum
             desc.Append(N);
             desc.Append("	/*" + N);
             desc.Append("	Documentação" + N);
-            desc.Append($"	Arquivo Fonte.....: {nomeTabela.TratarNomeSQL()}.sql" + N);
+            desc.Append($"	Arquivo Fonte.....: {nomeTabela}.sql" + N);
             desc.Append($"	Objetivo..........:" + N);
             desc.Append($"	Autor.............:" + N);
             desc.Append($"	Data..............: {DateTime.Now.ToShortDateString()}" + N);

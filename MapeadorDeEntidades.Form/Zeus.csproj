@@ -34,16 +34,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="FirebirdSql.Data.FirebirdClient, Version=5.8.0.0, Culture=neutral, PublicKeyToken=3750abcc3150b00c, processorArchitecture=MSIL">
-      <HintPath>..\packages\FirebirdSql.Data.FirebirdClient.5.8.0\lib\net452\FirebirdSql.Data.FirebirdClient.dll</HintPath>
+    <Reference Include="FirebirdSql.Data.FirebirdClient, Version=5.9.1.0, Culture=neutral, PublicKeyToken=3750abcc3150b00c, processorArchitecture=MSIL">
+      <HintPath>..\packages\FirebirdSql.Data.FirebirdClient.5.9.1\lib\net452\FirebirdSql.Data.FirebirdClient.dll</HintPath>
     </Reference>
     <Reference Include="MySql.Data, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <HintPath>..\packages\MySql.Data.6.9.9\lib\net45\MySql.Data.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Npgsql, Version=3.2.2.0, Culture=neutral, PublicKeyToken=5d8b90d52f46fda7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Npgsql.3.2.2\lib\net451\Npgsql.dll</HintPath>
     </Reference>
     <Reference Include="Oracle.DataAccess, Version=2.112.3.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
@@ -57,9 +59,11 @@
       <HintPath>..\packages\System.Data.Common.4.3.0\lib\net451\System.Data.Common.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.Data.SqlClient, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Data.SqlClient.4.3.0\lib\net46\System.Data.SqlClient.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="System.Data.SqlClient, Version=4.1.1.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.SqlClient.4.3.1\lib\net46\System.Data.SqlClient.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.3.0\lib\portable-net45+win8+wp8+wpa81\System.Threading.Tasks.Extensions.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -81,7 +85,6 @@
     <Compile Include="Core\SGBD\Firebird\FirebirdPing.cs" />
     <Compile Include="Core\SGBD\Firebird\FirebirdRepository.cs" />
     <Compile Include="Core\SGBD\Firebird\FirebirdTables.cs" />
-    <Compile Include="Core\SGBD\Firebird\FirebirdUtil.cs" />
     <Compile Include="Core\SGBD\Microsoft SQL\Procedure\Comum\SQLDeleteParamters.cs" />
     <Compile Include="Core\SGBD\Microsoft SQL\Procedure\Comum\SQLUpdateParamters.cs" />
     <Compile Include="Core\SGBD\Microsoft SQL\Procedure\Comum\SQLInsertParamters.cs" />
@@ -93,7 +96,6 @@
     <Compile Include="Core\SGBD\Microsoft SQL\Procedure\Verbos\SQLInsert.cs" />
     <Compile Include="Core\SGBD\Microsoft SQL\Procedure\Verbos\SQLGet.cs" />
     <Compile Include="Core\SGBD\Microsoft SQL\Procedure\Comum\SQLSumario.cs" />
-    <Compile Include="Core\SGBD\Microsoft SQL\Procedure\SQLOrquestradorProcedures.cs" />
     <Compile Include="Core\SGBD\Microsoft SQL\Procedure\SQLProcedure.cs" />
     <Compile Include="Core\SGBD\Microsoft SQL\SQLPing.cs" />
     <Compile Include="Core\SGBD\Microsoft SQL\SQLRepository.cs" />
@@ -112,7 +114,6 @@
     <Compile Include="Core\SGBD\MySql\Procedure\Comum\MySqlSelectParamters.cs" />
     <Compile Include="Core\SGBD\MySql\Procedure\Comum\MySqlSumario.cs" />
     <Compile Include="Core\SGBD\MySql\Procedure\Comum\MySqlUpdateParamters.cs" />
-    <Compile Include="Core\SGBD\MySql\Procedure\MySqlOrquestradorProcedures.cs" />
     <Compile Include="Core\SGBD\MySql\Procedure\MySqlProcedure.cs" />
     <Compile Include="Core\SGBD\MySql\Procedure\Verbos\MySqlBuscar.cs" />
     <Compile Include="Core\SGBD\MySql\Procedure\Verbos\MySqlDelete.cs" />
@@ -127,9 +128,26 @@
     <Compile Include="Core\SGBD\Oracle\OracleRepository.cs" />
     <Compile Include="Core\ParamtersInput.cs" />
     <Compile Include="Core\SGBD\Oracle\OracleEntidadeTabela.cs" />
-    <Compile Include="Core\SGBD\Oracle\Procedure\OracleOrquestradorProcedures.cs" />
+    <Compile Include="Core\SGBD\Oracle\OracleUtil.cs" />
     <Compile Include="Core\SGBD\Oracle\Sequence\OracleOrquestradorSequence.cs" />
     <Compile Include="Core\SGBD\Oracle\Sequence\OracleSequence.cs" />
+    <Compile Include="Core\SGBD\Postgre\PostgreEntidadeTabela.cs" />
+    <Compile Include="Core\SGBD\Postgre\PostgreTables.cs" />
+    <Compile Include="Core\SGBD\Postgre\PostgreRepository.cs" />
+    <Compile Include="Core\SGBD\Postgre\PostgrePing.cs" />
+    <Compile Include="Core\SGBD\Postgre\Procedure\Comum\PostgreBuscaParamters.cs" />
+    <Compile Include="Core\SGBD\Postgre\Procedure\Comum\PostgreDeleteParamters.cs" />
+    <Compile Include="Core\SGBD\Postgre\Procedure\Comum\PostgreInsertParamters.cs" />
+    <Compile Include="Core\SGBD\Postgre\Procedure\Comum\PostgreParametros.cs" />
+    <Compile Include="Core\SGBD\Postgre\Procedure\Comum\PostgreSelectParamters.cs" />
+    <Compile Include="Core\SGBD\Postgre\Procedure\Comum\PostgreSumario.cs" />
+    <Compile Include="Core\SGBD\Postgre\Procedure\Comum\PostgreUpdateParamters.cs" />
+    <Compile Include="Core\SGBD\Postgre\Procedure\PostgreProcedure.cs" />
+    <Compile Include="Core\SGBD\Postgre\Procedure\Verbos\PostgreBuscar.cs" />
+    <Compile Include="Core\SGBD\Postgre\Procedure\Verbos\PostgreDelete.cs" />
+    <Compile Include="Core\SGBD\Postgre\Procedure\Verbos\PostgreGet.cs" />
+    <Compile Include="Core\SGBD\Postgre\Procedure\Verbos\PostgreInsert.cs" />
+    <Compile Include="Core\SGBD\Postgre\Procedure\Verbos\PostgreUpdate.cs" />
     <Compile Include="Core\Tratamentos.cs" />
     <Compile Include="formConnectionString.cs">
       <SubType>Form</SubType>
@@ -143,55 +161,77 @@
     <Compile Include="formPrincipal.Designer.cs">
       <DependentUpon>formPrincipal.cs</DependentUpon>
     </Compile>
+    <Compile Include="Frontend\Angular\AngularTypeService.cs" />
     <Compile Include="Linguagens\Base\BaseFirebirdDAO.cs" />
     <Compile Include="Linguagens\Base\BaseMySqlDAO.cs" />
+    <Compile Include="Linguagens\Base\BasePostgreDAO.cs" />
     <Compile Include="Linguagens\Base\BaseSQLDAO.cs" />
     <Compile Include="Linguagens\Base\BaseOracleDAO.cs" />
-    <Compile Include="Linguagens\Base\BaseEntity.cs" />
+    <Compile Include="Linguagens\Base\ChamadaProceduresBase.cs" />
+    <Compile Include="Linguagens\Base\ChamadaEntidadesBase.cs" />
+    <Compile Include="Linguagens\Base\ChamadaAcessoDaoBase.cs" />
     <Compile Include="Linguagens\CSharp\Firebird\CSharpTypesFirebird.cs" />
-    <Compile Include="Linguagens\CSharp\Firebird\Direct\ChamadaCsharpFirebirdProcedure.cs" />
-    <Compile Include="Linguagens\CSharp\Firebird\Direct\CSharpFirebirdDirect.cs" />
-    <Compile Include="Linguagens\CSharp\Firebird\Entidade\CSharpFirebirdOrquestraEntidade.cs" />
-    <Compile Include="Linguagens\CSharp\Firebird\Entidade\CSharpSQLEntidade.cs" />
+    <Compile Include="Linguagens\CSharp\Firebird\Procedure\CSharpFirebirdProcedure.cs" />
+    <Compile Include="Linguagens\CSharp\Firebird\Query\CSharpFirebirdQuery.cs" />
+    <Compile Include="Linguagens\CSharp\Firebird\Entidade\CSharpFirebirdEntidade.cs" />
+    <Compile Include="Linguagens\CSharp\MYSQL\CSharpTypesMySql.cs" />
+    <Compile Include="Linguagens\CSharp\MYSQL\Entidade\CSharpMySqlEntidade.cs" />
+    <Compile Include="Linguagens\CSharp\MYSQL\Procedure\CSharpMySqlProcedure.cs" />
+    <Compile Include="Linguagens\CSharp\MYSQL\Query\ChamadaCsharpMySqlQuery.cs" />
+    <Compile Include="Linguagens\CSharp\MYSQL\Query\CsharpMySqlQuery.cs" />
     <Compile Include="Linguagens\CSharp\Oracle\CSharpTypesOracle.cs" />
     <Compile Include="Linguagens\CSharp\Oracle\Entidade\CSharpOracleEntidade.cs" />
-    <Compile Include="Linguagens\CSharp\Oracle\Procedure\CsharpOracleProcedure.cs" />
-    <Compile Include="Linguagens\CSharp\Oracle\Procedure\ChamadaCsharpOracleProcedure.cs" />
-    <Compile Include="Linguagens\CSharp\Oracle\Entidade\CSharpOracleOrquestraEntidade.cs" />
-    <Compile Include="Linguagens\CSharp\SQL\Procedure\ChamadaCsharpSQLProcedure.cs" />
+    <Compile Include="Linguagens\CSharp\Oracle\Procedure\CSharpOracleProcedure.cs" />
+    <Compile Include="Linguagens\CSharp\Postgre\CSharpTypesPostgre.cs" />
+    <Compile Include="Linguagens\CSharp\Postgre\Entidade\CSharpPostgreEntidade.cs" />
+    <Compile Include="Linguagens\CSharp\Postgre\Procedure\CSharpPostgreProcedure.cs" />
+    <Compile Include="Linguagens\CSharp\Postgre\Query\CSharpPostgreQuery.cs" />
     <Compile Include="Linguagens\CSharp\SQL\Entidade\CSharpSQLEntidade.cs" />
-    <Compile Include="Linguagens\CSharp\SQL\Entidade\CSharpSQLOrquestraEntidade.cs" />
     <Compile Include="Linguagens\CSharp\SQL\Procedure\CSharpProcDeleteSQL.cs" />
-    <Compile Include="Linguagens\CSharp\SQL\Procedure\CSharpProcSQL.cs" />
+    <Compile Include="Linguagens\CSharp\SQL\Procedure\CSharpSQLProcedure.cs" />
     <Compile Include="Linguagens\CSharp\SQL\CSharpTypesSQL.cs" />
     <Compile Include="Linguagens\CSharp\SQL\Procedure\CSharpProcGetAllSQL.cs" />
     <Compile Include="Linguagens\CSharp\SQL\Procedure\CSharpProcPutSQL.cs" />
     <Compile Include="Linguagens\CSharp\SQL\Procedure\CSharpProcPostSQL.cs" />
     <Compile Include="Linguagens\CSharp\SQL\Procedure\CSharpProcGetByIdSQL.cs" />
+    <Compile Include="Linguagens\CSharp\SQL\Query\CSharpSQLQuery.cs" />
+    <Compile Include="Linguagens\Java\Firebird\Entidade\JavaFirebirdEntidade.cs" />
+    <Compile Include="Linguagens\Java\Firebird\JavaTypesFirebird.cs" />
+    <Compile Include="Linguagens\Java\Firebird\Procedure\JavaFirebirdProcedure.cs" />
+    <Compile Include="Linguagens\Java\Firebird\Query\JavaFirebirdQuery.cs" />
     <Compile Include="Linguagens\Java\MySql\Entidade\JavaMySqlEntidade.cs" />
-    <Compile Include="Linguagens\Java\MySql\Entidade\JavaMySqlOrquestraEntidade.cs" />
     <Compile Include="Linguagens\Java\MySql\JavaTypesMySql.cs" />
-    <Compile Include="Linguagens\Java\MySql\Procedure\ChamadaJavaMySqlProcedure.cs" />
-    <Compile Include="Linguagens\Java\MySql\Procedure\ex.cs" />
     <Compile Include="Linguagens\Java\MySql\Procedure\JavaMySqlProcedure.cs" />
+    <Compile Include="Linguagens\Java\MySql\Query\JavaMySqlQuery.cs" />
     <Compile Include="Linguagens\Java\Oracle\JavaTypesOracle.cs" />
     <Compile Include="Linguagens\Java\Oracle\Procedure\JavaOracleProcedure.cs" />
     <Compile Include="Linguagens\Java\Oracle\Entidade\JavaOracleEntidade.cs" />
-    <Compile Include="Linguagens\Java\Oracle\Procedure\ChamadaJavaOracleProcedure.cs" />
-    <Compile Include="Linguagens\Java\Oracle\Entidade\JavaOracleOrquestraEntidade.cs" />
-    <Compile Include="Linguagens\Node\MySql\ChamadaNodeMySqlProcedure.cs" />
-    <Compile Include="Linguagens\Node\MySql\Procedure\ChamadaNodeMySqlProcedure.cs" />
+    <Compile Include="Linguagens\Java\Oracle\Query\JavaOracleQuery.cs" />
+    <Compile Include="Linguagens\Java\Postgre\Entidade\JavaPostgreEntidade.cs" />
+    <Compile Include="Linguagens\Java\Postgre\JavaTypesPostgre.cs" />
+    <Compile Include="Linguagens\Java\Postgre\Procedure\JavaPostgreProcedure.cs" />
+    <Compile Include="Linguagens\Java\Postgre\Query\JavaPostgreQuery.cs" />
+    <Compile Include="Linguagens\Java\SQL\Entidade\JavaSQLEntidade.cs" />
+    <Compile Include="Linguagens\Java\SQL\JavaTypesSQL.cs" />
+    <Compile Include="Linguagens\Java\SQL\Procedure\JavaSQLProcedure.cs" />
+    <Compile Include="Linguagens\Java\SQL\Query\JavaSQLQuery.cs" />
+    <Compile Include="Linguagens\Node\Firebird\Procedure\NodeFirebirdProcedure.cs" />
+    <Compile Include="Linguagens\Node\Firebird\Query\NodeFirebirdQuery.cs" />
     <Compile Include="Linguagens\Node\MySql\Procedure\NodeMySqlProcedure.cs" />
-    <Compile Include="Linguagens\Node\NodeAjax.cs" />
+    <Compile Include="Frontend\Angular\AngularService.cs" />
+    <Compile Include="Linguagens\Node\MySql\Query\NodeMySqlQuery.cs" />
     <Compile Include="Linguagens\Node\NodeRoutes.cs" />
-    <Compile Include="Linguagens\Node\Oracle\Procedure\ChamadaNodeOracleProcedure.cs" />
     <Compile Include="Linguagens\Node\NodeController.cs" />
     <Compile Include="Linguagens\Node\Oracle\Procedure\NodeOracleProcedure.cs" />
-    <Compile Include="Middleware\OrquestradorChamadaProcedure.cs" />
+    <Compile Include="Linguagens\Node\Oracle\Query\NodeOracleQuery.cs" />
+    <Compile Include="Linguagens\Node\Postgre\Procedure\NodePostgreProcedure.cs" />
+    <Compile Include="Linguagens\Node\Postgre\Query\NodeOracleQuery.cs" />
+    <Compile Include="Linguagens\Node\SQL\Procedure\NodeSQLProcedure.cs" />
+    <Compile Include="Linguagens\Node\SQL\Query\NodeOracleQuery.cs" />
+    <Compile Include="Middleware\OrquestradorChamada.cs" />
     <Compile Include="Middleware\OrquestradorBatch.cs" />
     <Compile Include="Middleware\OrquestradorTabelasSGBD.cs" />
     <Compile Include="Middleware\OrquestradorPingSGBD.cs" />
-    <Compile Include="Middleware\OrquestradorJSON.cs" />
     <Compile Include="Middleware\OrquestradorMapeamentoEntidade.cs" />
     <Compile Include="Middleware\OrquestradorSequences.cs" />
     <Compile Include="Middleware\OrquestradorProcedures.cs" />
@@ -208,6 +248,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="formConnectionString.resx">
       <DependentUpon>formConnectionString.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="formPrincipal.resx">
       <DependentUpon>formPrincipal.cs</DependentUpon>
@@ -235,8 +276,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Linguagens\Java\SQL\" />
-    <Folder Include="Linguagens\Node\SQL\" />
+    <Folder Include="Linguagens\CSharp\Oracle\Query\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="zeus.wav">

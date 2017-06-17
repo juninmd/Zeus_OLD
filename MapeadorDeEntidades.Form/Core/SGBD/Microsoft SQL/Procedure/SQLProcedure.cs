@@ -1,35 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Text;
 using Zeus.Core.SGBD.Microsoft_SQL.Procedure.Verbos;
+using Zeus.Linguagens.Base;
 
 namespace Zeus.Core.SGBD.Microsoft_SQL.Procedure
 {
-    public class SQLProcedure
+    public class SQLProcedure : BaseSQLDAO
     {
-        private string N => Environment.NewLine;
-
-        public string NomeTabela { get; set; }
-
-        public List<SQLEntidadeTabela> ListaAtributosTabela { get; set; }
-
-        public SQLProcedure(string nomeTabela, List<SQLEntidadeTabela> atributosTabela)
+        public SQLProcedure(string nomeTabela) : base(nomeTabela)
         {
-            NomeTabela = nomeTabela;
-            ListaAtributosTabela = atributosTabela;
         }
 
-        public StringBuilder GerarPackageBody()
+        public string GerarBody()
         {
-            var baseProc = NomeTabela.TratarNomeSQL();
             var header = new StringBuilder();
-            header.Append(new SQLGet().Init($"Sel{baseProc}", NomeTabela, ListaAtributosTabela));
-            header.Append(new SQLBuscar().Init($"Busca{baseProc}", NomeTabela, ListaAtributosTabela));
-            header.Append(new SQLInsert().Init($"Ins{baseProc}", NomeTabela, ListaAtributosTabela));
-            header.Append(new SQLUpdate().Init($"Upd{baseProc}", NomeTabela, ListaAtributosTabela));
-            header.Append(new SQLDelete().Init($"Delete{baseProc}", NomeTabela, ListaAtributosTabela));
-            return header;
+            header.Append(new SQLGet().Init($"Sel{NomeTabela}", NomeTabela, ListaAtributosTabela));
+            header.Append(new SQLBuscar().Init($"Busca{NomeTabela}", NomeTabela, ListaAtributosTabela));
+            header.Append(new SQLInsert().Init($"Ins{NomeTabela}", NomeTabela, ListaAtributosTabela));
+            header.Append(new SQLUpdate().Init($"Upd{NomeTabela}", NomeTabela, ListaAtributosTabela));
+            header.Append(new SQLDelete().Init($"Delete{NomeTabela}", NomeTabela, ListaAtributosTabela));
+            return header.ToString();
         }
 
+      
     }
 }

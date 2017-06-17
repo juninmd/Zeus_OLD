@@ -9,7 +9,7 @@ namespace Zeus.Core.SGBD.MySql
             var ping = Ping();
             if (!ping.IsError)
             {
-                ping.Content =  new MySqlTables().ListaDataBases();
+                ping.Content = new MySqlTables().ListaDataBases();
             }
             return ping;
         }
@@ -25,7 +25,7 @@ namespace Zeus.Core.SGBD.MySql
                     return new RequestMessage<List<string>>
                     {
                         StatusCode = System.Net.HttpStatusCode.OK,
-                        Message = "Connectado com sucesso!"
+                        Message = "Conexão com MYSQL efetuada com sucesso!"
                     };
                 };
             return new RequestMessage<List<string>>
