@@ -2,11 +2,11 @@
 using Zeus.Linguagens.Base;
 using Zeus.Properties;
 
-namespace Zeus.Linguagens.CSharp.Firebird.Procedure
+namespace Zeus.Linguagens.CSharp.Oracle.Query
 {
-    public class CSharpFirebirdProcedure : BaseFirebirdDAO
+    public class CsharpOracleQuery : BaseOracleDAO
     {
-        public CSharpFirebirdProcedure(string nomeTabela) : base(nomeTabela)
+        public CsharpOracleQuery(string nomeTabela) : base(nomeTabela)
         {
         }
 
@@ -43,8 +43,8 @@ namespace Zeus.Linguagens.CSharp.Firebird.Procedure
             proc.Append(N);
             proc.Append("        private enum Procedures" + N);
             proc.Append("        {" + N);
-            proc.Append($"            S_{nomeProcBase}," + N);
             proc.Append($"            S_{nomeProcBase}_ID," + N);
+            proc.Append($"            S_{nomeProcBase}," + N);
             proc.Append($"            I_{nomeProcBase}," + N);
             proc.Append($"            U_{nomeProcBase}," + N);
             proc.Append($"            D_{nomeProcBase}" + N);
@@ -63,7 +63,7 @@ namespace Zeus.Linguagens.CSharp.Firebird.Procedure
             methodo.Append("        {" + N);
             methodo.Append($"            var result = new RequestMessage<{NomeTabela}>" + N);
             methodo.Append("            {" + N);
-            methodo.Append($"                Procedure = $\"{{PackageName}}.{{Procedures.S_{nomeProcedure}}}\"," + N);
+            methodo.Append($"                Procedure = $\"{{PackageName}}.{{Procedures.S_{nomeProcedure}}}_ID\"," + N);
             methodo.Append($"                MethodApi = GetClass.GetMethod()" + N);
             methodo.Append("            };" + N);
             methodo.Append(N);
@@ -98,12 +98,51 @@ namespace Zeus.Linguagens.CSharp.Firebird.Procedure
             var atributoText = new StringBuilder();
             foreach (var item in ListaAtributosTabela)
             {
-                atributoText.Append($"                        {item.FIELD_NAME} = \"{item.FIELD_NAME}\".GetValueOrDefault<{CSharpTypesFirebird.GetTypeAtribute(item.FIELD_NAME, item.IS_NULLABLE)}>(reader)," + N);
+                atributoText.Append($"                        {item.COLUMN_NAME} = \"{item.COLUMN_NAME}\".GetValueOrDefault<{CSharpTypesOracle.GetTypeAtribute(item.DATA_TYPE, item.NULLABLE)}>(reader)," + N);
             }
             return atributoText;
         }
         #endregion
 
+        #region ::: Get All :::
+        private StringBuilder GetAll(string nomeProcedure)
+        {
+            var methodo = new StringBuilder();
+            methodo.Append(N);
+            methodo.Append($"        public RequestMessage<{NomeTabela}> GetById(long ID)" + N);
+            methodo.Append("        {" + N);
+            methodo.Append($"            var result = new RequestMessage<{NomeTabela}>" + N);
+            methodo.Append("            {" + N);
+            methodo.Append($"                Procedure = $\"{{PackageName}}.{{Procedures.S_{nomeProcedure}}}\"," + N);
+            methodo.Append($"                MethodApi = GetClass.GetMethod()" + N);
+            methodo.Append("            };" + N);
+            methodo.Append(N);
+            methodo.Append("            BeginNewStatement(result.Procedure);" + N);
+            methodo.Append(N);
+            methodo.Append("            OpenConnection();" + N);
+            methodo.Append("            using (var reader = ExecuteReader())" + N);
+            methodo.Append("            {" + N);
+            methodo.Append("                if (reader.Read())" + N);
+            methodo.Append($"               {{" + N);
+            methodo.Append($"                    result.Content = new {NomeTabela}" + N);
+            methodo.Append("                    {" + N);
+            methodo.Append(GetListaItensGetById());
+            methodo.Append("                    };" + N);
+            methodo.Append("                return result;" + N);
+            methodo.Append($"               }}" + N);
+            methodo.Append("            }" + N);
+            methodo.Append(N);
+            methodo.Append("            result.Message = $\"O request de {ID} não foi encontrada.\";" + N);
+            methodo.Append("            result.StatusCode = HttpStatusCode.NoContent;" + N);
+            methodo.Append($"            result.Content = new {NomeTabela}();" + N);
+            methodo.Append(N);
+            methodo.Append("            return result;" + N);
+            methodo.Append("       }" + N);
+            methodo.Append(N);
+            return methodo;
+        }
+ 
+        #endregion
         #region ::: ADD :::
         private StringBuilder Add(string nomeProcedure)
         {
@@ -112,7 +151,7 @@ namespace Zeus.Linguagens.CSharp.Firebird.Procedure
             methodo.Append($"        public RequestMessage<string> Add({NomeTabela} entidade, bool commit = false)" + N);
             methodo.Append("        {" + N + N);
 
-            methodo.Append($"            BeginNewStatement(PackageName, Procedures.MAG_SP_PDL_I_{nomeProcedure});" + N);
+            methodo.Append($"            BeginNewStatement(PackageName, Procedures.I_{nomeProcedure});" + N);
 
             methodo.Append(N);
             methodo.Append("            AddResult();" + N);
@@ -128,7 +167,7 @@ namespace Zeus.Linguagens.CSharp.Firebird.Procedure
             var atributoText = new StringBuilder();
             foreach (var item in ListaAtributosTabela)
             {
-                atributoText.Append($"            AddParameter(\"{item.FIELD_NAME}\", entidade.{item.FIELD_NAME});" + N);
+                atributoText.Append($"            AddParameter(\"{item.COLUMN_NAME}\", entidade.{item.COLUMN_NAME});" + N);
             }
             return atributoText;
         }
@@ -143,7 +182,7 @@ namespace Zeus.Linguagens.CSharp.Firebird.Procedure
             methodo.Append($"        public RequestMessage<string> Update({NomeTabela} entidade, bool commit = false)" + N);
             methodo.Append("        {" + N + N);
 
-            methodo.Append($"            BeginNewStatement(PackageName, Procedures.MAG_SP_PDL_U_{nomeProcedure});" + N);
+            methodo.Append($"            BeginNewStatement(PackageName, Procedures.U__{nomeProcedure});" + N);
 
             methodo.Append(N);
             methodo.Append("            AddResult();" + N);

@@ -7,10 +7,10 @@ using Zeus.Linguagens.Java.MySql;
 
 namespace Zeus.Linguagens.Java.SQL.Query
 {
-    public class JavaOracleQuery : BaseMySqlDAO
+    public class JavaSQLQuery : BaseMySqlDAO
     {
 
-        public JavaOracleQuery(string nomeTabela) : base(nomeTabela)
+        public JavaSQLQuery(string nomeTabela) : base(nomeTabela)
         {
         }
 

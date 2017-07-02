@@ -6,11 +6,11 @@ using Zeus.Linguagens.Base;
 
 namespace Zeus.Linguagens.Node.MySql.Query
 {
-    public class NodeMySqlProcedure : BaseMySqlDAO
+    public class NodeMySqlQuery : BaseMySqlDAO
     {
         private string baseDb = ParamtersInput.ConnectionString.TratarNomeBase();
 
-        public NodeMySqlProcedure(string nomeTabela) : base(nomeTabela)
+        public NodeMySqlQuery(string nomeTabela) : base(nomeTabela)
         {
         }
 
@@ -18,7 +18,7 @@ namespace Zeus.Linguagens.Node.MySql.Query
         {
             var imports = new StringBuilder();
             imports.Append($"var mysql = require('./config/initMysql.js');{N}");
-            imports.Append($"var Promise = require('bluebird');{N}{N}");
+            
             return imports;
         }
 

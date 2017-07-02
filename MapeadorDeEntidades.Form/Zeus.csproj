@@ -182,6 +182,7 @@
     <Compile Include="Linguagens\CSharp\Oracle\CSharpTypesOracle.cs" />
     <Compile Include="Linguagens\CSharp\Oracle\Entidade\CSharpOracleEntidade.cs" />
     <Compile Include="Linguagens\CSharp\Oracle\Procedure\CSharpOracleProcedure.cs" />
+    <Compile Include="Linguagens\CSharp\Oracle\Query\CsharpOracleQuery.cs" />
     <Compile Include="Linguagens\CSharp\Postgre\CSharpTypesPostgre.cs" />
     <Compile Include="Linguagens\CSharp\Postgre\Entidade\CSharpPostgreEntidade.cs" />
     <Compile Include="Linguagens\CSharp\Postgre\Procedure\CSharpPostgreProcedure.cs" />
@@ -225,9 +226,9 @@
     <Compile Include="Linguagens\Node\Oracle\Procedure\NodeOracleProcedure.cs" />
     <Compile Include="Linguagens\Node\Oracle\Query\NodeOracleQuery.cs" />
     <Compile Include="Linguagens\Node\Postgre\Procedure\NodePostgreProcedure.cs" />
-    <Compile Include="Linguagens\Node\Postgre\Query\NodeOracleQuery.cs" />
+    <Compile Include="Linguagens\Node\Postgre\Query\NodePostgreQuery.cs" />
     <Compile Include="Linguagens\Node\SQL\Procedure\NodeSQLProcedure.cs" />
-    <Compile Include="Linguagens\Node\SQL\Query\NodeOracleQuery.cs" />
+    <Compile Include="Linguagens\Node\SQL\Query\NodeSQLQuery.cs" />
     <Compile Include="Middleware\OrquestradorChamada.cs" />
     <Compile Include="Middleware\OrquestradorBatch.cs" />
     <Compile Include="Middleware\OrquestradorTabelasSGBD.cs" />
@@ -275,9 +276,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Linguagens\CSharp\Oracle\Query\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <EmbeddedResource Include="zeus.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

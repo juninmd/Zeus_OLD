@@ -6,11 +6,11 @@ using Zeus.Linguagens.Base;
 
 namespace Zeus.Linguagens.Node.Postgre.Query
 {
-    public class NodeMySqlProcedure : BaseMySqlDAO
+    public class NodePostgreQuery : BaseMySqlDAO
     {
         private string baseDb = ParamtersInput.ConnectionString.TratarNomeBase();
 
-        public NodeMySqlProcedure(string nomeTabela) : base(nomeTabela)
+        public NodePostgreQuery(string nomeTabela) : base(nomeTabela)
         {
         }
 
@@ -18,7 +18,7 @@ namespace Zeus.Linguagens.Node.Postgre.Query
         {
             var imports = new StringBuilder();
             imports.Append($"var mysql = require('./config/initMysql.js');{N}");
-            imports.Append($"var Promise = require('bluebird');{N}{N}");
+            
             return imports;
         }
 
