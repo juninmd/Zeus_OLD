@@ -4,19 +4,33 @@ using System.Net;
 using System.Windows.Forms;
 using Zeus.Core;
 using Zeus.Linguagens.CSharp.Firebird.Procedure;
+using Zeus.Linguagens.CSharp.Firebird.Query;
 using Zeus.Linguagens.CSharp.MYSQL.Procedure;
+using Zeus.Linguagens.CSharp.MYSQL.Query;
 using Zeus.Linguagens.CSharp.Oracle.Procedure;
+using Zeus.Linguagens.CSharp.Oracle.Query;
 using Zeus.Linguagens.CSharp.Postgre.Procedure;
+using Zeus.Linguagens.CSharp.Postgre.Query;
 using Zeus.Linguagens.CSharp.SQL.Procedure;
+using Zeus.Linguagens.CSharp.SQL.Query;
 using Zeus.Linguagens.Java.Firebird.Procedure;
+using Zeus.Linguagens.Java.Firebird.Query;
 using Zeus.Linguagens.Java.MySql.Procedure;
+using Zeus.Linguagens.Java.MySql.Query;
 using Zeus.Linguagens.Java.Oracle.Procedure;
+using Zeus.Linguagens.Java.Oracle.Query;
 using Zeus.Linguagens.Java.Postgre.Procedure;
+using Zeus.Linguagens.Java.Postgre.Query;
 using Zeus.Linguagens.Java.SQL.Procedure;
+using Zeus.Linguagens.Java.SQL.Query;
 using Zeus.Linguagens.Node.Firebird.Procedure;
+using Zeus.Linguagens.Node.Firebird.Query;
 using Zeus.Linguagens.Node.MySql.Procedure;
+using Zeus.Linguagens.Node.MySql.Query;
 using Zeus.Linguagens.Node.Postgre.Procedure;
+using Zeus.Linguagens.Node.Postgre.Query;
 using Zeus.Linguagens.Node.SQL.Procedure;
+using Zeus.Linguagens.Node.SQL.Query;
 using Zeus.Utilidade;
 
 namespace Zeus.Linguagens.Base
@@ -159,6 +173,110 @@ namespace Zeus.Linguagens.Base
                         var instancia = new NodePostgreProcedure(nomeTabela);
                         var classe = instancia.GerarClasse().ToString();
                         File.WriteAllText(local + nomeTabela.ToLower() + "Repository.cs", classe);
+                    }
+                }
+            }
+            else
+            {
+                if (ParamtersInput.Linguagem == 1)
+                {
+                    if (ParamtersInput.SGBD == 1)
+                    {
+                        var instancia = new CsharpOracleQuery(nomeTabela);
+                        var classe = instancia.GerarClasse().ToString();
+                        File.WriteAllText(local + nomeTabela.ToLower() + "Repository.cs", classe);
+                        var interfacename = instancia.GerarInterfaceSharProc().ToString();
+                        File.WriteAllText(local + "I" + nomeTabela.ToLower() + "Repository.cs", interfacename);
+                    }
+                    else if (ParamtersInput.SGBD == 2)
+                    {
+                        var instancia = new CSharpSQLQuery(nomeTabela);
+                        var classe = instancia.GerarClasse().ToString();
+                        File.WriteAllText(local + nomeTabela.ToLower() + "Repository.cs", classe);
+                    }
+                    else if (ParamtersInput.SGBD == 3)
+                    {
+                        var instancia = new CsharpMySqlQuery(nomeTabela);
+                        var classe = instancia.GerarBodyCSharpProc().ToString();
+                        File.WriteAllText(local + nomeTabela.ToLower() + "Repository.cs", classe);
+                    }
+                    else if (ParamtersInput.SGBD == 4)
+                    {
+                        var instancia = new CSharpFirebirdQuery(nomeTabela);
+                        var classe = instancia.GerarClasse().ToString();
+                        File.WriteAllText(local + nomeTabela.ToFirstCharToUpper() + "Repository.cs", classe);
+                    }
+                    else if (ParamtersInput.SGBD == 5)
+                    {
+                        var instancia = new CSharpPostgreQuery(nomeTabela);
+                        var classe = instancia.GerarClasse().ToString();
+                        File.WriteAllText(local + nomeTabela.ToLower() + "Repository.cs", classe);
+                    }
+                }
+                else if (ParamtersInput.Linguagem == 2)
+                {
+                    if (ParamtersInput.SGBD == 1)
+                    {
+                        var instancia = new JavaOracleQuery(nomeTabela);
+                        var classe = instancia.GerarClasse().ToString();
+                        File.WriteAllText(local + nomeTabela.ToLower() + "Repository.java", classe);
+                    }
+                    else if (ParamtersInput.SGBD == 2)
+                    {
+                        var instancia = new JavaSQLQuery(nomeTabela);
+                        var classe = instancia.GerarClasse().ToString();
+                        File.WriteAllText(local + nomeTabela.ToLower() + "Repository.java", classe);
+                    }
+                    else if (ParamtersInput.SGBD == 3)
+                    {
+                        var instancia = new JavaMySqlQuery(nomeTabela);
+                        var classe = instancia.GerarClasse().ToString();
+                        File.WriteAllText(local + nomeTabela.ToLower() + "Repository.java", classe);
+                    }
+                    else if (ParamtersInput.SGBD == 4)
+                    {
+                        var instancia = new JavaFirebirdQuery(nomeTabela);
+                        var classe = instancia.GerarClasse().ToString();
+                        File.WriteAllText(local + nomeTabela.ToLower() + "Repository.java", classe);
+                    }
+                    else if (ParamtersInput.SGBD == 5)
+                    {
+                        var instancia = new JavaPostgreQuery(nomeTabela);
+                        var classe = instancia.GerarClasse().ToString();
+                        File.WriteAllText(local + nomeTabela.ToLower() + "Repository.java", classe);
+                    }
+                }
+                else if (ParamtersInput.Linguagem == 3)
+                {
+                    if (ParamtersInput.SGBD == 1)
+                    {
+                        var instancia = new NodePostgreQuery(nomeTabela);
+                        var classe = instancia.GerarClasse().ToString();
+                        File.WriteAllText(local + nomeTabela.ToLower() + "Repository.js", classe);
+                    }
+                    else if (ParamtersInput.SGBD == 2)
+                    {
+                        var instancia = new NodeSQLQuery(nomeTabela);
+                        var classe = instancia.GerarClasse().ToString();
+                        File.WriteAllText(local + nomeTabela.ToLower() + "Repository.js", classe);
+                    }
+                    else if (ParamtersInput.SGBD == 3)
+                    {
+                        var instancia = new NodeMySqlQuery(nomeTabela);
+                        var classe = instancia.GerarClasse().ToString();
+                        File.WriteAllText(local + nomeTabela.ToLower() + "Repository.js", classe);
+                    }
+                    else if (ParamtersInput.SGBD == 4)
+                    {
+                        var instancia = new NodeFirebirdQuery(nomeTabela);
+                        var classe = instancia.GerarClasse().ToString();
+                        File.WriteAllText(local + nomeTabela.ToLower() + "Repository.js", classe);
+                    }
+                    else if (ParamtersInput.SGBD == 5)
+                    {
+                        var instancia = new NodePostgreQuery(nomeTabela);
+                        var classe = instancia.GerarClasse().ToString();
+                        File.WriteAllText(local + nomeTabela.ToLower() + "Repository.js", classe);
                     }
                 }
             }

@@ -18,7 +18,7 @@ namespace Zeus.Linguagens.Node.Firebird.Procedure
         {
             var imports = new StringBuilder();
             imports.Append($"var mysql = require('./config/initMysql.js');{N}");
-            imports.Append($"var Promise = require('bluebird');{N}{N}");
+            
             return imports;
         }
 
