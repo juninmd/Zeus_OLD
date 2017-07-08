@@ -51,7 +51,7 @@ namespace Zeus.Core.SGBD.MySql
                         TABLE_NAME = r.GetValueOrDefault<string>("TABLE_NAME"),
                         COLUMN_NAME = r.GetValueOrDefault<string>("COLUMN_NAME"),
                         ORDINAL_POSITION = r.GetInt32(r.GetOrdinal("ORDINAL_POSITION")),
-                        COLUMN_DEFAULT = r.GetValueOrDefault<int?>("COLUMN_DEFAULT"),
+                        COLUMN_DEFAULT = r.GetValueOrDefault<string>("COLUMN_DEFAULT"),
                         IS_NULLABLE = r.GetValueOrDefault<string>("IS_NULLABLE"),
                         DATA_TYPE = r.GetValueOrDefault<string>("DATA_TYPE"),
                       //  CHARACTER_MAXIMUN_LENGTH = r.GetInt32(r.GetOrdinal("CHARACTER_MAXIMUN_LENGTH")),
