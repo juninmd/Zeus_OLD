@@ -8,6 +8,10 @@ namespace Zeus.Core
         {
             return nome.ToUpper().Replace(Settings.Default.PrefixoTabela.ToUpper(), "");
         }
+        public static string TratarNomeTabelaMySql(this string nome)
+        {
+            return nome.ToLower().Replace(Settings.Default.PrefixoTabela.ToLower(), "");
+        }
 
         public static string TratarNomePackage(this string nome)
         {
