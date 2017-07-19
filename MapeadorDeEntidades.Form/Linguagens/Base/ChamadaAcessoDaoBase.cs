@@ -80,33 +80,33 @@ namespace Zeus.Linguagens.Base
                     {
                         var instancia = new CSharpOracleProcedure(nomeTabela);
                         var classe = instancia.GerarClasse().ToString();
-                        File.WriteAllText(local + nomeTabela.ToLower() + "Repository.cs", classe);
+                        File.WriteAllText($"{local}{nomeTabela.TratarNomeTabela().ToFirstCharToUpper()}Repository.cs", classe);
                         var interfacename = instancia.GerarInterfaceSharProc().ToString();
-                        File.WriteAllText(local + "I" + nomeTabela.ToLower() + "Repository.cs", interfacename);
+                        File.WriteAllText(local + "I" + nomeTabela.TratarNomeTabela().ToFirstCharToUpper() + "Repository.cs", interfacename);
                     }
                     else if (ParamtersInput.SGBD == 2)
                     {
                         var instancia = new CSharpSQLProcedure(nomeTabela);
                         var classe = instancia.GerarClasse().ToString();
-                        File.WriteAllText(local + nomeTabela.ToLower() + "Repository.cs", classe);
+                        File.WriteAllText($"{local}{nomeTabela.TratarNomeTabela().ToFirstCharToUpper()}Repository.cs", classe);
                     }
                     else if (ParamtersInput.SGBD == 3)
                     {
                         var instancia = new CSharpMySqlProcedure(nomeTabela);
                         var classe = instancia.GerarClasse().ToString();
-                        File.WriteAllText(local + nomeTabela.ToLower() + "Repository.cs", classe);
+                        File.WriteAllText($"{local}{nomeTabela.TratarNomeTabela().ToFirstCharToUpper()}Repository.cs", classe);
                     }
                     else if (ParamtersInput.SGBD == 4)
                     {
                         var instancia = new CSharpFirebirdProcedure(nomeTabela);
                         var classe = instancia.GerarClasse().ToString();
-                        File.WriteAllText(local + nomeTabela.ToLower() + "Repository.cs", classe);
+                        File.WriteAllText($"{local}{nomeTabela.TratarNomeTabela().ToFirstCharToUpper()}Repository.cs", classe);
                     }
                     else if (ParamtersInput.SGBD == 5)
                     {
                         var instancia = new CSharpPostgreProcedure(nomeTabela);
                         var classe = instancia.GerarClasse().ToString();
-                        File.WriteAllText(local + nomeTabela.ToLower() + "Repository.cs", classe);
+                        File.WriteAllText($"{local}{nomeTabela.TratarNomeTabela().ToFirstCharToUpper()}Repository.cs", classe);
                     }
                 }
                 else if (ParamtersInput.Linguagem == 2)
@@ -115,31 +115,31 @@ namespace Zeus.Linguagens.Base
                     {
                         var instancia = new JavaOracleProcedure(nomeTabela);
                         var classe = instancia.GerarClasse().ToString();
-                        File.WriteAllText(local + nomeTabela.ToLower() + "Repository.cs", classe);
+                        File.WriteAllText($"{local}{nomeTabela.TratarNomeTabela().ToFirstCharToUpper()}Repository.cs", classe);
                     }
                     else if (ParamtersInput.SGBD == 2)
                     {
                         var instancia = new JavaSQLProcedure(nomeTabela);
                         var classe = instancia.GerarClasse().ToString();
-                        File.WriteAllText(local + nomeTabela.ToLower() + "Repository.cs", classe);
+                        File.WriteAllText($"{local}{nomeTabela.TratarNomeTabela().ToFirstCharToUpper()}Repository.cs", classe);
                     }
                     else if (ParamtersInput.SGBD == 3)
                     {
                         var instancia = new JavaMySqlProcedure(nomeTabela);
                         var classe = instancia.GerarClasse().ToString();
-                        File.WriteAllText(local + nomeTabela.ToLower() + "Repository.cs", classe);
+                        File.WriteAllText($"{local}{nomeTabela.TratarNomeTabela().ToFirstCharToUpper()}Repository.cs", classe);
                     }
                     else if (ParamtersInput.SGBD == 4)
                     {
                         var instancia = new JavaFirebirdProcedure(nomeTabela);
                         var classe = instancia.GerarClasse().ToString();
-                        File.WriteAllText(local + nomeTabela.ToLower() + "Repository.cs", classe);
+                        File.WriteAllText($"{local}{nomeTabela.TratarNomeTabela().ToFirstCharToUpper()}Repository.cs", classe);
                     }
                     else if (ParamtersInput.SGBD == 5)
                     {
                         var instancia = new JavaPostgreProcedure(nomeTabela);
                         var classe = instancia.GerarClasse().ToString();
-                        File.WriteAllText(local + nomeTabela.ToLower() + "Repository.cs", classe);
+                        File.WriteAllText($"{local}{nomeTabela.TratarNomeTabela().ToFirstCharToUpper()}Repository.cs", classe);
                     }
                 }
                 else if (ParamtersInput.Linguagem == 3)
@@ -148,31 +148,31 @@ namespace Zeus.Linguagens.Base
                     {
                         var instancia = new NodePostgreProcedure(nomeTabela);
                         var classe = instancia.GerarClasse().ToString();
-                        File.WriteAllText(local + nomeTabela.ToLower() + "Repository.cs", classe);
+                        File.WriteAllText($"{local}{nomeTabela.TratarNomeTabela().ToFirstCharToUpper()}Repository.cs", classe);
                     }
                     else if (ParamtersInput.SGBD == 2)
                     {
                         var instancia = new NodeSQLProcedure(nomeTabela);
                         var classe = instancia.GerarClasse().ToString();
-                        File.WriteAllText(local + nomeTabela.ToLower() + "Repository.cs", classe);
+                        File.WriteAllText($"{local}{nomeTabela.TratarNomeTabela().ToFirstCharToUpper()}Repository.cs", classe);
                     }
                     else if (ParamtersInput.SGBD == 3)
                     {
                         var instancia = new NodeMySqlProcedure(nomeTabela);
                         var classe = instancia.GerarClasse().ToString();
-                        File.WriteAllText(local + nomeTabela.ToLower() + "Repository.cs", classe);
+                        File.WriteAllText($"{local}{nomeTabela.TratarNomeTabela().ToFirstCharToUpper()}Repository.cs", classe);
                     }
                     else if (ParamtersInput.SGBD == 4)
                     {
                         var instancia = new NodeFirebirdProcedure(nomeTabela);
                         var classe = instancia.GerarClasse().ToString();
-                        File.WriteAllText(local + nomeTabela.ToLower() + "Repository.cs", classe);
+                        File.WriteAllText($"{local}{nomeTabela.TratarNomeTabela().ToFirstCharToUpper()}Repository.cs", classe);
                     }
                     else if (ParamtersInput.SGBD == 5)
                     {
                         var instancia = new NodePostgreProcedure(nomeTabela);
                         var classe = instancia.GerarClasse().ToString();
-                        File.WriteAllText(local + nomeTabela.ToLower() + "Repository.cs", classe);
+                        File.WriteAllText($"{local}{nomeTabela.TratarNomeTabela().ToFirstCharToUpper()}Repository.cs", classe);
                     }
                 }
             }
@@ -184,33 +184,33 @@ namespace Zeus.Linguagens.Base
                     {
                         var instancia = new CsharpOracleQuery(nomeTabela);
                         var classe = instancia.GerarClasse().ToString();
-                        File.WriteAllText(local + nomeTabela.ToLower() + "Repository.cs", classe);
+                        File.WriteAllText($"{local}{nomeTabela.TratarNomeTabela().ToFirstCharToUpper()}Repository.cs", classe);
                         var interfacename = instancia.GerarInterfaceSharProc().ToString();
-                        File.WriteAllText(local + "I" + nomeTabela.ToLower() + "Repository.cs", interfacename);
+                        File.WriteAllText(local + "I" + nomeTabela.TratarNomeTabela().ToFirstCharToUpper() + "Repository.cs", interfacename);
                     }
                     else if (ParamtersInput.SGBD == 2)
                     {
                         var instancia = new CSharpSQLQuery(nomeTabela);
                         var classe = instancia.GerarClasse().ToString();
-                        File.WriteAllText(local + nomeTabela.ToLower() + "Repository.cs", classe);
+                        File.WriteAllText($"{local}{nomeTabela.TratarNomeTabela().ToFirstCharToUpper()}Repository.cs", classe);
                     }
                     else if (ParamtersInput.SGBD == 3)
                     {
                         var instancia = new CsharpMySqlQuery(nomeTabela);
                         var classe = instancia.GerarBodyCSharpProc().ToString();
-                        File.WriteAllText(local + nomeTabela.ToLower() + "Repository.cs", classe);
+                        File.WriteAllText($"{local}{nomeTabela.TratarNomeTabela().ToFirstCharToUpper()}Repository.cs", classe);
                     }
                     else if (ParamtersInput.SGBD == 4)
                     {
                         var instancia = new CSharpFirebirdQuery(nomeTabela);
                         var classe = instancia.GerarClasse().ToString();
-                        File.WriteAllText(local + nomeTabela.ToFirstCharToUpper() + "Repository.cs", classe);
+                        File.WriteAllText($"{local}{nomeTabela.TratarNomeTabela().ToFirstCharToUpper()}Repository.cs", classe);
                     }
                     else if (ParamtersInput.SGBD == 5)
                     {
                         var instancia = new CSharpPostgreQuery(nomeTabela);
                         var classe = instancia.GerarClasse().ToString();
-                        File.WriteAllText(local + nomeTabela.ToLower() + "Repository.cs", classe);
+                        File.WriteAllText($"{local}{nomeTabela.TratarNomeTabela().ToFirstCharToUpper()}Repository.cs", classe);
                     }
                 }
                 else if (ParamtersInput.Linguagem == 2)
@@ -219,31 +219,31 @@ namespace Zeus.Linguagens.Base
                     {
                         var instancia = new JavaOracleQuery(nomeTabela);
                         var classe = instancia.GerarClasse().ToString();
-                        File.WriteAllText(local + nomeTabela.ToLower() + "Repository.java", classe);
+                        File.WriteAllText($"{local}{nomeTabela.TratarNomeTabela().ToFirstCharToUpper()}Repository.java", classe);
                     }
                     else if (ParamtersInput.SGBD == 2)
                     {
                         var instancia = new JavaSQLQuery(nomeTabela);
                         var classe = instancia.GerarClasse().ToString();
-                        File.WriteAllText(local + nomeTabela.ToLower() + "Repository.java", classe);
+                        File.WriteAllText($"{local}{nomeTabela.TratarNomeTabela().ToFirstCharToUpper()}Repository.java", classe);
                     }
                     else if (ParamtersInput.SGBD == 3)
                     {
                         var instancia = new JavaMySqlQuery(nomeTabela);
                         var classe = instancia.GerarClasse().ToString();
-                        File.WriteAllText(local + nomeTabela.ToLower() + "Repository.java", classe);
+                        File.WriteAllText($"{local}{nomeTabela.TratarNomeTabelaMySql().ToFirstCharToUpper()}Repository.java", classe);
                     }
                     else if (ParamtersInput.SGBD == 4)
                     {
                         var instancia = new JavaFirebirdQuery(nomeTabela);
                         var classe = instancia.GerarClasse().ToString();
-                        File.WriteAllText(local + nomeTabela.ToLower() + "Repository.java", classe);
+                        File.WriteAllText($"{local}{nomeTabela.TratarNomeTabela().ToFirstCharToUpper()}Repository.java", classe);
                     }
                     else if (ParamtersInput.SGBD == 5)
                     {
                         var instancia = new JavaPostgreQuery(nomeTabela);
                         var classe = instancia.GerarClasse().ToString();
-                        File.WriteAllText(local + nomeTabela.ToLower() + "Repository.java", classe);
+                        File.WriteAllText($"{local}{nomeTabela.TratarNomeTabela().ToFirstCharToUpper()}Repository.java", classe);
                     }
                 }
                 else if (ParamtersInput.Linguagem == 3)
@@ -252,31 +252,31 @@ namespace Zeus.Linguagens.Base
                     {
                         var instancia = new NodePostgreQuery(nomeTabela);
                         var classe = instancia.GerarClasse().ToString();
-                        File.WriteAllText(local + nomeTabela.ToLower() + "Repository.js", classe);
+                        File.WriteAllText($"{local}{nomeTabela.TratarNomeTabela().ToFirstCharToUpper()}Repository.js", classe);
                     }
                     else if (ParamtersInput.SGBD == 2)
                     {
                         var instancia = new NodeSQLQuery(nomeTabela);
                         var classe = instancia.GerarClasse().ToString();
-                        File.WriteAllText(local + nomeTabela.ToLower() + "Repository.js", classe);
+                        File.WriteAllText($"{local}{nomeTabela.TratarNomeTabela().ToFirstCharToUpper()}Repository.js", classe);
                     }
                     else if (ParamtersInput.SGBD == 3)
                     {
                         var instancia = new NodeMySqlQuery(nomeTabela);
                         var classe = instancia.GerarClasse().ToString();
-                        File.WriteAllText(local + nomeTabela.ToLower() + "Repository.js", classe);
+                        File.WriteAllText($"{local}{nomeTabela.TratarNomeTabelaMySql().ToFirstCharToUpper()}Repository.js", classe);
                     }
                     else if (ParamtersInput.SGBD == 4)
                     {
                         var instancia = new NodeFirebirdQuery(nomeTabela);
                         var classe = instancia.GerarClasse().ToString();
-                        File.WriteAllText(local + nomeTabela.ToLower() + "Repository.js", classe);
+                        File.WriteAllText($"{local}{nomeTabela.TratarNomeTabela().ToFirstCharToUpper()}Repository.js", classe);
                     }
                     else if (ParamtersInput.SGBD == 5)
                     {
                         var instancia = new NodePostgreQuery(nomeTabela);
                         var classe = instancia.GerarClasse().ToString();
-                        File.WriteAllText(local + nomeTabela.ToLower() + "Repository.js", classe);
+                        File.WriteAllText($"{local}{nomeTabela.TratarNomeTabela().ToFirstCharToUpper()}Repository.js", classe);
                     }
                 }
             }

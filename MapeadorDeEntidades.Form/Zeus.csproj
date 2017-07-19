@@ -218,6 +218,7 @@
     <Compile Include="Linguagens\Java\SQL\Query\JavaSQLQuery.cs" />
     <Compile Include="Linguagens\Node\Firebird\Procedure\NodeFirebirdProcedure.cs" />
     <Compile Include="Linguagens\Node\Firebird\Query\NodeFirebirdQuery.cs" />
+    <Compile Include="Linguagens\Node\MySql\NodeMySqlConnectionStringModel.cs" />
     <Compile Include="Linguagens\Node\MySql\Procedure\NodeMySqlProcedure.cs" />
     <Compile Include="Frontend\Angular\AngularService.cs" />
     <Compile Include="Linguagens\Node\MySql\Query\NodeMySqlQuery.cs" />
