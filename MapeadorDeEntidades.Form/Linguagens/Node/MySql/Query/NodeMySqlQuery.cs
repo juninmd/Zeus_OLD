@@ -49,7 +49,7 @@ namespace Zeus.Linguagens.Node.MySql.Query
         {
             var get = new StringBuilder();
             get.Append($"        insert: (body) => {{ {N}");
-            get.Append($"                return mysql.execute(`INSERT INTO {NomeTabela.ToLower()} SET ?`, {parametrosQuery(false)});{N}");
+            get.Append($"                return mysql.executeObject(`INSERT INTO {NomeTabela.ToLower()} SET ?`, {parametrosQuery(false)});{N}");
             get.Append($"        }},{N}");
             return get;
         }
@@ -59,7 +59,7 @@ namespace Zeus.Linguagens.Node.MySql.Query
 
             var get = new StringBuilder();
             get.Append($"        update: (body) => {{ {N}");
-            get.Append($"                return mysql.execute(`UPDATE {NomeTabela.ToLower()} SET ? WHERE {ListaAtributosTabela.First().COLUMN_NAME} = ${{body.{ListaAtributosTabela.First().COLUMN_NAME}}}`, {parametrosQuery(true)});{N}");
+            get.Append($"                return mysql.executeObject(`UPDATE {NomeTabela.ToLower()} SET ? WHERE {ListaAtributosTabela.First().COLUMN_NAME} = ${{body.{ListaAtributosTabela.First().COLUMN_NAME}}}`, {parametrosQuery(true)});{N}");
             get.Append($"        }},{N}");
             return get;
         }
