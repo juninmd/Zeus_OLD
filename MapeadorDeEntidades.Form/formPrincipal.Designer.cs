@@ -52,7 +52,7 @@ namespace Zeus
             this.txtConnectionString = new System.Windows.Forms.TextBox();
             this.salvar = new System.Windows.Forms.FolderBrowserDialog();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.progressBar1 = new Zeus.Core.NewProgressBar();
+            this.listaStatus = new System.Windows.Forms.ListBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.radioSGBD5 = new System.Windows.Forms.RadioButton();
@@ -71,7 +71,7 @@ namespace Zeus
             this.btnConfiguracoes = new System.Windows.Forms.Button();
             this.groupBox13 = new System.Windows.Forms.GroupBox();
             this.btnAngular = new System.Windows.Forms.Button();
-            this.listaStatus = new System.Windows.Forms.ListBox();
+            this.progressBar1 = new Zeus.Core.NewProgressBar();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox5.SuspendLayout();
@@ -137,7 +137,7 @@ namespace Zeus
             this.radioCsharp.AutoSize = true;
             this.radioCsharp.Checked = true;
             this.radioCsharp.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.radioCsharp.Location = new System.Drawing.Point(6, 28);
+            this.radioCsharp.Location = new System.Drawing.Point(6, 27);
             this.radioCsharp.Name = "radioCsharp";
             this.radioCsharp.Size = new System.Drawing.Size(43, 20);
             this.radioCsharp.TabIndex = 0;
@@ -151,7 +151,7 @@ namespace Zeus
             // 
             this.radioJava.AutoSize = true;
             this.radioJava.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.radioJava.Location = new System.Drawing.Point(6, 51);
+            this.radioJava.Location = new System.Drawing.Point(6, 89);
             this.radioJava.Name = "radioJava";
             this.radioJava.Size = new System.Drawing.Size(48, 20);
             this.radioJava.TabIndex = 1;
@@ -165,7 +165,7 @@ namespace Zeus
             // 
             this.radioNode.AutoSize = true;
             this.radioNode.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.radioNode.Location = new System.Drawing.Point(6, 80);
+            this.radioNode.Location = new System.Drawing.Point(6, 54);
             this.radioNode.Name = "radioNode";
             this.radioNode.Size = new System.Drawing.Size(68, 20);
             this.radioNode.TabIndex = 1;
@@ -179,7 +179,7 @@ namespace Zeus
             // 
             this.radioSGBD3.AutoSize = true;
             this.radioSGBD3.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.radioSGBD3.Location = new System.Drawing.Point(7, 60);
+            this.radioSGBD3.Location = new System.Drawing.Point(7, 43);
             this.radioSGBD3.Name = "radioSGBD3";
             this.radioSGBD3.Size = new System.Drawing.Size(58, 20);
             this.radioSGBD3.TabIndex = 2;
@@ -192,13 +192,14 @@ namespace Zeus
             // 
             this.radioSGBD2.AutoSize = true;
             this.radioSGBD2.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.radioSGBD2.Location = new System.Drawing.Point(7, 37);
+            this.radioSGBD2.Location = new System.Drawing.Point(6, 63);
             this.radioSGBD2.Name = "radioSGBD2";
             this.radioSGBD2.Size = new System.Drawing.Size(88, 20);
             this.radioSGBD2.TabIndex = 2;
             this.radioSGBD2.TabStop = true;
             this.radioSGBD2.Text = "SQL Server";
             this.radioSGBD2.UseVisualStyleBackColor = true;
+            this.radioSGBD2.Visible = false;
             this.radioSGBD2.CheckedChanged += new System.EventHandler(this.CleanParamters);
             // 
             // radioSGBD1
@@ -323,15 +324,18 @@ namespace Zeus
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Status";
             // 
-            // progressBar1
+            // listaStatus
             // 
-            this.progressBar1.ForeColor = System.Drawing.Color.Maroon;
-            this.progressBar1.Location = new System.Drawing.Point(21, 353);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(923, 12);
-            this.progressBar1.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
-            this.progressBar1.TabIndex = 14;
-            this.progressBar1.UseWaitCursor = true;
+            this.listaStatus.BackColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.listaStatus.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.listaStatus.Font = new System.Drawing.Font("Gill Sans MT", 8.25F, System.Drawing.FontStyle.Bold);
+            this.listaStatus.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(150)))));
+            this.listaStatus.FormattingEnabled = true;
+            this.listaStatus.ItemHeight = 16;
+            this.listaStatus.Location = new System.Drawing.Point(6, 17);
+            this.listaStatus.Name = "listaStatus";
+            this.listaStatus.Size = new System.Drawing.Size(907, 48);
+            this.listaStatus.TabIndex = 17;
             // 
             // groupBox1
             // 
@@ -349,11 +353,11 @@ namespace Zeus
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.radioSGBD3);
+            this.groupBox2.Controls.Add(this.radioSGBD1);
             this.groupBox2.Controls.Add(this.radioSGBD5);
             this.groupBox2.Controls.Add(this.radioSGBD4);
-            this.groupBox2.Controls.Add(this.radioSGBD3);
             this.groupBox2.Controls.Add(this.radioSGBD2);
-            this.groupBox2.Controls.Add(this.radioSGBD1);
             this.groupBox2.Font = new System.Drawing.Font("Gill Sans MT", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(150)))));
             this.groupBox2.Location = new System.Drawing.Point(131, 12);
@@ -367,26 +371,28 @@ namespace Zeus
             // 
             this.radioSGBD5.AutoSize = true;
             this.radioSGBD5.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.radioSGBD5.Location = new System.Drawing.Point(7, 105);
+            this.radioSGBD5.Location = new System.Drawing.Point(6, 108);
             this.radioSGBD5.Name = "radioSGBD5";
             this.radioSGBD5.Size = new System.Drawing.Size(66, 20);
             this.radioSGBD5.TabIndex = 2;
             this.radioSGBD5.TabStop = true;
             this.radioSGBD5.Text = "Postgre";
             this.radioSGBD5.UseVisualStyleBackColor = true;
+            this.radioSGBD5.Visible = false;
             this.radioSGBD5.CheckedChanged += new System.EventHandler(this.CleanParamters);
             // 
             // radioSGBD4
             // 
             this.radioSGBD4.AutoSize = true;
             this.radioSGBD4.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.radioSGBD4.Location = new System.Drawing.Point(7, 82);
+            this.radioSGBD4.Location = new System.Drawing.Point(6, 87);
             this.radioSGBD4.Name = "radioSGBD4";
             this.radioSGBD4.Size = new System.Drawing.Size(67, 20);
             this.radioSGBD4.TabIndex = 2;
             this.radioSGBD4.TabStop = true;
             this.radioSGBD4.Text = "Firebird";
             this.radioSGBD4.UseVisualStyleBackColor = true;
+            this.radioSGBD4.Visible = false;
             this.radioSGBD4.CheckedChanged += new System.EventHandler(this.CleanParamters);
             // 
             // groupBox7
@@ -555,18 +561,15 @@ namespace Zeus
             this.btnAngular.UseVisualStyleBackColor = true;
             this.btnAngular.Click += new System.EventHandler(this.btnAngular_Click);
             // 
-            // listaStatus
+            // progressBar1
             // 
-            this.listaStatus.BackColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.listaStatus.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.listaStatus.Font = new System.Drawing.Font("Gill Sans MT", 8.25F, System.Drawing.FontStyle.Bold);
-            this.listaStatus.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(150)))));
-            this.listaStatus.FormattingEnabled = true;
-            this.listaStatus.ItemHeight = 16;
-            this.listaStatus.Location = new System.Drawing.Point(6, 17);
-            this.listaStatus.Name = "listaStatus";
-            this.listaStatus.Size = new System.Drawing.Size(907, 48);
-            this.listaStatus.TabIndex = 17;
+            this.progressBar1.ForeColor = System.Drawing.Color.Maroon;
+            this.progressBar1.Location = new System.Drawing.Point(21, 353);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(923, 12);
+            this.progressBar1.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
+            this.progressBar1.TabIndex = 14;
+            this.progressBar1.UseWaitCursor = true;
             // 
             // formPrincipal
             // 
