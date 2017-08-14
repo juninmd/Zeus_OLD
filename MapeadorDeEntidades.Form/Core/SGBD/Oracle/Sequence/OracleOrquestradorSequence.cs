@@ -1,19 +1,18 @@
 ﻿using System;
 using System.IO;
-using System.Windows.Forms;
 using Zeus.Utilidade;
 
 namespace Zeus.Core.SGBD.Oracle.Sequence
 {
     public class OracleOrquestradorSequence
     {
-        public RequestMessage<string> Oracle(FolderBrowserDialog salvar)
+        public RequestMessage<string> Oracle()
         {
             try
             {
                 int max = ParamtersInput.NomeTabelas.Count;
                 var i = 0;
-                var local = salvar.SelectedPath + "\\";
+                var local = ParamtersInput.SelectedPath;
 
                 foreach (var nomeTabela in ParamtersInput.NomeTabelas)
                 {

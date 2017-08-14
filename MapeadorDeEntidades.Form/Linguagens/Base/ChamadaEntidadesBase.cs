@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
 using System.Net;
-using System.Windows.Forms;
 using Zeus.Core;
 using Zeus.Core.SGBD.Microsoft_SQL;
 using Zeus.Linguagens.CSharp.Firebird.Entidade;

@@ -69,9 +69,9 @@ namespace Zeus
             this.groupBox11 = new System.Windows.Forms.GroupBox();
             this.groupBox12 = new System.Windows.Forms.GroupBox();
             this.btnConfiguracoes = new System.Windows.Forms.Button();
-            this.groupBox13 = new System.Windows.Forms.GroupBox();
-            this.btnAngular = new System.Windows.Forms.Button();
             this.progressBar1 = new Zeus.Core.NewProgressBar();
+            this.txtDestino = new System.Windows.Forms.TextBox();
+            this.btnDestino = new System.Windows.Forms.Button();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox5.SuspendLayout();
@@ -84,7 +84,6 @@ namespace Zeus
             this.groupBox10.SuspendLayout();
             this.groupBox11.SuspendLayout();
             this.groupBox12.SuspendLayout();
-            this.groupBox13.SuspendLayout();
             this.SuspendLayout();
             // 
             // ddlTabelas
@@ -102,9 +101,9 @@ namespace Zeus
             // btnEntidade
             // 
             this.btnEntidade.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnEntidade.Location = new System.Drawing.Point(369, 17);
+            this.btnEntidade.Location = new System.Drawing.Point(254, 17);
             this.btnEntidade.Name = "btnEntidade";
-            this.btnEntidade.Size = new System.Drawing.Size(108, 30);
+            this.btnEntidade.Size = new System.Drawing.Size(66, 30);
             this.btnEntidade.TabIndex = 10;
             this.btnEntidade.Text = "Entidade";
             this.btnEntidade.UseVisualStyleBackColor = true;
@@ -115,18 +114,18 @@ namespace Zeus
             this.btnChamadaProc.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnChamadaProc.Location = new System.Drawing.Point(11, 17);
             this.btnChamadaProc.Name = "btnChamadaProc";
-            this.btnChamadaProc.Size = new System.Drawing.Size(216, 30);
+            this.btnChamadaProc.Size = new System.Drawing.Size(152, 30);
             this.btnChamadaProc.TabIndex = 10;
-            this.btnChamadaProc.Text = "Classe de acesso ao banco de dados";
+            this.btnChamadaProc.Text = "Acesso ao banco de dados";
             this.btnChamadaProc.UseVisualStyleBackColor = true;
             this.btnChamadaProc.Click += new System.EventHandler(this.btnChamadaProc_Click);
             // 
             // btnProc
             // 
             this.btnProc.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnProc.Location = new System.Drawing.Point(233, 17);
+            this.btnProc.Location = new System.Drawing.Point(169, 17);
             this.btnProc.Name = "btnProc";
-            this.btnProc.Size = new System.Drawing.Size(130, 30);
+            this.btnProc.Size = new System.Drawing.Size(79, 30);
             this.btnProc.TabIndex = 10;
             this.btnProc.Text = "Procedure";
             this.btnProc.UseVisualStyleBackColor = true;
@@ -225,7 +224,7 @@ namespace Zeus
             this.groupBox3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(150)))));
             this.groupBox3.Location = new System.Drawing.Point(21, 209);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(488, 55);
+            this.groupBox3.Size = new System.Drawing.Size(329, 55);
             this.groupBox3.TabIndex = 10;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "10 - Gerar";
@@ -233,9 +232,9 @@ namespace Zeus
             // btnBatch
             // 
             this.btnBatch.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnBatch.Location = new System.Drawing.Point(11, 19);
+            this.btnBatch.Location = new System.Drawing.Point(348, 17);
             this.btnBatch.Name = "btnBatch";
-            this.btnBatch.Size = new System.Drawing.Size(100, 23);
+            this.btnBatch.Size = new System.Drawing.Size(92, 23);
             this.btnBatch.TabIndex = 14;
             this.btnBatch.Text = "Batch Execute";
             this.btnBatch.UseVisualStyleBackColor = true;
@@ -516,13 +515,15 @@ namespace Zeus
             // 
             // groupBox12
             // 
+            this.groupBox12.Controls.Add(this.btnDestino);
+            this.groupBox12.Controls.Add(this.txtDestino);
             this.groupBox12.Controls.Add(this.btnConfiguracoes);
             this.groupBox12.Controls.Add(this.btnBatch);
             this.groupBox12.Font = new System.Drawing.Font("Gill Sans MT", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(150)))));
-            this.groupBox12.Location = new System.Drawing.Point(504, 209);
+            this.groupBox12.Location = new System.Drawing.Point(356, 209);
             this.groupBox12.Name = "groupBox12";
-            this.groupBox12.Size = new System.Drawing.Size(270, 55);
+            this.groupBox12.Size = new System.Drawing.Size(588, 55);
             this.groupBox12.TabIndex = 11;
             this.groupBox12.TabStop = false;
             this.groupBox12.Text = "11 - Extras";
@@ -530,36 +531,13 @@ namespace Zeus
             // btnConfiguracoes
             // 
             this.btnConfiguracoes.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnConfiguracoes.Location = new System.Drawing.Point(117, 19);
+            this.btnConfiguracoes.Location = new System.Drawing.Point(446, 17);
             this.btnConfiguracoes.Name = "btnConfiguracoes";
             this.btnConfiguracoes.Size = new System.Drawing.Size(131, 23);
             this.btnConfiguracoes.TabIndex = 15;
             this.btnConfiguracoes.Text = "Salvar Configurações";
             this.btnConfiguracoes.UseVisualStyleBackColor = true;
             this.btnConfiguracoes.Click += new System.EventHandler(this.btnConfiguracoes_Click_1);
-            // 
-            // groupBox13
-            // 
-            this.groupBox13.Controls.Add(this.btnAngular);
-            this.groupBox13.Font = new System.Drawing.Font("Gill Sans MT", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox13.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(150)))));
-            this.groupBox13.Location = new System.Drawing.Point(774, 209);
-            this.groupBox13.Name = "groupBox13";
-            this.groupBox13.Size = new System.Drawing.Size(170, 55);
-            this.groupBox13.TabIndex = 12;
-            this.groupBox13.TabStop = false;
-            this.groupBox13.Text = "12 - Frontend";
-            // 
-            // btnAngular
-            // 
-            this.btnAngular.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnAngular.Location = new System.Drawing.Point(12, 21);
-            this.btnAngular.Name = "btnAngular";
-            this.btnAngular.Size = new System.Drawing.Size(142, 23);
-            this.btnAngular.TabIndex = 16;
-            this.btnAngular.Text = "Service Angular";
-            this.btnAngular.UseVisualStyleBackColor = true;
-            this.btnAngular.Click += new System.EventHandler(this.btnAngular_Click);
             // 
             // progressBar1
             // 
@@ -571,13 +549,33 @@ namespace Zeus
             this.progressBar1.TabIndex = 14;
             this.progressBar1.UseWaitCursor = true;
             // 
+            // txtDestino
+            // 
+            this.txtDestino.BackColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.txtDestino.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtDestino.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(150)))));
+            this.txtDestino.Location = new System.Drawing.Point(6, 18);
+            this.txtDestino.Name = "txtDestino";
+            this.txtDestino.Size = new System.Drawing.Size(267, 20);
+            this.txtDestino.TabIndex = 4;
+            // 
+            // btnDestino
+            // 
+            this.btnDestino.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnDestino.Location = new System.Drawing.Point(279, 14);
+            this.btnDestino.Name = "btnDestino";
+            this.btnDestino.Size = new System.Drawing.Size(63, 29);
+            this.btnDestino.TabIndex = 16;
+            this.btnDestino.Text = "Destino";
+            this.btnDestino.UseVisualStyleBackColor = true;
+            this.btnDestino.Click += new System.EventHandler(this.btnDestino_Click);
+            // 
             // formPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.ClientSize = new System.Drawing.Size(956, 374);
-            this.Controls.Add(this.groupBox13);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.groupBox8);
             this.Controls.Add(this.groupBox12);
@@ -617,7 +615,7 @@ namespace Zeus
             this.groupBox10.PerformLayout();
             this.groupBox11.ResumeLayout(false);
             this.groupBox12.ResumeLayout(false);
-            this.groupBox13.ResumeLayout(false);
+            this.groupBox12.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -661,9 +659,9 @@ namespace Zeus
         private System.Windows.Forms.Button btnConfiguracoes;
         private System.Windows.Forms.RadioButton radioSGBD4;
         private System.Windows.Forms.RadioButton radioSGBD5;
-        private System.Windows.Forms.GroupBox groupBox13;
-        private System.Windows.Forms.Button btnAngular;
         private System.Windows.Forms.ListBox listaStatus;
+        private System.Windows.Forms.TextBox txtDestino;
+        private System.Windows.Forms.Button btnDestino;
     }
 }
 

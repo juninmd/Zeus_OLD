@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Text;
 using Zeus.Core.SGBD.Postgre.Procedure.Verbos;
 using Zeus.Linguagens.Base;
 using Zeus.Properties;

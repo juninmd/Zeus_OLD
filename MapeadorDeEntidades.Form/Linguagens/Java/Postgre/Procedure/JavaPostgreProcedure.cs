@@ -1,6 +1,5 @@
 ﻿using System.Text;
 using Zeus.Linguagens.Base;
-using Zeus.Linguagens.Java.Postgre;
 
 namespace Zeus.Linguagens.Java.Postgre.Procedure
 {

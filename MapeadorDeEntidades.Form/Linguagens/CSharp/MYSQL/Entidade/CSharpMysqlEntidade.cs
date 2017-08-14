@@ -1,5 +1,4 @@
 ﻿using System.Text;
-using Zeus.Core.SGBD.MySql;
 using Zeus.Linguagens.Base;
 
 namespace Zeus.Linguagens.CSharp.MYSQL.Entidade

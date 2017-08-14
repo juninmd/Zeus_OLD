@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using System.Windows.Forms;
 using Zeus.Core;
 using Zeus.Utilidade;
 
@@ -8,13 +7,13 @@ namespace Zeus.Linguagens.CSharp.MYSQL.Query
 {
     public class ChamadaCsharpMySqlQuery
     {
-        public RequestMessage<string> CSharp(FolderBrowserDialog salvar)
+        public RequestMessage<string> CSharp()
         {
             try
             {
                 int max = ParamtersInput.NomeTabelas.Count;
                 var i = 0;
-                var local = salvar.SelectedPath + "\\";
+                var local = ParamtersInput.SelectedPath;
 
                 foreach (var nomeTabela in ParamtersInput.NomeTabelas)
                 {

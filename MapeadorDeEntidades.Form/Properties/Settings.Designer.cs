@@ -12,7 +12,7 @@ namespace Zeus.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "14.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.1.0.0")]
     public sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -25,7 +25,7 @@ namespace Zeus.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("MAG_PG_CA_")]
+        [global::System.Configuration.DefaultSettingValueAttribute("PROJ_PG_")]
         public string PrefixoPackage {
             get {
                 return ((string)(this["PrefixoPackage"]));
@@ -37,19 +37,7 @@ namespace Zeus.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("MAG_SP_CA_")]
-        public string PrefixoProcedure {
-            get {
-                return ((string)(this["PrefixoProcedure"]));
-            }
-            set {
-                this["PrefixoProcedure"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("User Id=usr_cobadmin;Data Source=cobadmin;Password=!usr_cobadmin!")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Server=localhost;Uid=mysql;Pwd=;Port=3306")]
         public string ConnectionStringDefault {
             get {
                 return ((string)(this["ConnectionStringDefault"]));
@@ -61,7 +49,7 @@ namespace Zeus.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("MAG_T_")]
+        [global::System.Configuration.DefaultSettingValueAttribute("PROJ_T_")]
         public string PrefixoTabela {
             get {
                 return ((string)(this["PrefixoTabela"]));
@@ -80,6 +68,30 @@ namespace Zeus.Properties {
             }
             set {
                 this["UnificarOutput"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("PROJ_SP_")]
+        public string PrefixoProcedure {
+            get {
+                return ((string)(this["PrefixoProcedure"]));
+            }
+            set {
+                this["PrefixoProcedure"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string Destino {
+            get {
+                return ((string)(this["Destino"]));
+            }
+            set {
+                this["Destino"] = value;
             }
         }
     }

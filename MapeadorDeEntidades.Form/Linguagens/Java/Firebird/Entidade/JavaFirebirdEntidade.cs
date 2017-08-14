@@ -5,7 +5,6 @@ using System.Text;
 using Zeus.Core;
 using Zeus.Core.SGBD.Firebird;
 using Zeus.Linguagens.Base;
-using Zeus.Linguagens.Java.Firebird;
 
 namespace Zeus.Linguagens.Java.Firebird.Entidade
 {
