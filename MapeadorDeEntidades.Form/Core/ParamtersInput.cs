@@ -4,6 +4,10 @@ namespace Zeus.Core
 {
     public static class ParamtersInput
     {
+        /// <summary>
+        /// Caminho selecionado
+        /// </summary>
+        public static string SelectedPath { get; set; }
         public static List<string> NomeTabelas { get; set; }
 
         /// <summary>

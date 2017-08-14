@@ -1,5 +1,4 @@
 ﻿using System.Text;
-using Zeus.Core.SGBD.Microsoft_SQL;
 using Zeus.Linguagens.Base;
 
 namespace Zeus.Linguagens.CSharp.SQL.Procedure

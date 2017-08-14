@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System.Configuration;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Zeus.Core;
 using Zeus.Core.SGBD.Firebird;
 using Zeus.Core.SGBD.Microsoft_SQL;
@@ -14,7 +15,7 @@ namespace Zeus.Test
         [TestMethod]
         public void Oracle()
         {
-            ParamtersInput.ConnectionString = "User Id=USR_BIRL;Data Source=localhost;Password=!USR_BIRL!";
+            ParamtersInput.ConnectionString = ConfigurationManager.AppSettings["oracleConnect"];
             var ping = new OraclePing().Ping();
             Assert.IsFalse(ping.IsError, ping.Message);
         }
@@ -22,7 +23,7 @@ namespace Zeus.Test
         [TestMethod]
         public void Mysql()
         {
-            ParamtersInput.ConnectionString = "Server=localhost;Uid=mysql;Pwd=;Port=5500";
+            ParamtersInput.ConnectionString = ConfigurationManager.AppSettings["mysqlConnect"];
             var ping = new MySqlPing().Ping();
             Assert.IsFalse(ping.IsError, ping.Message);
         }
@@ -30,7 +31,7 @@ namespace Zeus.Test
         [TestMethod]
         public void SqlServer()
         {
-            ParamtersInput.ConnectionString = "Server=localhost;Database=Aula1;Trusted_Connection=True";
+            ParamtersInput.ConnectionString = ConfigurationManager.AppSettings["sqlserverConnect"];
             var ping = new SQLPing().Ping();
             Assert.IsFalse(ping.IsError, ping.Message);
         }
@@ -38,7 +39,7 @@ namespace Zeus.Test
         [TestMethod]
         public void Firebird()
         {
-            ParamtersInput.ConnectionString = "User=SYSDBA;Password=masterkey;Database=D:\\Meus Projetos\\Solutions\\Trabalho Fernando\\BANCO.fdb;DataSource=localhost;Port=3050";
+            ParamtersInput.ConnectionString = ConfigurationManager.AppSettings["firebirdConnect"];
             var ping = new FirebirdPing().Ping();
             Assert.IsFalse(ping.IsError, ping.Message);
         }
@@ -46,7 +47,7 @@ namespace Zeus.Test
         [TestMethod]
         public void Postgre()
         {
-            ParamtersInput.ConnectionString = "Host=localhost;Database=postgres;User ID=postgres;Password=root;Port=5432";
+            ParamtersInput.ConnectionString = ConfigurationManager.AppSettings["pgConnect"];
             var ping = new PostgrePing().Ping();
             Assert.IsFalse(ping.IsError, ping.Message);
         }

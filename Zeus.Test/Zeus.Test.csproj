@@ -45,14 +45,22 @@
       <HintPath>..\packages\MSTest.TestFramework.1.1.11\lib\net45\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EntidadeTest.cs" />
     <Compile Include="ConexaoPingTest.cs" />
+    <Compile Include="MySql\BaseMysqlDaoTest.cs" />
+    <Compile Include="MySql\MySqlNodeDaoTest.cs" />
+    <Compile Include="Node\NodeDaoOracleTest.cs" />
+    <Compile Include="Node\NodeDaoPostgreTest.cs" />
+    <Compile Include="Node\NodeDaoSqlServerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

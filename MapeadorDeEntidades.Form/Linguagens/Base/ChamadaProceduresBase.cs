@@ -2,7 +2,6 @@
 using System.IO;
 using System.Net;
 using System.Text;
-using System.Windows.Forms;
 using Zeus.Core;
 using Zeus.Core.SGBD.Microsoft_SQL;
 using Zeus.Core.SGBD.Microsoft_SQL.Procedure;
@@ -16,13 +15,12 @@ namespace Zeus.Linguagens.Base
 {
     public class ChamadaProceduresBase
     {
-        public RequestMessage<string> Orquestrar(FolderBrowserDialog salvar)
+        public RequestMessage<string> Orquestrar()
         {
             try
             {
                 int max = ParamtersInput.NomeTabelas.Count;
                 var i = 0;
-                var local = $"{salvar.SelectedPath}\\";
                 var unificar = new StringBuilder();
 
                 foreach (var nomeTabela in ParamtersInput.NomeTabelas)
@@ -33,7 +31,7 @@ namespace Zeus.Linguagens.Base
                     var body = Implementar(nomeTabela);
 
                     if (!Settings.Default.UnificarOutput)
-                        File.WriteAllText($"{local}{nomeTabela.TratarNomeSQL()}.sql", body);
+                        File.WriteAllText($"{ParamtersInput.SelectedPath}{nomeTabela.TratarNomeSQL()}.sql", body);
                     else
                     {
                         unificar.Append(body);
@@ -42,7 +40,7 @@ namespace Zeus.Linguagens.Base
                 }
 
                 if (Settings.Default.UnificarOutput)
-                    File.WriteAllText(local + $"{ParamtersInput.DataBase}.sql", unificar.ToString());
+                    File.WriteAllText(ParamtersInput.SelectedPath + $"{ParamtersInput.DataBase}.sql", unificar.ToString());
 
                 return new RequestMessage<string>
                 {

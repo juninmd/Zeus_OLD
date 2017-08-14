@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Windows.Forms;
 using Zeus.Core;
 using Zeus.Core.SGBD.Oracle.Batch;
 
@@ -7,29 +6,21 @@ namespace Zeus.Middleware
 {
     public class OrquestradorBatch
     {
-        public RequestMessage<string> Generate(FolderBrowserDialog salvar)
+        public RequestMessage<string> Generate()
         {
-            var validate = salvar.ShowDialog();
-            if (validate != DialogResult.OK)
-                return new RequestMessage<string>()
-                {
-                    Message = "Processamento cancelado!",
-                    StatusCode = System.Net.HttpStatusCode.BadRequest
-                };
-
             var dataInicial = DateTime.Now;
-            var init = Init(salvar);
+            var init = Init();
             init.TechnicalMessage = ($"Tempo de processamento: {(DateTime.Now - dataInicial).Seconds}s - Tabelas: {ParamtersInput.NomeTabelas.Count}");
             return init;
-
         }
-        public RequestMessage<string> Init(FolderBrowserDialog salvar)
+
+        public RequestMessage<string> Init()
         {
             switch (ParamtersInput.SGBD)
             {
                 case 1:
                     {
-                        return new OracleOrquestradorBatch().Oracle(salvar);
+                        return new OracleOrquestradorBatch().Oracle();
                     }
                 case 2:
                     {

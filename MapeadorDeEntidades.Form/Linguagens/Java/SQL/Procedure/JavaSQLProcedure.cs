@@ -1,6 +1,5 @@
 ﻿using System.Text;
 using Zeus.Linguagens.Base;
-using Zeus.Linguagens.Java.SQL;
 
 namespace Zeus.Linguagens.Java.SQL.Procedure
 {

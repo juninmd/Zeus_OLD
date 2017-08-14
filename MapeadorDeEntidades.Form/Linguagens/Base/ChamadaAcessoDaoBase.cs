@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
 using System.Net;
-using System.Windows.Forms;
 using Zeus.Core;
 using Zeus.Linguagens.CSharp.Firebird.Procedure;
 using Zeus.Linguagens.CSharp.Firebird.Query;
@@ -37,20 +36,19 @@ namespace Zeus.Linguagens.Base
 {
     public class ChamadaAcessoDaoBase
     {
-        public RequestMessage<string> Orquestrar(FolderBrowserDialog salvar)
+        public RequestMessage<string> Orquestrar()
         {
             try
             {
                 int max = ParamtersInput.NomeTabelas.Count;
                 var i = 0;
-                var local = salvar.SelectedPath + "\\";
 
                 foreach (var nomeTabela in ParamtersInput.NomeTabelas)
                 {
                     i++;
                     Util.Barra((int)((((decimal)i / max) * 100)));
                     Util.Status($"Processando tabela: {nomeTabela}");
-                    Implementar(local, nomeTabela);
+                    Implementar(ParamtersInput.SelectedPath, nomeTabela);
                 }
 
                 return new RequestMessage<string>

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
-using System.Windows.Forms;
 using Zeus.Properties;
 using Zeus.Utilidade;
 
@@ -9,12 +8,12 @@ namespace Zeus.Core.SGBD.Oracle.Batch
 {
     public class OracleOrquestradorBatch
     {
-        public RequestMessage<string> Oracle(FolderBrowserDialog salvar)
+        public RequestMessage<string> Oracle()
         {
             try
             {
 
-                var files = Directory.GetFiles(salvar.SelectedPath).OrderByDescending(q => q).ToList();
+                var files = Directory.GetFiles(ParamtersInput.SelectedPath).OrderByDescending(q => q).ToList();
                 int max = files.Count;
                 var i = 0;
 

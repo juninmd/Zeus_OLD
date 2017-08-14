@@ -12,8 +12,6 @@ namespace Zeus
 {
     public partial class formPrincipal : System.Windows.Forms.Form
     {
-        public FolderBrowserDialog Salvar { get { return salvar; } set { salvar = value; } }
-
         public formPrincipal()
         {
             InitializeComponent();
@@ -43,7 +41,13 @@ namespace Zeus
         private void btnEntidade_Click(object sender, EventArgs e)
         {
             SetParamters();
-            var mdMapeamento = new OrquestradorMapeamentoEntidade().Generate(salvar);
+            var validate = new ValidateBasic().ValidateInput(salvar);
+            if (validate.IsError)
+            {
+                MessageBox.Show(validate.Message);
+                return;
+            }
+            var mdMapeamento = new OrquestradorMapeamentoEntidade().Generate();
             Util.Status(mdMapeamento.Message + " - " + mdMapeamento.TechnicalMessage);
         }
 
@@ -54,26 +58,41 @@ namespace Zeus
             ParamtersInput.Procedure = x == DialogResult.Yes;
             if (x == DialogResult.Cancel)
                 return;
-            var chamada = new OrquestradorChamada().Generate(salvar);
+
+            var validate = new ValidateBasic().ValidateInput(salvar);
+            if (validate.IsError)
+            {
+                MessageBox.Show(validate.Message);
+                return;
+            }
+
+            var chamada = new OrquestradorChamada().Generate();
             Util.Status(chamada.Message + " - " + chamada.TechnicalMessage);
         }
 
         private void btnProcSql_Click(object sender, EventArgs e)
         {
             SetParamters();
-            var mdProc = new OrquestradorProcedures().Generate(salvar);
+            var validate = new ValidateBasic().ValidateInput(salvar);
+            if (validate.IsError)
+            {
+                MessageBox.Show(validate.Message);
+                return;
+            }
+            var mdProc = new OrquestradorProcedures().Generate();
             Util.Status(mdProc.Message + " - " + mdProc.TechnicalMessage);
         }
-        private void btnSequence_Click(object sender, EventArgs e)
-        {
-            SetParamters();
-            var mdProc = new OrquestradorSequences().Generate(salvar);
-            Util.Status(mdProc.Message + " - " + mdProc.TechnicalMessage);
-        }
+
         private void btnBatch_Click(object sender, EventArgs e)
         {
             SetParamters();
-            var mdProc = new OrquestradorBatch().Generate(salvar);
+            var validate = new ValidateBasic().ValidateInput(salvar);
+            if (validate.IsError)
+            {
+                MessageBox.Show(validate.Message);
+                return;
+            }
+            var mdProc = new OrquestradorBatch().Generate();
             Util.Status(mdProc.Message);
         }
 
@@ -218,6 +237,7 @@ namespace Zeus
             Settings.Default.PrefixoProcedure = txtPreFixoProcedures.Text;
             Settings.Default.PrefixoTabela = txtPrefixoTabela.Text;
             Settings.Default.ConnectionStringDefault = txtConnectionString.Text;
+            Settings.Default.Destino = txtDestino.Text;
             Settings.Default.UnificarOutput = ddlUnificar.SelectedItem?.ToString() == "SIM";
             Settings.Default.Save();
 
@@ -232,12 +252,17 @@ namespace Zeus
             txtPrefixoTabela.Text = Settings.Default.PrefixoTabela;
             txtConnectionString.Text = Settings.Default.ConnectionStringDefault;
             ddlUnificar.SelectedItem = Settings.Default.UnificarOutput ? "SIM" : "NÃO";
+            txtDestino.Text = Settings.Default.Destino;
             txtConnectionString.Focus();
         }
 
-        private void btnAngular_Click(object sender, EventArgs e)
+        private void btnDestino_Click(object sender, EventArgs e)
         {
-
+            var r = salvar.ShowDialog();
+            if (r == DialogResult.OK)
+            {
+                txtDestino.Text = salvar.SelectedPath + "\\";
+            }
         }
     }
 }

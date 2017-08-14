@@ -1,6 +1,5 @@
 ﻿using System.Text;
 using Zeus.Core;
-using Zeus.Core.SGBD.Postgre;
 using Zeus.Linguagens.Base;
 
 namespace Zeus.Linguagens.CSharp.Postgre.Entidade
