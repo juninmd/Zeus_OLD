@@ -32,7 +32,6 @@ namespace Zeus
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(formPrincipal));
-            this.ddlTabelas = new System.Windows.Forms.ComboBox();
             this.btnEntidade = new System.Windows.Forms.Button();
             this.btnChamadaProc = new System.Windows.Forms.Button();
             this.btnProc = new System.Windows.Forms.Button();
@@ -43,9 +42,8 @@ namespace Zeus
             this.radioSGBD2 = new System.Windows.Forms.RadioButton();
             this.radioSGBD1 = new System.Windows.Forms.RadioButton();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.btnBatch = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.btnChkTabela = new System.Windows.Forms.CheckBox();
+            this.btnSelecionarTabelas = new System.Windows.Forms.Button();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.btnExemplo = new System.Windows.Forms.Button();
             this.btnConnection = new System.Windows.Forms.Button();
@@ -68,10 +66,13 @@ namespace Zeus
             this.ddlUnificar = new System.Windows.Forms.ComboBox();
             this.groupBox11 = new System.Windows.Forms.GroupBox();
             this.groupBox12 = new System.Windows.Forms.GroupBox();
-            this.btnConfiguracoes = new System.Windows.Forms.Button();
-            this.progressBar1 = new Zeus.Core.NewProgressBar();
-            this.txtDestino = new System.Windows.Forms.TextBox();
             this.btnDestino = new System.Windows.Forms.Button();
+            this.txtDestino = new System.Windows.Forms.TextBox();
+            this.progressBar1 = new Zeus.Core.NewProgressBar();
+            this.groupBox13 = new System.Windows.Forms.GroupBox();
+            this.btnConfiguracoes = new System.Windows.Forms.Button();
+            this.btnBatch = new System.Windows.Forms.Button();
+            this.lblTabelas = new System.Windows.Forms.Label();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox5.SuspendLayout();
@@ -84,19 +85,8 @@ namespace Zeus
             this.groupBox10.SuspendLayout();
             this.groupBox11.SuspendLayout();
             this.groupBox12.SuspendLayout();
+            this.groupBox13.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // ddlTabelas
-            // 
-            this.ddlTabelas.BackColor = System.Drawing.SystemColors.InfoText;
-            this.ddlTabelas.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.ddlTabelas.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(150)))));
-            this.ddlTabelas.FormattingEnabled = true;
-            this.ddlTabelas.Location = new System.Drawing.Point(11, 17);
-            this.ddlTabelas.Name = "ddlTabelas";
-            this.ddlTabelas.Size = new System.Drawing.Size(532, 24);
-            this.ddlTabelas.TabIndex = 0;
-            this.ddlTabelas.SelectedIndexChanged += new System.EventHandler(this.EventSetParamters);
             // 
             // btnEntidade
             // 
@@ -222,48 +212,35 @@ namespace Zeus
             this.groupBox3.Controls.Add(this.btnProc);
             this.groupBox3.Font = new System.Drawing.Font("Gill Sans MT", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(150)))));
-            this.groupBox3.Location = new System.Drawing.Point(21, 209);
+            this.groupBox3.Location = new System.Drawing.Point(615, 143);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(329, 55);
+            this.groupBox3.Size = new System.Drawing.Size(329, 60);
             this.groupBox3.TabIndex = 10;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "10 - Gerar";
             // 
-            // btnBatch
-            // 
-            this.btnBatch.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnBatch.Location = new System.Drawing.Point(348, 17);
-            this.btnBatch.Name = "btnBatch";
-            this.btnBatch.Size = new System.Drawing.Size(92, 23);
-            this.btnBatch.TabIndex = 14;
-            this.btnBatch.Text = "Batch Execute";
-            this.btnBatch.UseVisualStyleBackColor = true;
-            this.btnBatch.Click += new System.EventHandler(this.btnBatch_Click);
-            // 
             // groupBox4
             // 
-            this.groupBox4.Controls.Add(this.btnChkTabela);
-            this.groupBox4.Controls.Add(this.ddlTabelas);
+            this.groupBox4.Controls.Add(this.btnSelecionarTabelas);
             this.groupBox4.Font = new System.Drawing.Font("Gill Sans MT", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(150)))));
             this.groupBox4.Location = new System.Drawing.Point(21, 143);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(614, 60);
+            this.groupBox4.Size = new System.Drawing.Size(337, 60);
             this.groupBox4.TabIndex = 7;
             this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "7 - Tabela";
+            this.groupBox4.Text = "7 - Tabelas";
             // 
-            // btnChkTabela
+            // btnSelecionarTabelas
             // 
-            this.btnChkTabela.AutoSize = true;
-            this.btnChkTabela.ForeColor = System.Drawing.Color.White;
-            this.btnChkTabela.Location = new System.Drawing.Point(549, 19);
-            this.btnChkTabela.Name = "btnChkTabela";
-            this.btnChkTabela.Size = new System.Drawing.Size(59, 20);
-            this.btnChkTabela.TabIndex = 8;
-            this.btnChkTabela.Text = "Todas";
-            this.btnChkTabela.UseVisualStyleBackColor = true;
-            this.btnChkTabela.CheckedChanged += new System.EventHandler(this.btnChkTabela_CheckedChanged);
+            this.btnSelecionarTabelas.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnSelecionarTabelas.Location = new System.Drawing.Point(7, 19);
+            this.btnSelecionarTabelas.Name = "btnSelecionarTabelas";
+            this.btnSelecionarTabelas.Size = new System.Drawing.Size(104, 30);
+            this.btnSelecionarTabelas.TabIndex = 11;
+            this.btnSelecionarTabelas.Text = "Selecionar";
+            this.btnSelecionarTabelas.UseVisualStyleBackColor = true;
+            this.btnSelecionarTabelas.Click += new System.EventHandler(this.btnSelecionarTabelas_Click);
             // 
             // groupBox5
             // 
@@ -449,7 +426,7 @@ namespace Zeus
             this.txtPrefixoTabela.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(150)))));
             this.txtPrefixoTabela.Location = new System.Drawing.Point(6, 26);
             this.txtPrefixoTabela.Name = "txtPrefixoTabela";
-            this.txtPrefixoTabela.Size = new System.Drawing.Size(155, 20);
+            this.txtPrefixoTabela.Size = new System.Drawing.Size(123, 20);
             this.txtPrefixoTabela.TabIndex = 9;
             // 
             // groupBox9
@@ -457,9 +434,9 @@ namespace Zeus
             this.groupBox9.Controls.Add(this.txtPrefixoTabela);
             this.groupBox9.Font = new System.Drawing.Font("Gill Sans MT", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(150)))));
-            this.groupBox9.Location = new System.Drawing.Point(635, 143);
+            this.groupBox9.Location = new System.Drawing.Point(358, 143);
             this.groupBox9.Name = "groupBox9";
-            this.groupBox9.Size = new System.Drawing.Size(167, 60);
+            this.groupBox9.Size = new System.Drawing.Size(139, 60);
             this.groupBox9.TabIndex = 8;
             this.groupBox9.TabStop = false;
             this.groupBox9.Text = "8 - Pré-Fixo Tabelas";
@@ -496,9 +473,9 @@ namespace Zeus
             this.ddlUnificar.Items.AddRange(new object[] {
             "SIM",
             "NÃO"});
-            this.ddlUnificar.Location = new System.Drawing.Point(6, 22);
+            this.ddlUnificar.Location = new System.Drawing.Point(15, 19);
             this.ddlUnificar.Name = "ddlUnificar";
-            this.ddlUnificar.Size = new System.Drawing.Size(124, 24);
+            this.ddlUnificar.Size = new System.Drawing.Size(98, 24);
             this.ddlUnificar.TabIndex = 10;
             // 
             // groupBox11
@@ -506,9 +483,9 @@ namespace Zeus
             this.groupBox11.Controls.Add(this.ddlUnificar);
             this.groupBox11.Font = new System.Drawing.Font("Gill Sans MT", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(150)))));
-            this.groupBox11.Location = new System.Drawing.Point(802, 143);
+            this.groupBox11.Location = new System.Drawing.Point(497, 143);
             this.groupBox11.Name = "groupBox11";
-            this.groupBox11.Size = new System.Drawing.Size(142, 60);
+            this.groupBox11.Size = new System.Drawing.Size(121, 60);
             this.groupBox11.TabIndex = 9;
             this.groupBox11.TabStop = false;
             this.groupBox11.Text = "9 - Unificar Output";
@@ -517,58 +494,89 @@ namespace Zeus
             // 
             this.groupBox12.Controls.Add(this.btnDestino);
             this.groupBox12.Controls.Add(this.txtDestino);
-            this.groupBox12.Controls.Add(this.btnConfiguracoes);
-            this.groupBox12.Controls.Add(this.btnBatch);
             this.groupBox12.Font = new System.Drawing.Font("Gill Sans MT", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(150)))));
-            this.groupBox12.Location = new System.Drawing.Point(356, 209);
+            this.groupBox12.Location = new System.Drawing.Point(22, 209);
             this.groupBox12.Name = "groupBox12";
-            this.groupBox12.Size = new System.Drawing.Size(588, 55);
+            this.groupBox12.Size = new System.Drawing.Size(596, 58);
             this.groupBox12.TabIndex = 11;
             this.groupBox12.TabStop = false;
-            this.groupBox12.Text = "11 - Extras";
+            this.groupBox12.Text = "Salvar em";
             // 
-            // btnConfiguracoes
+            // btnDestino
             // 
-            this.btnConfiguracoes.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnConfiguracoes.Location = new System.Drawing.Point(446, 17);
-            this.btnConfiguracoes.Name = "btnConfiguracoes";
-            this.btnConfiguracoes.Size = new System.Drawing.Size(131, 23);
-            this.btnConfiguracoes.TabIndex = 15;
-            this.btnConfiguracoes.Text = "Salvar Configurações";
-            this.btnConfiguracoes.UseVisualStyleBackColor = true;
-            this.btnConfiguracoes.Click += new System.EventHandler(this.btnConfiguracoes_Click_1);
-            // 
-            // progressBar1
-            // 
-            this.progressBar1.ForeColor = System.Drawing.Color.Maroon;
-            this.progressBar1.Location = new System.Drawing.Point(21, 353);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(923, 12);
-            this.progressBar1.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
-            this.progressBar1.TabIndex = 14;
-            this.progressBar1.UseWaitCursor = true;
+            this.btnDestino.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnDestino.Location = new System.Drawing.Point(519, 19);
+            this.btnDestino.Name = "btnDestino";
+            this.btnDestino.Size = new System.Drawing.Size(63, 22);
+            this.btnDestino.TabIndex = 16;
+            this.btnDestino.Text = "Destino";
+            this.btnDestino.UseVisualStyleBackColor = true;
+            this.btnDestino.Click += new System.EventHandler(this.btnDestino_Click);
             // 
             // txtDestino
             // 
             this.txtDestino.BackColor = System.Drawing.SystemColors.InactiveCaptionText;
             this.txtDestino.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtDestino.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(150)))));
-            this.txtDestino.Location = new System.Drawing.Point(6, 18);
+            this.txtDestino.Location = new System.Drawing.Point(6, 21);
             this.txtDestino.Name = "txtDestino";
-            this.txtDestino.Size = new System.Drawing.Size(267, 20);
+            this.txtDestino.Size = new System.Drawing.Size(507, 20);
             this.txtDestino.TabIndex = 4;
             // 
-            // btnDestino
+            // progressBar1
             // 
-            this.btnDestino.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnDestino.Location = new System.Drawing.Point(279, 14);
-            this.btnDestino.Name = "btnDestino";
-            this.btnDestino.Size = new System.Drawing.Size(63, 29);
-            this.btnDestino.TabIndex = 16;
-            this.btnDestino.Text = "Destino";
-            this.btnDestino.UseVisualStyleBackColor = true;
-            this.btnDestino.Click += new System.EventHandler(this.btnDestino_Click);
+            this.progressBar1.ForeColor = System.Drawing.Color.Maroon;
+            this.progressBar1.Location = new System.Drawing.Point(21, 353);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(736, 12);
+            this.progressBar1.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
+            this.progressBar1.TabIndex = 14;
+            this.progressBar1.UseWaitCursor = true;
+            // 
+            // groupBox13
+            // 
+            this.groupBox13.Controls.Add(this.btnConfiguracoes);
+            this.groupBox13.Controls.Add(this.btnBatch);
+            this.groupBox13.Font = new System.Drawing.Font("Gill Sans MT", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox13.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(150)))));
+            this.groupBox13.Location = new System.Drawing.Point(616, 209);
+            this.groupBox13.Name = "groupBox13";
+            this.groupBox13.Size = new System.Drawing.Size(328, 58);
+            this.groupBox13.TabIndex = 17;
+            this.groupBox13.TabStop = false;
+            this.groupBox13.Text = "11 - Extras";
+            // 
+            // btnConfiguracoes
+            // 
+            this.btnConfiguracoes.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnConfiguracoes.Location = new System.Drawing.Point(114, 19);
+            this.btnConfiguracoes.Name = "btnConfiguracoes";
+            this.btnConfiguracoes.Size = new System.Drawing.Size(205, 23);
+            this.btnConfiguracoes.TabIndex = 15;
+            this.btnConfiguracoes.Text = "Salvar Configurações";
+            this.btnConfiguracoes.UseVisualStyleBackColor = true;
+            this.btnConfiguracoes.Click += new System.EventHandler(this.btnConfiguracoes_Click_1);
+            // 
+            // btnBatch
+            // 
+            this.btnBatch.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnBatch.Location = new System.Drawing.Point(16, 19);
+            this.btnBatch.Name = "btnBatch";
+            this.btnBatch.Size = new System.Drawing.Size(92, 23);
+            this.btnBatch.TabIndex = 14;
+            this.btnBatch.Text = "Batch Execute";
+            this.btnBatch.UseVisualStyleBackColor = true;
+            this.btnBatch.Click += new System.EventHandler(this.btnBatch_Click);
+            // 
+            // lblTabelas
+            // 
+            this.lblTabelas.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.lblTabelas.Location = new System.Drawing.Point(763, 350);
+            this.lblTabelas.Name = "lblTabelas";
+            this.lblTabelas.Size = new System.Drawing.Size(181, 15);
+            this.lblTabelas.TabIndex = 18;
+            this.lblTabelas.Text = "Nenhuma tabela disponível.";
             // 
             // formPrincipal
             // 
@@ -576,6 +584,8 @@ namespace Zeus
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.ClientSize = new System.Drawing.Size(956, 374);
+            this.Controls.Add(this.lblTabelas);
+            this.Controls.Add(this.groupBox13);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.groupBox8);
             this.Controls.Add(this.groupBox12);
@@ -598,7 +608,6 @@ namespace Zeus
             this.Text = "Zeus - 0.9";
             this.groupBox3.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
             this.groupBox6.ResumeLayout(false);
@@ -616,13 +625,12 @@ namespace Zeus
             this.groupBox11.ResumeLayout(false);
             this.groupBox12.ResumeLayout(false);
             this.groupBox12.PerformLayout();
+            this.groupBox13.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.ComboBox ddlTabelas;
         private System.Windows.Forms.Button btnEntidade;
         private System.Windows.Forms.Button btnChamadaProc;
         private System.Windows.Forms.Button btnProc;
@@ -634,7 +642,6 @@ namespace Zeus
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.TextBox txtConnectionString;
         private System.Windows.Forms.Button btnConnection;
-        private System.Windows.Forms.CheckBox btnChkTabela;
         private System.Windows.Forms.FolderBrowserDialog salvar;
         private System.Windows.Forms.Button btnExemplo;
         private System.Windows.Forms.RadioButton radioSGBD2;
@@ -642,7 +649,6 @@ namespace Zeus
         private NewProgressBar progressBar1;
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.RadioButton radioNode;
-        private System.Windows.Forms.Button btnBatch;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox7;
@@ -656,12 +662,16 @@ namespace Zeus
         private System.Windows.Forms.ComboBox ddlUnificar;
         private System.Windows.Forms.GroupBox groupBox11;
         private System.Windows.Forms.GroupBox groupBox12;
-        private System.Windows.Forms.Button btnConfiguracoes;
         private System.Windows.Forms.RadioButton radioSGBD4;
         private System.Windows.Forms.RadioButton radioSGBD5;
         private System.Windows.Forms.ListBox listaStatus;
         private System.Windows.Forms.TextBox txtDestino;
         private System.Windows.Forms.Button btnDestino;
+        private System.Windows.Forms.GroupBox groupBox13;
+        private System.Windows.Forms.Button btnConfiguracoes;
+        private System.Windows.Forms.Button btnBatch;
+        private System.Windows.Forms.Button btnSelecionarTabelas;
+        private System.Windows.Forms.Label lblTabelas;
     }
 }
 

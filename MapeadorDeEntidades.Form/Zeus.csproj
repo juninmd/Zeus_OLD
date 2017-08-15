@@ -18,7 +18,7 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
-    <Optimize>true</Optimize>
+    <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
@@ -149,6 +149,12 @@
     <Compile Include="Core\SGBD\Postgre\Procedure\Verbos\PostgreInsert.cs" />
     <Compile Include="Core\SGBD\Postgre\Procedure\Verbos\PostgreUpdate.cs" />
     <Compile Include="Core\Tratamentos.cs" />
+    <Compile Include="formTabelas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formTabelas.Designer.cs">
+      <DependentUpon>formTabelas.cs</DependentUpon>
+    </Compile>
     <Compile Include="formConnectionString.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -247,6 +253,10 @@
     <Compile Include="Utilidade\Util.cs" />
     <EmbeddedResource Include="Core\NewProgressBar.resx">
       <DependentUpon>NewProgressBar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formTabelas.resx">
+      <DependentUpon>formTabelas.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="formConnectionString.resx">
       <DependentUpon>formConnectionString.cs</DependentUpon>
