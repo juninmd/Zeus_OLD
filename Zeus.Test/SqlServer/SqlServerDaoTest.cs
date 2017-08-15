@@ -4,12 +4,12 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Zeus.Core;
 using Zeus.Middleware;
 
-namespace Zeus.Test.MySql
+namespace Zeus.Test.SqlServer
 {
     [TestClass]
-    public class MySqlDaoTest : BaseMysqlTest
+    public class SqlServerDaoTest : BaseSqlServerTest
     {
-        public MySqlDaoTest()
+        public SqlServerDaoTest()
         {
             ParamtersInput.Procedure = false;
         }

@@ -4,12 +4,12 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Zeus.Core;
 using Zeus.Middleware;
 
-namespace Zeus.Test.MySql
+namespace Zeus.Test.Firebird
 {
     [TestClass]
-    public class MySqlDaoTest : BaseMysqlTest
+    public class FirebirdDaoTest : BaseFirebirdTest
     {
-        public MySqlDaoTest()
+        public FirebirdDaoTest()
         {
             ParamtersInput.Procedure = false;
         }
