@@ -12,6 +12,8 @@ namespace Zeus
 {
     public partial class formPrincipal : System.Windows.Forms.Form
     {
+        public List<string> TabelasBD { get; set; }
+
         public formPrincipal()
         {
             InitializeComponent();
@@ -20,6 +22,7 @@ namespace Zeus
             InitConfigurations();
             Session.progressBar1 = progressBar1;
             Session.listaStatus = listaStatus;
+            TabelasBD = new List<string>();
             ParamtersInput.NomeTabelas = new List<string>();
             txtConnectionString.Text = Settings.Default.ConnectionStringDefault;
         }
@@ -112,8 +115,9 @@ namespace Zeus
                     case 1:
                     case 2:
                     case 4:
-                        ddlTabelas.Items.Clear();
-                        ddlTabelas.Items.AddRange(connectionDb.Content.ToArray());
+                        TabelasBD.Clear();
+                        TabelasBD.AddRange(connectionDb.Content.ToArray());
+                        lblTabelas.Text = TabelasBD.Count > 0 ? $"{TabelasBD.Count} Tabela(s) disponível(eis)" : "Nenhuma tabela disponível.";
                         ddlDatabase.Items.Clear();
                         return;
                 }
@@ -126,11 +130,7 @@ namespace Zeus
             MessageBox.Show(connectionDb.TechnicalMessage ?? connectionDb.Message);
         }
 
-        private void btnChkTabela_CheckedChanged(object sender, EventArgs e)
-        {
-            ddlTabelas.Enabled = (btnChkTabela.Checked == false);
-            SetParamters();
-        }
+      
 
         private void EventSetParamters(object sender, EventArgs e)
         {
@@ -140,32 +140,24 @@ namespace Zeus
         private void CleanParamters(object sender, EventArgs e)
         {
             SetParamters();
-            ddlTabelas.Items.Clear();
-            ddlTabelas.Text = "";
+            TabelasBD.Clear();
             ddlDatabase.Items.Clear();
             ddlDatabase.Text = "";
         }
         private void SetParamters()
         {
+            lblTabelas.Text = "Nenhuma tabela disponível.";
             ParamtersInput.NomeTabelas.Clear();
             ParamtersInput.ConnectionString = txtConnectionString.Text;
             ParamtersInput.Linguagem = radioCsharp.Checked ? 1 : radioJava.Checked ? 2 : radioNode.Checked ? 3 : 0;
             ParamtersInput.SGBD = radioSGBD1.Checked ? 1 : radioSGBD2.Checked ? 2 : radioSGBD3.Checked ? 3 : radioSGBD4.Checked ? 4 : radioSGBD5.Checked ? 5 : 0;
-            ParamtersInput.TodasTabelas = btnChkTabela.Checked;
             ParamtersInput.DataBase = ddlDatabase?.SelectedItem?.ToString();
 
             if (ParamtersInput.TodasTabelas)
             {
-                foreach (var item in ddlTabelas.Items)
-                {
-                    ParamtersInput.NomeTabelas.Add(item.ToString());
-                }
+                ParamtersInput.NomeTabelas = TabelasBD;
             }
-            else if (ddlTabelas.SelectedItem != null)
-            {
-                ParamtersInput.NomeTabelas.Add(ddlTabelas.SelectedItem.ToString());
-            }
-
+            
             ddlDatabase.Enabled = radioSGBD3.Checked || radioSGBD5.Checked;
         }
 
@@ -203,13 +195,15 @@ namespace Zeus
         {
             SetParamters();
             var mdProc = new OrquestradorTabelasSGBD().Connect();
-            ddlTabelas.Items.Clear();
+            TabelasBD.Clear();
             if (mdProc.IsError)
             {
                 MessageBox.Show(mdProc.Message);
                 return;
             }
-            ddlTabelas.Items.AddRange(mdProc?.Content?.ToArray());
+            TabelasBD = mdProc.Content;
+            lblTabelas.Text = TabelasBD.Count > 0 ? $"{TabelasBD.Count} Tabela(s) disponível(eis)" : "Nenhuma tabela disponível.";
+            TabelasBD.AddRange(mdProc.Content.ToArray());
         }
 
         private void CheckLanguage(object sender, EventArgs e)
@@ -262,7 +256,25 @@ namespace Zeus
             if (r == DialogResult.OK)
             {
                 txtDestino.Text = salvar.SelectedPath + "\\";
+                ParamtersInput.SelectedPath = txtDestino.Text;
             }
+            else
+            {
+                ParamtersInput.SelectedPath = null;
+                txtDestino.Text = "";
+            }
+        }
+
+        private void btnSelecionarTabelas_Click(object sender, EventArgs e)
+        {
+            if (TabelasBD.Count == 0)
+            {
+                MessageBox.Show("Nenhuma tabela disponível");
+                return;
+            }
+
+            new formTabelas(TabelasBD).ShowDialog();
         }
     }
 }
+
