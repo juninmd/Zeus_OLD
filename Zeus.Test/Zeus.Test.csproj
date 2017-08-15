@@ -55,6 +55,9 @@
     <Compile Include="Firebird\BaseFirebirdTest.cs" />
     <Compile Include="Firebird\FirebirdDaoTest.cs" />
     <Compile Include="MySql\BaseMysqlTest.cs" />
+    <Compile Include="MySql\MySqlEntityTest.cs" />
+    <Compile Include="MySql\MySqlProcTest.cs" />
+    <Compile Include="MySql\MySqlDaoProcTest.cs" />
     <Compile Include="MySql\MySqlDaoTest.cs" />
     <Compile Include="Oracle\BaseOracleTest.cs" />
     <Compile Include="Oracle\OracleDaoTest.cs" />
