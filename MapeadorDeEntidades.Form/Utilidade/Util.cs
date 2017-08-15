@@ -9,12 +9,14 @@ namespace Zeus.Utilidade
         public static void Status(string text)
         {
             var data = DateTime.Now;
-            Session.listaStatus.Items.Insert(0, $"{data.ToShortDateString()} - {data:hh:mm:ss} - {text}");
+            if (Session.listaStatus != null)
+                Session.listaStatus.Items.Insert(0, $"{data.ToShortDateString()} - {data:hh:mm:ss} - {text}");
             Application.DoEvents();
         }
         public static void Barra(int valor)
         {
-            Session.progressBar1.Value = valor;
+            if (Session.progressBar1 != null)
+                Session.progressBar1.Value = valor;
             Application.DoEvents();
         }
     }
