@@ -11,7 +11,7 @@ namespace Zeus.Test.Firebird
         {
             ParamtersInput.ConnectionString = ConfigurationManager.AppSettings["firebirdConnect"];
 
-            ParamtersInput.NomeTabelas = new List<string> { "teste" };
+            ParamtersInput.NomeTabelas = new List<string> { "BAIRRO" };
             ParamtersInput.SelectedPath = Directory.GetCurrentDirectory() + "\\Test\\";
             ParamtersInput.SGBD = 4;
 
