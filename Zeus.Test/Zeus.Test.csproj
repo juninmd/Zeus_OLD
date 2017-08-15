@@ -53,10 +53,7 @@
     <Compile Include="EntidadeTest.cs" />
     <Compile Include="ConexaoPingTest.cs" />
     <Compile Include="MySql\BaseMysqlDaoTest.cs" />
-    <Compile Include="MySql\MySqlNodeDaoTest.cs" />
-    <Compile Include="Node\NodeDaoOracleTest.cs" />
-    <Compile Include="Node\NodeDaoPostgreTest.cs" />
-    <Compile Include="Node\NodeDaoSqlServerTest.cs" />
+    <Compile Include="MySql\MySqlDaoTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -68,6 +65,12 @@
       <Project>{4a277e6c-8217-4dd5-847b-0b24060dd420}</Project>
       <Name>Zeus</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Firebird\" />
+    <Folder Include="Oracle\" />
+    <Folder Include="Postgre\" />
+    <Folder Include="SqlServer\" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
