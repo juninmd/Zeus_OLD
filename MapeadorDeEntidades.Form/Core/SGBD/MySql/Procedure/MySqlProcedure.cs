@@ -15,11 +15,11 @@ namespace Zeus.Core.SGBD.MySql.Procedure
         {
             var baseProc = NomeTabela.TratarNomeTabela().ToUpper();
             var header = new StringBuilder();
-            header.Append(new MySqlGet().Init($"{Settings.Default.PrefixoProcedure}S_{baseProc}", NomeTabela, ListaAtributosTabela));
-            header.Append(new MySqlBuscar().Init($"{Settings.Default.PrefixoProcedure}S_{baseProc}_ID", NomeTabela, ListaAtributosTabela));
-            header.Append(new MySqlInsert().Init($"{Settings.Default.PrefixoProcedure}I_{baseProc}", NomeTabela, ListaAtributosTabela));
-            header.Append(new MySqlUpdate().Init($"{Settings.Default.PrefixoProcedure}U_{baseProc}", NomeTabela, ListaAtributosTabela));
-            header.Append(new MySqlDelete().Init($"{Settings.Default.PrefixoProcedure}D_{baseProc}", NomeTabela, ListaAtributosTabela));
+            header.Append(new MySqlGet().Init($"{ParamtersInput.Prefixos.Procedure}S_{baseProc}", NomeTabela, ListaAtributosTabela));
+            header.Append(new MySqlBuscar().Init($"{ParamtersInput.Prefixos.Procedure}S_{baseProc}_ID", NomeTabela, ListaAtributosTabela));
+            header.Append(new MySqlInsert().Init($"{ParamtersInput.Prefixos.Procedure}I_{baseProc}", NomeTabela, ListaAtributosTabela));
+            header.Append(new MySqlUpdate().Init($"{ParamtersInput.Prefixos.Procedure}U_{baseProc}", NomeTabela, ListaAtributosTabela));
+            header.Append(new MySqlDelete().Init($"{ParamtersInput.Prefixos.Procedure}D_{baseProc}", NomeTabela, ListaAtributosTabela));
             return header.ToString();
         }
     }

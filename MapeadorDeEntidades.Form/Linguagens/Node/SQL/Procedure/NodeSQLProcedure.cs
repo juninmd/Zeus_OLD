@@ -24,7 +24,7 @@ namespace Zeus.Linguagens.Node.SQL.Procedure
         {
             var get = new StringBuilder();
             get.Append($"    getById: function (id, callback) {{{N}"); 
-            get.Append($"        oracleDb.beginProcedureById({ParamtersInput.ConnectionString.TratarNomeBase()}, \"{NomeTabela.TratarNomePackage()}.{Settings.Default.PrefixoProcedure + "S_" + NomeTabela.TratarNomeTabela() + "_ID"}\",{N}");
+            get.Append($"        oracleDb.beginProcedureById({ParamtersInput.ConnectionString.TratarNomeBase()}, \"{NomeTabela.TratarNomePackage()}.{ParamtersInput.Prefixos.Procedure + "S_" + NomeTabela.TratarNomeTabela() + "_ID"}\",{N}");
             get.Append($"            {{{N}");
             get.Append($"                P_CURSORSELECT: {{ type: oracleDb.type(\"CURSOR\"), dir: oracleDb.type(\"BIND_OUT\") }},{N}");
             get.Append($"                P_{ListaAtributosTabela.First().COLUMN_NAME}: id,   {N}");
@@ -39,7 +39,7 @@ namespace Zeus.Linguagens.Node.SQL.Procedure
         {
             var get = new StringBuilder();
             get.Append($"    getAll: function (callback) {{{N}");
-            get.Append($"        oracleDb.beginProcedure({ParamtersInput.ConnectionString.TratarNomeBase()}, \"{NomeTabela.TratarNomePackage()}.{Settings.Default.PrefixoProcedure + "S_" + NomeTabela.TratarNomeTabela()}\",{N}");
+            get.Append($"        oracleDb.beginProcedure({ParamtersInput.ConnectionString.TratarNomeBase()}, \"{NomeTabela.TratarNomePackage()}.{ParamtersInput.Prefixos.Procedure + "S_" + NomeTabela.TratarNomeTabela()}\",{N}");
             get.Append($"            {{{N}");
             get.Append($"                P_CURSORSELECT: {{ type: oracleDb.type(\"CURSOR\"), dir: oracleDb.type(\"BIND_OUT\") }}{N}");
             get.Append($"            }}, \"P_CURSORSELECT\",  function (err, result) {{  {N}");
@@ -53,7 +53,7 @@ namespace Zeus.Linguagens.Node.SQL.Procedure
         {
             var get = new StringBuilder();
             get.Append($"    insert: function (body, callback) {{ {N}");
-            get.Append($"        oracleDb.executeProcedure({ParamtersInput.ConnectionString.TratarNomeBase()}, \"{NomeTabela.TratarNomePackage()}.{Settings.Default.PrefixoProcedure + "I_" + NomeTabela.TratarNomeTabela()}\",{N}");
+            get.Append($"        oracleDb.executeProcedure({ParamtersInput.ConnectionString.TratarNomeBase()}, \"{NomeTabela.TratarNomePackage()}.{ParamtersInput.Prefixos.Procedure + "I_" + NomeTabela.TratarNomeTabela()}\",{N}");
             get.Append($"            {{{N}");
             get.Append($"                P_RESULT: {{ dir: oracleDb.type(\"BIND_OUT\"), type: oracleDb.type(\"STRING\") }}, {N}");
             for (int i = 1; i < ListaAtributosTabela.Count; i++)
@@ -73,7 +73,7 @@ namespace Zeus.Linguagens.Node.SQL.Procedure
 
             var get = new StringBuilder();
             get.Append($"    update: function (body, callback) {{ {N}");
-            get.Append($"        oracleDb.executeProcedure({ParamtersInput.ConnectionString.TratarNomeBase()}, \"{NomeTabela.TratarNomePackage()}.{Settings.Default.PrefixoProcedure + "U_" + NomeTabela.TratarNomeTabela()}\",{N}");
+            get.Append($"        oracleDb.executeProcedure({ParamtersInput.ConnectionString.TratarNomeBase()}, \"{NomeTabela.TratarNomePackage()}.{ParamtersInput.Prefixos.Procedure + "U_" + NomeTabela.TratarNomeTabela()}\",{N}");
             get.Append($"            {{{N}");
             get.Append($"                P_RESULT: {{ dir: oracleDb.type(\"BIND_OUT\"), type: oracleDb.type(\"STRING\") }}, {N}");
             for (int i = 0; i < ListaAtributosTabela.Count; i++)
@@ -91,7 +91,7 @@ namespace Zeus.Linguagens.Node.SQL.Procedure
         {
             var get = new StringBuilder();
             get.Append($"    delete: function (id, callback) {{ {N}");
-            get.Append($"        oracleDb.executeProcedure({ParamtersInput.ConnectionString.TratarNomeBase()}, \"{NomeTabela.TratarNomePackage()}.{Settings.Default.PrefixoProcedure + "D_" + NomeTabela.TratarNomeTabela()}\",{N}");
+            get.Append($"        oracleDb.executeProcedure({ParamtersInput.ConnectionString.TratarNomeBase()}, \"{NomeTabela.TratarNomePackage()}.{ParamtersInput.Prefixos.Procedure + "D_" + NomeTabela.TratarNomeTabela()}\",{N}");
             get.Append($"            {{{N}");
             get.Append($"                P_RESULT: {{ dir: oracleDb.type(\"BIND_OUT\"), type: oracleDb.type(\"STRING\") }}, {N}");
             get.Append($"                P_{ListaAtributosTabela.First().COLUMN_NAME}: id,{N}");

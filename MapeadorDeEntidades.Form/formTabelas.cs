@@ -10,6 +10,18 @@ namespace Zeus
         {
             InitializeComponent();
             ddlTabelas.Items.AddRange(tabelas.ToArray());
+            btnChkTabela.Checked = ParamtersInput.TodasTabelas;
+            ddlTabelas.Enabled = !btnChkTabela.Checked;
+            SelecionarTabelas();
+        }
+
+        private void SelecionarTabelas()
+        {
+            ddlTabelas.SelectedItems.Clear();
+            foreach (var item in ParamtersInput.NomeTabelas)
+            {
+                ddlTabelas.SelectedItems.Add(item);
+            }
         }
 
         private void btnSelecionar_Click(object sender, System.EventArgs e)
@@ -41,8 +53,18 @@ namespace Zeus
 
         private void btnChkTabela_CheckedChanged(object sender, EventArgs e)
         {
+            ddlTabelas.SelectedItems.Clear();
+
             ddlTabelas.Enabled = !btnChkTabela.Checked;
             ParamtersInput.TodasTabelas = btnChkTabela.Checked;
+
+            if (ParamtersInput.TodasTabelas)
+            {
+                foreach (var item in ParamtersInput.NomeTabelas)
+                {
+                    ddlTabelas.SelectedItems.Add(item);
+                }
+            }
         }
     }
 }

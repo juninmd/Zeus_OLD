@@ -19,7 +19,7 @@ namespace Zeus.Test.MySql
         {
             ParamtersInput.Linguagem = 1;
             var chamada = new OrquestradorMapeamentoEntidade().Generate();
-            Assert.AreEqual(HttpStatusCode.OK, chamada.StatusCode, chamada.Message);
+            Assert.AreEqual(HttpStatusCode.OK, chamada.StatusCode, chamada.TechnicalMessage);
             Assert.AreEqual(1, Directory.GetFiles(ParamtersInput.SelectedPath).Length, "Arquivo não foi encontrado.");
             Directory.Delete(ParamtersInput.SelectedPath, true);
         }
@@ -29,7 +29,7 @@ namespace Zeus.Test.MySql
         {
             ParamtersInput.Linguagem = 2;
             var chamada = new OrquestradorMapeamentoEntidade().Generate();
-            Assert.AreEqual(HttpStatusCode.OK, chamada.StatusCode, chamada.Message);
+            Assert.AreEqual(HttpStatusCode.OK, chamada.StatusCode, chamada.TechnicalMessage);
             Assert.AreEqual(1, Directory.GetFiles(ParamtersInput.SelectedPath).Length, "Arquivo não foi encontrado.");
             Directory.Delete(ParamtersInput.SelectedPath, true);
         }

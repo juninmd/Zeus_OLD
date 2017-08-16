@@ -50,6 +50,7 @@
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseTest.cs" />
     <Compile Include="EntidadeTest.cs" />
     <Compile Include="ConexaoPingTest.cs" />
     <Compile Include="Firebird\BaseFirebirdTest.cs" />

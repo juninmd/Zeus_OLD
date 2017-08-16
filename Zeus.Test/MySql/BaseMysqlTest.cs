@@ -5,7 +5,7 @@ using Zeus.Core;
 
 namespace Zeus.Test.MySql
 {
-    public class BaseMysqlTest
+    public class BaseMysqlTest : BaseTest
     {
         public BaseMysqlTest()
         {

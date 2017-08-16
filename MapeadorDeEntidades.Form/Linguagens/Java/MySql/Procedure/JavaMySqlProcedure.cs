@@ -27,18 +27,18 @@ namespace Zeus.Linguagens.Java.MySql.Procedure
             var proc = new StringBuilder();
             proc.Append($"	private enum Proc{N}");
             proc.Append($"	{{{N}");
-            proc.Append($"		{Settings.Default.PrefixoProcedure}S_{baseProc}_ID,{N}");
-            proc.Append($"		{Settings.Default.PrefixoProcedure}S_{baseProc},{N}");
-            proc.Append($"		{Settings.Default.PrefixoProcedure}I_{baseProc},{N}");
-            proc.Append($"		{Settings.Default.PrefixoProcedure}U_{baseProc},{N}");
-            proc.Append($"		{Settings.Default.PrefixoProcedure}D_{baseProc}{N}");
+            proc.Append($"		{ParamtersInput.Prefixos.Procedure}S_{baseProc}_ID,{N}");
+            proc.Append($"		{ParamtersInput.Prefixos.Procedure}S_{baseProc},{N}");
+            proc.Append($"		{ParamtersInput.Prefixos.Procedure}I_{baseProc},{N}");
+            proc.Append($"		{ParamtersInput.Prefixos.Procedure}U_{baseProc},{N}");
+            proc.Append($"		{ParamtersInput.Prefixos.Procedure}D_{baseProc}{N}");
             proc.Append($"	}}{N}");
             return proc;
         }
 
         private StringBuilder GetById()
         {
-            var nameProc = $"{Settings.Default.PrefixoProcedure}S_{NomeTabela.TratarNomeTabela().ToUpper()}_ID";
+            var nameProc = $"{ParamtersInput.Prefixos.Procedure}S_{NomeTabela.TratarNomeTabela().ToUpper()}_ID";
 
             var get = new StringBuilder();
             get.Append($"	public {NomeTabela} GetById(int id) throws Exception{N}");
@@ -69,7 +69,7 @@ namespace Zeus.Linguagens.Java.MySql.Procedure
 
         private StringBuilder GetAll()
         {
-            var nameProc = $"{Settings.Default.PrefixoProcedure}S_{NomeTabela.TratarNomeTabela().ToUpper()}";
+            var nameProc = $"{ParamtersInput.Prefixos.Procedure}S_{NomeTabela.TratarNomeTabela().ToUpper()}";
 
             var get = new StringBuilder();
             get.Append($"	public List<{NomeTabela}> GetAll() throws Exception{N}");
@@ -100,7 +100,7 @@ namespace Zeus.Linguagens.Java.MySql.Procedure
 
         private StringBuilder Add()
         {
-            var nameProc = $"{Settings.Default.PrefixoProcedure}I_{NomeTabela.TratarNomeTabela().ToUpper()}";
+            var nameProc = $"{ParamtersInput.Prefixos.Procedure}I_{NomeTabela.TratarNomeTabela().ToUpper()}";
 
             var get = new StringBuilder();
             get.Append($"	public void Add({NomeTabela} entidade) throws Exception{N}");
@@ -126,7 +126,7 @@ namespace Zeus.Linguagens.Java.MySql.Procedure
 
         private StringBuilder Update()
         {
-            var nameProc = $"{Settings.Default.PrefixoProcedure}U_{NomeTabela.TratarNomeTabela().ToUpper()}";
+            var nameProc = $"{ParamtersInput.Prefixos.Procedure}U_{NomeTabela.TratarNomeTabela().ToUpper()}";
 
             var get = new StringBuilder();
             get.Append($"	public void Update({NomeTabela} entidade) throws Exception{N}");
@@ -151,7 +151,7 @@ namespace Zeus.Linguagens.Java.MySql.Procedure
         }
         private StringBuilder Delete()
         {
-            var nameProc = $"{Settings.Default.PrefixoProcedure}U_{NomeTabela.TratarNomeTabela().ToUpper()}";
+            var nameProc = $"{ParamtersInput.Prefixos.Procedure}U_{NomeTabela.TratarNomeTabela().ToUpper()}";
 
             var get = new StringBuilder();
             get.Append($"	public void Delete(int ID) throws Exception{N}");

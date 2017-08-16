@@ -222,7 +222,7 @@ namespace Zeus.Core.SGBD.Oracle.Procedure
         {
             var body = new StringBuilder();
             body.Append(Environment.NewLine);
-            var nomeProc = Settings.Default.PrefixoProcedure + "I_" + NomeTabela.TratarNomeTabela();
+            var nomeProc = ParamtersInput.Prefixos.Procedure + "I_" + NomeTabela.TratarNomeTabela();
             body.Append(AdicionaCabecalho(nomeProc, false, false, false, false, true));
             body.Append(InsertBodyInside());
             body.Append($"END {nomeProc};" + Environment.NewLine);
@@ -250,7 +250,7 @@ namespace Zeus.Core.SGBD.Oracle.Procedure
         {
             var body = new StringBuilder();
             body.Append(Environment.NewLine);
-            var nomeProc = Settings.Default.PrefixoProcedure + "U_" + NomeTabela.TratarNomeTabela();
+            var nomeProc = ParamtersInput.Prefixos.Procedure + "U_" + NomeTabela.TratarNomeTabela();
             body.Append(AdicionaCabecalho(nomeProc));
             body.Append(UpdateBodyInside());
             body.Append($"END {nomeProc};" + Environment.NewLine);
@@ -275,7 +275,7 @@ namespace Zeus.Core.SGBD.Oracle.Procedure
         {
             var body = new StringBuilder();
             body.Append(Environment.NewLine);
-            var nomeProc = Settings.Default.PrefixoProcedure + "S_" + NomeTabela.TratarNomeTabela() + (Isall ? "" : "_ID");
+            var nomeProc = ParamtersInput.Prefixos.Procedure + "S_" + NomeTabela.TratarNomeTabela() + (Isall ? "" : "_ID");
             body.Append(AdicionaCabecalho(nomeProc, false, true, true, Isall));
             body.Append(SelectBodyInside(Isall));
             body.Append($"END {nomeProc};" + Environment.NewLine);
@@ -303,7 +303,7 @@ namespace Zeus.Core.SGBD.Oracle.Procedure
         {
             var body = new StringBuilder();
             body.Append(Environment.NewLine);
-            var nomeProc = Settings.Default.PrefixoProcedure + "D_" + NomeTabela.TratarNomeTabela();
+            var nomeProc = ParamtersInput.Prefixos.Procedure + "D_" + NomeTabela.TratarNomeTabela();
             body.Append(AdicionaCabecalho(nomeProc, false, false, true));
             body.Append(DeleteBodyInside());
             body.Append($"END {nomeProc};" + Environment.NewLine);
@@ -318,11 +318,11 @@ namespace Zeus.Core.SGBD.Oracle.Procedure
             var header = new StringBuilder();
             header.Append($"create or replace package {NomeTabela.TratarNomePackage()} is" + Environment.NewLine + Environment.NewLine);
             header.Append("  TYPE TP_CURSOR IS REF CURSOR;" + Environment.NewLine + Environment.NewLine);
-            header.Append(AdicionaCabecalho(Settings.Default.PrefixoProcedure + "I_" + NomeTabela.TratarNomeTabela(), true, false, false, false, true));
-            header.Append(AdicionaCabecalho(Settings.Default.PrefixoProcedure + "U_" + NomeTabela.TratarNomeTabela(), true));
-            header.Append(AdicionaCabecalho(Settings.Default.PrefixoProcedure + "D_" + NomeTabela.TratarNomeTabela(), true, false, true));
-            header.Append(AdicionaCabecalho(Settings.Default.PrefixoProcedure + "S_" + NomeTabela.TratarNomeTabela(), true, true, true, true));
-            header.Append(AdicionaCabecalho(Settings.Default.PrefixoProcedure + "S_" + NomeTabela.TratarNomeTabela() + "_ID", true, true, true));
+            header.Append(AdicionaCabecalho(ParamtersInput.Prefixos.Procedure + "I_" + NomeTabela.TratarNomeTabela(), true, false, false, false, true));
+            header.Append(AdicionaCabecalho(ParamtersInput.Prefixos.Procedure + "U_" + NomeTabela.TratarNomeTabela(), true));
+            header.Append(AdicionaCabecalho(ParamtersInput.Prefixos.Procedure + "D_" + NomeTabela.TratarNomeTabela(), true, false, true));
+            header.Append(AdicionaCabecalho(ParamtersInput.Prefixos.Procedure + "S_" + NomeTabela.TratarNomeTabela(), true, true, true, true));
+            header.Append(AdicionaCabecalho(ParamtersInput.Prefixos.Procedure + "S_" + NomeTabela.TratarNomeTabela() + "_ID", true, true, true));
             header.Append(Environment.NewLine + Environment.NewLine + $"end {NomeTabela.TratarNomePackage()};" + Environment.NewLine);
 
             return header;
