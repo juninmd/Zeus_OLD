@@ -4,6 +4,8 @@ namespace Zeus.Core
 {
     public static class ParamtersInput
     {
+        public static Prefixos Prefixos { get; set; }
+
         /// <summary>
         /// Caminho selecionado
         /// </summary>
@@ -38,5 +40,12 @@ namespace Zeus.Core
         public static string DataBase { get; set; }
 
         public static bool TodasTabelas { get; set; }
+    }
+
+    public class Prefixos
+    {
+        public string Tabela { get; set; }
+        public string Package { get; set; }
+        public string Procedure { get; set; }
     }
 }

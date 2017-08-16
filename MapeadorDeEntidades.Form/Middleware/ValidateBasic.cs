@@ -28,13 +28,17 @@ namespace Zeus.Middleware
                 };
             }
 
-            var funcao = salvar.ShowDialog();
-            if (funcao != DialogResult.OK)
-                return new RequestMessage<string>()
-                {
-                    Message = "Processamento cancelado!",
-                    StatusCode = System.Net.HttpStatusCode.BadRequest
-                };
+            if (String.IsNullOrEmpty(ParamtersInput.SelectedPath))
+            {
+                var funcao = salvar.ShowDialog();
+                if (funcao != DialogResult.OK)
+                    return new RequestMessage<string>()
+                    {
+                        Message = "Processamento cancelado!",
+                        StatusCode = System.Net.HttpStatusCode.BadRequest
+                    };
+
+            }
 
             return new RequestMessage<string> { StatusCode = HttpStatusCode.OK };
         }

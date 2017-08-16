@@ -1,4 +1,5 @@
-﻿using Zeus.Properties;
+﻿using System;
+using Zeus.Properties;
 
 namespace Zeus.Core
 {
@@ -6,16 +7,29 @@ namespace Zeus.Core
     {
         public static string TratarNomeTabela(this string nome)
         {
-            return nome.ToUpper().Replace(Settings.Default.PrefixoTabela.ToUpper(), "");
+            if (String.IsNullOrEmpty(ParamtersInput.Prefixos.Tabela))
+            {
+                return nome;
+            }
+            return nome.ToUpper().Replace(ParamtersInput.Prefixos.Tabela.ToUpper(), "");
         }
         public static string TratarNomeTabelaMySql(this string nome)
         {
-            return nome.ToLower().Replace(Settings.Default.PrefixoTabela.ToLower(), "");
+            if (String.IsNullOrEmpty(ParamtersInput.Prefixos.Tabela))
+            {
+                return nome;
+            }
+            return nome.ToLower().Replace(ParamtersInput.Prefixos.Tabela.ToLower(), "");
         }
 
         public static string TratarNomePackage(this string nome)
         {
-            return nome.ToUpper().Replace(Settings.Default.PrefixoTabela.ToUpper(), Settings.Default.PrefixoPackage);
+            if (String.IsNullOrEmpty(ParamtersInput.Prefixos.Tabela) ||
+                String.IsNullOrEmpty(ParamtersInput.Prefixos.Package))
+            {
+                return nome;
+            }
+            return nome.ToUpper().Replace(ParamtersInput.Prefixos.Tabela.ToUpper(), ParamtersInput.Prefixos.Package);
         }
         public static string TratarNomeBase(this string nome) { return $"\"{nome.Split(';')[1].Split('=')[1]}\""; }
     }

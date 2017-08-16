@@ -116,7 +116,7 @@ namespace Zeus
                     case 2:
                     case 4:
                         TabelasBD.Clear();
-                        TabelasBD.AddRange(connectionDb.Content.ToArray());
+                        TabelasBD = connectionDb.Content;
                         lblTabelas.Text = TabelasBD.Count > 0 ? $"{TabelasBD.Count} Tabela(s) disponível(eis)" : "Nenhuma tabela disponível.";
                         ddlDatabase.Items.Clear();
                         return;
@@ -130,7 +130,7 @@ namespace Zeus
             MessageBox.Show(connectionDb.TechnicalMessage ?? connectionDb.Message);
         }
 
-      
+
 
         private void EventSetParamters(object sender, EventArgs e)
         {
@@ -143,24 +143,24 @@ namespace Zeus
             TabelasBD.Clear();
             ddlDatabase.Items.Clear();
             ddlDatabase.Text = "";
+            ParamtersInput.NomeTabelas = new List<string>();
         }
+
         private void SetParamters()
         {
-            lblTabelas.Text = "Nenhuma tabela disponível.";
-            ParamtersInput.NomeTabelas.Clear();
             ParamtersInput.ConnectionString = txtConnectionString.Text;
             ParamtersInput.Linguagem = radioCsharp.Checked ? 1 : radioJava.Checked ? 2 : radioNode.Checked ? 3 : 0;
             ParamtersInput.SGBD = radioSGBD1.Checked ? 1 : radioSGBD2.Checked ? 2 : radioSGBD3.Checked ? 3 : radioSGBD4.Checked ? 4 : radioSGBD5.Checked ? 5 : 0;
             ParamtersInput.DataBase = ddlDatabase?.SelectedItem?.ToString();
-
-            if (ParamtersInput.TodasTabelas)
-            {
-                ParamtersInput.NomeTabelas = TabelasBD;
-            }
-            
             ddlDatabase.Enabled = radioSGBD3.Checked || radioSGBD5.Checked;
-        }
 
+            ParamtersInput.Prefixos = new Prefixos
+            {
+                Package = txtPreFixoPackages.Text,
+                Procedure = txtPreFixoProcedures.Text,
+                Tabela = txtPrefixoTabela.Text
+            };
+        }
 
 
         private void btnExemplo_Click(object sender, EventArgs e)
@@ -193,6 +193,8 @@ namespace Zeus
 
         private void ddlDatabase_SelectedIndexChanged(object sender, EventArgs e)
         {
+            Util.Status($"Schema Selecionado: {ddlDatabase.SelectedItem}");
+
             SetParamters();
             var mdProc = new OrquestradorTabelasSGBD().Connect();
             TabelasBD.Clear();
@@ -202,8 +204,9 @@ namespace Zeus
                 return;
             }
             TabelasBD = mdProc.Content;
-            lblTabelas.Text = TabelasBD.Count > 0 ? $"{TabelasBD.Count} Tabela(s) disponível(eis)" : "Nenhuma tabela disponível.";
-            TabelasBD.AddRange(mdProc.Content.ToArray());
+            var status = TabelasBD.Count > 0 ? $"{TabelasBD.Count} Tabela(s) disponível(eis)" : "Nenhuma tabela disponível.";
+            lblTabelas.Text = status;
+            Util.Status(status);
         }
 
         private void CheckLanguage(object sender, EventArgs e)
@@ -246,7 +249,7 @@ namespace Zeus
             txtPrefixoTabela.Text = Settings.Default.PrefixoTabela;
             txtConnectionString.Text = Settings.Default.ConnectionStringDefault;
             ddlUnificar.SelectedItem = Settings.Default.UnificarOutput ? "SIM" : "NÃO";
-            txtDestino.Text = Settings.Default.Destino;
+            ParamtersInput.SelectedPath = txtDestino.Text = Settings.Default.Destino;
             txtConnectionString.Focus();
         }
 
@@ -274,6 +277,11 @@ namespace Zeus
             }
 
             new formTabelas(TabelasBD).ShowDialog();
+        }
+
+        private void btnLimparStatus_Click(object sender, EventArgs e)
+        {
+            listaStatus.Items.Clear();
         }
     }
 }

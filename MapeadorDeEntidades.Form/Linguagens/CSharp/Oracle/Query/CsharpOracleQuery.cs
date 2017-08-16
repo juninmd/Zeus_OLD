@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using Zeus.Core;
 using Zeus.Linguagens.Base;
 using Zeus.Properties;
 
@@ -14,7 +15,7 @@ namespace Zeus.Linguagens.CSharp.Oracle.Query
 
         public StringBuilder GerarClasse()
         {
-            var nomeProcBase = NomeTabela.Replace(Settings.Default.PrefixoTabela, "");
+            var nomeProcBase = NomeTabela.Replace(ParamtersInput.Prefixos.Tabela, "");
 
             var classe = new StringBuilder();
             classe.Append("using System.Net;" + N);
@@ -199,7 +200,7 @@ namespace Zeus.Linguagens.CSharp.Oracle.Query
 
         public StringBuilder GerarInterfaceSharProc()
         {
-            var nomeProcBase = NomeTabela.Replace(Settings.Default.PrefixoTabela, "");
+            var nomeProcBase = NomeTabela.Replace(ParamtersInput.Prefixos.Tabela, "");
 
             var classe = new StringBuilder();
             classe.Append("using System;" + N + N);

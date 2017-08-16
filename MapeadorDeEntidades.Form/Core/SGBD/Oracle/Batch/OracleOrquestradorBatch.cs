@@ -25,7 +25,7 @@ namespace Zeus.Core.SGBD.Oracle.Batch
 
 
                     var nomePG = Path.GetFileNameWithoutExtension(nomeArquivo);
-                    if (nomePG.Contains((Settings.Default.PrefixoPackage)))
+                    if (nomePG.Contains((ParamtersInput.Prefixos.Package)))
                     {
 
                         var body = nomePG.Contains("_BODY");
