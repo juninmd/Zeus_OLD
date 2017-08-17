@@ -42,6 +42,7 @@ namespace Zeus
             this.radioSGBD2 = new System.Windows.Forms.RadioButton();
             this.radioSGBD1 = new System.Windows.Forms.RadioButton();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.ddlUnificar = new System.Windows.Forms.ComboBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.btnSelecionarTabelas = new System.Windows.Forms.Button();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
@@ -64,7 +65,6 @@ namespace Zeus
             this.groupBox9 = new System.Windows.Forms.GroupBox();
             this.txtPreFixoPackages = new System.Windows.Forms.TextBox();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
-            this.ddlUnificar = new System.Windows.Forms.ComboBox();
             this.groupBox12 = new System.Windows.Forms.GroupBox();
             this.btnDestino = new System.Windows.Forms.Button();
             this.txtDestino = new System.Windows.Forms.TextBox();
@@ -123,15 +123,14 @@ namespace Zeus
             // radioCsharp
             // 
             this.radioCsharp.AutoSize = true;
-            this.radioCsharp.Checked = true;
             this.radioCsharp.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.radioCsharp.Location = new System.Drawing.Point(10, 24);
+            this.radioCsharp.Location = new System.Drawing.Point(91, 24);
             this.radioCsharp.Name = "radioCsharp";
             this.radioCsharp.Size = new System.Drawing.Size(43, 20);
             this.radioCsharp.TabIndex = 0;
-            this.radioCsharp.TabStop = true;
             this.radioCsharp.Text = "C #";
             this.radioCsharp.UseVisualStyleBackColor = true;
+            this.radioCsharp.Visible = false;
             this.radioCsharp.CheckedChanged += new System.EventHandler(this.EventSetParamters);
             this.radioCsharp.Click += new System.EventHandler(this.CheckLanguage);
             // 
@@ -143,17 +142,18 @@ namespace Zeus
             this.radioJava.Name = "radioJava";
             this.radioJava.Size = new System.Drawing.Size(48, 20);
             this.radioJava.TabIndex = 1;
-            this.radioJava.TabStop = true;
             this.radioJava.Text = "Java";
             this.radioJava.UseVisualStyleBackColor = true;
+            this.radioJava.Visible = false;
             this.radioJava.CheckedChanged += new System.EventHandler(this.EventSetParamters);
             this.radioJava.Click += new System.EventHandler(this.CheckLanguage);
             // 
             // radioNode
             // 
             this.radioNode.AutoSize = true;
+            this.radioNode.Checked = true;
             this.radioNode.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.radioNode.Location = new System.Drawing.Point(59, 24);
+            this.radioNode.Location = new System.Drawing.Point(10, 24);
             this.radioNode.Name = "radioNode";
             this.radioNode.Size = new System.Drawing.Size(68, 20);
             this.radioNode.TabIndex = 1;
@@ -166,8 +166,9 @@ namespace Zeus
             // radioSGBD3
             // 
             this.radioSGBD3.AutoSize = true;
+            this.radioSGBD3.Checked = true;
             this.radioSGBD3.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.radioSGBD3.Location = new System.Drawing.Point(7, 43);
+            this.radioSGBD3.Location = new System.Drawing.Point(7, 19);
             this.radioSGBD3.Name = "radioSGBD3";
             this.radioSGBD3.Size = new System.Drawing.Size(58, 20);
             this.radioSGBD3.TabIndex = 2;
@@ -184,7 +185,6 @@ namespace Zeus
             this.radioSGBD2.Name = "radioSGBD2";
             this.radioSGBD2.Size = new System.Drawing.Size(88, 20);
             this.radioSGBD2.TabIndex = 2;
-            this.radioSGBD2.TabStop = true;
             this.radioSGBD2.Text = "SQL Server";
             this.radioSGBD2.UseVisualStyleBackColor = true;
             this.radioSGBD2.Visible = false;
@@ -193,15 +193,14 @@ namespace Zeus
             // radioSGBD1
             // 
             this.radioSGBD1.AutoSize = true;
-            this.radioSGBD1.Checked = true;
             this.radioSGBD1.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.radioSGBD1.Location = new System.Drawing.Point(7, 17);
+            this.radioSGBD1.Location = new System.Drawing.Point(7, 40);
             this.radioSGBD1.Name = "radioSGBD1";
             this.radioSGBD1.Size = new System.Drawing.Size(62, 20);
             this.radioSGBD1.TabIndex = 2;
-            this.radioSGBD1.TabStop = true;
             this.radioSGBD1.Text = "Oracle";
             this.radioSGBD1.UseVisualStyleBackColor = true;
+            this.radioSGBD1.Visible = false;
             this.radioSGBD1.CheckedChanged += new System.EventHandler(this.CleanParamters);
             // 
             // groupBox3
@@ -216,6 +215,21 @@ namespace Zeus
             this.groupBox3.TabIndex = 10;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Unificar Input / Procedures";
+            // 
+            // ddlUnificar
+            // 
+            this.ddlUnificar.BackColor = System.Drawing.SystemColors.MenuText;
+            this.ddlUnificar.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ddlUnificar.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.ddlUnificar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(150)))));
+            this.ddlUnificar.FormattingEnabled = true;
+            this.ddlUnificar.Items.AddRange(new object[] {
+            "SIM",
+            "NÃO"});
+            this.ddlUnificar.Location = new System.Drawing.Point(6, 20);
+            this.ddlUnificar.Name = "ddlUnificar";
+            this.ddlUnificar.Size = new System.Drawing.Size(98, 24);
+            this.ddlUnificar.TabIndex = 10;
             // 
             // groupBox4
             // 
@@ -364,7 +378,6 @@ namespace Zeus
             this.radioSGBD5.Name = "radioSGBD5";
             this.radioSGBD5.Size = new System.Drawing.Size(66, 20);
             this.radioSGBD5.TabIndex = 2;
-            this.radioSGBD5.TabStop = true;
             this.radioSGBD5.Text = "Postgre";
             this.radioSGBD5.UseVisualStyleBackColor = true;
             this.radioSGBD5.Visible = false;
@@ -378,7 +391,6 @@ namespace Zeus
             this.radioSGBD4.Name = "radioSGBD4";
             this.radioSGBD4.Size = new System.Drawing.Size(67, 20);
             this.radioSGBD4.TabIndex = 2;
-            this.radioSGBD4.TabStop = true;
             this.radioSGBD4.Text = "Firebird";
             this.radioSGBD4.UseVisualStyleBackColor = true;
             this.radioSGBD4.Visible = false;
@@ -488,21 +500,6 @@ namespace Zeus
             this.groupBox10.TabStop = false;
             this.groupBox10.Text = "Pré-Fixo Packages (Oracle)";
             // 
-            // ddlUnificar
-            // 
-            this.ddlUnificar.BackColor = System.Drawing.SystemColors.MenuText;
-            this.ddlUnificar.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.ddlUnificar.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.ddlUnificar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(150)))));
-            this.ddlUnificar.FormattingEnabled = true;
-            this.ddlUnificar.Items.AddRange(new object[] {
-            "SIM",
-            "NÃO"});
-            this.ddlUnificar.Location = new System.Drawing.Point(6, 20);
-            this.ddlUnificar.Name = "ddlUnificar";
-            this.ddlUnificar.Size = new System.Drawing.Size(98, 24);
-            this.ddlUnificar.TabIndex = 10;
-            // 
             // groupBox12
             // 
             this.groupBox12.Controls.Add(this.btnDestino);
@@ -563,7 +560,7 @@ namespace Zeus
             // btnConfiguracoes
             // 
             this.btnConfiguracoes.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnConfiguracoes.Location = new System.Drawing.Point(114, 19);
+            this.btnConfiguracoes.Location = new System.Drawing.Point(16, 19);
             this.btnConfiguracoes.Name = "btnConfiguracoes";
             this.btnConfiguracoes.Size = new System.Drawing.Size(205, 23);
             this.btnConfiguracoes.TabIndex = 15;
@@ -574,12 +571,13 @@ namespace Zeus
             // btnBatch
             // 
             this.btnBatch.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnBatch.Location = new System.Drawing.Point(16, 19);
+            this.btnBatch.Location = new System.Drawing.Point(227, 19);
             this.btnBatch.Name = "btnBatch";
             this.btnBatch.Size = new System.Drawing.Size(92, 23);
             this.btnBatch.TabIndex = 14;
             this.btnBatch.Text = "Batch Execute";
             this.btnBatch.UseVisualStyleBackColor = true;
+            this.btnBatch.Visible = false;
             this.btnBatch.Click += new System.EventHandler(this.btnBatch_Click);
             // 
             // lblTabelas
