@@ -18,7 +18,7 @@ namespace Zeus.Linguagens.CSharp.SQL.Procedure
             var classe = new StringBuilder();
             classe.Append("using System.Net;" + N);
             classe.Append("using System;" + N + N);
-            classe.Append("namespace MapeadorDeEntidades.Form" + N);
+            classe.Append("namespace MeuProjeto" + N);
             classe.Append("{" + N);
             classe.Append($"    public class {nomeProcBase}RequestRepository : ADORepository" + N);
             classe.Append("    {" + N + N);
@@ -62,7 +62,7 @@ namespace Zeus.Linguagens.CSharp.SQL.Procedure
 
             var classe = new StringBuilder();
             classe.Append("using System;" + N + N);
-            classe.Append("namespace MapeadorDeEntidades.Form" + N);
+            classe.Append("namespace MeuProjeto" + N);
             classe.Append("{" + N);
             classe.Append($"    public interface {nomeProcBase}Repository : IADORepository" + N);
             classe.Append("    {" + N + N);

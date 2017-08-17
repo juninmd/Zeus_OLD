@@ -46,77 +46,95 @@ namespace Zeus.Linguagens.Base
                 {
                     Message = "Falha no sistema!",
                     TechnicalMessage = ex.Message,
-                    StatusCode = HttpStatusCode.InternalServerError
+                    StatusCode = HttpStatusCode.InternalServerError,
+                    StackTrace = ex.StackTrace
                 };
             }
         }
         public void Implementar(string local, string nomeTabela)
         {
-            if (ParamtersInput.Linguagem == 1)
+            switch (ParamtersInput.Linguagem)
             {
-                if (ParamtersInput.SGBD == 1)
-                {
-                    var instancia = new CSharpOracleEntidade(nomeTabela);
-                    var classe = instancia.GerarBody();
-                    File.WriteAllText($"{local}\\{nomeTabela}.cs", classe);
-                }
-                else if (ParamtersInput.SGBD == 2)
-                {
-                    var instancia = new CSharpSQLEntidade(nomeTabela);
-                    var classe = instancia.GerarBody();
-                    File.WriteAllText($"{local}\\{nomeTabela.TratarNomeSQL()}.cs", classe);
-                }
-                else if (ParamtersInput.SGBD == 3)
-                {
-                    var instancia = new CSharpMySqlEntidade(nomeTabela);
-                    var classe = instancia.GerarBody();
-                    File.WriteAllText($"{local}\\{nomeTabela}.cs", classe);
-                }
-                else if (ParamtersInput.SGBD == 4)
-                {
-                    var instancia = new CSharpFirebirdEntidade(nomeTabela);
-                    var classe = instancia.GerarBody();
-                    File.WriteAllText($"{local}\\{nomeTabela}.cs", classe);
-                }
-                else if (ParamtersInput.SGBD == 5)
-                {
-                    var instancia = new CSharpPostgreEntidade(nomeTabela);
-                    var classe = instancia.GerarBody();
-                    File.WriteAllText($"{local}\\{nomeTabela}.cs", classe);
-                }
-            }
-            else if (ParamtersInput.Linguagem == 2)
-            {
-                if (ParamtersInput.SGBD == 1)
-                {
-                    var instancia = new JavaOracleEntidade(nomeTabela);
-                    var classe = instancia.GerarBody();
-                    File.WriteAllText($"{local}\\{nomeTabela}.java", classe);
-                }
-                else if (ParamtersInput.SGBD == 2)
-                {
-                    var instancia = new JavaSQLEntidade(nomeTabela);
-                    var classe = instancia.GerarBody();
-                    File.WriteAllText($"{local}\\{nomeTabela.TratarNomeSQL().ToFirstCharToUpper()}.java", classe);
-                }
-                else if (ParamtersInput.SGBD == 3)
-                {
-                    var instancia = new JavaMySqlEntidade(nomeTabela);
-                    var classe = instancia.GerarBody();
-                    File.WriteAllText($"{local}\\{nomeTabela}.java", classe);
-                }
-                else if (ParamtersInput.SGBD == 4)
-                {
-                    var instancia = new JavaFirebirdEntidade(nomeTabela);
-                    var classe = instancia.GerarBody();
-                    File.WriteAllText($"{local}\\{nomeTabela}.java", classe);
-                }
-                else if (ParamtersInput.SGBD == 5)
-                {
-                    var instancia = new JavaPostgreEntidade(nomeTabela);
-                    var classe = instancia.GerarBody();
-                    File.WriteAllText($"{local}\\{nomeTabela}.java", classe);
-                }
+                case 1:
+                    switch (ParamtersInput.SGBD)
+                    {
+                        case 1:
+                        {
+                            var instancia = new CSharpOracleEntidade(nomeTabela);
+                            var classe = instancia.GerarBody();
+                            File.WriteAllText($"{local}\\{nomeTabela}.cs", classe);
+                        }
+                            break;
+                        case 2:
+                        {
+                            var instancia = new CSharpSQLEntidade(nomeTabela);
+                            var classe = instancia.GerarBody();
+                            File.WriteAllText($"{local}\\{nomeTabela.TratarNomeSQL()}.cs", classe);
+                        }
+                            break;
+                        case 3:
+                        {
+                            var instancia = new CSharpMySqlEntidade(nomeTabela);
+                            var classe = instancia.GerarBody();
+                            File.WriteAllText($"{local}\\{nomeTabela}.cs", classe);
+                        }
+                            break;
+                        case 4:
+                        {
+                            var instancia = new CSharpFirebirdEntidade(nomeTabela);
+                            var classe = instancia.GerarBody();
+                            File.WriteAllText($"{local}\\{nomeTabela}.cs", classe);
+                        }
+                            break;
+                        case 5:
+                        {
+                            var instancia = new CSharpPostgreEntidade(nomeTabela);
+                            var classe = instancia.GerarBody();
+                            File.WriteAllText($"{local}\\{nomeTabela}.cs", classe);
+                        }
+                            break;
+                    }
+                    break;
+                case 2:
+                    switch (ParamtersInput.SGBD)
+                    {
+                        case 1:
+                        {
+                            var instancia = new JavaOracleEntidade(nomeTabela);
+                            var classe = instancia.GerarBody();
+                            File.WriteAllText($"{local}\\{nomeTabela}.java", classe);
+                        }
+                            break;
+                        case 2:
+                        {
+                            var instancia = new JavaSQLEntidade(nomeTabela);
+                            var classe = instancia.GerarBody();
+                            File.WriteAllText($"{local}\\{nomeTabela.TratarNomeSQL().ToFirstCharToUpper()}.java", classe);
+                        }
+                            break;
+                        case 3:
+                        {
+                            var instancia = new JavaMySqlEntidade(nomeTabela);
+                            var classe = instancia.GerarBody();
+                            File.WriteAllText($"{local}\\{nomeTabela}.java", classe);
+                        }
+                            break;
+                        case 4:
+                        {
+                            var instancia = new JavaFirebirdEntidade(nomeTabela);
+                            var classe = instancia.GerarBody();
+                            File.WriteAllText($"{local}\\{nomeTabela}.java", classe);
+                        }
+                            break;
+                        case 5:
+                        {
+                            var instancia = new JavaPostgreEntidade(nomeTabela);
+                            var classe = instancia.GerarBody();
+                            File.WriteAllText($"{local}\\{nomeTabela}.java", classe);
+                        }
+                            break;
+                    }
+                    break;
             }
         }
     }

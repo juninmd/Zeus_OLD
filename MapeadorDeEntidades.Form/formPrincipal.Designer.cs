@@ -50,6 +50,7 @@ namespace Zeus
             this.txtConnectionString = new System.Windows.Forms.TextBox();
             this.salvar = new System.Windows.Forms.FolderBrowserDialog();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.btnLimparStatus = new System.Windows.Forms.Button();
             this.listaStatus = new System.Windows.Forms.ListBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -64,7 +65,6 @@ namespace Zeus
             this.txtPreFixoPackages = new System.Windows.Forms.TextBox();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
             this.ddlUnificar = new System.Windows.Forms.ComboBox();
-            this.groupBox11 = new System.Windows.Forms.GroupBox();
             this.groupBox12 = new System.Windows.Forms.GroupBox();
             this.btnDestino = new System.Windows.Forms.Button();
             this.txtDestino = new System.Windows.Forms.TextBox();
@@ -73,7 +73,6 @@ namespace Zeus
             this.btnConfiguracoes = new System.Windows.Forms.Button();
             this.btnBatch = new System.Windows.Forms.Button();
             this.lblTabelas = new System.Windows.Forms.Label();
-            this.btnLimparStatus = new System.Windows.Forms.Button();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox5.SuspendLayout();
@@ -84,7 +83,6 @@ namespace Zeus
             this.groupBox8.SuspendLayout();
             this.groupBox9.SuspendLayout();
             this.groupBox10.SuspendLayout();
-            this.groupBox11.SuspendLayout();
             this.groupBox12.SuspendLayout();
             this.groupBox13.SuspendLayout();
             this.SuspendLayout();
@@ -114,11 +112,11 @@ namespace Zeus
             // btnProc
             // 
             this.btnProc.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnProc.Location = new System.Drawing.Point(6, 17);
+            this.btnProc.Location = new System.Drawing.Point(110, 17);
             this.btnProc.Name = "btnProc";
             this.btnProc.Size = new System.Drawing.Size(171, 30);
             this.btnProc.TabIndex = 10;
-            this.btnProc.Text = "Procedure";
+            this.btnProc.Text = "Gerar";
             this.btnProc.UseVisualStyleBackColor = true;
             this.btnProc.Click += new System.EventHandler(this.btnProcSql_Click);
             // 
@@ -208,15 +206,16 @@ namespace Zeus
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.ddlUnificar);
             this.groupBox3.Controls.Add(this.btnProc);
             this.groupBox3.Font = new System.Drawing.Font("Gill Sans MT", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(150)))));
-            this.groupBox3.Location = new System.Drawing.Point(266, 143);
+            this.groupBox3.Location = new System.Drawing.Point(152, 143);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(187, 60);
+            this.groupBox3.Size = new System.Drawing.Size(301, 60);
             this.groupBox3.TabIndex = 10;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Gerar";
+            this.groupBox3.Text = "Unificar Input / Procedures";
             // 
             // groupBox4
             // 
@@ -299,6 +298,18 @@ namespace Zeus
             this.groupBox6.TabIndex = 13;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Status";
+            // 
+            // btnLimparStatus
+            // 
+            this.btnLimparStatus.Font = new System.Drawing.Font("Gill Sans MT", 3.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLimparStatus.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnLimparStatus.Location = new System.Drawing.Point(905, 5);
+            this.btnLimparStatus.Name = "btnLimparStatus";
+            this.btnLimparStatus.Size = new System.Drawing.Size(18, 14);
+            this.btnLimparStatus.TabIndex = 17;
+            this.btnLimparStatus.Text = "x";
+            this.btnLimparStatus.UseVisualStyleBackColor = true;
+            this.btnLimparStatus.Click += new System.EventHandler(this.btnLimparStatus_Click);
             // 
             // listaStatus
             // 
@@ -487,22 +498,10 @@ namespace Zeus
             this.ddlUnificar.Items.AddRange(new object[] {
             "SIM",
             "NÃO"});
-            this.ddlUnificar.Location = new System.Drawing.Point(15, 19);
+            this.ddlUnificar.Location = new System.Drawing.Point(6, 20);
             this.ddlUnificar.Name = "ddlUnificar";
             this.ddlUnificar.Size = new System.Drawing.Size(98, 24);
             this.ddlUnificar.TabIndex = 10;
-            // 
-            // groupBox11
-            // 
-            this.groupBox11.Controls.Add(this.ddlUnificar);
-            this.groupBox11.Font = new System.Drawing.Font("Gill Sans MT", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(150)))));
-            this.groupBox11.Location = new System.Drawing.Point(143, 143);
-            this.groupBox11.Name = "groupBox11";
-            this.groupBox11.Size = new System.Drawing.Size(121, 60);
-            this.groupBox11.TabIndex = 9;
-            this.groupBox11.TabStop = false;
-            this.groupBox11.Text = "Unificar Output";
             // 
             // groupBox12
             // 
@@ -592,18 +591,6 @@ namespace Zeus
             this.lblTabelas.TabIndex = 18;
             this.lblTabelas.Text = "Nenhuma tabela disponível.";
             // 
-            // btnLimparStatus
-            // 
-            this.btnLimparStatus.Font = new System.Drawing.Font("Gill Sans MT", 3.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLimparStatus.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnLimparStatus.Location = new System.Drawing.Point(905, 5);
-            this.btnLimparStatus.Name = "btnLimparStatus";
-            this.btnLimparStatus.Size = new System.Drawing.Size(18, 14);
-            this.btnLimparStatus.TabIndex = 17;
-            this.btnLimparStatus.Text = "x";
-            this.btnLimparStatus.UseVisualStyleBackColor = true;
-            this.btnLimparStatus.Click += new System.EventHandler(this.btnLimparStatus_Click);
-            // 
             // formPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -616,7 +603,6 @@ namespace Zeus
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.groupBox8);
             this.Controls.Add(this.groupBox12);
-            this.Controls.Add(this.groupBox11);
             this.Controls.Add(this.groupBox7);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox9);
@@ -648,7 +634,6 @@ namespace Zeus
             this.groupBox9.PerformLayout();
             this.groupBox10.ResumeLayout(false);
             this.groupBox10.PerformLayout();
-            this.groupBox11.ResumeLayout(false);
             this.groupBox12.ResumeLayout(false);
             this.groupBox12.PerformLayout();
             this.groupBox13.ResumeLayout(false);
@@ -686,7 +671,6 @@ namespace Zeus
         private System.Windows.Forms.TextBox txtPreFixoPackages;
         private System.Windows.Forms.GroupBox groupBox10;
         private System.Windows.Forms.ComboBox ddlUnificar;
-        private System.Windows.Forms.GroupBox groupBox11;
         private System.Windows.Forms.GroupBox groupBox12;
         private System.Windows.Forms.RadioButton radioSGBD4;
         private System.Windows.Forms.RadioButton radioSGBD5;
