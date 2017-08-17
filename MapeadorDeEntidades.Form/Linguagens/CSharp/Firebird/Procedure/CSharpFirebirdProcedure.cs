@@ -15,15 +15,15 @@ namespace Zeus.Linguagens.CSharp.Firebird.Procedure
 
         public StringBuilder GerarClasse()
         {
-            var nomeProcBase = NomeTabela.Replace(ParamtersInput.Prefixos.Tabela, "");
+            var nomeProcBase =  NomeTabela.TratarNomeTabela();
             var classe = new StringBuilder();
             classe.Append("using System.Net;" + N);
             classe.Append("using System;" + N + N);
-            classe.Append("namespace MapeadorDeEntidades.Form" + N);
+            classe.Append("namespace MeuProjeto" + N);
             classe.Append("{" + N);
             classe.Append($"    public class {nomeProcBase.ToLowerInvariant()}RequestRepository : ADORepository" + N);
             classe.Append("    {" + N + N);
-            classe.Append($"        private const string PackageName = \"{NomeTabela.Replace("_T_", "_PG_")}\";" + N + N);
+            classe.Append($"        private const string PackageName = \"{NomeTabela.TratarNomePackage()}\";" + N + N);
             classe.Append(Procedures(nomeProcBase));
             classe.Append(GetById(nomeProcBase));
             classe.Append(Add(nomeProcBase));
@@ -160,11 +160,11 @@ namespace Zeus.Linguagens.CSharp.Firebird.Procedure
 
         public StringBuilder GerarInterfaceSharProc()
         {
-            var nomeProcBase = NomeTabela.Replace(ParamtersInput.Prefixos.Tabela, "");
+            var nomeProcBase =  NomeTabela.TratarNomeTabela();
 
             var classe = new StringBuilder();
             classe.Append("using System;" + N + N);
-            classe.Append("namespace MapeadorDeEntidades.Form" + N);
+            classe.Append("namespace MeuProjeto" + N);
             classe.Append("{" + N);
             classe.Append($"    public interface {nomeProcBase.ToLowerInvariant()}RequestRepository : IADORepository" + N);
             classe.Append("    {" + N + N);

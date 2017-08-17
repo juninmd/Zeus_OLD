@@ -30,7 +30,7 @@ namespace Zeus.Linguagens.Base
                     Util.Status($"Processando tabela: {nomeTabela}");
                     var body = Implementar(nomeTabela);
 
-                    if (!Settings.Default.UnificarOutput)
+                    if (!ParamtersInput.UnificarOutput)
                         File.WriteAllText($"{ParamtersInput.SelectedPath}{nomeTabela.TratarNomeSQL()}.sql", body);
                     else
                     {
@@ -39,7 +39,7 @@ namespace Zeus.Linguagens.Base
                     }
                 }
 
-                if (Settings.Default.UnificarOutput)
+                if (ParamtersInput.UnificarOutput)
                     File.WriteAllText(ParamtersInput.SelectedPath + $"{ParamtersInput.DataBase}.sql", unificar.ToString());
 
                 return new RequestMessage<string>
@@ -54,44 +54,25 @@ namespace Zeus.Linguagens.Base
                 {
                     Message = "Falha no sistema!",
                     TechnicalMessage = ex.Message,
-                    StatusCode = HttpStatusCode.InternalServerError
+                    StatusCode = HttpStatusCode.InternalServerError,
+                    StackTrace = ex.StackTrace
                 };
             }
         }
         public string Implementar(string nomeTabela)
         {
-            if (ParamtersInput.SGBD == 1)
+            switch (ParamtersInput.SGBD)
             {
-
-                ////Sequence
-                //var nomeSequence = nomeTabela.TratarNomeSequence().Replace(".NEXTVAL", "");
-                //if (!new OracleBatchSkip().Sequence(nomeSequence).IsError)
-                //{
-                //    var instanciaSequence = new OracleSequence().Init(nomeTabela);
-                //    var instanciaSave = new OracleBatch().Init(instanciaSequence);
-                //    if (instanciaSave.IsError)
-                //    {
-                //        return instanciaSave;
-                //    }
-                //}
-
-                //var instancia = new OracleProcedure(nomeTabela);
-                //var header = instancia.GerarPackageHeader().ToString();
-                //File.WriteAllText(local + $"{nomeTabela.TratarNomePackage()}_HEADER.sql", header);
-
-                return new OracleProcedure(nomeTabela).GerarBody();
-            }
-            if (ParamtersInput.SGBD == 2)
-            {
-                return new SQLProcedure(nomeTabela).GerarBody();
-            }
-            if (ParamtersInput.SGBD == 3)
-            {
-                return new MySqlProcedure(nomeTabela).GerarBody();
-            }
-            if (ParamtersInput.SGBD == 4)
-            {
-                //  return new FirebirdProcedure(nomeTabela);
+                case 1:
+                    return new OracleProcedure(nomeTabela).GerarBody();
+                case 2:
+                    return new SQLProcedure(nomeTabela).GerarBody();
+                case 3:
+                    return new MySqlProcedure(nomeTabela).GerarBody();
+                case 4:
+                    throw new NotImplementedException();
+                    //return new FirebirdProcedure(nomeTabela);
+                    //break;
             }
             return new PostgreProcedure(nomeTabela).GerarBody();
         }

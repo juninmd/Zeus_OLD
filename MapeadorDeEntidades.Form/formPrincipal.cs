@@ -250,6 +250,7 @@ namespace Zeus
             txtConnectionString.Text = Settings.Default.ConnectionStringDefault;
             ddlUnificar.SelectedItem = Settings.Default.UnificarOutput ? "SIM" : "NÃO";
             ParamtersInput.SelectedPath = txtDestino.Text = Settings.Default.Destino;
+            ParamtersInput.UnificarOutput = (string)ddlUnificar.SelectedItem == "SIM";
             txtConnectionString.Focus();
         }
 

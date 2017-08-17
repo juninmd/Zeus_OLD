@@ -40,6 +40,8 @@ namespace Zeus.Core
         public static string DataBase { get; set; }
 
         public static bool TodasTabelas { get; set; }
+
+        public static bool UnificarOutput { get; set; }
     }
 
     public class Prefixos

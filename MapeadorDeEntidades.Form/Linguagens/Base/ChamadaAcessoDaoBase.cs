@@ -63,219 +63,242 @@ namespace Zeus.Linguagens.Base
                 {
                     Message = "Falha no sistema!",
                     TechnicalMessage = ex.Message,
-                    StatusCode = HttpStatusCode.InternalServerError
+                    StatusCode = HttpStatusCode.InternalServerError,
+                    StackTrace = ex.StackTrace
                 };
             }
         }
 
         public void Implementar(string local, string nomeTabela)
         {
+            string body = "";
             if (ParamtersInput.Procedure)
             {
-                if (ParamtersInput.Linguagem == 1)
+                switch (ParamtersInput.Linguagem)
                 {
-                    if (ParamtersInput.SGBD == 1)
-                    {
-                        var instancia = new CSharpOracleProcedure(nomeTabela);
-                        var classe = instancia.GerarClasse().ToString();
-                        File.WriteAllText($"{local}{nomeTabela.TratarNomeTabela().ToFirstCharToUpper()}Repository.cs", classe);
-                        var interfacename = instancia.GerarInterfaceSharProc().ToString();
-                        File.WriteAllText(local + "I" + nomeTabela.TratarNomeTabela().ToFirstCharToUpper() + "Repository.cs", interfacename);
-                    }
-                    else if (ParamtersInput.SGBD == 2)
-                    {
-                        var instancia = new CSharpSQLProcedure(nomeTabela);
-                        var classe = instancia.GerarClasse().ToString();
-                        File.WriteAllText($"{local}{nomeTabela.TratarNomeTabela().ToFirstCharToUpper()}Repository.cs", classe);
-                    }
-                    else if (ParamtersInput.SGBD == 3)
-                    {
-                        var instancia = new CSharpMySqlProcedure(nomeTabela);
-                        var classe = instancia.GerarClasse().ToString();
-                        File.WriteAllText($"{local}{nomeTabela.TratarNomeTabela().ToFirstCharToUpper()}Repository.cs", classe);
-                    }
-                    else if (ParamtersInput.SGBD == 4)
-                    {
-                        var instancia = new CSharpFirebirdProcedure(nomeTabela);
-                        var classe = instancia.GerarClasse().ToString();
-                        File.WriteAllText($"{local}{nomeTabela.TratarNomeTabela().ToFirstCharToUpper()}Repository.cs", classe);
-                    }
-                    else if (ParamtersInput.SGBD == 5)
-                    {
-                        var instancia = new CSharpPostgreProcedure(nomeTabela);
-                        var classe = instancia.GerarClasse().ToString();
-                        File.WriteAllText($"{local}{nomeTabela.TratarNomeTabela().ToFirstCharToUpper()}Repository.cs", classe);
-                    }
-                }
-                else if (ParamtersInput.Linguagem == 2)
-                {
-                    if (ParamtersInput.SGBD == 1)
-                    {
-                        var instancia = new JavaOracleProcedure(nomeTabela);
-                        var classe = instancia.GerarClasse().ToString();
-                        File.WriteAllText($"{local}{nomeTabela.TratarNomeTabela().ToFirstCharToUpper()}Repository.cs", classe);
-                    }
-                    else if (ParamtersInput.SGBD == 2)
-                    {
-                        var instancia = new JavaSQLProcedure(nomeTabela);
-                        var classe = instancia.GerarClasse().ToString();
-                        File.WriteAllText($"{local}{nomeTabela.TratarNomeTabela().ToFirstCharToUpper()}Repository.cs", classe);
-                    }
-                    else if (ParamtersInput.SGBD == 3)
-                    {
-                        var instancia = new JavaMySqlProcedure(nomeTabela);
-                        var classe = instancia.GerarClasse().ToString();
-                        File.WriteAllText($"{local}{nomeTabela.TratarNomeTabela().ToFirstCharToUpper()}Repository.cs", classe);
-                    }
-                    else if (ParamtersInput.SGBD == 4)
-                    {
-                        var instancia = new JavaFirebirdProcedure(nomeTabela);
-                        var classe = instancia.GerarClasse().ToString();
-                        File.WriteAllText($"{local}{nomeTabela.TratarNomeTabela().ToFirstCharToUpper()}Repository.cs", classe);
-                    }
-                    else if (ParamtersInput.SGBD == 5)
-                    {
-                        var instancia = new JavaPostgreProcedure(nomeTabela);
-                        var classe = instancia.GerarClasse().ToString();
-                        File.WriteAllText($"{local}{nomeTabela.TratarNomeTabela().ToFirstCharToUpper()}Repository.cs", classe);
-                    }
-                }
-                else if (ParamtersInput.Linguagem == 3)
-                {
-                    if (ParamtersInput.SGBD == 1)
-                    {
-                        var instancia = new NodePostgreProcedure(nomeTabela);
-                        var classe = instancia.GerarClasse().ToString();
-                        File.WriteAllText($"{local}{nomeTabela.TratarNomeTabela().ToFirstCharToUpper()}Repository.cs", classe);
-                    }
-                    else if (ParamtersInput.SGBD == 2)
-                    {
-                        var instancia = new NodeSQLProcedure(nomeTabela);
-                        var classe = instancia.GerarClasse().ToString();
-                        File.WriteAllText($"{local}{nomeTabela.TratarNomeTabela().ToFirstCharToUpper()}Repository.cs", classe);
-                    }
-                    else if (ParamtersInput.SGBD == 3)
-                    {
-                        var instancia = new NodeMySqlProcedure(nomeTabela);
-                        var classe = instancia.GerarClasse().ToString();
-                        File.WriteAllText($"{local}{nomeTabela.TratarNomeTabela().ToFirstCharToUpper()}Repository.cs", classe);
-                    }
-                    else if (ParamtersInput.SGBD == 4)
-                    {
-                        var instancia = new NodeFirebirdProcedure(nomeTabela);
-                        var classe = instancia.GerarClasse().ToString();
-                        File.WriteAllText($"{local}{nomeTabela.TratarNomeTabela().ToFirstCharToUpper()}Repository.cs", classe);
-                    }
-                    else if (ParamtersInput.SGBD == 5)
-                    {
-                        var instancia = new NodePostgreProcedure(nomeTabela);
-                        var classe = instancia.GerarClasse().ToString();
-                        File.WriteAllText($"{local}{nomeTabela.TratarNomeTabela().ToFirstCharToUpper()}Repository.cs", classe);
-                    }
+                    case 1:
+                        switch (ParamtersInput.SGBD)
+                        {
+                            case 1:
+                            {
+                                var instancia = new CSharpOracleProcedure(nomeTabela);
+                                body = instancia.GerarClasse().ToString();
+                            }
+                                break;
+                            case 2:
+                            {
+                                var instancia = new CSharpSQLProcedure(nomeTabela);
+                                body = instancia.GerarClasse().ToString();
+                            }
+                                break;
+                            case 3:
+                            {
+                                var instancia = new CSharpMySqlProcedure(nomeTabela);
+                                body = instancia.GerarClasse().ToString();
+                            }
+                                break;
+                            case 4:
+                            {
+                                var instancia = new CSharpFirebirdProcedure(nomeTabela);
+                                body = instancia.GerarClasse().ToString();
+                            }
+                                break;
+                            case 5:
+                            {
+                                var instancia = new CSharpPostgreProcedure(nomeTabela);
+                                body = instancia.GerarClasse().ToString();
+                            }
+                                break;
+                        }
+                        File.WriteAllText($"{local}{nomeTabela.TratarNomeTabela().ToFirstCharToUpper()}Repository.cs", body);
+                        break;
+                    case 2:
+                        switch (ParamtersInput.SGBD)
+                        {
+                            case 1:
+                            {
+                                var instancia = new JavaOracleProcedure(nomeTabela);
+                                body = instancia.GerarClasse().ToString();
+                            }
+                                break;
+                            case 2:
+                            {
+                                var instancia = new JavaSQLProcedure(nomeTabela);
+                                body = instancia.GerarClasse().ToString();
+                            }
+                                break;
+                            case 3:
+                            {
+                                var instancia = new JavaMySqlProcedure(nomeTabela);
+                                body = instancia.GerarClasse().ToString();
+                            }
+                                break;
+                            case 4:
+                            {
+                                var instancia = new JavaFirebirdProcedure(nomeTabela);
+                                body = instancia.GerarClasse().ToString();
+                            }
+                                break;
+                            case 5:
+                            {
+                                var instancia = new JavaPostgreProcedure(nomeTabela);
+                                body = instancia.GerarClasse().ToString();
+                            }
+                                break;
+                        }
+                        File.WriteAllText($"{local}{nomeTabela.TratarNomeTabela().ToFirstCharToUpper()}Repository.java", body);
+                        break;
+                    case 3:
+                        switch (ParamtersInput.SGBD)
+                        {
+                            case 1:
+                            {
+                                var instancia = new NodePostgreProcedure(nomeTabela);
+                                body = instancia.GerarClasse().ToString();
+                            }
+                                break;
+                            case 2:
+                            {
+                                var instancia = new NodeSQLProcedure(nomeTabela);
+                                body = instancia.GerarClasse().ToString();
+                            }
+                                break;
+                            case 3:
+                            {
+                                var instancia = new NodeMySqlProcedure(nomeTabela);
+                                body = instancia.GerarClasse().ToString();
+                            }
+                                break;
+                            case 4:
+                            {
+                                var instancia = new NodeFirebirdProcedure(nomeTabela);
+                                body = instancia.GerarClasse().ToString();
+                            }
+                                break;
+                            case 5:
+                            {
+                                var instancia = new NodePostgreProcedure(nomeTabela);
+                                body = instancia.GerarClasse().ToString();
+                            }
+                                break;
+                        }
+                        File.WriteAllText($"{local}{nomeTabela.TratarNomeTabela().ToFirstCharToUpper()}Repository.js", body);
+                        break;
                 }
             }
             else
             {
-                if (ParamtersInput.Linguagem == 1)
+                switch (ParamtersInput.Linguagem)
                 {
-                    if (ParamtersInput.SGBD == 1)
-                    {
-                        var instancia = new CsharpOracleQuery(nomeTabela);
-                        var classe = instancia.GerarClasse().ToString();
-                        File.WriteAllText($"{local}{nomeTabela.TratarNomeTabela().ToFirstCharToUpper()}Repository.cs", classe);
-                        var interfacename = instancia.GerarInterfaceSharProc().ToString();
-                        File.WriteAllText(local + "I" + nomeTabela.TratarNomeTabela().ToFirstCharToUpper() + "Repository.cs", interfacename);
-                    }
-                    else if (ParamtersInput.SGBD == 2)
-                    {
-                        var instancia = new CSharpSQLQuery(nomeTabela);
-                        var classe = instancia.GerarClasse().ToString();
-                        File.WriteAllText($"{local}{nomeTabela.TratarNomeTabela().ToFirstCharToUpper()}Repository.cs", classe);
-                    }
-                    else if (ParamtersInput.SGBD == 3)
-                    {
-                        var instancia = new CsharpMySqlQuery(nomeTabela);
-                        var classe = instancia.GerarBodyCSharpProc().ToString();
-                        File.WriteAllText($"{local}{nomeTabela.TratarNomeTabela().ToFirstCharToUpper()}Repository.cs", classe);
-                    }
-                    else if (ParamtersInput.SGBD == 4)
-                    {
-                        var instancia = new CSharpFirebirdQuery(nomeTabela);
-                        var classe = instancia.GerarClasse().ToString();
-                        File.WriteAllText($"{local}{nomeTabela.TratarNomeTabela().ToFirstCharToUpper()}Repository.cs", classe);
-                    }
-                    else if (ParamtersInput.SGBD == 5)
-                    {
-                        var instancia = new CSharpPostgreQuery(nomeTabela);
-                        var classe = instancia.GerarClasse().ToString();
-                        File.WriteAllText($"{local}{nomeTabela.TratarNomeTabela().ToFirstCharToUpper()}Repository.cs", classe);
-                    }
-                }
-                else if (ParamtersInput.Linguagem == 2)
-                {
-                    if (ParamtersInput.SGBD == 1)
-                    {
-                        var instancia = new JavaOracleQuery(nomeTabela);
-                        var classe = instancia.GerarClasse().ToString();
-                        File.WriteAllText($"{local}{nomeTabela.TratarNomeTabela().ToFirstCharToUpper()}Repository.java", classe);
-                    }
-                    else if (ParamtersInput.SGBD == 2)
-                    {
-                        var instancia = new JavaSQLQuery(nomeTabela);
-                        var classe = instancia.GerarClasse().ToString();
-                        File.WriteAllText($"{local}{nomeTabela.TratarNomeTabela().ToFirstCharToUpper()}Repository.java", classe);
-                    }
-                    else if (ParamtersInput.SGBD == 3)
-                    {
-                        var instancia = new JavaMySqlQuery(nomeTabela);
-                        var classe = instancia.GerarClasse().ToString();
-                        File.WriteAllText($"{local}{nomeTabela.TratarNomeTabelaMySql().ToFirstCharToUpper()}Repository.java", classe);
-                    }
-                    else if (ParamtersInput.SGBD == 4)
-                    {
-                        var instancia = new JavaFirebirdQuery(nomeTabela);
-                        var classe = instancia.GerarClasse().ToString();
-                        File.WriteAllText($"{local}{nomeTabela.TratarNomeTabela().ToFirstCharToUpper()}Repository.java", classe);
-                    }
-                    else if (ParamtersInput.SGBD == 5)
-                    {
-                        var instancia = new JavaPostgreQuery(nomeTabela);
-                        var classe = instancia.GerarClasse().ToString();
-                        File.WriteAllText($"{local}{nomeTabela.TratarNomeTabela().ToFirstCharToUpper()}Repository.java", classe);
-                    }
-                }
-                else if (ParamtersInput.Linguagem == 3)
-                {
-                    if (ParamtersInput.SGBD == 1)
-                    {
-                        var instancia = new NodePostgreQuery(nomeTabela);
-                        var classe = instancia.GerarClasse().ToString();
-                        File.WriteAllText($"{local}{nomeTabela.TratarNomeTabela().ToFirstCharToUpper()}Repository.js", classe);
-                    }
-                    else if (ParamtersInput.SGBD == 2)
-                    {
-                        var instancia = new NodeSQLQuery(nomeTabela);
-                        var classe = instancia.GerarClasse().ToString();
-                        File.WriteAllText($"{local}{nomeTabela.TratarNomeTabela().ToFirstCharToUpper()}Repository.js", classe);
-                    }
-                    else if (ParamtersInput.SGBD == 3)
-                    {
-                        var instancia = new NodeMySqlQuery(nomeTabela);
-                        var classe = instancia.GerarClasse().ToString();
-                        File.WriteAllText($"{local}{nomeTabela.TratarNomeTabelaMySql().ToFirstCharToUpper()}Repository.js", classe);
-                    }
-                    else if (ParamtersInput.SGBD == 4)
-                    {
-                        var instancia = new NodeFirebirdQuery(nomeTabela);
-                        var classe = instancia.GerarClasse().ToString();
-                        File.WriteAllText($"{local}{nomeTabela.TratarNomeTabela().ToFirstCharToUpper()}Repository.js", classe);
-                    }
-                    else if (ParamtersInput.SGBD == 5)
-                    {
-                        var instancia = new NodePostgreQuery(nomeTabela);
-                        var classe = instancia.GerarClasse().ToString();
-                        File.WriteAllText($"{local}{nomeTabela.TratarNomeTabela().ToFirstCharToUpper()}Repository.js", classe);
-                    }
+                    case 1:
+                        switch (ParamtersInput.SGBD)
+                        {
+                            case 1:
+                            {
+                                var instancia = new CsharpOracleQuery(nomeTabela);
+                                body = instancia.GerarClasse().ToString();
+                            }
+                                break;
+                            case 2:
+                            {
+                                var instancia = new CSharpSQLQuery(nomeTabela);
+                                body = instancia.GerarClasse().ToString();
+                            }
+                                break;
+                            case 3:
+                            {
+                                var instancia = new CsharpMySqlQuery(nomeTabela);
+                                body = instancia.GerarBodyCSharpProc().ToString();
+                            }
+                                break;
+                            case 4:
+                            {
+                                var instancia = new CSharpFirebirdQuery(nomeTabela);
+                                body = instancia.GerarClasse().ToString();
+                            }
+                                break;
+                            case 5:
+                            {
+                                var instancia = new CSharpPostgreQuery(nomeTabela);
+                                body = instancia.GerarClasse().ToString();
+                            }
+                                break;
+                        }
+
+                        File.WriteAllText($"{local}{nomeTabela.TratarNomeTabela().ToFirstCharToUpper()}Repository.cs", body);
+                        break;
+                    case 2:
+                        switch (ParamtersInput.SGBD)
+                        {
+                            case 1:
+                            {
+                                var instancia = new JavaOracleQuery(nomeTabela);
+                                body = instancia.GerarClasse().ToString();
+                            }
+                                break;
+                            case 2:
+                            {
+                                var instancia = new JavaSQLQuery(nomeTabela);
+                                body = instancia.GerarClasse().ToString();
+                            }
+                                break;
+                            case 3:
+                            {
+                                var instancia = new JavaMySqlQuery(nomeTabela);
+                                body = instancia.GerarClasse().ToString();
+                            }
+                                break;
+                            case 4:
+                            {
+                                var instancia = new JavaFirebirdQuery(nomeTabela);
+                                body = instancia.GerarClasse().ToString();
+                            }
+                                break;
+                            case 5:
+                            {
+                                var instancia = new JavaPostgreQuery(nomeTabela);
+                                body = instancia.GerarClasse().ToString();
+                            }
+                                break;
+                        }
+                        File.WriteAllText($"{local}{nomeTabela.TratarNomeTabela().ToFirstCharToUpper()}Repository.java", body);
+                        break;
+                    case 3:
+                        switch (ParamtersInput.SGBD)
+                        {
+                            case 1:
+                            {
+                                var instancia = new NodePostgreQuery(nomeTabela);
+                                body = instancia.GerarClasse().ToString();
+                            }
+                                break;
+                            case 2:
+                            {
+                                var instancia = new NodeSQLQuery(nomeTabela);
+                                body = instancia.GerarClasse().ToString();
+                            }
+                                break;
+                            case 3:
+                            {
+                                var instancia = new NodeMySqlQuery(nomeTabela);
+                                body = instancia.GerarClasse().ToString();
+                            }
+                                break;
+                            case 4:
+                            {
+                                var instancia = new NodeFirebirdQuery(nomeTabela);
+                                body = instancia.GerarClasse().ToString();
+                            }
+                                break;
+                            case 5:
+                            {
+                                var instancia = new NodePostgreQuery(nomeTabela);
+                                body = instancia.GerarClasse().ToString();
+                            }
+                                break;
+                        }
+                        File.WriteAllText($"{local}{nomeTabela.TratarNomeTabela().ToLower()}Repository.js", body);
+                        break;
                 }
             }
         }

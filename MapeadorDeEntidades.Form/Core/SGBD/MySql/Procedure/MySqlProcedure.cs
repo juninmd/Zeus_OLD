@@ -1,7 +1,6 @@
 ﻿using System.Text;
 using Zeus.Core.SGBD.MySql.Procedure.Verbos;
 using Zeus.Linguagens.Base;
-using Zeus.Properties;
 
 namespace Zeus.Core.SGBD.MySql.Procedure
 {

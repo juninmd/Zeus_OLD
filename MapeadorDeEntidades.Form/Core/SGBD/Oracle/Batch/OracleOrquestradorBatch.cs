@@ -64,7 +64,8 @@ namespace Zeus.Core.SGBD.Oracle.Batch
                 {
                     Message = "Falha no sistema!",
                     TechnicalMessage = ex.Message,
-                    StatusCode = System.Net.HttpStatusCode.InternalServerError
+                    StatusCode = System.Net.HttpStatusCode.InternalServerError,
+                    StackTrace = ex.StackTrace
                 };
             }
         }
