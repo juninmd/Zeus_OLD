@@ -1,10 +1,11 @@
-﻿using System;
+﻿using MaterialSkin.Controls;
+using System;
 using System.Collections.Generic;
 using Zeus.Core;
 
 namespace Zeus
 {
-    public partial class formTabelas : System.Windows.Forms.Form
+    public partial class formTabelas : MaterialForm
     {
         public formTabelas(List<string> tabelas)
         {

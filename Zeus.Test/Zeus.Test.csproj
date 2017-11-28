@@ -73,7 +73,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MapeadorDeEntidades.Form\Zeus.csproj">
+    <ProjectReference Include="..\Zeus.Form\Zeus.csproj">
       <Project>{4a277e6c-8217-4dd5-847b-0b24060dd420}</Project>
       <Name>Zeus</Name>
     </ProjectReference>
