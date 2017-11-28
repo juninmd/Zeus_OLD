@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26228.4
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zeus", "MapeadorDeEntidades.Form\Zeus.csproj", "{4A277E6C-8217-4DD5-847B-0B24060DD420}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zeus", "Zeus.Form\Zeus.csproj", "{4A277E6C-8217-4DD5-847B-0B24060DD420}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zeus.Test", "Zeus.Test\Zeus.Test.csproj", "{C2350205-6381-4EBC-BA49-8E84E4EE1502}"
 EndProject

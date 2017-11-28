@@ -1,9 +1,10 @@
-﻿using System;
+﻿using MaterialSkin.Controls;
+using System;
 using System.Windows.Forms;
 
 namespace Zeus
 {
-    public partial class formConnectionString : System.Windows.Forms.Form
+    public partial class formConnectionString : MaterialForm
     {
         public formConnectionString()
         {

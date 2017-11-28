@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MaterialSkin.Controls;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Media;
@@ -10,7 +11,7 @@ using Zeus.Utilidade;
 
 namespace Zeus
 {
-    public partial class formPrincipal : System.Windows.Forms.Form
+    public partial class formPrincipal : MaterialForm
     {
         public List<string> TabelasBD { get; set; }
 
