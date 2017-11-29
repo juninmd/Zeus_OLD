@@ -1,5 +1,4 @@
-﻿using MaterialSkin.Controls;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Media;
@@ -11,7 +10,7 @@ using Zeus.Utilidade;
 
 namespace Zeus
 {
-    public partial class formPrincipal : MaterialForm
+    public partial class formPrincipal : Form
     {
         public List<string> TabelasBD { get; set; }
 
@@ -170,7 +169,6 @@ namespace Zeus
             if (fc == null)
                 new formConnectionString()
                 {
-                    FormPrincipal = txtConnectionString,
                     Oracle = radioSGBD1,
                     Sql = radioSGBD2,
                     Mysql = radioSGBD3,
@@ -182,7 +180,6 @@ namespace Zeus
                 fc.Close();
                 new formConnectionString()
                 {
-                    FormPrincipal = txtConnectionString,
                     Oracle = radioSGBD1,
                     Sql = radioSGBD2,
                     Mysql = radioSGBD3,
@@ -284,6 +281,11 @@ namespace Zeus
         private void btnLimparStatus_Click(object sender, EventArgs e)
         {
             listaStatus.Items.Clear();
+        }
+
+        private void formPrincipal_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }
