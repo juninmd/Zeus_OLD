@@ -299,6 +299,7 @@
             this.radioSGBD3.TabStop = true;
             this.radioSGBD3.Text = "MySql";
             this.radioSGBD3.UseVisualStyleBackColor = true;
+            this.radioSGBD3.CheckedChanged += new System.EventHandler(this.radioSGBD3_CheckedChanged);
             // 
             // radioSGBD1
             // 
@@ -316,6 +317,7 @@
             this.radioSGBD1.TabStop = true;
             this.radioSGBD1.Text = "Oracle";
             this.radioSGBD1.UseVisualStyleBackColor = true;
+            this.radioSGBD1.CheckedChanged += new System.EventHandler(this.radioSGBD1_CheckedChanged);
             // 
             // radioSGBD2
             // 
@@ -333,6 +335,8 @@
             this.radioSGBD2.TabStop = true;
             this.radioSGBD2.Text = "SQL Server";
             this.radioSGBD2.UseVisualStyleBackColor = true;
+            this.radioSGBD2.CheckedChanged += new System.EventHandler(this.radioSGBD2_CheckedChanged);
+
             // 
             // radioSGBD4
             // 
@@ -350,6 +354,8 @@
             this.radioSGBD4.TabStop = true;
             this.radioSGBD4.Text = "Firebird";
             this.radioSGBD4.UseVisualStyleBackColor = true;
+            this.radioSGBD4.CheckedChanged += new System.EventHandler(this.radioSGBD4_CheckedChanged);
+
             // 
             // radioSGBD5
             // 
@@ -367,6 +373,8 @@
             this.radioSGBD5.TabStop = true;
             this.radioSGBD5.Text = "Postgre";
             this.radioSGBD5.UseVisualStyleBackColor = true;
+            this.radioSGBD5.CheckedChanged += new System.EventHandler(this.radioSGBD5_CheckedChanged);
+
             // 
             // btnExemplo
             // 
