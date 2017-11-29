@@ -46,7 +46,6 @@ namespace Zeus
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.btnSelecionarTabelas = new System.Windows.Forms.Button();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.btnExemplo = new System.Windows.Forms.Button();
             this.btnConnection = new System.Windows.Forms.Button();
             this.txtConnectionString = new System.Windows.Forms.TextBox();
             this.salvar = new System.Windows.Forms.FolderBrowserDialog();
@@ -68,11 +67,11 @@ namespace Zeus
             this.groupBox12 = new System.Windows.Forms.GroupBox();
             this.btnDestino = new System.Windows.Forms.Button();
             this.txtDestino = new System.Windows.Forms.TextBox();
-            this.progressBar1 = new Zeus.Core.NewProgressBar();
             this.groupBox13 = new System.Windows.Forms.GroupBox();
             this.btnConfiguracoes = new System.Windows.Forms.Button();
             this.btnBatch = new System.Windows.Forms.Button();
             this.lblTabelas = new System.Windows.Forms.Label();
+            this.progressBar1 = new Zeus.Core.NewProgressBar();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox5.SuspendLayout();
@@ -256,7 +255,6 @@ namespace Zeus
             // 
             // groupBox5
             // 
-            this.groupBox5.Controls.Add(this.btnExemplo);
             this.groupBox5.Controls.Add(this.btnConnection);
             this.groupBox5.Controls.Add(this.txtConnectionString);
             this.groupBox5.Font = new System.Drawing.Font("Gill Sans MT", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -268,23 +266,12 @@ namespace Zeus
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Connection String";
             // 
-            // btnExemplo
-            // 
-            this.btnExemplo.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnExemplo.Location = new System.Drawing.Point(773, 19);
-            this.btnExemplo.Name = "btnExemplo";
-            this.btnExemplo.Size = new System.Drawing.Size(21, 29);
-            this.btnExemplo.TabIndex = 3;
-            this.btnExemplo.Text = "?";
-            this.btnExemplo.UseVisualStyleBackColor = true;
-            this.btnExemplo.Click += new System.EventHandler(this.btnExemplo_Click);
-            // 
             // btnConnection
             // 
             this.btnConnection.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnConnection.Location = new System.Drawing.Point(694, 19);
             this.btnConnection.Name = "btnConnection";
-            this.btnConnection.Size = new System.Drawing.Size(75, 29);
+            this.btnConnection.Size = new System.Drawing.Size(98, 29);
             this.btnConnection.TabIndex = 2;
             this.btnConnection.Text = "Conectar";
             this.btnConnection.UseVisualStyleBackColor = true;
@@ -534,16 +521,6 @@ namespace Zeus
             this.txtDestino.Size = new System.Drawing.Size(507, 20);
             this.txtDestino.TabIndex = 4;
             // 
-            // progressBar1
-            // 
-            this.progressBar1.ForeColor = System.Drawing.Color.Maroon;
-            this.progressBar1.Location = new System.Drawing.Point(21, 353);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(736, 12);
-            this.progressBar1.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
-            this.progressBar1.TabIndex = 14;
-            this.progressBar1.UseWaitCursor = true;
-            // 
             // groupBox13
             // 
             this.groupBox13.Controls.Add(this.btnConfiguracoes);
@@ -589,6 +566,16 @@ namespace Zeus
             this.lblTabelas.TabIndex = 18;
             this.lblTabelas.Text = "Nenhuma tabela disponível.";
             // 
+            // progressBar1
+            // 
+            this.progressBar1.ForeColor = System.Drawing.Color.Maroon;
+            this.progressBar1.Location = new System.Drawing.Point(21, 353);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(736, 12);
+            this.progressBar1.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
+            this.progressBar1.TabIndex = 14;
+            this.progressBar1.UseWaitCursor = true;
+            // 
             // formPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -609,13 +596,13 @@ namespace Zeus
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox2);
-            this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "formPrincipal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Zeus - 1.0";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.formPrincipal_FormClosed);
             this.groupBox3.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
             this.groupBox5.ResumeLayout(false);
@@ -652,7 +639,6 @@ namespace Zeus
         private System.Windows.Forms.TextBox txtConnectionString;
         private System.Windows.Forms.Button btnConnection;
         private System.Windows.Forms.FolderBrowserDialog salvar;
-        private System.Windows.Forms.Button btnExemplo;
         private System.Windows.Forms.RadioButton radioSGBD2;
         private System.Windows.Forms.RadioButton radioSGBD3;
         private NewProgressBar progressBar1;

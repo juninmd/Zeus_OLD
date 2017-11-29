@@ -12,7 +12,7 @@ namespace Zeus
             OcultaTexto();
         }
 
-        public TextBox FormPrincipal { get; set; }
+        public MaterialSingleLineTextField ConnectionString { get; set; }
 
         public RadioButton Oracle { get; set; }
         public RadioButton Sql { get; set; }
@@ -32,27 +32,27 @@ namespace Zeus
             {
                 case "Oracle":
                     //User Id=USR_BIRL;Data Source=localhost;Password=!USR_BIRL!
-                    FormPrincipal.Text = $"User Id={txt1.Text};Data Source={txt2.Text};Password={txt3.Text}";
+                    ConnectionString.Text = $"User Id={txt1.Text};Data Source={txt2.Text};Password={txt3.Text}";
                     Oracle.Checked = true;
                     break;
                 case "SQL Server":
                     //Server=localhost;Database=Aula1;Trusted_Connection=True
-                    FormPrincipal.Text = $"Server={txt1.Text};uid={txt2.Text};pwd={txt3.Text};database={txt4.Text}";
+                    ConnectionString.Text = $"Server={txt1.Text};uid={txt2.Text};pwd={txt3.Text};database={txt4.Text}";
                     Sql.Checked = true;
                     break;
                 case "MYSQL":
                     //Server=localhost;Uid=mysql;Pwd=;Port=5500
-                    FormPrincipal.Text = $"Server={txt1.Text};Uid={txt2.Text};Pwd={txt3.Text};Port={txt4.Text}";
+                    ConnectionString.Text = $"Server={txt1.Text};Uid={txt2.Text};Pwd={txt3.Text};Port={txt4.Text}";
                     Mysql.Checked = true;
                     break;
                 case "Firebird":
                     //User=SYSDBA;Password=masterkey;Database=D:\\Meus Projetos\\Solutions\\Trabalho Fernando\\BANCO.fdb;DataSource=localhost;Port=3050
-                    FormPrincipal.Text = $"User={txt1.Text};Password={txt2.Text};Database={txt3.Text};DataSource={txt4.Text};Port={txt5.Text}";
+                    ConnectionString.Text = $"User={txt1.Text};Password={txt2.Text};Database={txt3.Text};DataSource={txt4.Text};Port={txt5.Text}";
                     Firebird.Checked = true;
                     break;
                 case "Postgre":
                     //Host=localhost;Database=postgres;User ID=postgres;Password=root;Port=5432
-                    FormPrincipal.Text = $"Host={txt1.Text};Database={txt2.Text};User ID={txt3.Text};Password={txt4.Text};Port={txt5.Text}";
+                    ConnectionString.Text = $"Host={txt1.Text};Database={txt2.Text};User ID={txt3.Text};Password={txt4.Text};Port={txt5.Text}";
                     Postgre.Checked = true;
                     break;
             }

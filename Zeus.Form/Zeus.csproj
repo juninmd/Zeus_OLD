@@ -259,6 +259,12 @@
     <Compile Include="Core\RequestMessage.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="Utilidade\Util.cs" />
+    <Compile Include="formWizard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formWizard.Designer.cs">
+      <DependentUpon>formWizard.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Core\NewProgressBar.resx">
       <DependentUpon>NewProgressBar.cs</DependentUpon>
     </EmbeddedResource>
@@ -310,12 +316,26 @@
     <Content Include="docs\MySqlParameter.xml" />
     <Content Include="docs\MySqlParameterCollection.xml" />
     <Content Include="docs\MySqlTransaction.xml" />
+    <None Include="Resources\zeus-intro.jpg" />
+    <None Include="Resources\sqlserver.png" />
+    <None Include="Resources\postgre.png" />
+    <None Include="Resources\oracle.png" />
+    <None Include="Resources\nodejs.png" />
+    <None Include="Resources\mysql.png" />
+    <None Include="Resources\java.png" />
+    <None Include="Resources\firebird.png" />
+    <None Include="Resources\csharp.png" />
+    <None Include="Resources\cover.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="formWizard.resx">
+      <DependentUpon>formWizard.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="zeus.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
