@@ -43,7 +43,7 @@
             this.picsgbd = new System.Windows.Forms.PictureBox();
             this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
             this.materialRaisedButton1 = new MaterialSkin.Controls.MaterialRaisedButton();
-            this.materialRaisedButton2 = new MaterialSkin.Controls.MaterialRaisedButton();
+            this.btnconnection = new MaterialSkin.Controls.MaterialRaisedButton();
             this.txtConnectionString = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.materialLabel4 = new MaterialSkin.Controls.MaterialLabel();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -232,16 +232,17 @@
             this.materialRaisedButton1.Text = "Avançar";
             this.materialRaisedButton1.UseVisualStyleBackColor = true;
             // 
-            // materialRaisedButton2
+            // btnconnection
             // 
-            this.materialRaisedButton2.Depth = 0;
-            this.materialRaisedButton2.Location = new System.Drawing.Point(503, 230);
-            this.materialRaisedButton2.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialRaisedButton2.Name = "materialRaisedButton2";
-            this.materialRaisedButton2.Primary = true;
-            this.materialRaisedButton2.Size = new System.Drawing.Size(138, 23);
-            this.materialRaisedButton2.TabIndex = 13;
-            this.materialRaisedButton2.Text = "Testar Conexão";
+            this.btnconnection.Depth = 0;
+            this.btnconnection.Location = new System.Drawing.Point(503, 230);
+            this.btnconnection.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnconnection.Name = "btnconnection";
+            this.btnconnection.Primary = true;
+            this.btnconnection.Size = new System.Drawing.Size(138, 23);
+            this.btnconnection.TabIndex = 13;
+            this.btnconnection.Text = "Testar Conexão";
+            this.btnconnection.Click += new System.EventHandler(this.btnconnection_Click);
             // 
             // txtConnectionString
             // 
@@ -336,7 +337,6 @@
             this.radioSGBD2.Text = "SQL Server";
             this.radioSGBD2.UseVisualStyleBackColor = true;
             this.radioSGBD2.CheckedChanged += new System.EventHandler(this.radioSGBD2_CheckedChanged);
-
             // 
             // radioSGBD4
             // 
@@ -355,7 +355,6 @@
             this.radioSGBD4.Text = "Firebird";
             this.radioSGBD4.UseVisualStyleBackColor = true;
             this.radioSGBD4.CheckedChanged += new System.EventHandler(this.radioSGBD4_CheckedChanged);
-
             // 
             // radioSGBD5
             // 
@@ -374,7 +373,6 @@
             this.radioSGBD5.Text = "Postgre";
             this.radioSGBD5.UseVisualStyleBackColor = true;
             this.radioSGBD5.CheckedChanged += new System.EventHandler(this.radioSGBD5_CheckedChanged);
-
             // 
             // btnExemplo
             // 
@@ -395,7 +393,7 @@
             this.tabPage1.Controls.Add(this.panel1);
             this.tabPage1.Controls.Add(this.materialLabel4);
             this.tabPage1.Controls.Add(this.txtConnectionString);
-            this.tabPage1.Controls.Add(this.materialRaisedButton2);
+            this.tabPage1.Controls.Add(this.btnconnection);
             this.tabPage1.Controls.Add(this.materialRaisedButton1);
             this.tabPage1.Controls.Add(this.materialLabel1);
             this.tabPage1.Controls.Add(this.picsgbd);
@@ -474,7 +472,7 @@
         private MaterialSkin.Controls.MaterialRadioButton radioSGBD3;
         private MaterialSkin.Controls.MaterialLabel materialLabel4;
         private MaterialSkin.Controls.MaterialSingleLineTextField txtConnectionString;
-        private MaterialSkin.Controls.MaterialRaisedButton materialRaisedButton2;
+        private MaterialSkin.Controls.MaterialRaisedButton btnconnection;
         private MaterialSkin.Controls.MaterialRaisedButton materialRaisedButton1;
         private MaterialSkin.Controls.MaterialLabel materialLabel1;
         private System.Windows.Forms.PictureBox picsgbd;

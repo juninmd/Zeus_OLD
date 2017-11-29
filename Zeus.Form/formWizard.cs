@@ -1,6 +1,10 @@
 ﻿using MaterialSkin;
 using MaterialSkin.Controls;
 using System.Windows.Forms;
+using Zeus.Middleware;
+using Zeus.Utilidade;
+using System;
+using Zeus.Core;
 
 namespace Zeus
 {
@@ -83,6 +87,24 @@ namespace Zeus
         {
             this.picsgbd.Image = Properties.Resources.postgre;
 
+        }
+
+        private void btnconnection_Click(object sender, System.EventArgs e)
+        {
+            SetParamters();
+            var connectionDb = new OrquestradorPingSGBD().Connect();
+            if (!connectionDb.IsError)
+            {
+                MessageBox.Show($@"{connectionDb.Message}");
+                return;
+            }
+            MessageBox.Show(connectionDb.TechnicalMessage ?? connectionDb.Message);
+        }
+
+        private void SetParamters()
+        {
+            ParamtersInput.ConnectionString = txtConnectionString.Text;
+            ParamtersInput.SGBD = radioSGBD1.Checked ? 1 : radioSGBD2.Checked ? 2 : radioSGBD3.Checked ? 3 : radioSGBD4.Checked ? 4 : radioSGBD5.Checked ? 5 : 0;
         }
     }
 }
