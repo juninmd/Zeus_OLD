@@ -58,6 +58,31 @@ namespace Zeus
                 }.ShowDialog();
             }
         }
- 
+
+        private void radioSGBD3_CheckedChanged(object sender, System.EventArgs e)
+        {
+            this.picsgbd.Image = Properties.Resources.mysql;
+        }
+
+        private void radioSGBD1_CheckedChanged(object sender, System.EventArgs e)
+        {
+            this.picsgbd.Image = Properties.Resources.oracle;
+        }
+
+        private void radioSGBD2_CheckedChanged(object sender, System.EventArgs e)
+        {
+            this.picsgbd.Image = Properties.Resources.sqlserver;
+        }
+
+        private void radioSGBD4_CheckedChanged(object sender, System.EventArgs e)
+        {
+            this.picsgbd.Image = Properties.Resources.firebird;
+        }
+
+        private void radioSGBD5_CheckedChanged(object sender, System.EventArgs e)
+        {
+            this.picsgbd.Image = Properties.Resources.postgre;
+
+        }
     }
 }
