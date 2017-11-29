@@ -58,10 +58,6 @@ namespace Zeus
                 }.ShowDialog();
             }
         }
-
-        private void materialRaisedButton2_Click(object sender, System.EventArgs e)
-        {
-
-        }
+ 
     }
 }
