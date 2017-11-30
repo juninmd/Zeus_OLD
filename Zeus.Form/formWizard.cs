@@ -2,14 +2,16 @@
 using MaterialSkin.Controls;
 using System.Windows.Forms;
 using Zeus.Middleware;
-using Zeus.Utilidade;
 using System;
 using Zeus.Core;
+using System.Collections.Generic;
 
 namespace Zeus
 {
     public partial class formWizard : MaterialForm
     {
+        public List<string> ListaTabelas { get; set; }
+
         public formWizard()
         {
             InitializeComponent();
@@ -17,6 +19,7 @@ namespace Zeus
             materialSkinManager.AddFormToManage(this);
             materialSkinManager.Theme = MaterialSkinManager.Themes.DARK;
             materialSkinManager.ColorScheme = new ColorScheme(Primary.BlueGrey800, Primary.BlueGrey900, Primary.BlueGrey500, Accent.LightBlue200, TextShade.WHITE);
+            ListaTabelas = new List<string>();
         }
 
         private void btnIniciar_Click(object sender, System.EventArgs e)
@@ -103,8 +106,106 @@ namespace Zeus
 
         private void SetParamters()
         {
+            ParamtersInput.DataBase = listSchemas.SelectedItem?.ToString();
             ParamtersInput.ConnectionString = txtConnectionString.Text;
             ParamtersInput.SGBD = radioSGBD1.Checked ? 1 : radioSGBD2.Checked ? 2 : radioSGBD3.Checked ? 3 : radioSGBD4.Checked ? 4 : radioSGBD5.Checked ? 5 : 0;
+        }
+
+        private void btnAvancar_Click(object sender, EventArgs e)
+        {
+            SetParamters();
+            var connectionDb = new OrquestradorPingSGBD().Connect();
+            if (connectionDb.IsError)
+            {
+                MessageBox.Show($@"{connectionDb.Message}");
+                return;
+            }
+
+            switch (ParamtersInput.SGBD)
+            {
+                case 1:
+                case 2:
+                case 4:
+                    ListaTabelas = connectionDb.Content;
+                    lblTabelas.Text = ListaTabelas.Count > 0 ? $"{ListaTabelas.Count} Tabela(s) disponível(eis)" : "Nenhuma tabela disponível.";
+                    listSchemas.Items.Clear();
+                    return;
+            }
+
+            listSchemas.Items.Clear();
+            listSchemas.Items.AddRange(connectionDb.Content.ToArray());
+
+            tab.SelectTab(1);
+        }
+
+        private void ddlDatabase_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SetParamters();
+            var tabelas = new OrquestradorTabelasSGBD().Connect();
+            if (tabelas.IsError)
+            {
+                MessageBox.Show(tabelas.Message);
+                return;
+            }
+            ListaTabelas = tabelas.Content;
+            listTabelas.Items.Clear();
+            listTabelas.Items.AddRange(ListaTabelas.ToArray());
+            lblTabelas.Text = ListaTabelas.Count > 0 ? $"{ListaTabelas.Count} Tabela(s) disponível(eis)" : "Nenhuma tabela disponível.";
+
+        }
+
+        private void btnChkTabela_CheckedChanged(object sender, EventArgs e)
+        {
+            listTabelas.SelectedItems.Clear();
+
+            listTabelas.Enabled = !btnChkTabela.Checked;
+            ParamtersInput.TodasTabelas = btnChkTabela.Checked;
+
+            if (ParamtersInput.TodasTabelas)
+            {
+                foreach (var item in ListaTabelas)
+                {
+                    listTabelas.SelectedItems.Add(item);
+                }
+            }
+        }
+
+        private void btnAvancarTabelas_Click(object sender, EventArgs e)
+        {
+            ParamtersInput.NomeTabelas = new List<string>();
+
+            if(listTabelas.SelectedItems.Count == 0)
+            {
+                return;
+            }
+
+            if (!ParamtersInput.TodasTabelas)
+            {
+                foreach (var item in listTabelas.SelectedItems)
+                {
+                    ParamtersInput.NomeTabelas.Add(item.ToString());
+                }
+
+            }
+            else
+            {
+                foreach (var item in listTabelas.Items)
+                {
+                    ParamtersInput.NomeTabelas.Add(item.ToString());
+                }
+            }
+
+            tab.SelectTab(2);
+        }
+
+        private void pictureBox7_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tabPage3_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
