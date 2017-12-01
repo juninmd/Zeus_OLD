@@ -195,16 +195,6 @@ namespace Zeus
             tab.SelectTab(2);
         }
 
-        private void pictureBox7_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tabPage3_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void checkProcedure_CheckedChanged(object sender, EventArgs e)
         {
             ParamtersInput.Procedure = checkProcedure.Checked;

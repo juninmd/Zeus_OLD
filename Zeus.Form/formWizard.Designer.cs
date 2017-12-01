@@ -29,7 +29,22 @@
         private void InitializeComponent()
         {
             this.tab = new MaterialSkin.Controls.MaterialTabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.btnExemplo = new MaterialSkin.Controls.MaterialRaisedButton();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.radioSGBD5 = new MaterialSkin.Controls.MaterialRadioButton();
+            this.radioSGBD4 = new MaterialSkin.Controls.MaterialRadioButton();
+            this.radioSGBD2 = new MaterialSkin.Controls.MaterialRadioButton();
+            this.radioSGBD1 = new MaterialSkin.Controls.MaterialRadioButton();
+            this.radioSGBD3 = new MaterialSkin.Controls.MaterialRadioButton();
+            this.materialLabel4 = new MaterialSkin.Controls.MaterialLabel();
+            this.txtConnectionString = new MaterialSkin.Controls.MaterialSingleLineTextField();
+            this.btnconnection = new MaterialSkin.Controls.MaterialRaisedButton();
+            this.btnAvancar = new MaterialSkin.Controls.MaterialRaisedButton();
+            this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
+            this.picsgbd = new System.Windows.Forms.PictureBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.btnVoltarTabelas = new MaterialSkin.Controls.MaterialRaisedButton();
             this.lblTabelas = new MaterialSkin.Controls.MaterialLabel();
             this.materialLabel5 = new MaterialSkin.Controls.MaterialLabel();
             this.materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
@@ -38,6 +53,7 @@
             this.btnChkTabela = new MaterialSkin.Controls.MaterialCheckBox();
             this.listTabelas = new System.Windows.Forms.ListBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.btnVoltarLinguagem = new MaterialSkin.Controls.MaterialRaisedButton();
             this.materialLabel7 = new MaterialSkin.Controls.MaterialLabel();
             this.labelRequisitos = new MaterialSkin.Controls.MaterialLabel();
             this.btnEntidade = new MaterialSkin.Controls.MaterialRaisedButton();
@@ -53,30 +69,14 @@
             this.radioNode = new MaterialSkin.Controls.MaterialRadioButton();
             this.materialTabSelector1 = new MaterialSkin.Controls.MaterialTabSelector();
             this.salvar = new System.Windows.Forms.FolderBrowserDialog();
-            this.picsgbd = new System.Windows.Forms.PictureBox();
-            this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
-            this.btnAvancar = new MaterialSkin.Controls.MaterialRaisedButton();
-            this.btnconnection = new MaterialSkin.Controls.MaterialRaisedButton();
-            this.txtConnectionString = new MaterialSkin.Controls.MaterialSingleLineTextField();
-            this.materialLabel4 = new MaterialSkin.Controls.MaterialLabel();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.radioSGBD3 = new MaterialSkin.Controls.MaterialRadioButton();
-            this.radioSGBD1 = new MaterialSkin.Controls.MaterialRadioButton();
-            this.radioSGBD2 = new MaterialSkin.Controls.MaterialRadioButton();
-            this.radioSGBD4 = new MaterialSkin.Controls.MaterialRadioButton();
-            this.radioSGBD5 = new MaterialSkin.Controls.MaterialRadioButton();
-            this.btnExemplo = new MaterialSkin.Controls.MaterialRaisedButton();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.btnVoltarLinguagem = new MaterialSkin.Controls.MaterialRaisedButton();
-            this.btnVoltarTabelas = new MaterialSkin.Controls.MaterialRaisedButton();
             this.tab.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picsgbd)).BeginInit();
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.piclinguagem)).BeginInit();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picsgbd)).BeginInit();
-            this.panel1.SuspendLayout();
-            this.tabPage1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tab
@@ -85,13 +85,221 @@
             this.tab.Controls.Add(this.tabPage2);
             this.tab.Controls.Add(this.tabPage3);
             this.tab.Depth = 0;
-            this.tab.Location = new System.Drawing.Point(2, 62);
+            this.tab.Location = new System.Drawing.Point(-1, 119);
             this.tab.MouseState = MaterialSkin.MouseState.HOVER;
             this.tab.Name = "tab";
             this.tab.Padding = new System.Drawing.Point(2, 2);
             this.tab.SelectedIndex = 0;
-            this.tab.Size = new System.Drawing.Size(667, 369);
+            this.tab.Size = new System.Drawing.Size(668, 368);
             this.tab.TabIndex = 4;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.btnExemplo);
+            this.tabPage1.Controls.Add(this.panel1);
+            this.tabPage1.Controls.Add(this.materialLabel4);
+            this.tabPage1.Controls.Add(this.txtConnectionString);
+            this.tabPage1.Controls.Add(this.btnconnection);
+            this.tabPage1.Controls.Add(this.btnAvancar);
+            this.tabPage1.Controls.Add(this.materialLabel1);
+            this.tabPage1.Controls.Add(this.picsgbd);
+            this.tabPage1.Location = new System.Drawing.Point(4, 20);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(660, 344);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "Banco";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // btnExemplo
+            // 
+            this.btnExemplo.Depth = 0;
+            this.btnExemplo.Location = new System.Drawing.Point(451, 230);
+            this.btnExemplo.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnExemplo.Name = "btnExemplo";
+            this.btnExemplo.Primary = true;
+            this.btnExemplo.Size = new System.Drawing.Size(46, 23);
+            this.btnExemplo.TabIndex = 16;
+            this.btnExemplo.Text = "?";
+            this.btnExemplo.UseVisualStyleBackColor = true;
+            this.btnExemplo.Click += new System.EventHandler(this.btnExemplo_Click);
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.radioSGBD5);
+            this.panel1.Controls.Add(this.radioSGBD4);
+            this.panel1.Controls.Add(this.radioSGBD2);
+            this.panel1.Controls.Add(this.radioSGBD1);
+            this.panel1.Controls.Add(this.radioSGBD3);
+            this.panel1.Location = new System.Drawing.Point(31, 41);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(356, 76);
+            this.panel1.TabIndex = 15;
+            // 
+            // radioSGBD5
+            // 
+            this.radioSGBD5.AutoSize = true;
+            this.radioSGBD5.Depth = 0;
+            this.radioSGBD5.Font = new System.Drawing.Font("Roboto", 10F);
+            this.radioSGBD5.Location = new System.Drawing.Point(245, 0);
+            this.radioSGBD5.Margin = new System.Windows.Forms.Padding(0);
+            this.radioSGBD5.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.radioSGBD5.MouseState = MaterialSkin.MouseState.HOVER;
+            this.radioSGBD5.Name = "radioSGBD5";
+            this.radioSGBD5.Ripple = true;
+            this.radioSGBD5.Size = new System.Drawing.Size(77, 30);
+            this.radioSGBD5.TabIndex = 4;
+            this.radioSGBD5.TabStop = true;
+            this.radioSGBD5.Text = "Postgre";
+            this.radioSGBD5.UseVisualStyleBackColor = true;
+            this.radioSGBD5.CheckedChanged += new System.EventHandler(this.radioSGBD5_CheckedChanged);
+            // 
+            // radioSGBD4
+            // 
+            this.radioSGBD4.AutoSize = true;
+            this.radioSGBD4.Depth = 0;
+            this.radioSGBD4.Font = new System.Drawing.Font("Roboto", 10F);
+            this.radioSGBD4.Location = new System.Drawing.Point(114, 30);
+            this.radioSGBD4.Margin = new System.Windows.Forms.Padding(0);
+            this.radioSGBD4.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.radioSGBD4.MouseState = MaterialSkin.MouseState.HOVER;
+            this.radioSGBD4.Name = "radioSGBD4";
+            this.radioSGBD4.Ripple = true;
+            this.radioSGBD4.Size = new System.Drawing.Size(76, 30);
+            this.radioSGBD4.TabIndex = 3;
+            this.radioSGBD4.TabStop = true;
+            this.radioSGBD4.Text = "Firebird";
+            this.radioSGBD4.UseVisualStyleBackColor = true;
+            this.radioSGBD4.CheckedChanged += new System.EventHandler(this.radioSGBD4_CheckedChanged);
+            // 
+            // radioSGBD2
+            // 
+            this.radioSGBD2.AutoSize = true;
+            this.radioSGBD2.Depth = 0;
+            this.radioSGBD2.Font = new System.Drawing.Font("Roboto", 10F);
+            this.radioSGBD2.Location = new System.Drawing.Point(114, 0);
+            this.radioSGBD2.Margin = new System.Windows.Forms.Padding(0);
+            this.radioSGBD2.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.radioSGBD2.MouseState = MaterialSkin.MouseState.HOVER;
+            this.radioSGBD2.Name = "radioSGBD2";
+            this.radioSGBD2.Ripple = true;
+            this.radioSGBD2.Size = new System.Drawing.Size(97, 30);
+            this.radioSGBD2.TabIndex = 2;
+            this.radioSGBD2.TabStop = true;
+            this.radioSGBD2.Text = "SQL Server";
+            this.radioSGBD2.UseVisualStyleBackColor = true;
+            this.radioSGBD2.CheckedChanged += new System.EventHandler(this.radioSGBD2_CheckedChanged);
+            // 
+            // radioSGBD1
+            // 
+            this.radioSGBD1.AutoSize = true;
+            this.radioSGBD1.Depth = 0;
+            this.radioSGBD1.Font = new System.Drawing.Font("Roboto", 10F);
+            this.radioSGBD1.Location = new System.Drawing.Point(0, 30);
+            this.radioSGBD1.Margin = new System.Windows.Forms.Padding(0);
+            this.radioSGBD1.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.radioSGBD1.MouseState = MaterialSkin.MouseState.HOVER;
+            this.radioSGBD1.Name = "radioSGBD1";
+            this.radioSGBD1.Ripple = true;
+            this.radioSGBD1.Size = new System.Drawing.Size(69, 30);
+            this.radioSGBD1.TabIndex = 1;
+            this.radioSGBD1.TabStop = true;
+            this.radioSGBD1.Text = "Oracle";
+            this.radioSGBD1.UseVisualStyleBackColor = true;
+            this.radioSGBD1.CheckedChanged += new System.EventHandler(this.radioSGBD1_CheckedChanged);
+            // 
+            // radioSGBD3
+            // 
+            this.radioSGBD3.AutoSize = true;
+            this.radioSGBD3.Depth = 0;
+            this.radioSGBD3.Font = new System.Drawing.Font("Roboto", 10F);
+            this.radioSGBD3.Location = new System.Drawing.Point(0, 0);
+            this.radioSGBD3.Margin = new System.Windows.Forms.Padding(0);
+            this.radioSGBD3.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.radioSGBD3.MouseState = MaterialSkin.MouseState.HOVER;
+            this.radioSGBD3.Name = "radioSGBD3";
+            this.radioSGBD3.Ripple = true;
+            this.radioSGBD3.Size = new System.Drawing.Size(67, 30);
+            this.radioSGBD3.TabIndex = 0;
+            this.radioSGBD3.TabStop = true;
+            this.radioSGBD3.Text = "MySql";
+            this.radioSGBD3.UseVisualStyleBackColor = true;
+            this.radioSGBD3.CheckedChanged += new System.EventHandler(this.radioSGBD3_CheckedChanged);
+            // 
+            // materialLabel4
+            // 
+            this.materialLabel4.AutoSize = true;
+            this.materialLabel4.Depth = 0;
+            this.materialLabel4.Font = new System.Drawing.Font("Roboto", 11F);
+            this.materialLabel4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.materialLabel4.Location = new System.Drawing.Point(27, 179);
+            this.materialLabel4.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel4.Name = "materialLabel4";
+            this.materialLabel4.Size = new System.Drawing.Size(195, 19);
+            this.materialLabel4.TabIndex = 14;
+            this.materialLabel4.Text = "Informe a conecction String";
+            // 
+            // txtConnectionString
+            // 
+            this.txtConnectionString.Depth = 0;
+            this.txtConnectionString.Hint = "";
+            this.txtConnectionString.Location = new System.Drawing.Point(24, 201);
+            this.txtConnectionString.MouseState = MaterialSkin.MouseState.HOVER;
+            this.txtConnectionString.Name = "txtConnectionString";
+            this.txtConnectionString.PasswordChar = '\0';
+            this.txtConnectionString.SelectedText = "";
+            this.txtConnectionString.SelectionLength = 0;
+            this.txtConnectionString.SelectionStart = 0;
+            this.txtConnectionString.Size = new System.Drawing.Size(627, 23);
+            this.txtConnectionString.TabIndex = 6;
+            this.txtConnectionString.UseSystemPasswordChar = false;
+            // 
+            // btnconnection
+            // 
+            this.btnconnection.Depth = 0;
+            this.btnconnection.Location = new System.Drawing.Point(503, 230);
+            this.btnconnection.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnconnection.Name = "btnconnection";
+            this.btnconnection.Primary = true;
+            this.btnconnection.Size = new System.Drawing.Size(138, 23);
+            this.btnconnection.TabIndex = 13;
+            this.btnconnection.Text = "Testar Conexão";
+            this.btnconnection.Click += new System.EventHandler(this.btnconnection_Click);
+            // 
+            // btnAvancar
+            // 
+            this.btnAvancar.Depth = 0;
+            this.btnAvancar.Location = new System.Drawing.Point(543, 282);
+            this.btnAvancar.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnAvancar.Name = "btnAvancar";
+            this.btnAvancar.Primary = true;
+            this.btnAvancar.Size = new System.Drawing.Size(98, 27);
+            this.btnAvancar.TabIndex = 12;
+            this.btnAvancar.Text = "Avançar";
+            this.btnAvancar.UseVisualStyleBackColor = true;
+            this.btnAvancar.Click += new System.EventHandler(this.btnAvancar_Click);
+            // 
+            // materialLabel1
+            // 
+            this.materialLabel1.AutoSize = true;
+            this.materialLabel1.Depth = 0;
+            this.materialLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
+            this.materialLabel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.materialLabel1.Location = new System.Drawing.Point(20, 19);
+            this.materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel1.Name = "materialLabel1";
+            this.materialLabel1.Size = new System.Drawing.Size(196, 18);
+            this.materialLabel1.TabIndex = 9;
+            this.materialLabel1.Text = "Selecione o banco de dados";
+            // 
+            // picsgbd
+            // 
+            this.picsgbd.Location = new System.Drawing.Point(503, 57);
+            this.picsgbd.Name = "picsgbd";
+            this.picsgbd.Size = new System.Drawing.Size(109, 60);
+            this.picsgbd.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picsgbd.TabIndex = 8;
+            this.picsgbd.TabStop = false;
             // 
             // tabPage2
             // 
@@ -106,10 +314,23 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 20);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(659, 345);
+            this.tabPage2.Size = new System.Drawing.Size(660, 317);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Tabelas";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // btnVoltarTabelas
+            // 
+            this.btnVoltarTabelas.Depth = 0;
+            this.btnVoltarTabelas.Location = new System.Drawing.Point(2, 320);
+            this.btnVoltarTabelas.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnVoltarTabelas.Name = "btnVoltarTabelas";
+            this.btnVoltarTabelas.Primary = true;
+            this.btnVoltarTabelas.Size = new System.Drawing.Size(75, 23);
+            this.btnVoltarTabelas.TabIndex = 27;
+            this.btnVoltarTabelas.Text = "Voltar";
+            this.btnVoltarTabelas.UseVisualStyleBackColor = true;
+            this.btnVoltarTabelas.Click += new System.EventHandler(this.materialRaisedButton1_Click);
             // 
             // lblTabelas
             // 
@@ -215,11 +436,23 @@
             this.tabPage3.Controls.Add(this.panel2);
             this.tabPage3.Location = new System.Drawing.Point(4, 20);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(659, 345);
+            this.tabPage3.Size = new System.Drawing.Size(660, 317);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Linguagens";
             this.tabPage3.UseVisualStyleBackColor = true;
-            this.tabPage3.Click += new System.EventHandler(this.tabPage3_Click);
+            // 
+            // btnVoltarLinguagem
+            // 
+            this.btnVoltarLinguagem.Depth = 0;
+            this.btnVoltarLinguagem.Location = new System.Drawing.Point(6, 319);
+            this.btnVoltarLinguagem.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnVoltarLinguagem.Name = "btnVoltarLinguagem";
+            this.btnVoltarLinguagem.Primary = true;
+            this.btnVoltarLinguagem.Size = new System.Drawing.Size(75, 23);
+            this.btnVoltarLinguagem.TabIndex = 26;
+            this.btnVoltarLinguagem.Text = "Voltar";
+            this.btnVoltarLinguagem.UseVisualStyleBackColor = true;
+            this.btnVoltarLinguagem.Click += new System.EventHandler(this.btnVoltarLinguagem_Click);
             // 
             // materialLabel7
             // 
@@ -280,7 +513,7 @@
             this.materialLabel6.Depth = 0;
             this.materialLabel6.Font = new System.Drawing.Font("Roboto", 11F);
             this.materialLabel6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel6.Location = new System.Drawing.Point(87, 263);
+            this.materialLabel6.Location = new System.Drawing.Point(87, 237);
             this.materialLabel6.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel6.Name = "materialLabel6";
             this.materialLabel6.Size = new System.Drawing.Size(503, 38);
@@ -291,7 +524,7 @@
             // btnProc
             // 
             this.btnProc.Depth = 0;
-            this.btnProc.Location = new System.Drawing.Point(201, 304);
+            this.btnProc.Location = new System.Drawing.Point(201, 290);
             this.btnProc.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnProc.Name = "btnProc";
             this.btnProc.Primary = true;
@@ -409,246 +642,12 @@
             this.materialTabSelector1.BaseTabControl = this.tab;
             this.materialTabSelector1.Depth = 0;
             this.materialTabSelector1.Enabled = false;
-            this.materialTabSelector1.Location = new System.Drawing.Point(2, 437);
+            this.materialTabSelector1.Location = new System.Drawing.Point(-1, 64);
             this.materialTabSelector1.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialTabSelector1.Name = "materialTabSelector1";
-            this.materialTabSelector1.Size = new System.Drawing.Size(667, 49);
+            this.materialTabSelector1.Size = new System.Drawing.Size(670, 49);
             this.materialTabSelector1.TabIndex = 5;
             this.materialTabSelector1.Text = "materialTabSelector1";
-            // 
-            // picsgbd
-            // 
-            this.picsgbd.Location = new System.Drawing.Point(503, 57);
-            this.picsgbd.Name = "picsgbd";
-            this.picsgbd.Size = new System.Drawing.Size(109, 60);
-            this.picsgbd.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.picsgbd.TabIndex = 8;
-            this.picsgbd.TabStop = false;
-            // 
-            // materialLabel1
-            // 
-            this.materialLabel1.AutoSize = true;
-            this.materialLabel1.Depth = 0;
-            this.materialLabel1.Font = new System.Drawing.Font("Roboto", 11F);
-            this.materialLabel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel1.Location = new System.Drawing.Point(20, 19);
-            this.materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialLabel1.Name = "materialLabel1";
-            this.materialLabel1.Size = new System.Drawing.Size(198, 19);
-            this.materialLabel1.TabIndex = 9;
-            this.materialLabel1.Text = "Selecione o banco de dados";
-            // 
-            // btnAvancar
-            // 
-            this.btnAvancar.Depth = 0;
-            this.btnAvancar.Location = new System.Drawing.Point(553, 312);
-            this.btnAvancar.MouseState = MaterialSkin.MouseState.HOVER;
-            this.btnAvancar.Name = "btnAvancar";
-            this.btnAvancar.Primary = true;
-            this.btnAvancar.Size = new System.Drawing.Size(98, 27);
-            this.btnAvancar.TabIndex = 12;
-            this.btnAvancar.Text = "Avançar";
-            this.btnAvancar.UseVisualStyleBackColor = true;
-            this.btnAvancar.Click += new System.EventHandler(this.btnAvancar_Click);
-            // 
-            // btnconnection
-            // 
-            this.btnconnection.Depth = 0;
-            this.btnconnection.Location = new System.Drawing.Point(503, 230);
-            this.btnconnection.MouseState = MaterialSkin.MouseState.HOVER;
-            this.btnconnection.Name = "btnconnection";
-            this.btnconnection.Primary = true;
-            this.btnconnection.Size = new System.Drawing.Size(138, 23);
-            this.btnconnection.TabIndex = 13;
-            this.btnconnection.Text = "Testar Conexão";
-            this.btnconnection.Click += new System.EventHandler(this.btnconnection_Click);
-            // 
-            // txtConnectionString
-            // 
-            this.txtConnectionString.Depth = 0;
-            this.txtConnectionString.Hint = "";
-            this.txtConnectionString.Location = new System.Drawing.Point(24, 201);
-            this.txtConnectionString.MouseState = MaterialSkin.MouseState.HOVER;
-            this.txtConnectionString.Name = "txtConnectionString";
-            this.txtConnectionString.PasswordChar = '\0';
-            this.txtConnectionString.SelectedText = "";
-            this.txtConnectionString.SelectionLength = 0;
-            this.txtConnectionString.SelectionStart = 0;
-            this.txtConnectionString.Size = new System.Drawing.Size(627, 23);
-            this.txtConnectionString.TabIndex = 6;
-            this.txtConnectionString.UseSystemPasswordChar = false;
-            // 
-            // materialLabel4
-            // 
-            this.materialLabel4.AutoSize = true;
-            this.materialLabel4.Depth = 0;
-            this.materialLabel4.Font = new System.Drawing.Font("Roboto", 11F);
-            this.materialLabel4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel4.Location = new System.Drawing.Point(27, 179);
-            this.materialLabel4.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialLabel4.Name = "materialLabel4";
-            this.materialLabel4.Size = new System.Drawing.Size(195, 19);
-            this.materialLabel4.TabIndex = 14;
-            this.materialLabel4.Text = "Informe a conecction String";
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.radioSGBD5);
-            this.panel1.Controls.Add(this.radioSGBD4);
-            this.panel1.Controls.Add(this.radioSGBD2);
-            this.panel1.Controls.Add(this.radioSGBD1);
-            this.panel1.Controls.Add(this.radioSGBD3);
-            this.panel1.Location = new System.Drawing.Point(31, 41);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(356, 76);
-            this.panel1.TabIndex = 15;
-            // 
-            // radioSGBD3
-            // 
-            this.radioSGBD3.AutoSize = true;
-            this.radioSGBD3.Depth = 0;
-            this.radioSGBD3.Font = new System.Drawing.Font("Roboto", 10F);
-            this.radioSGBD3.Location = new System.Drawing.Point(0, 0);
-            this.radioSGBD3.Margin = new System.Windows.Forms.Padding(0);
-            this.radioSGBD3.MouseLocation = new System.Drawing.Point(-1, -1);
-            this.radioSGBD3.MouseState = MaterialSkin.MouseState.HOVER;
-            this.radioSGBD3.Name = "radioSGBD3";
-            this.radioSGBD3.Ripple = true;
-            this.radioSGBD3.Size = new System.Drawing.Size(67, 30);
-            this.radioSGBD3.TabIndex = 0;
-            this.radioSGBD3.TabStop = true;
-            this.radioSGBD3.Text = "MySql";
-            this.radioSGBD3.UseVisualStyleBackColor = true;
-            this.radioSGBD3.CheckedChanged += new System.EventHandler(this.radioSGBD3_CheckedChanged);
-            // 
-            // radioSGBD1
-            // 
-            this.radioSGBD1.AutoSize = true;
-            this.radioSGBD1.Depth = 0;
-            this.radioSGBD1.Font = new System.Drawing.Font("Roboto", 10F);
-            this.radioSGBD1.Location = new System.Drawing.Point(0, 30);
-            this.radioSGBD1.Margin = new System.Windows.Forms.Padding(0);
-            this.radioSGBD1.MouseLocation = new System.Drawing.Point(-1, -1);
-            this.radioSGBD1.MouseState = MaterialSkin.MouseState.HOVER;
-            this.radioSGBD1.Name = "radioSGBD1";
-            this.radioSGBD1.Ripple = true;
-            this.radioSGBD1.Size = new System.Drawing.Size(69, 30);
-            this.radioSGBD1.TabIndex = 1;
-            this.radioSGBD1.TabStop = true;
-            this.radioSGBD1.Text = "Oracle";
-            this.radioSGBD1.UseVisualStyleBackColor = true;
-            this.radioSGBD1.CheckedChanged += new System.EventHandler(this.radioSGBD1_CheckedChanged);
-            // 
-            // radioSGBD2
-            // 
-            this.radioSGBD2.AutoSize = true;
-            this.radioSGBD2.Depth = 0;
-            this.radioSGBD2.Font = new System.Drawing.Font("Roboto", 10F);
-            this.radioSGBD2.Location = new System.Drawing.Point(114, 0);
-            this.radioSGBD2.Margin = new System.Windows.Forms.Padding(0);
-            this.radioSGBD2.MouseLocation = new System.Drawing.Point(-1, -1);
-            this.radioSGBD2.MouseState = MaterialSkin.MouseState.HOVER;
-            this.radioSGBD2.Name = "radioSGBD2";
-            this.radioSGBD2.Ripple = true;
-            this.radioSGBD2.Size = new System.Drawing.Size(97, 30);
-            this.radioSGBD2.TabIndex = 2;
-            this.radioSGBD2.TabStop = true;
-            this.radioSGBD2.Text = "SQL Server";
-            this.radioSGBD2.UseVisualStyleBackColor = true;
-            this.radioSGBD2.CheckedChanged += new System.EventHandler(this.radioSGBD2_CheckedChanged);
-            // 
-            // radioSGBD4
-            // 
-            this.radioSGBD4.AutoSize = true;
-            this.radioSGBD4.Depth = 0;
-            this.radioSGBD4.Font = new System.Drawing.Font("Roboto", 10F);
-            this.radioSGBD4.Location = new System.Drawing.Point(114, 30);
-            this.radioSGBD4.Margin = new System.Windows.Forms.Padding(0);
-            this.radioSGBD4.MouseLocation = new System.Drawing.Point(-1, -1);
-            this.radioSGBD4.MouseState = MaterialSkin.MouseState.HOVER;
-            this.radioSGBD4.Name = "radioSGBD4";
-            this.radioSGBD4.Ripple = true;
-            this.radioSGBD4.Size = new System.Drawing.Size(76, 30);
-            this.radioSGBD4.TabIndex = 3;
-            this.radioSGBD4.TabStop = true;
-            this.radioSGBD4.Text = "Firebird";
-            this.radioSGBD4.UseVisualStyleBackColor = true;
-            this.radioSGBD4.CheckedChanged += new System.EventHandler(this.radioSGBD4_CheckedChanged);
-            // 
-            // radioSGBD5
-            // 
-            this.radioSGBD5.AutoSize = true;
-            this.radioSGBD5.Depth = 0;
-            this.radioSGBD5.Font = new System.Drawing.Font("Roboto", 10F);
-            this.radioSGBD5.Location = new System.Drawing.Point(245, 0);
-            this.radioSGBD5.Margin = new System.Windows.Forms.Padding(0);
-            this.radioSGBD5.MouseLocation = new System.Drawing.Point(-1, -1);
-            this.radioSGBD5.MouseState = MaterialSkin.MouseState.HOVER;
-            this.radioSGBD5.Name = "radioSGBD5";
-            this.radioSGBD5.Ripple = true;
-            this.radioSGBD5.Size = new System.Drawing.Size(77, 30);
-            this.radioSGBD5.TabIndex = 4;
-            this.radioSGBD5.TabStop = true;
-            this.radioSGBD5.Text = "Postgre";
-            this.radioSGBD5.UseVisualStyleBackColor = true;
-            this.radioSGBD5.CheckedChanged += new System.EventHandler(this.radioSGBD5_CheckedChanged);
-            // 
-            // btnExemplo
-            // 
-            this.btnExemplo.Depth = 0;
-            this.btnExemplo.Location = new System.Drawing.Point(451, 230);
-            this.btnExemplo.MouseState = MaterialSkin.MouseState.HOVER;
-            this.btnExemplo.Name = "btnExemplo";
-            this.btnExemplo.Primary = true;
-            this.btnExemplo.Size = new System.Drawing.Size(46, 23);
-            this.btnExemplo.TabIndex = 16;
-            this.btnExemplo.Text = "?";
-            this.btnExemplo.UseVisualStyleBackColor = true;
-            this.btnExemplo.Click += new System.EventHandler(this.btnExemplo_Click);
-            // 
-            // tabPage1
-            // 
-            this.tabPage1.Controls.Add(this.btnExemplo);
-            this.tabPage1.Controls.Add(this.panel1);
-            this.tabPage1.Controls.Add(this.materialLabel4);
-            this.tabPage1.Controls.Add(this.txtConnectionString);
-            this.tabPage1.Controls.Add(this.btnconnection);
-            this.tabPage1.Controls.Add(this.btnAvancar);
-            this.tabPage1.Controls.Add(this.materialLabel1);
-            this.tabPage1.Controls.Add(this.picsgbd);
-            this.tabPage1.Location = new System.Drawing.Point(4, 20);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(659, 345);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Banco";
-            this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // btnVoltarLinguagem
-            // 
-            this.btnVoltarLinguagem.Depth = 0;
-            this.btnVoltarLinguagem.Location = new System.Drawing.Point(6, 319);
-            this.btnVoltarLinguagem.MouseState = MaterialSkin.MouseState.HOVER;
-            this.btnVoltarLinguagem.Name = "btnVoltarLinguagem";
-            this.btnVoltarLinguagem.Primary = true;
-            this.btnVoltarLinguagem.Size = new System.Drawing.Size(75, 23);
-            this.btnVoltarLinguagem.TabIndex = 26;
-            this.btnVoltarLinguagem.Text = "Voltar";
-            this.btnVoltarLinguagem.UseVisualStyleBackColor = true;
-            this.btnVoltarLinguagem.Click += new System.EventHandler(this.btnVoltarLinguagem_Click);
-            // 
-            // btnVoltarTabelas
-            // 
-            this.btnVoltarTabelas.Depth = 0;
-            this.btnVoltarTabelas.Location = new System.Drawing.Point(2, 320);
-            this.btnVoltarTabelas.MouseState = MaterialSkin.MouseState.HOVER;
-            this.btnVoltarTabelas.Name = "btnVoltarTabelas";
-            this.btnVoltarTabelas.Primary = true;
-            this.btnVoltarTabelas.Size = new System.Drawing.Size(75, 23);
-            this.btnVoltarTabelas.TabIndex = 27;
-            this.btnVoltarTabelas.Text = "Voltar";
-            this.btnVoltarTabelas.UseVisualStyleBackColor = true;
-            this.btnVoltarTabelas.Click += new System.EventHandler(this.materialRaisedButton1_Click);
             // 
             // formWizard
             // 
@@ -665,6 +664,11 @@
             this.Text = "Wizard - Passo a passo";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.formWizard_FormClosed);
             this.tab.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picsgbd)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             this.tabPage3.ResumeLayout(false);
@@ -672,11 +676,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.piclinguagem)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picsgbd)).EndInit();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -707,6 +706,8 @@
         private MaterialSkin.Controls.MaterialLabel labelRequisitos;
         private System.Windows.Forms.FolderBrowserDialog salvar;
         private MaterialSkin.Controls.MaterialLabel materialLabel7;
+        private MaterialSkin.Controls.MaterialRaisedButton btnVoltarLinguagem;
+        private MaterialSkin.Controls.MaterialRaisedButton btnVoltarTabelas;
         private System.Windows.Forms.TabPage tabPage1;
         private MaterialSkin.Controls.MaterialRaisedButton btnExemplo;
         private System.Windows.Forms.Panel panel1;
@@ -721,7 +722,5 @@
         private MaterialSkin.Controls.MaterialRaisedButton btnAvancar;
         private MaterialSkin.Controls.MaterialLabel materialLabel1;
         private System.Windows.Forms.PictureBox picsgbd;
-        private MaterialSkin.Controls.MaterialRaisedButton btnVoltarLinguagem;
-        private MaterialSkin.Controls.MaterialRaisedButton btnVoltarTabelas;
     }
 }
