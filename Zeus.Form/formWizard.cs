@@ -28,11 +28,6 @@ namespace Zeus
             this.Hide();
         }
 
-        private void pictureBox2_Click(object sender, System.EventArgs e)
-        {
-            tab.SelectTab(2);
-        }
-
         private void formWizard_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
@@ -109,6 +104,7 @@ namespace Zeus
             ParamtersInput.DataBase = listSchemas.SelectedItem?.ToString();
             ParamtersInput.ConnectionString = txtConnectionString.Text;
             ParamtersInput.SGBD = radioSGBD1.Checked ? 1 : radioSGBD2.Checked ? 2 : radioSGBD3.Checked ? 3 : radioSGBD4.Checked ? 4 : radioSGBD5.Checked ? 5 : 0;
+            ParamtersInput.Linguagem = radioCsharp.Checked ? 1 : radioJava.Checked ? 2 : radioNode.Checked ? 3 : 0;
         }
 
         private void btnAvancar_Click(object sender, EventArgs e)
@@ -134,6 +130,7 @@ namespace Zeus
 
             listSchemas.Items.Clear();
             listSchemas.Items.AddRange(connectionDb.Content.ToArray());
+            listSchemas.SelectedItem = ParamtersInput.DataBase ?? null;
 
             tab.SelectTab(1);
         }
@@ -174,7 +171,7 @@ namespace Zeus
         {
             ParamtersInput.NomeTabelas = new List<string>();
 
-            if(listTabelas.SelectedItems.Count == 0)
+            if (listTabelas.SelectedItems.Count == 0)
             {
                 return;
             }
@@ -206,6 +203,104 @@ namespace Zeus
         private void tabPage3_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void checkProcedure_CheckedChanged(object sender, EventArgs e)
+        {
+            ParamtersInput.Procedure = checkProcedure.Checked;
+        }
+
+        private void btnAcesso_Click(object sender, EventArgs e)
+        {
+            SetParamters();
+
+            var validate = new ValidateBasic().ValidateInput(salvar);
+            if (validate.IsError)
+            {
+                MessageBox.Show(validate.Message);
+                return;
+            }
+
+            var chamada = new OrquestradorChamada().Generate();
+            if (chamada.IsError)
+            {
+                MessageBox.Show(chamada.Message);
+            }
+        }
+
+        private void btnEntidade_Click(object sender, EventArgs e)
+        {
+            SetParamters();
+            var validate = new ValidateBasic().ValidateInput(salvar);
+            if (validate.IsError)
+            {
+                MessageBox.Show(validate.Message);
+                return;
+            }
+            var mdMapeamento = new OrquestradorMapeamentoEntidade().Generate();
+            if (validate.IsError)
+            {
+                MessageBox.Show(mdMapeamento.Message);
+                return;
+            }
+        }
+
+        private void btnProc_Click(object sender, EventArgs e)
+        {
+            SetParamters();
+            var validate = new ValidateBasic().ValidateInput(salvar, true);
+            if (validate.IsError)
+            {
+                MessageBox.Show(validate.Message);
+                return;
+            }
+            var mdProc = new OrquestradorProcedures().Generate();
+            if (validate.IsError)
+            {
+                MessageBox.Show(mdProc.Message);
+                return;
+            }
+        }
+
+        private void radioNode_CheckedChanged(object sender, EventArgs e)
+        {
+            piclinguagem.Image = Properties.Resources.nodejs;
+            labelRequisitos.Text = $"Em node será utilizado a biblioteca `jano-mysql`\n" +
+                $"onde irá garantir diversas tratativas de erros,\n" +
+                $"além de fornecer os callbacks convertidos em Promises.\n" +
+                $"(clique para mais informações)";
+        }
+
+        private void LabelRequisitos_Click(object sender, EventArgs e)
+        {
+            if (radioNode.Checked)
+                System.Diagnostics.Process.Start("https://www.npmjs.com/package/jano-mysql");
+        }
+
+        private void radioCsharp_CheckedChanged(object sender, EventArgs e)
+        {
+            piclinguagem.Image = Properties.Resources.csharp;
+            labelRequisitos.Text = $"Em C# será utilizado a biblioteca `jano-c#-mysql`\n" +
+               $"onde irá garantir diversas tratativas de erros.\n" +
+               $"(clique para mais informações)";
+        }
+
+        private void radioJava_CheckedChanged(object sender, EventArgs e)
+        {
+            labelRequisitos.Text = $"Em C# será utilizado a biblioteca `jano-java-mysql`\n" +
+              $"onde irá garantir diversas tratativas de erros.\n" +
+              $"(clique para mais informações)";
+            piclinguagem.Image = Properties.Resources.java;
+        }
+
+        private void materialRaisedButton1_Click(object sender, EventArgs e)
+        {
+            tab.SelectTab(0);
+        }
+
+        private void btnVoltarLinguagem_Click(object sender, EventArgs e)
+        {
+            tab.SelectTab(1);
         }
     }
 }
