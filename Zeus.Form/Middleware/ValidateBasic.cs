@@ -8,7 +8,7 @@ namespace Zeus.Middleware
 {
     public class ValidateBasic
     {
-        public RequestMessage<string> ValidateInput(FolderBrowserDialog salvar)
+        public RequestMessage<string> ValidateInput(FolderBrowserDialog salvar, bool isProcedure = false)
         {
             if (!ParamtersInput.NomeTabelas.Any())
             {
@@ -24,6 +24,15 @@ namespace Zeus.Middleware
                 return new RequestMessage<string>()
                 {
                     Message = "Selecione uma database",
+                    StatusCode = System.Net.HttpStatusCode.InternalServerError
+                };
+            }
+
+            if(ParamtersInput.Linguagem == 0 && !isProcedure)
+            {
+                return new RequestMessage<string>()
+                {
+                    Message = "Selecione uma linguagem",
                     StatusCode = System.Net.HttpStatusCode.InternalServerError
                 };
             }
