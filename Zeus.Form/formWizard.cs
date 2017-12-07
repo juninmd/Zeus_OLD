@@ -57,7 +57,7 @@ namespace Zeus
                     Mysql = radioSGBD3,
                     Firebird = radioSGBD4,
                     Postgre = radioSGBD5
-                }.ShowDialog();
+                }.Show();
             }
         }
 
