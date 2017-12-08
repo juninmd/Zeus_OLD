@@ -89,6 +89,7 @@
             this.tab.Controls.Add(this.tabPage3);
             this.tab.Depth = 0;
             this.tab.Location = new System.Drawing.Point(-1, 119);
+            this.tab.Margin = new System.Windows.Forms.Padding(0);
             this.tab.MouseState = MaterialSkin.MouseState.HOVER;
             this.tab.Name = "tab";
             this.tab.Padding = new System.Drawing.Point(2, 2);
@@ -373,7 +374,7 @@
             this.lblTabelas.Depth = 0;
             this.lblTabelas.Font = new System.Drawing.Font("Roboto", 11F);
             this.lblTabelas.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblTabelas.Location = new System.Drawing.Point(368, 3);
+            this.lblTabelas.Location = new System.Drawing.Point(370, 3);
             this.lblTabelas.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblTabelas.Name = "lblTabelas";
             this.lblTabelas.Size = new System.Drawing.Size(94, 19);
@@ -386,7 +387,7 @@
             this.materialLabel5.Depth = 0;
             this.materialLabel5.Font = new System.Drawing.Font("Roboto", 11F);
             this.materialLabel5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel5.Location = new System.Drawing.Point(268, 3);
+            this.materialLabel5.Location = new System.Drawing.Point(270, 3);
             this.materialLabel5.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel5.Name = "materialLabel5";
             this.materialLabel5.Size = new System.Drawing.Size(62, 19);
@@ -399,7 +400,7 @@
             this.materialLabel2.Depth = 0;
             this.materialLabel2.Font = new System.Drawing.Font("Roboto", 11F);
             this.materialLabel2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel2.Location = new System.Drawing.Point(3, 3);
+            this.materialLabel2.Location = new System.Drawing.Point(5, 3);
             this.materialLabel2.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel2.Name = "materialLabel2";
             this.materialLabel2.Size = new System.Drawing.Size(63, 19);
@@ -410,7 +411,7 @@
             // 
             this.listSchemas.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.listSchemas.FormattingEnabled = true;
-            this.listSchemas.Location = new System.Drawing.Point(3, 34);
+            this.listSchemas.Location = new System.Drawing.Point(5, 34);
             this.listSchemas.Name = "listSchemas";
             this.listSchemas.Size = new System.Drawing.Size(257, 260);
             this.listSchemas.TabIndex = 17;
@@ -454,10 +455,10 @@
             // 
             this.listTabelas.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.listTabelas.FormattingEnabled = true;
-            this.listTabelas.Location = new System.Drawing.Point(266, 34);
+            this.listTabelas.Location = new System.Drawing.Point(268, 34);
             this.listTabelas.Name = "listTabelas";
             this.listTabelas.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
-            this.listTabelas.Size = new System.Drawing.Size(370, 260);
+            this.listTabelas.Size = new System.Drawing.Size(389, 260);
             this.listTabelas.TabIndex = 13;
             // 
             // tabPage3
