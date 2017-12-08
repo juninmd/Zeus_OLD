@@ -628,6 +628,7 @@
             this.Controls.Add(this.formWizard);
             this.Controls.Add(this.chkSkip);
             this.Controls.Add(this.materialTabControl1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "formWelcome";

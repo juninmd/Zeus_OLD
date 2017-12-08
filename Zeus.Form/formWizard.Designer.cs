@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(formWizard));
             this.tab = new MaterialSkin.Controls.MaterialTabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.btnOpcoes = new MaterialSkin.Controls.MaterialRaisedButton();
@@ -734,6 +735,7 @@
             this.Controls.Add(this.materialProgressBar1);
             this.Controls.Add(this.materialTabSelector1);
             this.Controls.Add(this.tab);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "formWizard";

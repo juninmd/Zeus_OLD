@@ -230,6 +230,13 @@ namespace Zeus
                 MessageBox.Show(validate.Message);
                 return;
             }
+
+            if (ParamtersInput.Linguagem == 3)
+            {
+                MessageBox.Show("Node JS não possuí mapeamento de Entidade");
+                return;
+            }
+
             var mdMapeamento = new OrquestradorMapeamentoEntidade().Generate();
             if (validate.IsError)
             {

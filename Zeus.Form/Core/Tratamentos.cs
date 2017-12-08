@@ -3,6 +3,15 @@ using Zeus.Properties;
 
 namespace Zeus.Core
 {
+    public enum OperationProcedure
+    {
+        Search,
+        List,
+        Insert,
+        Update,
+        Delete
+    }
+
     public static class Tratamentos
     {
         public static string TratarNomeTabela(this string nome)
@@ -13,6 +22,26 @@ namespace Zeus.Core
             }
             return nome.ToUpper().Replace(ParamtersInput.Prefixos.Tabela.ToUpper(), "");
         }
+
+        public static string TratarNomeProcedure(this string nome, OperationProcedure operation)
+        {
+            switch (operation)
+            {
+                case OperationProcedure.Search:
+                    return $"S_{nome.TratarNomeTabela().ToUpper()}_ID";
+                case OperationProcedure.List:
+                    return $"S_{nome.TratarNomeTabela().ToUpper()}";
+                case OperationProcedure.Insert:
+                    return $"S_{nome.TratarNomeTabela().ToUpper()}_ID";
+                case OperationProcedure.Update:
+                    return $"S_{nome.TratarNomeTabela().ToUpper()}_ID";
+                case OperationProcedure.Delete:
+                    return $"S_{nome.TratarNomeTabela().ToUpper()}_ID";
+                default:
+                    return "";
+            }
+        }
+
         public static string TratarNomeTabelaMySql(this string nome)
         {
             if (String.IsNullOrEmpty(ParamtersInput.Prefixos.Tabela))
