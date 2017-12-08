@@ -20,6 +20,9 @@ namespace Zeus
             materialSkinManager.Theme = MaterialSkinManager.Themes.DARK;
             materialSkinManager.ColorScheme = new ColorScheme(Primary.BlueGrey800, Primary.BlueGrey900, Primary.BlueGrey500, Accent.LightBlue200, TextShade.WHITE);
             ListaTabelas = new List<string>();
+            Session.progressBar1 = materialProgressBar1;
+            Session.listaStatus = materialListView1;
+
         }
 
         private void btnIniciar_Click(object sender, System.EventArgs e)
@@ -255,10 +258,6 @@ namespace Zeus
         private void radioNode_CheckedChanged(object sender, EventArgs e)
         {
             piclinguagem.Image = Properties.Resources.nodejs;
-            labelRequisitos.Text = $"Em node será utilizado a biblioteca `jano-mysql`\n" +
-                $"onde irá garantir diversas tratativas de erros,\n" +
-                $"além de fornecer os callbacks convertidos em Promises.\n" +
-                $"(clique para mais informações)";
         }
 
         private void LabelRequisitos_Click(object sender, EventArgs e)
@@ -270,16 +269,10 @@ namespace Zeus
         private void radioCsharp_CheckedChanged(object sender, EventArgs e)
         {
             piclinguagem.Image = Properties.Resources.csharp;
-            labelRequisitos.Text = $"Em C# será utilizado a biblioteca `jano-c#-mysql`\n" +
-               $"onde irá garantir diversas tratativas de erros.\n" +
-               $"(clique para mais informações)";
         }
 
         private void radioJava_CheckedChanged(object sender, EventArgs e)
         {
-            labelRequisitos.Text = $"Em C# será utilizado a biblioteca `jano-java-mysql`\n" +
-              $"onde irá garantir diversas tratativas de erros.\n" +
-              $"(clique para mais informações)";
             piclinguagem.Image = Properties.Resources.java;
         }
 
@@ -291,6 +284,17 @@ namespace Zeus
         private void btnVoltarLinguagem_Click(object sender, EventArgs e)
         {
             tab.SelectTab(1);
+        }
+
+        private void btnOpcoes_Click(object sender, EventArgs e)
+        {
+            Form fc = Application.OpenForms["formWelcome"];
+            if (fc == null)
+                new formWelcome().Show();
+            else
+            {
+                fc.Show();
+            }
         }
     }
 }
