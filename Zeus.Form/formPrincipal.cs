@@ -21,7 +21,7 @@ namespace Zeus
             Som();
             InitConfigurations();
             Session.progressBar1 = progressBar1;
-            Session.listaStatus = listaStatus;
+            Session.listaStatusOld = listaStatus;
             TabelasBD = new List<string>();
             ParamtersInput.NomeTabelas = new List<string>();
             txtConnectionString.Text = Settings.Default.ConnectionStringDefault;

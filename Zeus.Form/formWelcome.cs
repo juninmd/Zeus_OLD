@@ -15,32 +15,35 @@ namespace Zeus
             materialSkinManager.AddFormToManage(this);
             materialSkinManager.Theme = MaterialSkinManager.Themes.DARK;
             materialSkinManager.ColorScheme = new ColorScheme(Primary.BlueGrey800, Primary.BlueGrey900, Primary.BlueGrey500, Accent.LightBlue200, TextShade.WHITE);
-            version();
             InitConfigurations();
         }
-
-        private void version()
-        {
-            txtVersion.Text = Application.ProductVersion;
-        }
-
+         
         private void btnIniciar_Click(object sender, System.EventArgs e)
         {
-            new formPrincipal().Show();
+            Form fc = Application.OpenForms["formPrincipal"];
+            if (fc == null)
+                new formPrincipal().Show();
+            else
+            {
+                fc.Show();
+            }
+
             this.Hide();
         }
 
         private void formWizard_Click(object sender, System.EventArgs e)
         {
-            new formWizard().Show();
+            Form fc = Application.OpenForms["formWizard"];
+            if (fc == null)
+                new formWizard().Show();
+            else
+            {
+                fc.Show();
+            }
+
             this.Hide();
         }
-
-        private void btnDestino_Click(object sender, System.EventArgs e)
-        {
-
-        }
-
+        
         private void btnProcurar_Click(object sender, System.EventArgs e)
         {
             var r = salvar.ShowDialog();
@@ -68,6 +71,7 @@ namespace Zeus
 
         private void InitConfigurations()
         {
+            txtVersion.Text = Application.ProductVersion;
             txtPreFixoPackages.Text = Settings.Default.PrefixoPackage;
             txtPreFixoProcedures.Text = Settings.Default.PrefixoProcedure;
             txtPrefixoTabela.Text = Settings.Default.PrefixoTabela;
