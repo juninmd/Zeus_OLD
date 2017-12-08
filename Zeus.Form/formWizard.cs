@@ -295,6 +295,8 @@ namespace Zeus
             {
                 fc.Show();
             }
+
+            this.Hide();
         }
     }
 }
