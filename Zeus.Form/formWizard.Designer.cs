@@ -125,9 +125,9 @@
             this.btnOpcoes.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnOpcoes.Name = "btnOpcoes";
             this.btnOpcoes.Primary = true;
-            this.btnOpcoes.Size = new System.Drawing.Size(86, 36);
+            this.btnOpcoes.Size = new System.Drawing.Size(104, 36);
             this.btnOpcoes.TabIndex = 17;
-            this.btnOpcoes.Text = "Welcome";
+            this.btnOpcoes.Text = "Tela Inicial";
             this.btnOpcoes.UseVisualStyleBackColor = true;
             this.btnOpcoes.Click += new System.EventHandler(this.btnOpcoes_Click);
             // 

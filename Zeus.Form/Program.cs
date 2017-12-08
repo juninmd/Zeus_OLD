@@ -16,7 +16,13 @@ namespace Zeus
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             InitParamters();
-            Application.Run(new formWelcome());
+
+            if (Settings.Default.SkipWelcome)
+                Application.Run(new formWizard());
+            else
+            {
+                Application.Run(new formWelcome());
+            }
         }
 
         static void InitParamters()

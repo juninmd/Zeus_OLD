@@ -71,6 +71,7 @@ namespace Zeus
 
         private void InitConfigurations()
         {
+            chkSkip.Checked = Settings.Default.SkipWelcome;
             txtVersion.Text = Application.ProductVersion;
             txtPreFixoPackages.Text = Settings.Default.PrefixoPackage;
             txtPreFixoProcedures.Text = Settings.Default.PrefixoProcedure;
@@ -78,6 +79,17 @@ namespace Zeus
             ddlUnificar.Checked = Settings.Default.UnificarOutput;
             ParamtersInput.SelectedPath = txtDestino.Text = Settings.Default.Destino;
             ParamtersInput.UnificarOutput = ddlUnificar.Checked;
+        }
+
+        private void chkSkip_CheckedChanged(object sender, System.EventArgs e)
+        {
+            Settings.Default.SkipWelcome = chkSkip.Checked;
+            Settings.Default.Save();
+        }
+
+        private void formWelcome_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

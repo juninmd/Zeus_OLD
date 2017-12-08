@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(formWelcome));
-            this.materialCheckBox1 = new MaterialSkin.Controls.MaterialCheckBox();
+            this.chkSkip = new MaterialSkin.Controls.MaterialCheckBox();
             this.formWizard = new MaterialSkin.Controls.MaterialRaisedButton();
             this.salvar = new System.Windows.Forms.FolderBrowserDialog();
             this.tabPage5 = new System.Windows.Forms.TabPage();
@@ -87,22 +87,23 @@
             this.materialTabControl1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // materialCheckBox1
+            // chkSkip
             // 
-            this.materialCheckBox1.AutoSize = true;
-            this.materialCheckBox1.Depth = 0;
-            this.materialCheckBox1.Font = new System.Drawing.Font("Roboto", 10F);
-            this.materialCheckBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialCheckBox1.Location = new System.Drawing.Point(9, 447);
-            this.materialCheckBox1.Margin = new System.Windows.Forms.Padding(0);
-            this.materialCheckBox1.MouseLocation = new System.Drawing.Point(-1, -1);
-            this.materialCheckBox1.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialCheckBox1.Name = "materialCheckBox1";
-            this.materialCheckBox1.Ripple = true;
-            this.materialCheckBox1.Size = new System.Drawing.Size(223, 30);
-            this.materialCheckBox1.TabIndex = 5;
-            this.materialCheckBox1.Text = "Não exibir essa tela novamente";
-            this.materialCheckBox1.UseVisualStyleBackColor = true;
+            this.chkSkip.AutoSize = true;
+            this.chkSkip.Depth = 0;
+            this.chkSkip.Font = new System.Drawing.Font("Roboto", 10F);
+            this.chkSkip.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.chkSkip.Location = new System.Drawing.Point(9, 447);
+            this.chkSkip.Margin = new System.Windows.Forms.Padding(0);
+            this.chkSkip.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.chkSkip.MouseState = MaterialSkin.MouseState.HOVER;
+            this.chkSkip.Name = "chkSkip";
+            this.chkSkip.Ripple = true;
+            this.chkSkip.Size = new System.Drawing.Size(223, 30);
+            this.chkSkip.TabIndex = 5;
+            this.chkSkip.Text = "Não exibir essa tela novamente";
+            this.chkSkip.UseVisualStyleBackColor = true;
+            this.chkSkip.CheckedChanged += new System.EventHandler(this.chkSkip_CheckedChanged);
             // 
             // formWizard
             // 
@@ -625,7 +626,7 @@
             this.ClientSize = new System.Drawing.Size(669, 486);
             this.Controls.Add(this.materialTabSelector1);
             this.Controls.Add(this.formWizard);
-            this.Controls.Add(this.materialCheckBox1);
+            this.Controls.Add(this.chkSkip);
             this.Controls.Add(this.materialTabControl1);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -633,6 +634,7 @@
             this.Sizable = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Seja bem vindo ao Zeus";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.formWelcome_FormClosed);
             this.tabPage5.ResumeLayout(false);
             this.tabPage5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).EndInit();
@@ -660,7 +662,7 @@
         }
 
         #endregion
-        private MaterialSkin.Controls.MaterialCheckBox materialCheckBox1;
+        private MaterialSkin.Controls.MaterialCheckBox chkSkip;
         private MaterialSkin.Controls.MaterialRaisedButton formWizard;
         private System.Windows.Forms.FolderBrowserDialog salvar;
         private MaterialSkin.Controls.MaterialTabControl materialTabControl1;
