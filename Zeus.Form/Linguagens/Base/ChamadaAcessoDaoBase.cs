@@ -300,6 +300,11 @@ namespace Zeus.Linguagens.Base
                         File.WriteAllText($"{local}{nomeTabela.TratarNomeTabela().ToLower()}Repository.js", body);
                         break;
                 }
+
+            }
+            if(body == "")
+            {
+                throw new Exception($"Código da tabela {nomeTabela} não foi gerada");
             }
         }
     }

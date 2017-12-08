@@ -28,7 +28,7 @@ namespace Zeus.Middleware
                 };
             }
 
-            if(ParamtersInput.Linguagem == 0 && !isProcedure)
+            if (ParamtersInput.Linguagem == 0 && !isProcedure)
             {
                 return new RequestMessage<string>()
                 {
@@ -46,7 +46,7 @@ namespace Zeus.Middleware
                         Message = "Processamento cancelado!",
                         StatusCode = System.Net.HttpStatusCode.BadRequest
                     };
-
+                ParamtersInput.SelectedPath = salvar.SelectedPath + "\\";
             }
 
             return new RequestMessage<string> { StatusCode = HttpStatusCode.OK };
