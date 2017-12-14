@@ -1,13 +1,11 @@
 # Zeus
-É um gerador de código desenvolvido em C#  
-Que tem o objetivo de facilitar a vida de quem deseja fazer um crud tendo seu banco já criado.
+![zeus](https://image.prntscr.com/image/7sj0Lxt_R4eH9NgErG5M6A.png)  
+* É um gerador de códigos que utiliza como base algum banco de dados existente.
 
 ## Funcionalidades   
 - Geração de Procedures   
-- Geração de Acesso a Procedures  
-- Geração de Crud (sql no código)  
+- Geração de acesso a Procedures / sql no código  
 - Geração de Classes (Entidades)  
-- Execução de Query
 
 ## Linguagens
 - C#
@@ -20,3 +18,10 @@ Que tem o objetivo de facilitar a vida de quem deseja fazer um crud tendo seu ba
 - Sql Server
 - Firebird
 - PostgreSql
+
+## Requisitos
+- Windows 7+ (.net framework 4+)
+
+## Prints
+![zeus](https://image.prntscr.com/image/TsyW6AJbQ8agbf4tC2CtPA.png)
+![zeus](https://image.prntscr.com/image/AHHHP7zVRpGEJ0jPG9KVqQ.png)
