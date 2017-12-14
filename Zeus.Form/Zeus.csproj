@@ -50,9 +50,9 @@
     <Reference Include="Npgsql, Version=3.2.5.0, Culture=neutral, PublicKeyToken=5d8b90d52f46fda7, processorArchitecture=MSIL">
       <HintPath>..\packages\Npgsql.3.2.5\lib\net451\Npgsql.dll</HintPath>
     </Reference>
-    <Reference Include="Oracle.DataAccess, Version=2.112.3.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=x86">
+    <Reference Include="Oracle.DataAccess, Version=4.112.3.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Oracle.DataAccess.dll</HintPath>
+      <HintPath>..\Binarios\Oracle.DataAccess.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -164,12 +164,6 @@
     <Compile Include="formConnectionString.Designer.cs">
       <DependentUpon>formConnectionString.cs</DependentUpon>
     </Compile>
-    <Compile Include="formPrincipal.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="formPrincipal.Designer.cs">
-      <DependentUpon>formPrincipal.cs</DependentUpon>
-    </Compile>
     <Compile Include="formWelcome.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -277,9 +271,6 @@
       <DependentUpon>formConnectionString.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="formPrincipal.resx">
-      <DependentUpon>formPrincipal.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="formWelcome.resx">
       <DependentUpon>formWelcome.cs</DependentUpon>
     </EmbeddedResource>
@@ -306,17 +297,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="docs\MySqlCommand.xml" />
-    <Content Include="docs\MySqlCommandBuilder.xml" />
-    <Content Include="docs\MySqlConnection.xml" />
-    <Content Include="docs\MySqlConnectionStringBuilder.xml" />
-    <Content Include="docs\MySqlDataAdapter.xml" />
-    <Content Include="docs\MySqlDataReader.xml" />
-    <Content Include="docs\MySqlException.xml" />
-    <Content Include="docs\MySqlHelper.xml" />
-    <Content Include="docs\MySqlParameter.xml" />
-    <Content Include="docs\MySqlParameterCollection.xml" />
-    <Content Include="docs\MySqlTransaction.xml" />
     <None Include="Resources\zeus-intro.jpg" />
     <None Include="Resources\sqlserver.png" />
     <None Include="Resources\postgre.png" />

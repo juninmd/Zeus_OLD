@@ -546,12 +546,12 @@
             this.labelRequisitos.Depth = 0;
             this.labelRequisitos.Font = new System.Drawing.Font("Roboto", 11F);
             this.labelRequisitos.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.labelRequisitos.Location = new System.Drawing.Point(108, 142);
+            this.labelRequisitos.Location = new System.Drawing.Point(106, 142);
             this.labelRequisitos.MouseState = MaterialSkin.MouseState.HOVER;
             this.labelRequisitos.Name = "labelRequisitos";
-            this.labelRequisitos.Size = new System.Drawing.Size(467, 19);
+            this.labelRequisitos.Size = new System.Drawing.Size(448, 19);
             this.labelRequisitos.TabIndex = 24;
-            this.labelRequisitos.Text = "Obs: Consulte os requisitos de cada linguagem ou framework (Aqui)";
+            this.labelRequisitos.Text = "Obs: Consulte os requisitos de cada linguagem/framework (Aqui)";
             this.labelRequisitos.Click += new System.EventHandler(this.LabelRequisitos_Click);
             // 
             // btnEntidade
