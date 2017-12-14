@@ -25,12 +25,6 @@ namespace Zeus
 
         }
 
-        private void btnIniciar_Click(object sender, System.EventArgs e)
-        {
-            new formPrincipal().Show();
-            this.Hide();
-        }
-
         private void formWizard_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();

@@ -17,19 +17,6 @@ namespace Zeus
             materialSkinManager.ColorScheme = new ColorScheme(Primary.BlueGrey800, Primary.BlueGrey900, Primary.BlueGrey500, Accent.LightBlue200, TextShade.WHITE);
             InitConfigurations();
         }
-         
-        private void btnIniciar_Click(object sender, System.EventArgs e)
-        {
-            Form fc = Application.OpenForms["formPrincipal"];
-            if (fc == null)
-                new formPrincipal().Show();
-            else
-            {
-                fc.Show();
-            }
-
-            this.Hide();
-        }
 
         private void formWizard_Click(object sender, System.EventArgs e)
         {
