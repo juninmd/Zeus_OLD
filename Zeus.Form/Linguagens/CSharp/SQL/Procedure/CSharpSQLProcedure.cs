@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using Zeus.Core;
 using Zeus.Linguagens.Base;
 
 namespace Zeus.Linguagens.CSharp.SQL.Procedure
@@ -44,11 +45,11 @@ namespace Zeus.Linguagens.CSharp.SQL.Procedure
             proc.Append(N);
             proc.Append("        private enum Procedures" + N);
             proc.Append("        {" + N);
-            proc.Append($"            Sel{nomeProcBase}," + N);
-            proc.Append($"            Busca{nomeProcBase}," + N);
-            proc.Append($"            Ins{nomeProcBase}," + N);
-            proc.Append($"            Upd{nomeProcBase}" + N);
-            proc.Append($"            Delete{nomeProcBase}" + N);
+            proc.Append($"		{nomeProcBase.TratarNomeProcedure(OperationProcedure.Search)},{N}");
+            proc.Append($"		{nomeProcBase.TratarNomeProcedure(OperationProcedure.List)},{N}");
+            proc.Append($"		{nomeProcBase.TratarNomeProcedure(OperationProcedure.Insert)},{N}");
+            proc.Append($"		{nomeProcBase.TratarNomeProcedure(OperationProcedure.Update)},{N}");
+            proc.Append($"		{nomeProcBase.TratarNomeProcedure(OperationProcedure.Delete)}{N}");
             proc.Append("        }" + N + N);
             return proc;
         }

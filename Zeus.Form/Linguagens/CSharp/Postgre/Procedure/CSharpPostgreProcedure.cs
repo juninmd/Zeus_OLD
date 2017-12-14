@@ -1,7 +1,6 @@
 ﻿using System.Text;
 using Zeus.Core;
 using Zeus.Linguagens.Base;
-using Zeus.Properties;
 
 namespace Zeus.Linguagens.CSharp.Postgre.Procedure
 {
@@ -44,9 +43,11 @@ namespace Zeus.Linguagens.CSharp.Postgre.Procedure
             proc.Append(N);
             proc.Append("        private enum Procedures" + N);
             proc.Append("        {" + N);
-            proc.Append($"            S_{nomeProcBase}," + N);
-            proc.Append($"            I_{nomeProcBase}," + N);
-            proc.Append($"            U__{nomeProcBase}" + N);
+            proc.Append($"		{nomeProcBase.TratarNomeProcedure(OperationProcedure.Search)},{N}");
+            proc.Append($"		{nomeProcBase.TratarNomeProcedure(OperationProcedure.List)},{N}");
+            proc.Append($"		{nomeProcBase.TratarNomeProcedure(OperationProcedure.Insert)},{N}");
+            proc.Append($"		{nomeProcBase.TratarNomeProcedure(OperationProcedure.Update)},{N}");
+            proc.Append($"		{nomeProcBase.TratarNomeProcedure(OperationProcedure.Delete)}{N}");
             proc.Append("        }" + N + N);
             return proc;
         }

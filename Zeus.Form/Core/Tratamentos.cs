@@ -1,5 +1,4 @@
 ﻿using System;
-using Zeus.Properties;
 
 namespace Zeus.Core
 {
@@ -28,15 +27,15 @@ namespace Zeus.Core
             switch (operation)
             {
                 case OperationProcedure.Search:
-                    return $"S_{nome.TratarNomeTabela().ToUpper()}_ID";
+                    return $"{ParamtersInput.Prefixos.Procedure}S_{nome.TratarNomeTabela().ToUpper()}_ID";
                 case OperationProcedure.List:
-                    return $"S_{nome.TratarNomeTabela().ToUpper()}";
+                    return $"{ParamtersInput.Prefixos.Procedure}S_{nome.TratarNomeTabela().ToUpper()}";
                 case OperationProcedure.Insert:
-                    return $"S_{nome.TratarNomeTabela().ToUpper()}_ID";
+                    return $"{ParamtersInput.Prefixos.Procedure}I_{nome.TratarNomeTabela().ToUpper()}";
                 case OperationProcedure.Update:
-                    return $"S_{nome.TratarNomeTabela().ToUpper()}_ID";
+                    return $"{ParamtersInput.Prefixos.Procedure}U_{nome.TratarNomeTabela().ToUpper()}";
                 case OperationProcedure.Delete:
-                    return $"S_{nome.TratarNomeTabela().ToUpper()}_ID";
+                    return $"{ParamtersInput.Prefixos.Procedure}D_{nome.TratarNomeTabela().ToUpper()}_ID";
                 default:
                     return "";
             }

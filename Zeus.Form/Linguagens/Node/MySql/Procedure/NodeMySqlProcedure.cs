@@ -32,7 +32,7 @@ namespace Zeus.Linguagens.Node.MySql.Procedure
         {
             var get = new StringBuilder();
             get.Append($"        getById: (id) => {{{N}");
-            get.Append($"                return mysql.readProcedure(`{NomeTabela.TratarNomeProcedure(OperationProcedure.Search)}({ListaAtributosTabela.First().COLUMN_NAME});{N}");
+            get.Append($"                return mysql.readProcedure(`{NomeTabela.TratarNomeProcedure(OperationProcedure.Search)}(${{{ListaAtributosTabela.First().COLUMN_NAME}}})`);{N}");
             get.Append($"        }},{N}");
             return get;
         }
@@ -50,7 +50,7 @@ namespace Zeus.Linguagens.Node.MySql.Procedure
         {
             var get = new StringBuilder();
             get.Append($"        insert: (body) => {{ {N}");
-            get.Append($"                return mysql.readProcedure(`{NomeTabela.TratarNomeProcedure(OperationProcedure.Insert)}({parametrosQuery(false)});{N}");
+            get.Append($"                return mysql.readProcedure(`{NomeTabela.TratarNomeProcedure(OperationProcedure.Insert)}`, {parametrosQuery(false)});{N}");
             get.Append($"        }},{N}");
             return get;
         }
@@ -60,7 +60,7 @@ namespace Zeus.Linguagens.Node.MySql.Procedure
 
             var get = new StringBuilder();
             get.Append($"        update: (body) => {{ {N}");
-            get.Append($"                return mysql.readProcedure(`{NomeTabela.TratarNomeProcedure(OperationProcedure.Update)}(body.{ListaAtributosTabela.First().COLUMN_NAME}),{parametrosQuery(true)});{N}");
+            get.Append($"                return mysql.readProcedure(`{NomeTabela.TratarNomeProcedure(OperationProcedure.Update)}`, {parametrosQuery(true)});{N}");
             get.Append($"        }},{N}");
             return get;
         }
@@ -68,8 +68,8 @@ namespace Zeus.Linguagens.Node.MySql.Procedure
         {
             var get = new StringBuilder();
             get.Append($"        delete: (id) => {{ {N}");
-            get.Append($"                return mysql.readProcedure(`{NomeTabela.TratarNomeProcedure(OperationProcedure.Update)}({ListaAtributosTabela.First().COLUMN_NAME});{N}");
-            get.Append($"        }},{N}");
+            get.Append($"                return mysql.readProcedure(`{NomeTabela.TratarNomeProcedure(OperationProcedure.Delete)}(${{{ListaAtributosTabela.First().COLUMN_NAME}}})`);{N}");
+            get.Append($"        }}{N}");
             return get;
         }
 

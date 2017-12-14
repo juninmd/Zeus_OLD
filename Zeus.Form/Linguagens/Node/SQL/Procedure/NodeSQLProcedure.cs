@@ -2,7 +2,6 @@
 using System.Text;
 using Zeus.Core;
 using Zeus.Linguagens.Base;
-using Zeus.Properties;
 
 namespace Zeus.Linguagens.Node.SQL.Procedure
 {
