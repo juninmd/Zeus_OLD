@@ -2,7 +2,6 @@
 using System.Text;
 using Zeus.Core;
 using Zeus.Linguagens.Base;
-using Zeus.Properties;
 
 namespace Zeus.Linguagens.Java.Firebird.Procedure
 {
@@ -28,11 +27,11 @@ namespace Zeus.Linguagens.Java.Firebird.Procedure
             var proc = new StringBuilder();
             proc.Append($"	private enum Proc{N}");
             proc.Append($"	{{{N}");
-            proc.Append($"		{ParamtersInput.Prefixos.Procedure}S_{baseProc}_ID,{N}");
-            proc.Append($"		{ParamtersInput.Prefixos.Procedure}S_{baseProc},{N}");
-            proc.Append($"		{ParamtersInput.Prefixos.Procedure}I_{baseProc},{N}");
-            proc.Append($"		{ParamtersInput.Prefixos.Procedure}U_{baseProc},{N}");
-            proc.Append($"		{ParamtersInput.Prefixos.Procedure}D_{baseProc}{N}");
+            proc.Append($"		{baseProc.TratarNomeProcedure(OperationProcedure.Search)},{N}");
+            proc.Append($"		{baseProc.TratarNomeProcedure(OperationProcedure.List)},{N}");
+            proc.Append($"		{baseProc.TratarNomeProcedure(OperationProcedure.Insert)},{N}");
+            proc.Append($"		{baseProc.TratarNomeProcedure(OperationProcedure.Update)},{N}");
+            proc.Append($"		{baseProc.TratarNomeProcedure(OperationProcedure.Delete)}{N}");
             proc.Append($"	}}{N}");
             return proc;
         }

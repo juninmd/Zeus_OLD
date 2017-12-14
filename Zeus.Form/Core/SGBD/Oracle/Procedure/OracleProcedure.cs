@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Text;
 using Zeus.Linguagens.Base;
-using Zeus.Properties;
 
 namespace Zeus.Core.SGBD.Oracle.Procedure
 {

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
-using Zeus.Properties;
 using Zeus.Utilidade;
 
 namespace Zeus.Core.SGBD.Oracle.Batch

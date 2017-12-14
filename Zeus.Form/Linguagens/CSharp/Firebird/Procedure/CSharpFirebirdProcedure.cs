@@ -1,7 +1,6 @@
 ﻿using System.Text;
 using Zeus.Core;
 using Zeus.Linguagens.Base;
-using Zeus.Properties;
 
 namespace Zeus.Linguagens.CSharp.Firebird.Procedure
 {
@@ -43,11 +42,11 @@ namespace Zeus.Linguagens.CSharp.Firebird.Procedure
             proc.Append(N);
             proc.Append("        private enum Procedures" + N);
             proc.Append("        {" + N);
-            proc.Append($"            S_{nomeProcBase}," + N);
-            proc.Append($"            S_{nomeProcBase}_ID," + N);
-            proc.Append($"            I_{nomeProcBase}," + N);
-            proc.Append($"            U_{nomeProcBase}," + N);
-            proc.Append($"            D_{nomeProcBase}" + N);
+            proc.Append($"		{nomeProcBase.TratarNomeProcedure(OperationProcedure.Search)},{N}");
+            proc.Append($"		{nomeProcBase.TratarNomeProcedure(OperationProcedure.List)},{N}");
+            proc.Append($"		{nomeProcBase.TratarNomeProcedure(OperationProcedure.Insert)},{N}");
+            proc.Append($"		{nomeProcBase.TratarNomeProcedure(OperationProcedure.Update)},{N}");
+            proc.Append($"		{nomeProcBase.TratarNomeProcedure(OperationProcedure.Delete)}{N}");
             proc.Append("        }" + N + N);
             return proc;
         }
@@ -112,7 +111,7 @@ namespace Zeus.Linguagens.CSharp.Firebird.Procedure
             methodo.Append($"        public RequestMessage<string> Add({NomeTabela} entidade, bool commit = false)" + N);
             methodo.Append("        {" + N + N);
 
-            methodo.Append($"            BeginNewStatement(PackageName, Procedures.MAG_SP_PDL_I_{nomeProcedure});" + N);
+            methodo.Append($"            BeginNewStatement(PackageName, Procedures.{nomeProcedure});" + N);
 
             methodo.Append(N);
             methodo.Append("            AddResult();" + N);
@@ -143,7 +142,7 @@ namespace Zeus.Linguagens.CSharp.Firebird.Procedure
             methodo.Append($"        public RequestMessage<string> Update({NomeTabela} entidade, bool commit = false)" + N);
             methodo.Append("        {" + N + N);
 
-            methodo.Append($"            BeginNewStatement(PackageName, Procedures.MAG_SP_PDL_U_{nomeProcedure});" + N);
+            methodo.Append($"            BeginNewStatement(PackageName, Procedures.{nomeProcedure});" + N);
 
             methodo.Append(N);
             methodo.Append("            AddResult();" + N);

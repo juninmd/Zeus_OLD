@@ -8,7 +8,6 @@ using Zeus.Core.SGBD.Microsoft_SQL.Procedure;
 using Zeus.Core.SGBD.MySql.Procedure;
 using Zeus.Core.SGBD.Oracle.Procedure;
 using Zeus.Core.SGBD.Postgre.Procedure;
-using Zeus.Properties;
 using Zeus.Utilidade;
 
 namespace Zeus.Linguagens.Base
