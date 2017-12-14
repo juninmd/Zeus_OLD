@@ -10,9 +10,14 @@
         {
             switch (tipoAttr)
             {
-                case "DATE":
+                case "int":
+                case "enum":
+                    return "int" + (IsNullabe(aceitaNull) ? "?" : "");
+                case "tinyint":
+                    return "short" + (IsNullabe(aceitaNull) ? "?" : "");
+                case "datetime":
                     return "DateTime" + (IsNullabe(aceitaNull) ? "?" : "");
-                case "NUMBER":
+                case "long":
                     return "long" + (IsNullabe(aceitaNull) ? "?" : "");
                 default:
                     return "string";
