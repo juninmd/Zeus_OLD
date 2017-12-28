@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Text;
 using Zeus.Core;
+using Zeus.Core.SGBD.MySql;
 using Zeus.Linguagens.Base;
 
 namespace Zeus.Linguagens.Node.MySql.Procedure
@@ -15,7 +16,7 @@ namespace Zeus.Linguagens.Node.MySql.Procedure
         }
         private StringBuilder Imports()
         {
-            var connection = new NodeMySqlConnectionStringModel(ParamtersInput.ConnectionString);
+            var connection = new MySqlConnectionStringModel(ParamtersInput.ConnectionString);
             var imports = new StringBuilder();
             imports.Append($"const mysql = require('jano-mysql')({{{N}" +
                            $"        host: '{connection.host}',{N}" +
