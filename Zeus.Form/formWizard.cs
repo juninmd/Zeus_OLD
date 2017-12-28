@@ -114,20 +114,30 @@ namespace Zeus
                 return;
             }
 
+            listSchemas.Items.Clear();
+            listTabelas.Items.Clear();
+
             switch (ParamtersInput.SGBD)
             {
                 case 1:
                 case 2:
                 case 4:
-                    ListaTabelas = connectionDb.Content;
-                    lblTabelas.Text = ListaTabelas.Count > 0 ? $"{ListaTabelas.Count} Tabela(s) disponível(eis)" : "Nenhuma tabela disponível.";
-                    listSchemas.Items.Clear();
-                    return;
+                    {
+                        ListaTabelas = connectionDb.Content;
+                        listTabelas.Items.AddRange(ListaTabelas.ToArray());
+                        listSchemas.Enabled = false;
+                        break;
+                    }
+                case 3:
+                    {
+                        ListaTabelas = new List<string>();
+                        listSchemas.Items.AddRange(connectionDb.Content.ToArray());
+                        listSchemas.SelectedItem = ParamtersInput.DataBase ?? null;
+                        listSchemas.Enabled = true;
+                        break;
+                    }
             }
-
-            listSchemas.Items.Clear();
-            listSchemas.Items.AddRange(connectionDb.Content.ToArray());
-            listSchemas.SelectedItem = ParamtersInput.DataBase ?? null;
+            lblTabelas.Text = ListaTabelas.Count > 0 ? $"{ListaTabelas.Count} Tabela(s) disponível(eis)" : "Nenhuma tabela disponível.";
 
             tab.SelectTab(1);
         }

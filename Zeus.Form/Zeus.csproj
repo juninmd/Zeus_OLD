@@ -126,6 +126,7 @@
     <Compile Include="Core\SGBD\Oracle\Batch\OracleBatchSkip.cs" />
     <Compile Include="Core\SGBD\Oracle\Batch\OracleBatch.cs" />
     <Compile Include="Core\SGBD\Oracle\Batch\OracleOrquestradorBatch.cs" />
+    <Compile Include="Core\SGBD\Oracle\OracleConnectionStringModel.cs" />
     <Compile Include="Core\SGBD\Oracle\OracleToJson.cs" />
     <Compile Include="Core\SGBD\Oracle\OraclePing.cs" />
     <Compile Include="Core\SGBD\Oracle\OracleRepository.cs" />
@@ -227,7 +228,7 @@
     <Compile Include="Linguagens\Java\SQL\Query\JavaSQLQuery.cs" />
     <Compile Include="Linguagens\Node\Firebird\Procedure\NodeFirebirdProcedure.cs" />
     <Compile Include="Linguagens\Node\Firebird\Query\NodeFirebirdQuery.cs" />
-    <Compile Include="Linguagens\Node\MySql\NodeMySqlConnectionStringModel.cs" />
+    <Compile Include="Core\SGBD\MySql\MySqlConnectionStringModel.cs" />
     <Compile Include="Linguagens\Node\MySql\Procedure\NodeMySqlProcedure.cs" />
     <Compile Include="Frontend\Angular\AngularService.cs" />
     <Compile Include="Linguagens\Node\MySql\Query\NodeMySqlQuery.cs" />

@@ -26,6 +26,8 @@ using Zeus.Linguagens.Node.Firebird.Procedure;
 using Zeus.Linguagens.Node.Firebird.Query;
 using Zeus.Linguagens.Node.MySql.Procedure;
 using Zeus.Linguagens.Node.MySql.Query;
+using Zeus.Linguagens.Node.Oracle.Procedure;
+using Zeus.Linguagens.Node.Oracle.Query;
 using Zeus.Linguagens.Node.Postgre.Procedure;
 using Zeus.Linguagens.Node.Postgre.Query;
 using Zeus.Linguagens.Node.SQL.Procedure;
@@ -71,6 +73,7 @@ namespace Zeus.Linguagens.Base
 
         public void Implementar(string local, string nomeTabela)
         {
+            Util.Status($"Salvando em: {local}"); 
             string body = "";
             if (ParamtersInput.Procedure)
             {
@@ -153,7 +156,7 @@ namespace Zeus.Linguagens.Base
                         {
                             case 1:
                             {
-                                var instancia = new NodePostgreProcedure(nomeTabela);
+                                var instancia = new NodeOracleProcedure(nomeTabela);
                                 body = instancia.GerarClasse().ToString();
                             }
                                 break;
@@ -268,7 +271,7 @@ namespace Zeus.Linguagens.Base
                         {
                             case 1:
                             {
-                                var instancia = new NodePostgreQuery(nomeTabela);
+                                var instancia = new NodeOracleQuery(nomeTabela);
                                 body = instancia.GerarClasse().ToString();
                             }
                                 break;

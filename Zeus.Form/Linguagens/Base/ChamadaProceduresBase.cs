@@ -14,6 +14,10 @@ namespace Zeus.Linguagens.Base
 {
     public class ChamadaProceduresBase
     {
+        /// <summary>
+        /// TODO: Melhorar
+        /// </summary>
+        /// <returns></returns>
         public RequestMessage<string> Orquestrar()
         {
             try
@@ -21,6 +25,7 @@ namespace Zeus.Linguagens.Base
                 int max = ParamtersInput.NomeTabelas.Count;
                 var i = 0;
                 var unificar = new StringBuilder();
+                var unificarHeader = new StringBuilder();
 
                 foreach (var nomeTabela in ParamtersInput.NomeTabelas)
                 {
@@ -30,16 +35,35 @@ namespace Zeus.Linguagens.Base
                     var body = Implementar(nomeTabela);
 
                     if (!ParamtersInput.UnificarOutput)
+                    {
+                        if (ParamtersInput.SGBD == 1)
+                        {
+                            File.WriteAllText($"{ParamtersInput.SelectedPath}{nomeTabela.TratarNomeSQL()}Header.sql", new OracleProcedure(nomeTabela).GerarPackageHeader().ToString());
+                        }
                         File.WriteAllText($"{ParamtersInput.SelectedPath}{nomeTabela.TratarNomeSQL()}.sql", body);
+                    }
                     else
                     {
                         unificar.Append(body);
                         unificar.Append("\n\n");
+
+                        if (ParamtersInput.SGBD == 1)
+                        {
+                            unificarHeader.Append(new OracleProcedure(nomeTabela).GerarPackageHeader().ToString());
+                            unificarHeader.Append("\n\n");
+                        }
                     }
                 }
 
                 if (ParamtersInput.UnificarOutput)
-                    File.WriteAllText(ParamtersInput.SelectedPath + $"{ParamtersInput.DataBase}.sql", unificar.ToString());
+                {
+                    File.WriteAllText(ParamtersInput.SelectedPath + $"{ParamtersInput.DataBase ?? "Procedures"}.sql", unificar.ToString());
+
+                    if (ParamtersInput.SGBD == 1)
+                    {
+                        File.WriteAllText(ParamtersInput.SelectedPath + $"{ParamtersInput.DataBase ?? "Procedures"}Header.sql", unificarHeader.ToString());
+                    }
+                }
 
                 return new RequestMessage<string>
                 {

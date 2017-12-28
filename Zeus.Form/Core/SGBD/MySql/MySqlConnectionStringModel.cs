@@ -2,11 +2,11 @@
 using System.Linq;
 using Zeus.Core;
 
-namespace Zeus.Linguagens.Node.MySql
+namespace Zeus.Core.SGBD.MySql
 {
-    public class NodeMySqlConnectionStringModel
+    public class MySqlConnectionStringModel
     {
-        public NodeMySqlConnectionStringModel(string connection)
+        public MySqlConnectionStringModel(string connection)
         {
             var listKey = connection.Split(';').Select(item => item.Split('=')).Select(kv => new KeyValuePair<string, string>(kv[0], kv[1])).ToList();
             this.host = listKey.FirstOrDefault(key => key.Key == "Server").Value;
