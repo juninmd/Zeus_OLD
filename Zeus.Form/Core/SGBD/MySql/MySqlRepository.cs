@@ -219,7 +219,7 @@ namespace Zeus.Core.SGBD.MySql
         {
             try
             {
-                return r[columnName] == DBNull.Value || r[columnName] == "" ? default(T) : (T)r[columnName];
+                return r[columnName] == DBNull.Value || r[columnName].ToString() == "" ? default(T) : (T)r[columnName];
             }
             catch (Exception ex) when (ex.Message == "Unable to find specified column in result set")
             {

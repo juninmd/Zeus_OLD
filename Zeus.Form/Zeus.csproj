@@ -198,13 +198,8 @@
     <Compile Include="Linguagens\CSharp\Postgre\Procedure\CSharpPostgreProcedure.cs" />
     <Compile Include="Linguagens\CSharp\Postgre\Query\CSharpPostgreQuery.cs" />
     <Compile Include="Linguagens\CSharp\SQL\Entidade\CSharpSQLEntidade.cs" />
-    <Compile Include="Linguagens\CSharp\SQL\Procedure\CSharpProcDeleteSQL.cs" />
     <Compile Include="Linguagens\CSharp\SQL\Procedure\CSharpSQLProcedure.cs" />
     <Compile Include="Linguagens\CSharp\SQL\CSharpTypesSQL.cs" />
-    <Compile Include="Linguagens\CSharp\SQL\Procedure\CSharpProcGetAllSQL.cs" />
-    <Compile Include="Linguagens\CSharp\SQL\Procedure\CSharpProcPutSQL.cs" />
-    <Compile Include="Linguagens\CSharp\SQL\Procedure\CSharpProcPostSQL.cs" />
-    <Compile Include="Linguagens\CSharp\SQL\Procedure\CSharpProcGetByIdSQL.cs" />
     <Compile Include="Linguagens\CSharp\SQL\Query\CSharpSQLQuery.cs" />
     <Compile Include="Linguagens\Java\Firebird\Entidade\JavaFirebirdEntidade.cs" />
     <Compile Include="Linguagens\Java\Firebird\JavaTypesFirebird.cs" />
