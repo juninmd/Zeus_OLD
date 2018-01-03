@@ -7,7 +7,7 @@ using Zeus.Linguagens.Java.MySql;
 
 namespace Zeus.Linguagens.Java.Oracle.Query
 {
-    public class JavaOracleQuery : BaseMySqlDAO
+    public class JavaOracleQuery : BaseOracleDAO
     {
 
         public JavaOracleQuery(string nomeTabela) : base(nomeTabela)
@@ -35,7 +35,7 @@ namespace Zeus.Linguagens.Java.Oracle.Query
             get.Append($"				{NomeTabela} resposta = new {NomeTabela}();{N}");
             foreach (var att in ListaAtributosTabela)
             {
-                get.Append($"				resposta.set{att.COLUMN_NAME.ToFirstCharToUpper()}(rs.get{JavaTypesMySql.GetTypeAtribute((att)).ToFirstCharToUpper()}(\"{att.COLUMN_NAME}\"));{N}");
+                get.Append($"				resposta.set{att.COLUMN_NAME.ToFirstCharToUpper()}(rs.get{JavaTypesOracle.GetTypeAtribute((att)).ToFirstCharToUpper()}(\"{att.COLUMN_NAME}\"));{N}");
             }
             get.Append($"				return resposta;{N}");
             get.Append($"			}}{N}");
@@ -64,7 +64,7 @@ namespace Zeus.Linguagens.Java.Oracle.Query
             get.Append($"				{NomeTabela} resposta = new {NomeTabela}();{N}");
             foreach (var att in ListaAtributosTabela)
             {
-                get.Append($"				resposta.set{att.COLUMN_NAME.ToFirstCharToUpper()}(rs.get{JavaTypesMySql.GetTypeAtribute((att)).ToFirstCharToUpper()}(\"{att.COLUMN_NAME}\"));{N}");
+                get.Append($"				resposta.set{att.COLUMN_NAME.ToFirstCharToUpper()}(rs.get{JavaTypesOracle.GetTypeAtribute((att)).ToFirstCharToUpper()}(\"{att.COLUMN_NAME}\"));{N}");
             }
             get.Append($"				lista.add(resposta);{N}");
             get.Append($"			}}{N}");
@@ -91,7 +91,7 @@ namespace Zeus.Linguagens.Java.Oracle.Query
             for (int index = 1; index < ListaAtributosTabela.Count; index++)
             {
                 var att = ListaAtributosTabela[index];
-                get.Append($"			conn.set{JavaTypesMySql.GetTypeAtribute(att).ToFirstCharToUpper()}({index}, entidade.get{att.COLUMN_NAME.ToFirstCharToUpper()}());{N}");
+                get.Append($"			conn.set{JavaTypesOracle.GetTypeAtribute(att).ToFirstCharToUpper()}({index}, entidade.get{att.COLUMN_NAME.ToFirstCharToUpper()}());{N}");
             }
             get.Append($"			conn.execute();{N}");
             get.Append($"			commit();{N}");
@@ -116,7 +116,7 @@ namespace Zeus.Linguagens.Java.Oracle.Query
             for (int index = 1; index < ListaAtributosTabela.Count; index++)
             {
                 var att = ListaAtributosTabela[index];
-                get.Append($"			conn.set{JavaTypesMySql.GetTypeAtribute(att).ToFirstCharToUpper()}({index}, entidade.get{att.COLUMN_NAME.ToFirstCharToUpper()}());{N}");
+                get.Append($"			conn.set{JavaTypesOracle.GetTypeAtribute(att).ToFirstCharToUpper()}({index}, entidade.get{att.COLUMN_NAME.ToFirstCharToUpper()}());{N}");
             }
             get.Append($"			conn.execute();{N}");
             get.Append($"			commit();{N}");

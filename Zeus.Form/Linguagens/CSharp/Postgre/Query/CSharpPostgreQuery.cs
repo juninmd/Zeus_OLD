@@ -5,7 +5,7 @@ using Zeus.Linguagens.Base;
 
 namespace Zeus.Linguagens.CSharp.Postgre.Query
 {
-    public class CSharpPostgreQuery : BaseFirebirdDAO
+    public class CSharpPostgreQuery : BasePostgreDAO
     {
 
         public CSharpPostgreQuery(string nomeTabela) : base(nomeTabela)
@@ -24,7 +24,7 @@ namespace Zeus.Linguagens.CSharp.Postgre.Query
             var get = new StringBuilder();
             get.Append($"    	public IDataReader GetById(int ID){N}");
             get.Append($"    	{{{N}");
-            get.Append($"    	 	var sql = $\"SELECT * FROM {NomeTabela} WHERE {ListaAtributosTabela.First().FIELD_NAME} = {{ ID }}\";{N}");
+            get.Append($"    	 	var sql = $\"SELECT * FROM {NomeTabela} WHERE {ListaAtributosTabela.First().COLUMN_NAME} = {{ ID }}\";{N}");
             get.Append($"    	 	return ExecuteReader(sql);{N}");
             get.Append($"    	}}{N}");
             return get;
@@ -46,7 +46,7 @@ namespace Zeus.Linguagens.CSharp.Postgre.Query
             var get = new StringBuilder();
             get.Append($"    	public void Insert({NomeTabela.ToFirstCharToUpper()}Model entidade){N}");
             get.Append($"    	{{{N}");
-            get.Append($"    	 	var sql = $\"INSERT INTO {NomeTabela} ({string.Join(",", ListaAtributosTabela.Select(q=> q.FIELD_NAME))}) VALUES\"{N}");
+            get.Append($"    	 	var sql = $\"INSERT INTO {NomeTabela} ({string.Join(",", ListaAtributosTabela.Select(q=> q.COLUMN_NAME))}) VALUES\"{N}");
             get.Append(AddParams());
             get.Append($"    	 	ExecuteNonResult(sql); {N}");
             get.Append($"    	}}{N}");
@@ -59,12 +59,12 @@ namespace Zeus.Linguagens.CSharp.Postgre.Query
             if (count == 0)
                 return param;
 
-            param.Append($"    		+$\"('{{entidade.{ListaAtributosTabela[0].FIELD_NAME}}}',\"{N}");
+            param.Append($"    		+$\"('{{entidade.{ListaAtributosTabela[0].COLUMN_NAME}}}',\"{N}");
             for (int i = 1; i < count - 1; i++)
             {
-                param.Append($"    		+$\"'{{entidade.{ListaAtributosTabela[i].FIELD_NAME}}}',\"{N}");
+                param.Append($"    		+$\"'{{entidade.{ListaAtributosTabela[i].COLUMN_NAME}}}',\"{N}");
             }
-            param.Append($"    		+$\"'{{entidade.{ListaAtributosTabela[count - 1].FIELD_NAME}}}')\";{N}");
+            param.Append($"    		+$\"'{{entidade.{ListaAtributosTabela[count - 1].COLUMN_NAME}}}')\";{N}");
             return param;
         }
 
@@ -75,7 +75,7 @@ namespace Zeus.Linguagens.CSharp.Postgre.Query
             get.Append($"    	{{{N}");
             get.Append($"    	 	var sql = $\"UPDATE {NomeTabela} SET \" {N}");
             get.Append(UpdateParams());
-            get.Append($"    	 	+$\"WHERE {ListaAtributosTabela.First().FIELD_NAME} = {{ entidade.{ListaAtributosTabela.First().FIELD_NAME}}}\"; {N}");
+            get.Append($"    	 	+$\"WHERE {ListaAtributosTabela.First().COLUMN_NAME} = {{ entidade.{ListaAtributosTabela.First().COLUMN_NAME}}}\"; {N}");
             get.Append($"    	 	ExecuteNonResult(sql); {N}");
             get.Append($"    	}}{N}");
             return get;
@@ -89,9 +89,9 @@ namespace Zeus.Linguagens.CSharp.Postgre.Query
 
             for (int i = 0; i < count - 1; i++)
             {
-                param.Append($"    		+$\"{ListaAtributosTabela[i].FIELD_NAME} = '{{entidade.{ListaAtributosTabela[i].FIELD_NAME}}}',\"" + N);
+                param.Append($"    		+$\"{ListaAtributosTabela[i].COLUMN_NAME} = '{{entidade.{ListaAtributosTabela[i].COLUMN_NAME}}}',\"" + N);
             }
-            param.Append($"    		+$\"{ListaAtributosTabela[count - 1].FIELD_NAME} = '{{entidade.{ListaAtributosTabela[count - 1].FIELD_NAME}}}' \"" + N);
+            param.Append($"    		+$\"{ListaAtributosTabela[count - 1].COLUMN_NAME} = '{{entidade.{ListaAtributosTabela[count - 1].COLUMN_NAME}}}' \"" + N);
             return param;
         }
 
@@ -100,7 +100,7 @@ namespace Zeus.Linguagens.CSharp.Postgre.Query
             var get = new StringBuilder();
             get.Append($"    	public void Delete(int ID){N}");
             get.Append($"    	{{{N}");
-            get.Append($"    	 	var sql = $\"DELETE FROM {NomeTabela} WHERE {ListaAtributosTabela.First().FIELD_NAME} = {{ ID }}\";{N}");
+            get.Append($"    	 	var sql = $\"DELETE FROM {NomeTabela} WHERE {ListaAtributosTabela.First().COLUMN_NAME} = {{ ID }}\";{N}");
             get.Append($"    	 	ExecuteNonResult(sql); {N}");
             get.Append($"    	}}{N}");
             return get;
