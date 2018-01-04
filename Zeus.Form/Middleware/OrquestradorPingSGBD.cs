@@ -20,7 +20,6 @@ namespace Zeus.Middleware
                     Message = "Preencha o campo 'Connection String'",
                     StatusCode = HttpStatusCode.InternalServerError
                 };
-            ;
 
             try
             {

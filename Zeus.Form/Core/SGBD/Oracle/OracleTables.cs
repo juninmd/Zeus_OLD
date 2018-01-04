@@ -17,7 +17,6 @@ namespace Zeus.Core.SGBD.Oracle
                     lista.Add(r.GetValueOrDefault<string>("table_name"));
             }
 
-            ;
             return lista;
         }
 
@@ -54,8 +53,6 @@ namespace Zeus.Core.SGBD.Oracle
                         COMMENTS = r.GetValueOrDefault<string>("COMMENTS")
                     });
             }
-
-            ;
 
             return lista;
         }

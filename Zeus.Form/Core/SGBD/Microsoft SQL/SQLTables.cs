@@ -19,7 +19,6 @@ namespace Zeus.Core.SGBD.Microsoft_SQL
                         $"[{r.GetValueOrDefault<string>("TABLE_SCHEMA")}].[{r.GetValueOrDefault<string>("TABLE_NAME")}]");
             }
 
-            ;
             return lista;
         }
 
@@ -49,8 +48,6 @@ namespace Zeus.Core.SGBD.Microsoft_SQL
                         COMMENTS = ""
                     });
             }
-
-            ;
 
             return lista;
         }

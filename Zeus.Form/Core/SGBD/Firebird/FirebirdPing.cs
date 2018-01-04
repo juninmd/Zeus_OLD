@@ -24,7 +24,6 @@ namespace Zeus.Core.SGBD.Firebird
                     };
             }
 
-            ;
             return new RequestMessage<List<string>>
             {
                 StatusCode = HttpStatusCode.InternalServerError,

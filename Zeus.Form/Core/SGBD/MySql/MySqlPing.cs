@@ -27,7 +27,6 @@ namespace Zeus.Core.SGBD.MySql
                     };
             }
 
-            ;
             return new RequestMessage<List<string>>
             {
                 StatusCode = HttpStatusCode.InternalServerError,

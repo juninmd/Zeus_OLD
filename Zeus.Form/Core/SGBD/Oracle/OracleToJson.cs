@@ -17,7 +17,6 @@ namespace Zeus.Core.SGBD.Oracle
                     jsonResult.Append("");
             }
 
-            ;
             return new RequestMessage<string>
             {
                 StatusCode = HttpStatusCode.OK,

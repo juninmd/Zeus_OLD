@@ -3,9 +3,8 @@ using System.Net;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Zeus.Core;
 using Zeus.Middleware;
-using Zeus.Test.Postgre;
 
-namespace Zeus.Test.Oracle
+namespace Zeus.Test.Postgre
 {
     [TestClass]
     public class PostgreEntityTest : BasePostgreTest

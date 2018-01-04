@@ -77,9 +77,10 @@ namespace Zeus.Core.SGBD.Oracle.Procedure
         private string EspacoMontadoParametros(string nomeProcedure)
         {
             var tamanho = $"  PROCEDURE {nomeProcedure} ".Length;
-            var espaco = "";
-            for (var t = 0; t < tamanho; t++) espaco += " ";
-            return espaco;
+            var espaco = new StringBuilder();
+            for (var t = 0; t < tamanho; t++)
+                espaco.Append(" ");
+            return espaco.ToString();
         }
 
         private StringBuilder MontaTodosParametrosHeader(string nomeProcedure, bool isCursor, bool isHeader,

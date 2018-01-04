@@ -3,9 +3,8 @@ using System.Net;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Zeus.Core;
 using Zeus.Middleware;
-using Zeus.Test.Firebird;
 
-namespace Zeus.Test.MySql
+namespace Zeus.Test.Firebird
 {
     [TestClass]
     public class FirebirdEntityTest : BaseFirebirdTest

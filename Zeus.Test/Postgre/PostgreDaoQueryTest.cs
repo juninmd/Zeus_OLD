@@ -1,8 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Zeus.Core;
-using Zeus.Test.Postgre;
 
-namespace Zeus.Test.MySql
+namespace Zeus.Test.Postgre
 {
     [TestClass]
     public class PostgreDaoQueryTest : BasePostgreDaoTest
