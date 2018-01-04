@@ -24,7 +24,7 @@ namespace Zeus.Core.SGBD.Oracle.Batch
 
 
                     var nomePG = Path.GetFileNameWithoutExtension(nomeArquivo);
-                    if (nomePG.Contains(ParamtersInput.Prefixos.Package))
+                    if(nomePG.Contains(ParamtersInput.Prefixos.Package))
                     {
                         var body = nomePG.Contains("_BODY");
                         if (new OracleBatchSkip().Package(nomePG.Replace("_BODY", "").Replace("_HEADER", ""), body)
@@ -32,17 +32,17 @@ namespace Zeus.Core.SGBD.Oracle.Batch
                             continue;
                     }
 
-                    if (nomePG.Contains("_SEQUENCE"))
+                    if(nomePG.Contains("_SEQUENCE"))
                     {
                         var nomeSequence = nomePG.Replace("_SEQUENCE", "").TratarNomeSequence().Replace(".NEXTVAL", "");
                         if (new OracleBatchSkip().Sequence(nomeSequence).IsError)
                             continue;
                     }
 
-                    if (nomePG.Contains("_RELATIONAL") || nomePG.Contains("Repository")) continue;
+                    if(nomePG.Contains("_RELATIONAL") || nomePG.Contains("Repository")) continue;
 
                     var instancia = new OracleBatch().Init(File.ReadAllText($"{nomeArquivo}"));
-                    if (instancia.IsError) return instancia;
+                    if(instancia.IsError) return instancia;
                 }
 
                 return new RequestMessage<string>

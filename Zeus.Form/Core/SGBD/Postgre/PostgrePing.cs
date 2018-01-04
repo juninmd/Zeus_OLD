@@ -24,7 +24,6 @@ namespace Zeus.Core.SGBD.Postgre
                     };
             }
 
-            ;
             return new RequestMessage<List<string>>
             {
                 StatusCode = HttpStatusCode.InternalServerError,

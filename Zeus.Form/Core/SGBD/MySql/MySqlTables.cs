@@ -18,7 +18,6 @@ namespace Zeus.Core.SGBD.MySql
                     lista.Add(r.GetValueOrDefault<string>("TABLE_NAME"));
             }
 
-            ;
             return lista;
         }
 
@@ -35,7 +34,6 @@ namespace Zeus.Core.SGBD.MySql
                     lista.Add(r.GetValueOrDefault<string>("Database"));
             }
 
-            ;
             return lista;
         }
 
@@ -67,8 +65,6 @@ namespace Zeus.Core.SGBD.MySql
                         COLUMN_COMMENT = r.GetValueOrDefault<string>("COLUMN_COMMENT")
                     });
             }
-
-            ;
 
             return lista;
         }

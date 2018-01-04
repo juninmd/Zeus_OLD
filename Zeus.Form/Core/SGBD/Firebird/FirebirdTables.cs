@@ -17,7 +17,6 @@ namespace Zeus.Core.SGBD.Firebird
                     lista.Add(r.GetValueOrDefault<string>("TABLE_NAME").Trim());
             }
 
-            ;
             CloseConnection();
             return lista;
         }
@@ -37,7 +36,6 @@ namespace Zeus.Core.SGBD.Firebird
                     });
             }
 
-            ;
             CloseConnection();
 
             return lista;

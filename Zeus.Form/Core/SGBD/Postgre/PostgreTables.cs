@@ -16,7 +16,6 @@ namespace Zeus.Core.SGBD.Postgre
                     lista.Add(r.GetValueOrDefault<string>("table_name").Trim());
             }
 
-            ;
             CloseConnection();
             return lista;
         }
@@ -32,7 +31,6 @@ namespace Zeus.Core.SGBD.Postgre
                     lista.Add(r.GetValueOrDefault<string>("schema_name").Trim());
             }
 
-            ;
             CloseConnection();
             return lista;
         }
@@ -54,7 +52,6 @@ namespace Zeus.Core.SGBD.Postgre
                     });
             }
 
-            ;
             CloseConnection();
 
             return lista;

@@ -27,7 +27,6 @@ namespace Zeus.Core.SGBD.Oracle
                     };
             }
 
-            ;
             return new RequestMessage<List<string>>
             {
                 StatusCode = HttpStatusCode.InternalServerError,

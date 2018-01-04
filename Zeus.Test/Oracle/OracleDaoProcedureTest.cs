@@ -1,8 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Zeus.Core;
-using Zeus.Test.Oracle;
 
-namespace Zeus.Test.MySql
+namespace Zeus.Test.Oracle
 {
     [TestClass]
     public class OracleDaoProcedureTest : BaseOracleDaoTest

@@ -73,7 +73,6 @@ namespace Zeus.Core.SGBD.Firebird
             try
             {
                 return r[columnName].ToString().Trim();
-                ;
             }
             catch (Exception ex) when (ex.Message == "Unable to find specified column in result set")
             {

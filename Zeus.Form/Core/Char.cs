@@ -6,7 +6,7 @@ namespace Zeus.Core
     {
         public static string ToFirstCharToUpper(this string input)
         {
-            if (string.IsNullOrEmpty(input))
+            if(string.IsNullOrEmpty(input))
                 return null;
             return input.First().ToString().ToUpper() + input.Substring(1).ToLower();
         }
