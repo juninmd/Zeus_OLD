@@ -56,7 +56,7 @@ namespace Zeus.Core.SGBD.Postgre
                 _connection = new NpgsqlConnection(ParamtersInput.ConnectionString);
 
             if (_connection.State == ConnectionState.Broken && _connection.State == ConnectionState.Closed)
-                throw new Exception("Falha na conexão com o banco de dados:" + _connection.State +
+                throw new ArgumentException("Falha na conexão com o banco de dados:" + _connection.State +
                                     _connection.ConnectionString);
 
             if (_connection.State != ConnectionState.Open)
@@ -75,15 +75,15 @@ namespace Zeus.Core.SGBD.Postgre
             }
             catch (Exception ex) when (ex.Message == "Unable to find specified column in result set")
             {
-                throw new Exception(
+                throw new ArgumentException(
                     $"{ex.Message}\nNão foi possível encontrar o paramêtro: [{columnName}]\nClasse: {sourceFilePath}");
             }
             catch (Exception ex)
             {
                 if (default(T) == null)
-                    throw new Exception(
+                    throw new ArgumentException(
                         $"{ex.Message}\nFalha ao converter parametro: [{columnName}] onde deveria ser: {r[columnName].GetType().Name}\nClasse: {sourceFilePath}");
-                throw new Exception(
+                throw new ArgumentException(
                     $"{ex.Message}\nFalha ao converter parametro: [{columnName}], para o tipo: {default(T)?.GetType().Name} / Onde deveria ser: {r[columnName].GetType().Name}\nClasse: {sourceFilePath}");
             }
         }

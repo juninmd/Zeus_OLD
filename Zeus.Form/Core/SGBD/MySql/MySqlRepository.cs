@@ -64,7 +64,7 @@ namespace Zeus.Core.SGBD.MySql
         public void SetConnection(MySqlConnection conexao)
         {
             if (conexao.State != ConnectionState.Open)
-                throw new Exception("Não foi possível setar a conexão, pois a mesma foi encerrada!");
+                throw new ArgumentException("Não foi possível setar a conexão, pois a mesma foi encerrada!");
             _connection = conexao;
             _command.Connection = conexao;
         }
@@ -82,7 +82,7 @@ namespace Zeus.Core.SGBD.MySql
                 _connection = new MySqlConnection(ParamtersInput.ConnectionString);
 
             if (_connection.State == ConnectionState.Broken && _connection.State == ConnectionState.Closed)
-                throw new Exception("Falha na conexão com o banco de dados:" + _connection.State +
+                throw new ArgumentException("Falha na conexão com o banco de dados:" + _connection.State +
                                     _connection.ConnectionString);
 
             if (_connection.State != ConnectionState.Open)
@@ -116,7 +116,7 @@ namespace Zeus.Core.SGBD.MySql
             }
             catch (Exception ex)
             {
-                throw new Exception("Falha na conexão com o banco de dados" + "\n" + _command.CommandText + "\n" +
+                throw new ArgumentException("Falha na conexão com o banco de dados" + "\n" + _command.CommandText + "\n" +
                                     "\n" + ex.Message + "\n" + _connection.ConnectionString);
             }
         }
@@ -148,7 +148,7 @@ namespace Zeus.Core.SGBD.MySql
             }
             catch (Exception ex)
             {
-                throw new Exception("Falha na conexão com o banco de dados" + "\n" + _command.CommandText + "\n" +
+                throw new ArgumentException("Falha na conexão com o banco de dados" + "\n" + _command.CommandText + "\n" +
                                     ex.Message + "\n" + _connection.ConnectionString);
             }
         }
@@ -170,7 +170,7 @@ namespace Zeus.Core.SGBD.MySql
             }
             catch (Exception ex)
             {
-                throw new Exception("Falha na conexão com o banco de dados" + "\n" + _command.CommandText + "\n" +
+                throw new ArgumentException("Falha na conexão com o banco de dados" + "\n" + _command.CommandText + "\n" +
                                     ex.Message + "\n" + _connection.ConnectionString);
             }
         }
@@ -184,7 +184,7 @@ namespace Zeus.Core.SGBD.MySql
         {
             /* Validar se existe uma transaction*/
             if (fecharConexao && _command.Transaction != null)
-                throw new Exception(
+                throw new ArgumentException(
                     $"A aplicação não está finalizando uma transaction.\nVerifique o método: {caminho}\nProcedure: {_command.CommandText}");
 
             OpenConnection(fecharConexao);
@@ -219,15 +219,15 @@ namespace Zeus.Core.SGBD.MySql
             }
             catch (Exception ex) when (ex.Message == "Unable to find specified column in result set")
             {
-                throw new Exception(
+                throw new ArgumentException(
                     $"{ex.Message}\nNão foi possível encontrar o paramêtro: [{columnName}] da procedure\nClasse: {sourceFilePath}");
             }
             catch (Exception ex)
             {
                 if (default(T) == null)
-                    throw new Exception(
+                    throw new ArgumentException(
                         $"{ex.Message}\nFalha ao converter parametro: [{columnName}] da procedure. onde deveria ser: {r[columnName].GetType().Name}\nClasse: {sourceFilePath}");
-                throw new Exception(
+                throw new ArgumentException(
                     $"{ex.Message}\nFalha ao converter parametro: [{columnName}] da procedure, para o tipo: {default(T).GetType().Name} / Onde deveria ser: {r[columnName].GetType().Name}\nClasse: {sourceFilePath}");
             }
         }
