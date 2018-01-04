@@ -23,13 +23,13 @@ namespace Zeus.Linguagens.Base
         {
             try
             {
-                int max = ParamtersInput.NomeTabelas.Count;
+                var max = ParamtersInput.NomeTabelas.Count;
                 var i = 0;
 
                 foreach (var nomeTabela in ParamtersInput.NomeTabelas)
                 {
                     i++;
-                    Util.Barra((int)((((decimal)i / max) * 100)));
+                    Util.Barra((int) ((decimal) i / max * 100));
                     Util.Status($"Processando tabela: {nomeTabela}");
                     Implementar(local, nomeTabela);
                 }
@@ -51,6 +51,7 @@ namespace Zeus.Linguagens.Base
                 };
             }
         }
+
         public void Implementar(string local, string nomeTabela)
         {
             switch (ParamtersInput.Linguagem)
@@ -94,6 +95,7 @@ namespace Zeus.Linguagens.Base
                         }
                             break;
                     }
+
                     break;
                 case 2:
                     switch (ParamtersInput.SGBD)
@@ -109,7 +111,8 @@ namespace Zeus.Linguagens.Base
                         {
                             var instancia = new JavaSQLEntidade(nomeTabela);
                             var classe = instancia.GerarBody();
-                            File.WriteAllText($"{local}\\{nomeTabela.TratarNomeSQL().ToFirstCharToUpper()}.java", classe);
+                            File.WriteAllText($"{local}\\{nomeTabela.TratarNomeSQL().ToFirstCharToUpper()}.java",
+                                classe);
                         }
                             break;
                         case 3:
@@ -134,6 +137,7 @@ namespace Zeus.Linguagens.Base
                         }
                             break;
                     }
+
                     break;
             }
         }

@@ -10,7 +10,7 @@ namespace Zeus.Test.Oracle
         public BaseOracleTest()
         {
             ParamtersInput.ConnectionString = ConfigurationManager.AppSettings["oracleConnect"];
-            ParamtersInput.NomeTabelas = new List<string> { "teste" };
+            ParamtersInput.NomeTabelas = new List<string> {"teste"};
             ParamtersInput.SelectedPath = Directory.GetCurrentDirectory() + "\\Test\\";
             ParamtersInput.SGBD = 1;
 

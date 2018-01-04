@@ -44,14 +44,14 @@ namespace Zeus.Linguagens.Java.MySql.Procedure
             get.Append($"	{{{N}");
             get.Append($"		try{{{N}");
             get.Append($"			BeginNewStatement(Proc.{nameProc}, \"{ParamtersInput.DataBase}\");{N}");
-            get.Append($"			AddParamter(new Paramter(\"P_{ListaAtributosTabela.First().COLUMN_NAME}\", java.sql.Types.NUMERIC, id));{N}{N}");
+            get.Append(
+                $"			AddParamter(new Paramter(\"P_{ListaAtributosTabela.First().COLUMN_NAME}\", java.sql.Types.NUMERIC, id));{N}{N}");
             get.Append($"			ResultSet rs = super.ExecuteReader();{N}{N}");
             get.Append($"			if(rs.next()){{{N}");
             get.Append($"				{NomeTabela} resposta = new {NomeTabela}();{N}");
             foreach (var att in ListaAtributosTabela)
-            {
-                get.Append($"				resposta.set{att.COLUMN_NAME}(rs.get{JavaTypesMySql.GetTypeAtribute((att))}(\"{att.COLUMN_NAME}\"));{N}");
-            }
+                get.Append(
+                    $"				resposta.set{att.COLUMN_NAME}(rs.get{JavaTypesMySql.GetTypeAtribute(att)}(\"{att.COLUMN_NAME}\"));{N}");
             get.Append($"				return resposta;{N}");
             get.Append($"			}};{N}");
             get.Append($"			return null;{N}");
@@ -80,9 +80,8 @@ namespace Zeus.Linguagens.Java.MySql.Procedure
             get.Append($"			while(rs.next()){{{N}");
             get.Append($"				{NomeTabela} resposta = new {NomeTabela}();{N}");
             foreach (var att in ListaAtributosTabela)
-            {
-                get.Append($"				resposta.set{att.COLUMN_NAME}(rs.get{JavaTypesMySql.GetTypeAtribute(att)}(\"{att.COLUMN_NAME}\"));{N}");
-            }
+                get.Append(
+                    $"				resposta.set{att.COLUMN_NAME}(rs.get{JavaTypesMySql.GetTypeAtribute(att)}(\"{att.COLUMN_NAME}\"));{N}");
             get.Append($"				lista.add(resposta);{N}");
             get.Append($"			}};{N}");
             get.Append($"			return lista;{N}");
@@ -108,9 +107,8 @@ namespace Zeus.Linguagens.Java.MySql.Procedure
             get.Append($"			BeginNewStatement(Proc.{nameProc}, \"{ParamtersInput.DataBase}\");{N}");
             get.Append($"			AddParamter(new Paramter(\"P_RESULT\", java.sql.Types.VARCHAR, null,\"OUT\"));{N}{N}");
             foreach (var att in ListaAtributosTabela)
-            {
-                get.Append($"			AddParamter(new Paramter(\"P_{att.COLUMN_NAME}\", java.sql.Types.{JavaTypesMySql.GetTypeAtribute(att)}, entidade.get{att.COLUMN_NAME}()));{N}");
-            }
+                get.Append(
+                    $"			AddParamter(new Paramter(\"P_{att.COLUMN_NAME}\", java.sql.Types.{JavaTypesMySql.GetTypeAtribute(att)}, entidade.get{att.COLUMN_NAME}()));{N}");
             get.Append($"			RequestProc();{N}");
             get.Append($"		}}{N}");
             get.Append($"		catch (Exception ex){{{N}");
@@ -134,9 +132,8 @@ namespace Zeus.Linguagens.Java.MySql.Procedure
             get.Append($"			BeginNewStatement(Proc.{nameProc}, \"{ParamtersInput.DataBase}\");{N}");
             get.Append($"			AddParamter(new Paramter(\"P_RESULT\", java.sql.Types.VARCHAR, null,\"OUT\"));{N}{N}");
             foreach (var att in ListaAtributosTabela)
-            {
-                get.Append($"			AddParamter(new Paramter(\"P_{att.COLUMN_NAME}\", java.sql.Types.{JavaTypesMySql.GetTypeAtribute(att)}, entidade.get{att.COLUMN_NAME}()));{N}");
-            }
+                get.Append(
+                    $"			AddParamter(new Paramter(\"P_{att.COLUMN_NAME}\", java.sql.Types.{JavaTypesMySql.GetTypeAtribute(att)}, entidade.get{att.COLUMN_NAME}()));{N}");
             get.Append($"			RequestProc();{N}");
             get.Append($"		}}{N}");
             get.Append($"		catch (Exception ex){{{N}");
@@ -148,6 +145,7 @@ namespace Zeus.Linguagens.Java.MySql.Procedure
             get.Append($"	}}{N}");
             return get;
         }
+
         private StringBuilder Delete()
         {
             var nameProc = $"{ParamtersInput.Prefixos.Procedure}U_{NomeTabela.TratarNomeTabela().ToUpper()}";

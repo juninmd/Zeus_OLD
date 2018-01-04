@@ -10,11 +10,40 @@ namespace Zeus.Linguagens.CSharp.Oracle.Procedure
         {
         }
 
+        public StringBuilder GerarInterfaceSharProc()
+        {
+            var nomeProcBase = NomeTabela.TratarNomeTabela();
+
+            var classe = new StringBuilder();
+            classe.Append("using System;" + N + N);
+            classe.Append("namespace MeuProjeto" + N);
+            classe.Append("{" + N);
+            classe.Append($"    public interface {nomeProcBase.ToLowerInvariant()}RequestRepository : IADORepository" +
+                          N);
+            classe.Append("    {" + N + N);
+            classe.Append(GetInterfacesMethod());
+            classe.Append("    }" + N);
+            classe.Append("}" + N);
+
+            return classe;
+        }
+
+        private StringBuilder GetInterfacesMethod()
+        {
+            var assinatura = new StringBuilder();
+            assinatura.Append($"        RequestMessage<{NomeTabela}> GetById(long ID);" + N + N);
+            assinatura.Append(
+                $"        RequestMessage<string> Add({NomeTabela} entidade, bool commit = false);" + N + N);
+            assinatura.Append($"        RequestMessage<string> Update({NomeTabela} entidade, bool commit = false);" +
+                              N + N);
+            return assinatura;
+        }
+
         #region CLASSE 
 
         public StringBuilder GerarClasse()
         {
-            var nomeProcBase =  NomeTabela.TratarNomeTabela();
+            var nomeProcBase = NomeTabela.TratarNomeTabela();
 
             var classe = new StringBuilder();
             classe.Append("using System.Net;" + N);
@@ -55,6 +84,7 @@ namespace Zeus.Linguagens.CSharp.Oracle.Procedure
         #endregion
 
         #region ::: Get By ID :::
+
         private StringBuilder GetById(string nomeProcedure)
         {
             var methodo = new StringBuilder();
@@ -63,7 +93,8 @@ namespace Zeus.Linguagens.CSharp.Oracle.Procedure
             methodo.Append("        {" + N);
             methodo.Append($"            var result = new RequestMessage<{NomeTabela}>" + N);
             methodo.Append("            {" + N);
-            methodo.Append($"                Procedure = $\"{{PackageName}}.{{Procedures.S_{nomeProcedure}}}_ID\"," + N);
+            methodo.Append($"                Procedure = $\"{{PackageName}}.{{Procedures.S_{nomeProcedure}}}_ID\"," +
+                           N);
             methodo.Append($"                MethodApi = GetClass.GetMethod()" + N);
             methodo.Append("            };" + N);
             methodo.Append(N);
@@ -97,14 +128,16 @@ namespace Zeus.Linguagens.CSharp.Oracle.Procedure
         {
             var atributoText = new StringBuilder();
             foreach (var item in ListaAtributosTabela)
-            {
-                atributoText.Append($"                        {item.COLUMN_NAME} = \"{item.COLUMN_NAME}\".GetValueOrDefault<{CSharpTypesOracle.GetTypeAtribute(item.DATA_TYPE, item.NULLABLE)}>(reader)," + N);
-            }
+                atributoText.Append(
+                    $"                        {item.COLUMN_NAME} = \"{item.COLUMN_NAME}\".GetValueOrDefault<{CSharpTypesOracle.GetTypeAtribute(item.DATA_TYPE, item.NULLABLE)}>(reader)," +
+                    N);
             return atributoText;
         }
+
         #endregion
 
         #region ::: Get All :::
+
         private StringBuilder GetAll(string nomeProcedure)
         {
             var methodo = new StringBuilder();
@@ -141,14 +174,17 @@ namespace Zeus.Linguagens.CSharp.Oracle.Procedure
             methodo.Append(N);
             return methodo;
         }
- 
+
         #endregion
+
         #region ::: ADD :::
+
         private StringBuilder Add(string nomeProcedure)
         {
             var methodo = new StringBuilder();
             methodo.Append(N);
-            methodo.Append($"        public RequestMessage<string> Add({NomeTabela} entidade, bool commit = false)" + N);
+            methodo.Append($"        public RequestMessage<string> Add({NomeTabela} entidade, bool commit = false)" +
+                           N);
             methodo.Append("        {" + N + N);
 
             methodo.Append($"            BeginNewStatement(PackageName, Procedures.I_{nomeProcedure});" + N);
@@ -166,20 +202,21 @@ namespace Zeus.Linguagens.CSharp.Oracle.Procedure
         {
             var atributoText = new StringBuilder();
             foreach (var item in ListaAtributosTabela)
-            {
-                atributoText.Append($"            AddParameter(\"{item.COLUMN_NAME}\", entidade.{item.COLUMN_NAME});" + N);
-            }
+                atributoText.Append($"            AddParameter(\"{item.COLUMN_NAME}\", entidade.{item.COLUMN_NAME});" +
+                                    N);
             return atributoText;
         }
 
         #endregion
 
         #region ::: UPDATE :::
+
         private StringBuilder Update(string nomeProcedure)
         {
             var methodo = new StringBuilder();
             methodo.Append(N);
-            methodo.Append($"        public RequestMessage<string> Update({NomeTabela} entidade, bool commit = false)" + N);
+            methodo.Append($"        public RequestMessage<string> Update({NomeTabela} entidade, bool commit = false)" +
+                           N);
             methodo.Append("        {" + N + N);
 
             methodo.Append($"            BeginNewStatement(PackageName, Procedures.U__{nomeProcedure});" + N);
@@ -196,31 +233,5 @@ namespace Zeus.Linguagens.CSharp.Oracle.Procedure
         #endregion
 
         #endregion
-
-        public StringBuilder GerarInterfaceSharProc()
-        {
-            var nomeProcBase =  NomeTabela.TratarNomeTabela();
-
-            var classe = new StringBuilder();
-            classe.Append("using System;" + N + N);
-            classe.Append("namespace MeuProjeto" + N);
-            classe.Append("{" + N);
-            classe.Append($"    public interface {nomeProcBase.ToLowerInvariant()}RequestRepository : IADORepository" + N);
-            classe.Append("    {" + N + N);
-            classe.Append(GetInterfacesMethod());
-            classe.Append("    }" + N);
-            classe.Append("}" + N);
-
-            return classe;
-        }
-
-        private StringBuilder GetInterfacesMethod()
-        {
-            var assinatura = new StringBuilder();
-            assinatura.Append($"        RequestMessage<{NomeTabela}> GetById(long ID);" + N + N);
-            assinatura.Append($"        RequestMessage<string> Add({NomeTabela} entidade, bool commit = false);" + N + N);
-            assinatura.Append($"        RequestMessage<string> Update({NomeTabela} entidade, bool commit = false);" + N + N);
-            return assinatura;
-        }
     }
 }

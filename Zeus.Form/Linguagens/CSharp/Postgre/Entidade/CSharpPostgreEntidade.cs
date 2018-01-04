@@ -6,6 +6,10 @@ namespace Zeus.Linguagens.CSharp.Postgre.Entidade
 {
     public class CSharpPostgreEntidade : BasePostgreDAO
     {
+        public CSharpPostgreEntidade(string nomeTabela) : base(nomeTabela)
+        {
+        }
+
         private StringBuilder GerarUsing()
         {
             var texto = new StringBuilder();
@@ -27,14 +31,11 @@ namespace Zeus.Linguagens.CSharp.Postgre.Entidade
                 classe.Append($"         public string {item.COLUMN_NAME} {{ get; set; }}" + N);
                 classe.Append(N);
             }
+
             classe.Append("    }" + N);
             classe.Append("}" + N);
 
             return GerarUsing() + classe.ToString();
-        }
-
-        public CSharpPostgreEntidade(string nomeTabela) : base(nomeTabela)
-        {
         }
     }
 }

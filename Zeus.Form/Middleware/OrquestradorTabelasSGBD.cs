@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net;
 using Zeus.Core;
 using Zeus.Core.SGBD.Microsoft_SQL;
 using Zeus.Core.SGBD.MySql;
@@ -17,30 +18,30 @@ namespace Zeus.Middleware
                 switch (ParamtersInput.SGBD)
                 {
                     case 1:
-                        return new RequestMessage<List<string>>()
+                        return new RequestMessage<List<string>>
                         {
                             Content = new OracleTables().ListaTabelas()
                         };
                     case 2:
-                        return new RequestMessage<List<string>>()
+                        return new RequestMessage<List<string>>
                         {
                             Content = new SQLTables().ListaTabelas()
                         };
                     case 3:
-                        return new RequestMessage<List<string>>()
+                        return new RequestMessage<List<string>>
                         {
                             Content = new MySqlTables().ListaTabelas(ParamtersInput.DataBase)
                         };
                     case 5:
-                        return new RequestMessage<List<string>>()
+                        return new RequestMessage<List<string>>
                         {
                             Content = new PostgreTables().ListaTabelas(ParamtersInput.DataBase)
                         };
                     default:
                         return new RequestMessage<List<string>>
                         {
-                            StatusCode = System.Net.HttpStatusCode.InternalServerError,
-                            Message = "Essa linguagem não foi programada",
+                            StatusCode = HttpStatusCode.InternalServerError,
+                            Message = "Essa linguagem não foi programada"
                         };
                 }
             }
@@ -48,7 +49,7 @@ namespace Zeus.Middleware
             {
                 return new RequestMessage<List<string>>
                 {
-                    StatusCode = System.Net.HttpStatusCode.InternalServerError,
+                    StatusCode = HttpStatusCode.InternalServerError,
                     Message = "Ocorreu uma falha, verifique a database",
                     TechnicalMessage = ex.Message
                 };

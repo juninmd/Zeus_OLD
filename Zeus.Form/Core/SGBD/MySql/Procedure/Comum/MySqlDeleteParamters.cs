@@ -17,7 +17,8 @@ namespace Zeus.Core.SGBD.MySql.Procedure.Comum
                 return param;
 
             param.Append($"	     DELETE FROM {nomeTabela}{N}");
-            param.Append($"               WHERE {listaAtributos.First().COLUMN_NAME} = P_{listaAtributos.First().COLUMN_NAME};{N}{N}");
+            param.Append(
+                $"               WHERE {listaAtributos.First().COLUMN_NAME} = P_{listaAtributos.First().COLUMN_NAME};{N}{N}");
             return param;
         }
     }

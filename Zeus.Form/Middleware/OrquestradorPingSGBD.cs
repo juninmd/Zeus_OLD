@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net;
 using Zeus.Core;
 using Zeus.Core.SGBD.Firebird;
 using Zeus.Core.SGBD.Microsoft_SQL;
@@ -13,14 +14,13 @@ namespace Zeus.Middleware
     {
         public RequestMessage<List<string>> Connect()
         {
-            if (String.IsNullOrEmpty(ParamtersInput.ConnectionString))
-            {
+            if (string.IsNullOrEmpty(ParamtersInput.ConnectionString))
                 return new RequestMessage<List<string>>
                 {
                     Message = "Preencha o campo 'Connection String'",
-                    StatusCode = System.Net.HttpStatusCode.InternalServerError
+                    StatusCode = HttpStatusCode.InternalServerError
                 };
-            };
+            ;
 
             try
             {
@@ -39,17 +39,16 @@ namespace Zeus.Middleware
                     default:
                         return new RequestMessage<List<string>>
                         {
-                            StatusCode = System.Net.HttpStatusCode.InternalServerError,
-                            Message = "Por favor, selecione algum banco de dados",
+                            StatusCode = HttpStatusCode.InternalServerError,
+                            Message = "Por favor, selecione algum banco de dados"
                         };
-
                 }
             }
             catch (Exception ex)
             {
                 return new RequestMessage<List<string>>
                 {
-                    StatusCode = System.Net.HttpStatusCode.InternalServerError,
+                    StatusCode = HttpStatusCode.InternalServerError,
                     Message = "Ocorreu uma falha, verifique a string",
                     TechnicalMessage = ex.Message
                 };

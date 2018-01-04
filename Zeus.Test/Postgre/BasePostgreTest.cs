@@ -10,7 +10,7 @@ namespace Zeus.Test.Postgre
         public BasePostgreTest()
         {
             ParamtersInput.ConnectionString = ConfigurationManager.AppSettings["pgConnect"];
-            ParamtersInput.NomeTabelas = new List<string> { "teste" };
+            ParamtersInput.NomeTabelas = new List<string> {"teste"};
             ParamtersInput.SelectedPath = Directory.GetCurrentDirectory() + "\\Test\\";
             ParamtersInput.SGBD = 5;
 

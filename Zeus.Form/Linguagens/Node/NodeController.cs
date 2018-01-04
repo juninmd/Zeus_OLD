@@ -11,7 +11,7 @@ namespace Zeus.Linguagens.Node
 
         public NodeController(string nomeTabela)
         {
-            this._classe = nomeTabela.TratarNomeTabela().ToLower();
+            _classe = nomeTabela.TratarNomeTabela().ToLower();
         }
 
         private StringBuilder Imports()
@@ -68,7 +68,6 @@ namespace Zeus.Linguagens.Node
 
         private StringBuilder Update()
         {
-
             var get = new StringBuilder();
             get.Append($"    update: function (req, res) {{{N}");
             get.Append($"        {_classe}.update(req.body, function (err, result) {{{N}");
@@ -81,6 +80,7 @@ namespace Zeus.Linguagens.Node
             get.Append($"    }},{N}");
             return get;
         }
+
         private StringBuilder Delete()
         {
             var get = new StringBuilder();

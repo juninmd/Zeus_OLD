@@ -1,15 +1,12 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Text;
 using Zeus.Core;
 using Zeus.Linguagens.Base;
-using Zeus.Linguagens.Java.MySql;
 
 namespace Zeus.Linguagens.Java.SQL.Query
 {
     public class JavaSQLQuery : BaseSQLDAO
     {
-
         public JavaSQLQuery(string nomeTabela) : base(nomeTabela)
         {
         }
@@ -29,14 +26,14 @@ namespace Zeus.Linguagens.Java.SQL.Query
             get.Append($"	public {NomeTabela} GetById(int ID) throws Exception{N}");
             get.Append($"	{{{N}");
             get.Append($"		try{{{N}");
-            get.Append($"			PreparedStatement conn = BeginNewStatement(\"SELECT * FROM {NomeTabela} WHERE {ListaAtributosTabela.First().COLUMN_NAME} =\"+ ID);{N}");
+            get.Append(
+                $"			PreparedStatement conn = BeginNewStatement(\"SELECT * FROM {NomeTabela} WHERE {ListaAtributosTabela.First().COLUMN_NAME} =\"+ ID);{N}");
             get.Append($"			ResultSet rs = conn.executeQuery();{N}");
             get.Append($"			if(rs.next()){{{N}");
             get.Append($"				{NomeTabela} resposta = new {NomeTabela}();{N}");
             foreach (var att in ListaAtributosTabela)
-            {
-                get.Append($"				resposta.set{att.COLUMN_NAME.ToFirstCharToUpper()}(rs.get{JavaTypesSQL.GetTypeAtribute((att)).ToFirstCharToUpper()}(\"{att.COLUMN_NAME}\"));{N}");
-            }
+                get.Append(
+                    $"				resposta.set{att.COLUMN_NAME.ToFirstCharToUpper()}(rs.get{JavaTypesSQL.GetTypeAtribute(att).ToFirstCharToUpper()}(\"{att.COLUMN_NAME}\"));{N}");
             get.Append($"				return resposta;{N}");
             get.Append($"			}}{N}");
             get.Append($"			return null;{N}");
@@ -63,9 +60,8 @@ namespace Zeus.Linguagens.Java.SQL.Query
             get.Append($"			while(rs.next()){{{N}");
             get.Append($"				{NomeTabela} resposta = new {NomeTabela}();{N}");
             foreach (var att in ListaAtributosTabela)
-            {
-                get.Append($"				resposta.set{att.COLUMN_NAME.ToFirstCharToUpper()}(rs.get{JavaTypesSQL.GetTypeAtribute((att)).ToFirstCharToUpper()}(\"{att.COLUMN_NAME}\"));{N}");
-            }
+                get.Append(
+                    $"				resposta.set{att.COLUMN_NAME.ToFirstCharToUpper()}(rs.get{JavaTypesSQL.GetTypeAtribute(att).ToFirstCharToUpper()}(\"{att.COLUMN_NAME}\"));{N}");
             get.Append($"				lista.add(resposta);{N}");
             get.Append($"			}}{N}");
             get.Append($"			return lista;{N}");
@@ -86,13 +82,16 @@ namespace Zeus.Linguagens.Java.SQL.Query
             get.Append($"	public void Add({NomeTabela} entidade) throws Exception{N}");
             get.Append($"	{{{N}");
             get.Append($"		try{{{N}");
-            get.Append($"			PreparedStatement conn = BeginNewStatement(\"INSERT INTO {NomeTabela} ({String.Join(", ", ListaAtributosTabela.Where(e => e.COLUMN_NAME != ListaAtributosTabela.First().COLUMN_NAME).Select(e => e.COLUMN_NAME))}) values ({String.Join(", ", ListaAtributosTabela.Where(e => e.COLUMN_NAME != ListaAtributosTabela.First().COLUMN_NAME).Select(q => "?"))})\");{N}");
+            get.Append(
+                $"			PreparedStatement conn = BeginNewStatement(\"INSERT INTO {NomeTabela} ({string.Join(", ", ListaAtributosTabela.Where(e => e.COLUMN_NAME != ListaAtributosTabela.First().COLUMN_NAME).Select(e => e.COLUMN_NAME))}) values ({string.Join(", ", ListaAtributosTabela.Where(e => e.COLUMN_NAME != ListaAtributosTabela.First().COLUMN_NAME).Select(q => "?"))})\");{N}");
 
-            for (int index = 1; index < ListaAtributosTabela.Count; index++)
+            for (var index = 1; index < ListaAtributosTabela.Count; index++)
             {
                 var att = ListaAtributosTabela[index];
-                get.Append($"			conn.set{JavaTypesSQL.GetTypeAtribute(att).ToFirstCharToUpper()}({index}, entidade.get{att.COLUMN_NAME.ToFirstCharToUpper()}());{N}");
+                get.Append(
+                    $"			conn.set{JavaTypesSQL.GetTypeAtribute(att).ToFirstCharToUpper()}({index}, entidade.get{att.COLUMN_NAME.ToFirstCharToUpper()}());{N}");
             }
+
             get.Append($"			conn.execute();{N}");
             get.Append($"			commit();{N}");
             get.Append($"		}}{N}");
@@ -112,12 +111,15 @@ namespace Zeus.Linguagens.Java.SQL.Query
             get.Append($"	public void Update({NomeTabela} entidade) throws Exception{N}");
             get.Append($"	{{{N}");
             get.Append($"		try{{{N}");
-            get.Append($"			PreparedStatement conn = BeginNewStatement(\"UPDATE {NomeTabela} SET {String.Join(", ", ListaAtributosTabela.Where(e => e.COLUMN_NAME != ListaAtributosTabela.First().COLUMN_NAME).Select(e => e.COLUMN_NAME + " = ?"))} WHERE {ListaAtributosTabela.First().COLUMN_NAME} = \" +  entidade.get{ListaAtributosTabela.First().COLUMN_NAME.ToFirstCharToUpper()}());{N}");
-            for (int index = 1; index < ListaAtributosTabela.Count; index++)
+            get.Append(
+                $"			PreparedStatement conn = BeginNewStatement(\"UPDATE {NomeTabela} SET {string.Join(", ", ListaAtributosTabela.Where(e => e.COLUMN_NAME != ListaAtributosTabela.First().COLUMN_NAME).Select(e => e.COLUMN_NAME + " = ?"))} WHERE {ListaAtributosTabela.First().COLUMN_NAME} = \" +  entidade.get{ListaAtributosTabela.First().COLUMN_NAME.ToFirstCharToUpper()}());{N}");
+            for (var index = 1; index < ListaAtributosTabela.Count; index++)
             {
                 var att = ListaAtributosTabela[index];
-                get.Append($"			conn.set{JavaTypesSQL.GetTypeAtribute(att).ToFirstCharToUpper()}({index}, entidade.get{att.COLUMN_NAME.ToFirstCharToUpper()}());{N}");
+                get.Append(
+                    $"			conn.set{JavaTypesSQL.GetTypeAtribute(att).ToFirstCharToUpper()}({index}, entidade.get{att.COLUMN_NAME.ToFirstCharToUpper()}());{N}");
             }
+
             get.Append($"			conn.execute();{N}");
             get.Append($"			commit();{N}");
             get.Append($"		}}{N}");
@@ -130,14 +132,15 @@ namespace Zeus.Linguagens.Java.SQL.Query
             get.Append($"	}}{N}");
             return get;
         }
+
         private StringBuilder Delete()
         {
-
             var get = new StringBuilder();
             get.Append($"	public void Delete(int ID) throws Exception{N}");
             get.Append($"	{{{N}");
             get.Append($"		try{{{N}");
-            get.Append($"			PreparedStatement conn = BeginNewStatement(\"DELETE FROM {NomeTabela} WHERE {ListaAtributosTabela.First().COLUMN_NAME} = ?\");{N}");
+            get.Append(
+                $"			PreparedStatement conn = BeginNewStatement(\"DELETE FROM {NomeTabela} WHERE {ListaAtributosTabela.First().COLUMN_NAME} = ?\");{N}");
             get.Append($"			conn.setInt({1}, ID);{N}");
             get.Append($"			conn.execute();{N}");
             get.Append($"			commit();{N}");

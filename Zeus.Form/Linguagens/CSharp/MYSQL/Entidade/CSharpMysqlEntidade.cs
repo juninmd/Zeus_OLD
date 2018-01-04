@@ -5,6 +5,10 @@ namespace Zeus.Linguagens.CSharp.MYSQL.Entidade
 {
     public class CSharpMySqlEntidade : BaseMySqlDAO
     {
+        public CSharpMySqlEntidade(string nomeTabela) : base(nomeTabela)
+        {
+        }
+
         private StringBuilder GerarUsing()
         {
             var texto = new StringBuilder();
@@ -26,18 +30,16 @@ namespace Zeus.Linguagens.CSharp.MYSQL.Entidade
                 classe.Append("         /// <summary>" + N);
                 classe.Append($"         /// {item.COLUMN_COMMENT}" + N);
                 classe.Append("         /// </summary>" + N);
-                classe.Append($"         public {CSharpTypesMySql.GetTypeAtribute(item.DATA_TYPE, item.IS_NULLABLE)} {item.COLUMN_NAME} {{ get; set; }}" + N);
+                classe.Append(
+                    $"         public {CSharpTypesMySql.GetTypeAtribute(item.DATA_TYPE, item.IS_NULLABLE)} {item.COLUMN_NAME} {{ get; set; }}" +
+                    N);
                 classe.Append(N);
             }
+
             classe.Append("    }" + N);
             classe.Append("}" + N);
 
             return GerarUsing() + classe.ToString();
-        }
-
-
-        public CSharpMySqlEntidade(string nomeTabela) : base(nomeTabela)
-        {
         }
     }
 }

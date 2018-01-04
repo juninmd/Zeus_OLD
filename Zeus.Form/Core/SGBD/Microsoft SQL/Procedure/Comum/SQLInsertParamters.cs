@@ -18,19 +18,13 @@ namespace Zeus.Core.SGBD.Microsoft_SQL.Procedure.Comum
             param.Append($"	     INSERT INTO {nomeTabela}" + N);
             param.Append($"					 ");
             param.Append($"({listaAtributos[0].COLUMN_NAME},{N}");
-            for (int i = 1; i < count - 1; i++)
-            {
-                param.Append($"					  {listaAtributos[i].COLUMN_NAME},{N}");
-            }
+            for (var i = 1; i < count - 1; i++) param.Append($"					  {listaAtributos[i].COLUMN_NAME},{N}");
             param.Append($"					  {listaAtributos[count - 1].COLUMN_NAME}");
             param.Append($")" + N);
 
             param.Append($"			   VALUES");
             param.Append($"(@{listaAtributos[0].COLUMN_NAME},{N}");
-            for (int i = 1; i < count - 1; i++)
-            {
-                param.Append($"					  @{listaAtributos[i].COLUMN_NAME},{N}");
-            }
+            for (var i = 1; i < count - 1; i++) param.Append($"					  @{listaAtributos[i].COLUMN_NAME},{N}");
             param.Append($"					  @{listaAtributos[count - 1].COLUMN_NAME}");
             param.Append($"){N}{N}");
             param.Append($"	     RETURN 0{N}");

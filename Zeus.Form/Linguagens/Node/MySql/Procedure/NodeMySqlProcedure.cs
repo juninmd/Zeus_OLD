@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Text;
 using Zeus.Core;
 using Zeus.Core.SGBD.MySql;
@@ -14,6 +13,7 @@ namespace Zeus.Linguagens.Node.MySql.Procedure
         public NodeMySqlProcedure(string nomeTabela) : base(nomeTabela)
         {
         }
+
         private StringBuilder Imports()
         {
             var connection = new MySqlConnectionStringModel(ParamtersInput.ConnectionString);
@@ -33,7 +33,8 @@ namespace Zeus.Linguagens.Node.MySql.Procedure
         {
             var get = new StringBuilder();
             get.Append($"        getById: (id) => {{{N}");
-            get.Append($"                return mysql.readProcedure(`{NomeTabela.TratarNomeProcedure(OperationProcedure.Search)}(${{{ListaAtributosTabela.First().COLUMN_NAME}}})`);{N}");
+            get.Append(
+                $"                return mysql.readProcedure(`{NomeTabela.TratarNomeProcedure(OperationProcedure.Search)}(${{{ListaAtributosTabela.First().COLUMN_NAME}}})`);{N}");
             get.Append($"        }},{N}");
             return get;
         }
@@ -42,7 +43,8 @@ namespace Zeus.Linguagens.Node.MySql.Procedure
         {
             var get = new StringBuilder();
             get.Append($"        getAll: () => {{{N}");
-            get.Append($"                return mysql.readProcedure(`{NomeTabela.TratarNomeProcedure(OperationProcedure.List)}`);{N}");
+            get.Append(
+                $"                return mysql.readProcedure(`{NomeTabela.TratarNomeProcedure(OperationProcedure.List)}`);{N}");
             get.Append($"        }},{N}");
             return get;
         }
@@ -51,25 +53,28 @@ namespace Zeus.Linguagens.Node.MySql.Procedure
         {
             var get = new StringBuilder();
             get.Append($"        insert: (body) => {{ {N}");
-            get.Append($"                return mysql.readProcedure(`{NomeTabela.TratarNomeProcedure(OperationProcedure.Insert)}`, {parametrosQuery(false)});{N}");
+            get.Append(
+                $"                return mysql.readProcedure(`{NomeTabela.TratarNomeProcedure(OperationProcedure.Insert)}`, {parametrosQuery(false)});{N}");
             get.Append($"        }},{N}");
             return get;
         }
 
         private StringBuilder Update()
         {
-
             var get = new StringBuilder();
             get.Append($"        update: (body) => {{ {N}");
-            get.Append($"                return mysql.readProcedure(`{NomeTabela.TratarNomeProcedure(OperationProcedure.Update)}`, {parametrosQuery(true)});{N}");
+            get.Append(
+                $"                return mysql.readProcedure(`{NomeTabela.TratarNomeProcedure(OperationProcedure.Update)}`, {parametrosQuery(true)});{N}");
             get.Append($"        }},{N}");
             return get;
         }
+
         private StringBuilder Delete()
         {
             var get = new StringBuilder();
             get.Append($"        delete: (id) => {{ {N}");
-            get.Append($"                return mysql.readProcedure(`{NomeTabela.TratarNomeProcedure(OperationProcedure.Delete)}(${{{ListaAtributosTabela.First().COLUMN_NAME}}})`);{N}");
+            get.Append(
+                $"                return mysql.readProcedure(`{NomeTabela.TratarNomeProcedure(OperationProcedure.Delete)}(${{{ListaAtributosTabela.First().COLUMN_NAME}}})`);{N}");
             get.Append($"        }}{N}");
             return get;
         }
@@ -93,10 +98,12 @@ namespace Zeus.Linguagens.Node.MySql.Procedure
             if (full == false)
             {
                 var semit = ListaAtributosTabela.Where(x => x.COLUMN_NAME != ListaAtributosTabela.First().COLUMN_NAME);
-                return "{ " + String.Join(", ", semit.Select(e => e.COLUMN_NAME + ": " + "body." + e.COLUMN_NAME)) + " }";
-
+                return "{ " + string.Join(", ", semit.Select(e => e.COLUMN_NAME + ": " + "body." + e.COLUMN_NAME)) +
+                       " }";
             }
-            return "{ " + String.Join(", ", ListaAtributosTabela.Select(e => e.COLUMN_NAME + ": " + "body." + e.COLUMN_NAME)) + " }";
+
+            return "{ " + string.Join(", ",
+                       ListaAtributosTabela.Select(e => e.COLUMN_NAME + ": " + "body." + e.COLUMN_NAME)) + " }";
         }
     }
 }

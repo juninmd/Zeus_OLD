@@ -9,11 +9,6 @@ namespace Zeus.Test.MySql
     [TestClass]
     public class MySqlEntityTest : BaseMysqlTest
     {
-        public MySqlEntityTest()
-        {
-            ParamtersInput.Procedure = false;
-        }
-
         [TestMethod]
         public void GenerateCSharp()
         {

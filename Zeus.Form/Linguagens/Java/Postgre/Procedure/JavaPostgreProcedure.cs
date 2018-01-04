@@ -5,7 +5,6 @@ namespace Zeus.Linguagens.Java.Postgre.Procedure
 {
     public class JavaPostgreProcedure : BasePostgreDAO
     {
-     
         public JavaPostgreProcedure(string nomeTabela) : base(nomeTabela)
         {
         }
@@ -45,9 +44,8 @@ namespace Zeus.Linguagens.Java.Postgre.Procedure
             get.Append($"			if(rs.next()){{{N}");
             get.Append($"				{NomeTabela} resposta = new {NomeTabela}();{N}");
             foreach (var att in ListaAtributosTabela)
-            {
-                get.Append($"				resposta.set{att.COLUMN_NAME}(rs.get{JavaTypesPostgre.GetTypeAtribute((att))}(\"{att.COLUMN_NAME}\"));{N}");
-            }
+                get.Append(
+                    $"				resposta.set{att.COLUMN_NAME}(rs.get{JavaTypesPostgre.GetTypeAtribute(att)}(\"{att.COLUMN_NAME}\"));{N}");
             get.Append($"				return resposta;{N}");
             get.Append($"			}};{N}");
             get.Append($"			return null;{N}");
@@ -75,9 +73,8 @@ namespace Zeus.Linguagens.Java.Postgre.Procedure
             get.Append($"			while(rs.next()){{{N}");
             get.Append($"				{NomeTabela} resposta = new {NomeTabela}();{N}");
             foreach (var att in ListaAtributosTabela)
-            {
-                get.Append($"				resposta.set{att.COLUMN_NAME}(rs.get{JavaTypesPostgre.GetTypeAtribute(att)}(\"{att.COLUMN_NAME}\"));{N}");
-            }
+                get.Append(
+                    $"				resposta.set{att.COLUMN_NAME}(rs.get{JavaTypesPostgre.GetTypeAtribute(att)}(\"{att.COLUMN_NAME}\"));{N}");
             get.Append($"				lista.add(resposta);{N}");
             get.Append($"			}};{N}");
             get.Append($"			return lista;{N}");
@@ -101,9 +98,8 @@ namespace Zeus.Linguagens.Java.Postgre.Procedure
             get.Append($"			BeginNewStatement(Package, Proc.I, \"SOURCE\");{N}");
             get.Append($"			AddParamter(new Parameter(\"P_RESULT\", PostgreTypes.VARCHAR, null,\"OUT\"));{N}{N}");
             foreach (var att in ListaAtributosTabela)
-            {
-                get.Append($"			AddParamter(new Parameter(\"P_{att.COLUMN_NAME}\", PostgreTypes.{JavaTypesPostgre.GetTypeAtribute(att)}, entidade.get{att.COLUMN_NAME}()));{N}");
-            }
+                get.Append(
+                    $"			AddParamter(new Parameter(\"P_{att.COLUMN_NAME}\", PostgreTypes.{JavaTypesPostgre.GetTypeAtribute(att)}, entidade.get{att.COLUMN_NAME}()));{N}");
             get.Append($"			return RequestProc();{N}");
             get.Append($"		}}{N}");
             get.Append($"		catch (Exception ex){{{N}");
@@ -118,7 +114,6 @@ namespace Zeus.Linguagens.Java.Postgre.Procedure
 
         private StringBuilder Update()
         {
-
             var get = new StringBuilder();
             get.Append($"	public RequestMessageLite<String> Update({NomeTabela} entidade) throws Exception{N}");
             get.Append($"	{{{N}");
@@ -127,9 +122,8 @@ namespace Zeus.Linguagens.Java.Postgre.Procedure
             get.Append($"			AddParamter(new Parameter(\"P_RESULT\", PostgreTypes.VARCHAR, null,\"OUT\"));{N}{N}");
             get.Append($"			AddParamter(new Parameter(\"P_ID\", PostgreTypes.NUMBER, entidade.ID));{N}{N}");
             foreach (var att in ListaAtributosTabela)
-            {
-                get.Append($"			AddParamter(new Parameter(\"P_{att.COLUMN_NAME}\", PostgreTypes.{JavaTypesPostgre.GetTypeAtribute(att)}, entidade.get{att.COLUMN_NAME}()));{N}");
-            }
+                get.Append(
+                    $"			AddParamter(new Parameter(\"P_{att.COLUMN_NAME}\", PostgreTypes.{JavaTypesPostgre.GetTypeAtribute(att)}, entidade.get{att.COLUMN_NAME}()));{N}");
             get.Append($"			return RequestProc();{N}");
             get.Append($"		}}{N}");
             get.Append($"		catch (Exception ex){{{N}");
@@ -141,9 +135,9 @@ namespace Zeus.Linguagens.Java.Postgre.Procedure
             get.Append($"	}}{N}");
             return get;
         }
+
         private StringBuilder Delete()
         {
-
             var get = new StringBuilder();
             get.Append($"	public RequestMessageLite<String> Delete(int ID) throws Exception{N}");
             get.Append($"	{{{N}");

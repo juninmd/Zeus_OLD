@@ -1,40 +1,43 @@
-﻿using MaterialSkin;
-using MaterialSkin.Controls;
-using System.Windows.Forms;
-using Zeus.Middleware;
-using System;
-using Zeus.Core;
+﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Windows.Forms;
+using MaterialSkin;
+using MaterialSkin.Controls;
+using Zeus.Core;
+using Zeus.Middleware;
+using Zeus.Properties;
 
 namespace Zeus
 {
     public partial class formWizard : MaterialForm
     {
-        public List<string> ListaTabelas { get; set; }
-
         public formWizard()
         {
             InitializeComponent();
             var materialSkinManager = MaterialSkinManager.Instance;
             materialSkinManager.AddFormToManage(this);
             materialSkinManager.Theme = MaterialSkinManager.Themes.DARK;
-            materialSkinManager.ColorScheme = new ColorScheme(Primary.BlueGrey800, Primary.BlueGrey900, Primary.BlueGrey500, Accent.LightBlue200, TextShade.WHITE);
+            materialSkinManager.ColorScheme = new ColorScheme(Primary.BlueGrey800, Primary.BlueGrey900,
+                Primary.BlueGrey500, Accent.LightBlue200, TextShade.WHITE);
             ListaTabelas = new List<string>();
             Session.progressBar1 = materialProgressBar1;
             Session.listaStatus = materialListView1;
-
         }
+
+        public List<string> ListaTabelas { get; set; }
 
         private void formWizard_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
         }
 
-        private void btnExemplo_Click(object sender, System.EventArgs e)
+        private void btnExemplo_Click(object sender, EventArgs e)
         {
-            System.Windows.Forms.Form fc = Application.OpenForms["formConnectionString"];
+            var fc = Application.OpenForms["formConnectionString"];
             if (fc == null)
-                new formConnectionString()
+            {
+                new formConnectionString
                 {
                     ConnectionString = txtConnectionString,
                     Oracle = radioSGBD1,
@@ -43,10 +46,11 @@ namespace Zeus
                     Firebird = radioSGBD4,
                     Postgre = radioSGBD5
                 }.ShowDialog();
+            }
             else
             {
                 fc.Close();
-                new formConnectionString()
+                new formConnectionString
                 {
                     ConnectionString = txtConnectionString,
                     Oracle = radioSGBD1,
@@ -58,33 +62,32 @@ namespace Zeus
             }
         }
 
-        private void radioSGBD3_CheckedChanged(object sender, System.EventArgs e)
+        private void radioSGBD3_CheckedChanged(object sender, EventArgs e)
         {
-            this.picsgbd.Image = Properties.Resources.mysql;
+            picsgbd.Image = Resources.mysql;
         }
 
-        private void radioSGBD1_CheckedChanged(object sender, System.EventArgs e)
+        private void radioSGBD1_CheckedChanged(object sender, EventArgs e)
         {
-            this.picsgbd.Image = Properties.Resources.oracle;
+            picsgbd.Image = Resources.oracle;
         }
 
-        private void radioSGBD2_CheckedChanged(object sender, System.EventArgs e)
+        private void radioSGBD2_CheckedChanged(object sender, EventArgs e)
         {
-            this.picsgbd.Image = Properties.Resources.sqlserver;
+            picsgbd.Image = Resources.sqlserver;
         }
 
-        private void radioSGBD4_CheckedChanged(object sender, System.EventArgs e)
+        private void radioSGBD4_CheckedChanged(object sender, EventArgs e)
         {
-            this.picsgbd.Image = Properties.Resources.firebird;
+            picsgbd.Image = Resources.firebird;
         }
 
-        private void radioSGBD5_CheckedChanged(object sender, System.EventArgs e)
+        private void radioSGBD5_CheckedChanged(object sender, EventArgs e)
         {
-            this.picsgbd.Image = Properties.Resources.postgre;
-
+            picsgbd.Image = Resources.postgre;
         }
 
-        private void btnconnection_Click(object sender, System.EventArgs e)
+        private void btnconnection_Click(object sender, EventArgs e)
         {
             SetParamters();
             var connectionDb = new OrquestradorPingSGBD().Connect();
@@ -93,6 +96,7 @@ namespace Zeus
                 MessageBox.Show($@"{connectionDb.Message}");
                 return;
             }
+
             MessageBox.Show(connectionDb.TechnicalMessage ?? connectionDb.Message);
         }
 
@@ -100,8 +104,14 @@ namespace Zeus
         {
             ParamtersInput.DataBase = listSchemas.SelectedItem?.ToString();
             ParamtersInput.ConnectionString = txtConnectionString.Text;
-            ParamtersInput.SGBD = radioSGBD1.Checked ? 1 : radioSGBD2.Checked ? 2 : radioSGBD3.Checked ? 3 : radioSGBD4.Checked ? 4 : radioSGBD5.Checked ? 5 : 0;
-            ParamtersInput.Linguagem = radioCsharp.Checked ? 1 : radioJava.Checked ? 2 : radioNode.Checked ? 3 : 0;
+            ParamtersInput.SGBD = radioSGBD1.Checked ? 1 :
+                radioSGBD2.Checked ? 2 :
+                radioSGBD3.Checked ? 3 :
+                radioSGBD4.Checked ? 4 :
+                radioSGBD5.Checked ? 5 : 0;
+            ParamtersInput.Linguagem = radioCsharp.Checked ? 1 :
+                radioJava.Checked ? 2 :
+                radioNode.Checked ? 3 : 0;
         }
 
         private void btnAvancar_Click(object sender, EventArgs e)
@@ -122,22 +132,25 @@ namespace Zeus
                 case 1:
                 case 2:
                 case 4:
-                    {
-                        ListaTabelas = connectionDb.Content;
-                        listTabelas.Items.AddRange(ListaTabelas.ToArray());
-                        listSchemas.Enabled = false;
-                        break;
-                    }
+                {
+                    ListaTabelas = connectionDb.Content;
+                    listTabelas.Items.AddRange(ListaTabelas.ToArray());
+                    listSchemas.Enabled = false;
+                    break;
+                }
                 case 3:
-                    {
-                        ListaTabelas = new List<string>();
-                        listSchemas.Items.AddRange(connectionDb.Content.ToArray());
-                        listSchemas.SelectedItem = ParamtersInput.DataBase ?? null;
-                        listSchemas.Enabled = true;
-                        break;
-                    }
+                {
+                    ListaTabelas = new List<string>();
+                    listSchemas.Items.AddRange(connectionDb.Content.ToArray());
+                    listSchemas.SelectedItem = ParamtersInput.DataBase ?? null;
+                    listSchemas.Enabled = true;
+                    break;
+                }
             }
-            lblTabelas.Text = ListaTabelas.Count > 0 ? $"{ListaTabelas.Count} Tabela(s) disponível(eis)" : "Nenhuma tabela disponível.";
+
+            lblTabelas.Text = ListaTabelas.Count > 0
+                ? $"{ListaTabelas.Count} Tabela(s) disponível(eis)"
+                : "Nenhuma tabela disponível.";
 
             tab.SelectTab(1);
         }
@@ -151,11 +164,13 @@ namespace Zeus
                 MessageBox.Show(tabelas.Message);
                 return;
             }
+
             ListaTabelas = tabelas.Content;
             listTabelas.Items.Clear();
             listTabelas.Items.AddRange(ListaTabelas.ToArray());
-            lblTabelas.Text = ListaTabelas.Count > 0 ? $"{ListaTabelas.Count} Tabela(s) disponível(eis)" : "Nenhuma tabela disponível.";
-
+            lblTabelas.Text = ListaTabelas.Count > 0
+                ? $"{ListaTabelas.Count} Tabela(s) disponível(eis)"
+                : "Nenhuma tabela disponível.";
         }
 
         private void btnChkTabela_CheckedChanged(object sender, EventArgs e)
@@ -166,38 +181,22 @@ namespace Zeus
             ParamtersInput.TodasTabelas = btnChkTabela.Checked;
 
             if (ParamtersInput.TodasTabelas)
-            {
                 foreach (var item in ListaTabelas)
-                {
                     listTabelas.SelectedItems.Add(item);
-                }
-            }
         }
 
         private void btnAvancarTabelas_Click(object sender, EventArgs e)
         {
             ParamtersInput.NomeTabelas = new List<string>();
 
-            if (listTabelas.SelectedItems.Count == 0)
-            {
-                return;
-            }
+            if (listTabelas.SelectedItems.Count == 0) return;
 
             if (!ParamtersInput.TodasTabelas)
-            {
                 foreach (var item in listTabelas.SelectedItems)
-                {
                     ParamtersInput.NomeTabelas.Add(item.ToString());
-                }
-
-            }
             else
-            {
                 foreach (var item in listTabelas.Items)
-                {
                     ParamtersInput.NomeTabelas.Add(item.ToString());
-                }
-            }
 
             tab.SelectTab(2);
         }
@@ -219,10 +218,7 @@ namespace Zeus
             }
 
             var chamada = new OrquestradorChamada().Generate();
-            if (chamada.IsError)
-            {
-                MessageBox.Show(chamada.Message);
-            }
+            if (chamada.IsError) MessageBox.Show(chamada.Message);
         }
 
         private void btnEntidade_Click(object sender, EventArgs e)
@@ -242,11 +238,7 @@ namespace Zeus
             }
 
             var mdMapeamento = new OrquestradorMapeamentoEntidade().Generate();
-            if (validate.IsError)
-            {
-                MessageBox.Show(mdMapeamento.Message);
-                return;
-            }
+            if (validate.IsError) MessageBox.Show(mdMapeamento.Message);
         }
 
         private void btnProc_Click(object sender, EventArgs e)
@@ -258,33 +250,30 @@ namespace Zeus
                 MessageBox.Show(validate.Message);
                 return;
             }
+
             var mdProc = new OrquestradorProcedures().Generate();
-            if (validate.IsError)
-            {
-                MessageBox.Show(mdProc.Message);
-                return;
-            }
+            if (validate.IsError) MessageBox.Show(mdProc.Message);
         }
 
         private void radioNode_CheckedChanged(object sender, EventArgs e)
         {
-            piclinguagem.Image = Properties.Resources.nodejs;
+            piclinguagem.Image = Resources.nodejs;
         }
 
         private void LabelRequisitos_Click(object sender, EventArgs e)
         {
             if (radioNode.Checked)
-                System.Diagnostics.Process.Start("https://www.npmjs.com/package/jano-mysql");
+                Process.Start("https://www.npmjs.com/package/jano-mysql");
         }
 
         private void radioCsharp_CheckedChanged(object sender, EventArgs e)
         {
-            piclinguagem.Image = Properties.Resources.csharp;
+            piclinguagem.Image = Resources.csharp;
         }
 
         private void radioJava_CheckedChanged(object sender, EventArgs e)
         {
-            piclinguagem.Image = Properties.Resources.java;
+            piclinguagem.Image = Resources.java;
         }
 
         private void materialRaisedButton1_Click(object sender, EventArgs e)
@@ -299,15 +288,13 @@ namespace Zeus
 
         private void btnOpcoes_Click(object sender, EventArgs e)
         {
-            Form fc = Application.OpenForms["formWelcome"];
+            var fc = Application.OpenForms["formWelcome"];
             if (fc == null)
                 new formWelcome().Show();
             else
-            {
                 fc.Show();
-            }
 
-            this.Hide();
+            Hide();
         }
     }
 }

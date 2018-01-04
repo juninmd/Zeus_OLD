@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Text;
 using Zeus.Core;
 using Zeus.Core.SGBD.Oracle;
@@ -31,7 +30,8 @@ namespace Zeus.Linguagens.Node.Oracle.Query
         {
             var get = new StringBuilder();
             get.Append($"        getById: (id) => {{{N}");
-            get.Append($"                return oracle.executeString(`SELECT * FROM {NomeTabela} WHERE {ListaAtributosTabela.First().COLUMN_NAME} = ${{id}}`);{N}");
+            get.Append(
+                $"                return oracle.executeString(`SELECT * FROM {NomeTabela} WHERE {ListaAtributosTabela.First().COLUMN_NAME} = ${{id}}`);{N}");
             get.Append($"        }},{N}");
             return get;
         }
@@ -49,25 +49,28 @@ namespace Zeus.Linguagens.Node.Oracle.Query
         {
             var get = new StringBuilder();
             get.Append($"        insert: (body) => {{ {N}");
-            get.Append($"                return oracle.executeObject(`INSERT INTO {NomeTabela} SET ?`, {parametrosQuery(false)});{N}");
+            get.Append(
+                $"                return oracle.executeObject(`INSERT INTO {NomeTabela} SET ?`, {parametrosQuery(false)});{N}");
             get.Append($"        }},{N}");
             return get;
         }
 
         private StringBuilder Update()
         {
-
             var get = new StringBuilder();
             get.Append($"        update: (body) => {{ {N}");
-            get.Append($"                return oracle.executeObject(`UPDATE {NomeTabela} SET ? WHERE {ListaAtributosTabela.First().COLUMN_NAME} = ${{body.{ListaAtributosTabela.First().COLUMN_NAME}}}`, {parametrosQuery(true)});{N}");
+            get.Append(
+                $"                return oracle.executeObject(`UPDATE {NomeTabela} SET ? WHERE {ListaAtributosTabela.First().COLUMN_NAME} = ${{body.{ListaAtributosTabela.First().COLUMN_NAME}}}`, {parametrosQuery(true)});{N}");
             get.Append($"        }},{N}");
             return get;
         }
+
         private StringBuilder Delete()
         {
             var get = new StringBuilder();
             get.Append($"        delete: (id) => {{ {N}");
-            get.Append($"                return oracle.executeString(`DELETE FROM {NomeTabela} WHERE {ListaAtributosTabela.First().COLUMN_NAME} = ${{id}}`);{N}");
+            get.Append(
+                $"                return oracle.executeString(`DELETE FROM {NomeTabela} WHERE {ListaAtributosTabela.First().COLUMN_NAME} = ${{id}}`);{N}");
             get.Append($"        }},{N}");
             return get;
         }
@@ -91,10 +94,12 @@ namespace Zeus.Linguagens.Node.Oracle.Query
             if (full == false)
             {
                 var semit = ListaAtributosTabela.Where(x => x.COLUMN_NAME != ListaAtributosTabela.First().COLUMN_NAME);
-                return "{ " + String.Join(", ", semit.Select(e => e.COLUMN_NAME + ": " + "body." + e.COLUMN_NAME)) + " }";
-
+                return "{ " + string.Join(", ", semit.Select(e => e.COLUMN_NAME + ": " + "body." + e.COLUMN_NAME)) +
+                       " }";
             }
-            return "{ " + String.Join(", ", ListaAtributosTabela.Select(e => e.COLUMN_NAME + ": " + "body." + e.COLUMN_NAME)) + " }";
+
+            return "{ " + string.Join(", ",
+                       ListaAtributosTabela.Select(e => e.COLUMN_NAME + ": " + "body." + e.COLUMN_NAME)) + " }";
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Net;
+using System.Text;
 
 namespace Zeus.Core.SGBD.Oracle
 {
@@ -11,13 +12,15 @@ namespace Zeus.Core.SGBD.Oracle
 
             var jsonResult = new StringBuilder();
             using (var r = ExecuteReader())
+            {
                 while (r.Read())
-                {
                     jsonResult.Append("");
-                };
+            }
+
+            ;
             return new RequestMessage<string>
             {
-                StatusCode = System.Net.HttpStatusCode.OK,
+                StatusCode = HttpStatusCode.OK,
                 Message = "Connectado com sucesso!"
             };
         }

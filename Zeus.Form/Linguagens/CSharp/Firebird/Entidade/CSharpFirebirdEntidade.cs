@@ -32,6 +32,7 @@ namespace Zeus.Linguagens.CSharp.Firebird.Entidade
                 classe.Append($"         public string {item.FIELD_NAME} {{ get; set; }}" + N);
                 classe.Append(N);
             }
+
             classe.Append("    }" + N);
             classe.Append("}" + N);
 

@@ -42,13 +42,13 @@ namespace Zeus.Linguagens.Base
         {
             try
             {
-                int max = ParamtersInput.NomeTabelas.Count;
+                var max = ParamtersInput.NomeTabelas.Count;
                 var i = 0;
 
                 foreach (var nomeTabela in ParamtersInput.NomeTabelas)
                 {
                     i++;
-                    Util.Barra((int)((((decimal)i / max) * 100)));
+                    Util.Barra((int) ((decimal) i / max * 100));
                     Util.Status($"Processando tabela: {nomeTabela}");
                     Implementar(ParamtersInput.SelectedPath, nomeTabela);
                 }
@@ -73,10 +73,9 @@ namespace Zeus.Linguagens.Base
 
         public void Implementar(string local, string nomeTabela)
         {
-            Util.Status($"Salvando em: {local}"); 
-            string body = "";
+            Util.Status($"Salvando em: {local}");
+            var body = "";
             if (ParamtersInput.Procedure)
-            {
                 switch (ParamtersInput.Linguagem)
                 {
                     case 1:
@@ -113,7 +112,9 @@ namespace Zeus.Linguagens.Base
                             }
                                 break;
                         }
-                        File.WriteAllText($"{local}{nomeTabela.TratarNomeTabela().ToFirstCharToUpper()}Repository.cs", body);
+
+                        File.WriteAllText($"{local}{nomeTabela.TratarNomeTabela().ToFirstCharToUpper()}Repository.cs",
+                            body);
                         break;
                     case 2:
                         switch (ParamtersInput.SGBD)
@@ -149,7 +150,9 @@ namespace Zeus.Linguagens.Base
                             }
                                 break;
                         }
-                        File.WriteAllText($"{local}{nomeTabela.TratarNomeTabela().ToFirstCharToUpper()}Repository.java", body);
+
+                        File.WriteAllText($"{local}{nomeTabela.TratarNomeTabela().ToFirstCharToUpper()}Repository.java",
+                            body);
                         break;
                     case 3:
                         switch (ParamtersInput.SGBD)
@@ -185,12 +188,12 @@ namespace Zeus.Linguagens.Base
                             }
                                 break;
                         }
-                        File.WriteAllText($"{local}{nomeTabela.TratarNomeTabela().ToFirstCharToUpper()}Repository.js", body);
+
+                        File.WriteAllText($"{local}{nomeTabela.TratarNomeTabela().ToFirstCharToUpper()}Repository.js",
+                            body);
                         break;
                 }
-            }
             else
-            {
                 switch (ParamtersInput.Linguagem)
                 {
                     case 1:
@@ -228,7 +231,8 @@ namespace Zeus.Linguagens.Base
                                 break;
                         }
 
-                        File.WriteAllText($"{local}{nomeTabela.TratarNomeTabela().ToFirstCharToUpper()}Repository.cs", body);
+                        File.WriteAllText($"{local}{nomeTabela.TratarNomeTabela().ToFirstCharToUpper()}Repository.cs",
+                            body);
                         break;
                     case 2:
                         switch (ParamtersInput.SGBD)
@@ -264,7 +268,9 @@ namespace Zeus.Linguagens.Base
                             }
                                 break;
                         }
-                        File.WriteAllText($"{local}{nomeTabela.TratarNomeTabela().ToFirstCharToUpper()}Repository.java", body);
+
+                        File.WriteAllText($"{local}{nomeTabela.TratarNomeTabela().ToFirstCharToUpper()}Repository.java",
+                            body);
                         break;
                     case 3:
                         switch (ParamtersInput.SGBD)
@@ -300,15 +306,11 @@ namespace Zeus.Linguagens.Base
                             }
                                 break;
                         }
+
                         File.WriteAllText($"{local}{nomeTabela.TratarNomeTabela().ToLower()}Repository.js", body);
                         break;
                 }
-
-            }
-            if(body == "")
-            {
-                throw new Exception($"Código da tabela {nomeTabela} não foi gerada");
-            }
+            if (body == "") throw new Exception($"Código da tabela {nomeTabela} não foi gerada");
         }
     }
 }

@@ -9,14 +9,14 @@ namespace Zeus.Core
 
         public NewProgressBar()
         {
-            this.SetStyle(ControlStyles.UserPaint, true);
+            SetStyle(ControlStyles.UserPaint, true);
         }
 
         protected override void OnPaint(PaintEventArgs e)
         {
-            Rectangle rec = e.ClipRectangle;
+            var rec = e.ClipRectangle;
 
-            rec.Width = (int)(rec.Width * ((double)Value / Maximum)) - 4;
+            rec.Width = (int) (rec.Width * ((double) Value / Maximum)) - 4;
             if (ProgressBarRenderer.IsSupported)
                 ProgressBarRenderer.DrawHorizontalBar(e.Graphics, e.ClipRectangle);
             rec.Height = rec.Height - 4;
@@ -25,17 +25,16 @@ namespace Zeus.Core
 
         private void InitializeComponent()
         {
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
-            this.SuspendLayout();
+            progressBar1 = new ProgressBar();
+            SuspendLayout();
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(0, 0);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(100, 23);
-            this.progressBar1.TabIndex = 0;
-            this.ResumeLayout(false);
-
+            progressBar1.Location = new Point(0, 0);
+            progressBar1.Name = "progressBar1";
+            progressBar1.Size = new Size(100, 23);
+            progressBar1.TabIndex = 0;
+            ResumeLayout(false);
         }
     }
 }

@@ -11,9 +11,9 @@ namespace Zeus.Linguagens.Java.Postgre
                 case "date":
                     return "Date";
                 case "int":
-                    {
-                        return "int";
-                    }
+                {
+                    return "int";
+                }
 
                 default:
                     return "String";

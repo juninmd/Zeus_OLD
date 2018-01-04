@@ -38,7 +38,8 @@ namespace Zeus.Test
         [TestMethod]
         public void Firebird()
         {
-            ParamtersInput.ConnectionString = "User=SYSDBA;Password=masterkey;Database=D:\\Meus Projetos\\Solutions\\Trabalho Fernando\\BANCO.fdb;DataSource=localhost;Port=3050";
+            ParamtersInput.ConnectionString =
+                "User=SYSDBA;Password=masterkey;Database=D:\\Meus Projetos\\Solutions\\Trabalho Fernando\\BANCO.fdb;DataSource=localhost;Port=3050";
             var ping = new FirebirdPing().Ping();
             Assert.IsFalse(ping.IsError, ping.Message);
         }
@@ -46,7 +47,8 @@ namespace Zeus.Test
         [TestMethod]
         public void Postgre()
         {
-            ParamtersInput.ConnectionString = "Host=localhost;Database=postgres;User ID=postgres;Password=root;Port=5432";
+            ParamtersInput.ConnectionString =
+                "Host=localhost;Database=postgres;User ID=postgres;Password=root;Port=5432";
             var ping = new PostgrePing().Ping();
             Assert.IsFalse(ping.IsError, ping.Message);
         }

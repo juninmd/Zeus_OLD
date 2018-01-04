@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Zeus.Core
+﻿namespace Zeus.Core
 {
     public enum OperationProcedure
     {
@@ -15,10 +13,7 @@ namespace Zeus.Core
     {
         public static string TratarNomeTabela(this string nome)
         {
-            if (String.IsNullOrEmpty(ParamtersInput.Prefixos.Tabela))
-            {
-                return nome;
-            }
+            if (string.IsNullOrEmpty(ParamtersInput.Prefixos.Tabela)) return nome;
             return nome.ToUpper().Replace(ParamtersInput.Prefixos.Tabela.ToUpper(), "");
         }
 
@@ -43,22 +38,21 @@ namespace Zeus.Core
 
         public static string TratarNomeTabelaMySql(this string nome)
         {
-            if (String.IsNullOrEmpty(ParamtersInput.Prefixos.Tabela))
-            {
-                return nome;
-            }
+            if (string.IsNullOrEmpty(ParamtersInput.Prefixos.Tabela)) return nome;
             return nome.ToLower().Replace(ParamtersInput.Prefixos.Tabela.ToLower(), "");
         }
 
         public static string TratarNomePackage(this string nome)
         {
-            if (String.IsNullOrEmpty(ParamtersInput.Prefixos.Tabela) ||
-                String.IsNullOrEmpty(ParamtersInput.Prefixos.Package))
-            {
+            if (string.IsNullOrEmpty(ParamtersInput.Prefixos.Tabela) ||
+                string.IsNullOrEmpty(ParamtersInput.Prefixos.Package))
                 return nome;
-            }
             return nome.ToUpper().Replace(ParamtersInput.Prefixos.Tabela.ToUpper(), ParamtersInput.Prefixos.Package);
         }
-        public static string TratarNomeBase(this string nome) { return $"\"{nome.Split(';')[1].Split('=')[1]}\""; }
+
+        public static string TratarNomeBase(this string nome)
+        {
+            return $"\"{nome.Split(';')[1].Split('=')[1]}\"";
+        }
     }
 }

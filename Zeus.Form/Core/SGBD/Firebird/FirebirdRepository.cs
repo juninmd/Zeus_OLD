@@ -14,7 +14,7 @@ namespace Zeus.Core.SGBD.Firebird
             try
             {
                 OpenConnection();
-                FbCommand cmd = new FbCommand(query, _connection);
+                var cmd = new FbCommand(query, _connection);
                 cmd.ExecuteNonQuery();
                 if (closeAfterExecution)
                     _connection.Close();
@@ -31,10 +31,10 @@ namespace Zeus.Core.SGBD.Firebird
             try
             {
                 OpenConnection();
-                FbCommand cmd = new FbCommand(query, _connection);
-                FbDataReader dr = cmd.ExecuteReader(closeAfterExecution
-                        ? CommandBehavior.CloseConnection
-                        : CommandBehavior.Default);
+                var cmd = new FbCommand(query, _connection);
+                var dr = cmd.ExecuteReader(closeAfterExecution
+                    ? CommandBehavior.CloseConnection
+                    : CommandBehavior.Default);
 
                 return dr;
             }
@@ -57,34 +57,37 @@ namespace Zeus.Core.SGBD.Firebird
                 _connection = new FbConnection(ParamtersInput.ConnectionString);
 
             if (_connection.State == ConnectionState.Broken && _connection.State == ConnectionState.Closed)
-                throw new Exception("Falha na conexão com o banco de dados:" + _connection.State + _connection.ConnectionString);
+                throw new Exception("Falha na conexão com o banco de dados:" + _connection.State +
+                                    _connection.ConnectionString);
 
             if (_connection.State != ConnectionState.Open)
                 _connection.Open();
         }
     }
+
     public static class NullSafeGetter
     {
-        public static string GetValueOrDefault<T>(this IDataRecord r, string columnName, [CallerFilePath]string sourceFilePath = "")
+        public static string GetValueOrDefault<T>(this IDataRecord r, string columnName,
+            [CallerFilePath] string sourceFilePath = "")
         {
             try
             {
-                return r[columnName].ToString().Trim(); ;
+                return r[columnName].ToString().Trim();
+                ;
             }
             catch (Exception ex) when (ex.Message == "Unable to find specified column in result set")
             {
-                throw new Exception($"{ex.Message}\nNão foi possível encontrar o paramêtro: [{columnName}] da procedure\nClasse: {sourceFilePath}");
+                throw new Exception(
+                    $"{ex.Message}\nNão foi possível encontrar o paramêtro: [{columnName}] da procedure\nClasse: {sourceFilePath}");
             }
             catch (Exception ex)
             {
                 if (default(T) == null)
-                {
-                    throw new Exception($"{ex.Message}\nFalha ao converter parametro: [{columnName}] da procedure. onde deveria ser: {r[columnName].GetType().Name}\nClasse: {sourceFilePath}");
-
-                }
-                throw new Exception($"{ex.Message}\nFalha ao converter parametro: [{columnName }] da procedure, para o tipo: {default(T).GetType().Name} / Onde deveria ser: {r[columnName].GetType().Name}\nClasse: {sourceFilePath}");
+                    throw new Exception(
+                        $"{ex.Message}\nFalha ao converter parametro: [{columnName}] da procedure. onde deveria ser: {r[columnName].GetType().Name}\nClasse: {sourceFilePath}");
+                throw new Exception(
+                    $"{ex.Message}\nFalha ao converter parametro: [{columnName}] da procedure, para o tipo: {default(T).GetType().Name} / Onde deveria ser: {r[columnName].GetType().Name}\nClasse: {sourceFilePath}");
             }
         }
-
     }
 }

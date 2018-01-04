@@ -10,7 +10,7 @@ namespace Zeus.Core.SGBD.Oracle.Batch
             OpenConnection();
 
             var response = ExecuteStatement();
-            return new RequestMessage<string>()
+            return new RequestMessage<string>
             {
                 StatusCode = response == -1 ? HttpStatusCode.OK : HttpStatusCode.BadGateway
             };

@@ -9,6 +9,10 @@ namespace Zeus.Linguagens.Java.SQL.Entidade
 {
     public class JavaSQLEntidade : BaseSQLDAO
     {
+        public JavaSQLEntidade(string nomeTabela) : base(nomeTabela)
+        {
+        }
+
         private StringBuilder Imports()
         {
             var imports = new StringBuilder();
@@ -25,9 +29,7 @@ namespace Zeus.Linguagens.Java.SQL.Entidade
             var atributosHeader = new StringBuilder();
 
             foreach (var att in entidadeTabela)
-            {
                 atributosHeader.Append($"	private {JavaTypesSQL.GetTypeAtribute(att)} {att.COLUMN_NAME};{N}");
-            }
             atributosHeader.Append($"{N}");
             return atributosHeader;
         }
@@ -42,7 +44,8 @@ namespace Zeus.Linguagens.Java.SQL.Entidade
                 atributoBody.Append($"	 * {N}");
                 atributoBody.Append($"	 * @Descrição {att.COMMENTS} {N}");
                 atributoBody.Append($"	 */{N}");
-                atributoBody.Append($"	public {JavaTypesSQL.GetTypeAtribute(att)} get{att.COLUMN_NAME.ToFirstCharToUpper()}() {{{N}");
+                atributoBody.Append(
+                    $"	public {JavaTypesSQL.GetTypeAtribute(att)} get{att.COLUMN_NAME.ToFirstCharToUpper()}() {{{N}");
                 atributoBody.Append($"		return {att.COLUMN_NAME};{N}");
                 atributoBody.Append($"	}}{N}");
                 atributoBody.Append($"{N}");
@@ -51,11 +54,13 @@ namespace Zeus.Linguagens.Java.SQL.Entidade
                 atributoBody.Append($"	 * {N}");
                 atributoBody.Append($"	 * @Descrição {att.COMMENTS} {N}");
                 atributoBody.Append($"	 */{N}");
-                atributoBody.Append($"	public void set{att.COLUMN_NAME.ToFirstCharToUpper()}({JavaTypesSQL.GetTypeAtribute(att)} {att.COLUMN_NAME}) {{{N}");
+                atributoBody.Append(
+                    $"	public void set{att.COLUMN_NAME.ToFirstCharToUpper()}({JavaTypesSQL.GetTypeAtribute(att)} {att.COLUMN_NAME}) {{{N}");
                 atributoBody.Append($"		this.{att.COLUMN_NAME} = {att.COLUMN_NAME};{N}");
                 atributoBody.Append($"	}}{N}");
                 atributoBody.Append($"{N}");
             }
+
             atributoBody.Append($"{N}");
             return atributoBody;
         }
@@ -75,10 +80,6 @@ namespace Zeus.Linguagens.Java.SQL.Entidade
             classe.Append("}" + Environment.NewLine);
 
             return classe.ToString();
-        }
-
-        public JavaSQLEntidade(string nomeTabela) : base(nomeTabela)
-        {
         }
     }
 }

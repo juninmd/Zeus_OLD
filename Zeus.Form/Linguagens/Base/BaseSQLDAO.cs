@@ -6,11 +6,12 @@ namespace Zeus.Linguagens.Base
 {
     public class BaseSQLDAO
     {
-        protected static string N => Environment.NewLine;
         public BaseSQLDAO(string nomeTabela)
         {
             NomeTabela = nomeTabela.TratarNomeSQL();
         }
+
+        protected static string N => Environment.NewLine;
         public string NomeTabela { get; set; }
         public List<SQLEntidadeTabela> ListaAtributosTabela => new SQLTables().ListarAtributos(NomeTabela);
     }

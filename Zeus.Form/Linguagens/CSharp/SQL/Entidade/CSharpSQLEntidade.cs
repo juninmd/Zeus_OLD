@@ -33,9 +33,12 @@ namespace Zeus.Linguagens.CSharp.SQL.Entidade
                 classe.Append("         /// <summary>" + N);
                 classe.Append($"         /// {item.COMMENTS}" + N);
                 classe.Append("         /// </summary>" + N);
-                classe.Append($"         public {CSharpTypesSQL.GetTypeAtribute(item.DATA_TYPE, item.IS_NULLABLE)} {item.COLUMN_NAME} {{ get; set; }}" + N);
+                classe.Append(
+                    $"         public {CSharpTypesSQL.GetTypeAtribute(item.DATA_TYPE, item.IS_NULLABLE)} {item.COLUMN_NAME} {{ get; set; }}" +
+                    N);
                 classe.Append(N);
             }
+
             classe.Append("    }" + N);
             classe.Append("}" + N);
 

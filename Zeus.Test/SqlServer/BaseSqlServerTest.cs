@@ -10,7 +10,7 @@ namespace Zeus.Test.SqlServer
         public BaseSqlServerTest()
         {
             ParamtersInput.ConnectionString = ConfigurationManager.AppSettings["sqlserverConnect"];
-            ParamtersInput.NomeTabelas = new List<string> { "teste" };
+            ParamtersInput.NomeTabelas = new List<string> {"teste"};
             ParamtersInput.SelectedPath = Directory.GetCurrentDirectory() + "\\Test\\";
             ParamtersInput.SGBD = 2;
 

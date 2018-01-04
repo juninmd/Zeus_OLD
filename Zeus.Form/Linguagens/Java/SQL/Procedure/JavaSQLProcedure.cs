@@ -5,16 +5,14 @@ namespace Zeus.Linguagens.Java.SQL.Procedure
 {
     public class JavaSQLProcedure : BaseSQLDAO
     {
-        private string SQLType(string tipo)
-        {
-            if (tipo == "VARCHAR2")
-            {
-                tipo = "VARCHAR";
-            }
-            return tipo;
-        }
         public JavaSQLProcedure(string nomeTabela) : base(nomeTabela)
         {
+        }
+
+        private string SQLType(string tipo)
+        {
+            if (tipo == "VARCHAR2") tipo = "VARCHAR";
+            return tipo;
         }
 
         private StringBuilder Imports()
@@ -52,9 +50,8 @@ namespace Zeus.Linguagens.Java.SQL.Procedure
             get.Append($"			if(rs.next()){{{N}");
             get.Append($"				{NomeTabela} resposta = new {NomeTabela}();{N}");
             foreach (var att in ListaAtributosTabela)
-            {
-                get.Append($"				resposta.set{att.COLUMN_NAME}(rs.get{JavaTypesSQL.GetTypeAtribute((att))}(\"{att.COLUMN_NAME}\"));{N}");
-            }
+                get.Append(
+                    $"				resposta.set{att.COLUMN_NAME}(rs.get{JavaTypesSQL.GetTypeAtribute(att)}(\"{att.COLUMN_NAME}\"));{N}");
             get.Append($"				return resposta;{N}");
             get.Append($"			}};{N}");
             get.Append($"			return null;{N}");
@@ -82,9 +79,8 @@ namespace Zeus.Linguagens.Java.SQL.Procedure
             get.Append($"			while(rs.next()){{{N}");
             get.Append($"				{NomeTabela} resposta = new {NomeTabela}();{N}");
             foreach (var att in ListaAtributosTabela)
-            {
-                get.Append($"				resposta.set{att.COLUMN_NAME}(rs.get{JavaTypesSQL.GetTypeAtribute(att)}(\"{att.COLUMN_NAME}\"));{N}");
-            }
+                get.Append(
+                    $"				resposta.set{att.COLUMN_NAME}(rs.get{JavaTypesSQL.GetTypeAtribute(att)}(\"{att.COLUMN_NAME}\"));{N}");
             get.Append($"				lista.add(resposta);{N}");
             get.Append($"			}};{N}");
             get.Append($"			return lista;{N}");
@@ -108,9 +104,8 @@ namespace Zeus.Linguagens.Java.SQL.Procedure
             get.Append($"			BeginNewStatement(Package, Proc.I, \"SOURCE\");{N}");
             get.Append($"			AddParamter(new Parameter(\"P_RESULT\", SQLTypes.VARCHAR, null,\"OUT\"));{N}{N}");
             foreach (var att in ListaAtributosTabela)
-            {
-                get.Append($"			AddParamter(new Parameter(\"P_{att.COLUMN_NAME}\", SQLTypes.{SQLType(att.DATA_TYPE)}, entidade.get{att.COLUMN_NAME}()));{N}");
-            }
+                get.Append(
+                    $"			AddParamter(new Parameter(\"P_{att.COLUMN_NAME}\", SQLTypes.{SQLType(att.DATA_TYPE)}, entidade.get{att.COLUMN_NAME}()));{N}");
             get.Append($"			return RequestProc();{N}");
             get.Append($"		}}{N}");
             get.Append($"		catch (Exception ex){{{N}");
@@ -125,7 +120,6 @@ namespace Zeus.Linguagens.Java.SQL.Procedure
 
         private StringBuilder Update()
         {
-
             var get = new StringBuilder();
             get.Append($"	public RequestMessageLite<String> Update({NomeTabela} entidade) throws Exception{N}");
             get.Append($"	{{{N}");
@@ -134,9 +128,8 @@ namespace Zeus.Linguagens.Java.SQL.Procedure
             get.Append($"			AddParamter(new Parameter(\"P_RESULT\", SQLTypes.VARCHAR, null,\"OUT\"));{N}{N}");
             get.Append($"			AddParamter(new Parameter(\"P_ID\", SQLTypes.NUMBER, entidade.ID));{N}{N}");
             foreach (var att in ListaAtributosTabela)
-            {
-                get.Append($"			AddParamter(new Parameter(\"P_{att.COLUMN_NAME}\", SQLTypes.{SQLType(att.DATA_TYPE)}, entidade.get{att.COLUMN_NAME}()));{N}");
-            }
+                get.Append(
+                    $"			AddParamter(new Parameter(\"P_{att.COLUMN_NAME}\", SQLTypes.{SQLType(att.DATA_TYPE)}, entidade.get{att.COLUMN_NAME}()));{N}");
             get.Append($"			return RequestProc();{N}");
             get.Append($"		}}{N}");
             get.Append($"		catch (Exception ex){{{N}");
@@ -148,9 +141,9 @@ namespace Zeus.Linguagens.Java.SQL.Procedure
             get.Append($"	}}{N}");
             return get;
         }
+
         private StringBuilder Delete()
         {
-
             var get = new StringBuilder();
             get.Append($"	public RequestMessageLite<String> Delete(int ID) throws Exception{N}");
             get.Append($"	{{{N}");

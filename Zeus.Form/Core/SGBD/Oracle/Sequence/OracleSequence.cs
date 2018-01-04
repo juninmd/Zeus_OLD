@@ -14,7 +14,6 @@ namespace Zeus.Core.SGBD.Oracle.Sequence
             s.Append($"start with 1 {Environment.NewLine}");
             s.Append($"increment by 1{Environment.NewLine}");
             return s.ToString();
-
         }
     }
 }
