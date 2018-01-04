@@ -78,7 +78,7 @@ namespace Zeus.Core.SGBD.Oracle.Procedure
         {
             var tamanho = $"  PROCEDURE {nomeProcedure} ".Length;
             var espaco = new StringBuilder();
-            for (var t = 0; t < tamanho; t++)
+            for(var t = 0; t < tamanho; t++)
                 espaco.Append(" ");
             return espaco.ToString();
         }
