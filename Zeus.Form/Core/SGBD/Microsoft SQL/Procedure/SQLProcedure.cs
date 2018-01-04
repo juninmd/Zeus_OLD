@@ -20,7 +20,5 @@ namespace Zeus.Core.SGBD.Microsoft_SQL.Procedure
             header.Append(new SQLDelete().Init($"Delete{NomeTabela}", NomeTabela, ListaAtributosTabela));
             return header.ToString();
         }
-
-      
     }
 }

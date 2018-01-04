@@ -1,7 +1,8 @@
-﻿using MaterialSkin.Controls;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using MaterialSkin.Controls;
 using Zeus.Core;
+using Zeus.Utilidade;
 
 namespace Zeus
 {
@@ -19,33 +20,21 @@ namespace Zeus
         private void SelecionarTabelas()
         {
             ddlTabelas.SelectedItems.Clear();
-            foreach (var item in ParamtersInput.NomeTabelas)
-            {
-                ddlTabelas.SelectedItems.Add(item);
-            }
+            foreach (var item in ParamtersInput.NomeTabelas) ddlTabelas.SelectedItems.Add(item);
         }
 
-        private void btnSelecionar_Click(object sender, System.EventArgs e)
+        private void btnSelecionar_Click(object sender, EventArgs e)
         {
             ParamtersInput.NomeTabelas.Clear();
 
             if (!ParamtersInput.TodasTabelas)
-            {
                 foreach (var item in ddlTabelas.SelectedItems)
-                {
                     ParamtersInput.NomeTabelas.Add(item.ToString());
-                }
-
-            }
             else
-            {
                 foreach (var item in ddlTabelas.Items)
-                {
                     ParamtersInput.NomeTabelas.Add(item.ToString());
-                }
-            }
 
-            Utilidade.Util.Status(ParamtersInput.NomeTabelas.Count == 0
+            Util.Status(ParamtersInput.NomeTabelas.Count == 0
                 ? $"Nenhuma tabela foi selecionada."
                 : $"{ParamtersInput.NomeTabelas.Count} tabela(s) selecionadas.");
 
@@ -60,12 +49,8 @@ namespace Zeus
             ParamtersInput.TodasTabelas = btnChkTabela.Checked;
 
             if (ParamtersInput.TodasTabelas)
-            {
                 foreach (var item in ParamtersInput.NomeTabelas)
-                {
                     ddlTabelas.SelectedItems.Add(item);
-                }
-            }
         }
     }
 }

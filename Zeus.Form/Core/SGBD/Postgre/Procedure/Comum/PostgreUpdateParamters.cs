@@ -18,12 +18,13 @@ namespace Zeus.Core.SGBD.Postgre.Procedure.Comum
 
             param.Append($"	     UPDATE {nomeTabela}" + N);
             param.Append($"   		   SET {listaAtributos[0].COLUMN_NAME}     = P_{listaAtributos[0].COLUMN_NAME},{N}");
-            for (int i = 1; i < count - 1; i++)
-            {
-                param.Append($"               {listaAtributos[i].COLUMN_NAME}     = P_{listaAtributos[i].COLUMN_NAME},{N}");
-            }
-            param.Append($"               {listaAtributos[count - 1].COLUMN_NAME}     = P_{listaAtributos[count - 1].COLUMN_NAME}{N}");
-            param.Append($"     	   WHERE {listaAtributos.First().COLUMN_NAME} =  P_{listaAtributos.First().COLUMN_NAME};{N}{N}");
+            for (var i = 1; i < count - 1; i++)
+                param.Append(
+                    $"               {listaAtributos[i].COLUMN_NAME}     = P_{listaAtributos[i].COLUMN_NAME},{N}");
+            param.Append(
+                $"               {listaAtributos[count - 1].COLUMN_NAME}     = P_{listaAtributos[count - 1].COLUMN_NAME}{N}");
+            param.Append(
+                $"     	   WHERE {listaAtributos.First().COLUMN_NAME} =  P_{listaAtributos.First().COLUMN_NAME};{N}{N}");
 
             return param;
         }

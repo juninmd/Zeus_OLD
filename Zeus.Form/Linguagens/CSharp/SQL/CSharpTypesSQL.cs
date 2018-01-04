@@ -7,11 +7,11 @@
             switch (tipoAttr)
             {
                 case "int":
-                    return "int" + ((aceitaNull) ? "?" : "");
+                    return "int" + (aceitaNull ? "?" : "");
                 case "datetime":
-                    return "DateTime" + ((aceitaNull) ? "?" : "");
+                    return "DateTime" + (aceitaNull ? "?" : "");
                 case "NUMBER":
-                    return "long" + ((aceitaNull) ? "?" : "");
+                    return "long" + (aceitaNull ? "?" : "");
                 default:
                     return "string";
             }

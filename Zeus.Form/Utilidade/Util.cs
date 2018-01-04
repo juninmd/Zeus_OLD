@@ -13,6 +13,7 @@ namespace Zeus.Utilidade
                 Session.listaStatus.Items.Insert(0, $"{data.ToShortDateString()} - {data:hh:mm:ss} - {text}");
             Application.DoEvents();
         }
+
         public static void Barra(int valor)
         {
             if (Session.progressBar1 != null)

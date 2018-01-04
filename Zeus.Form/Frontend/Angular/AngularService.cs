@@ -11,7 +11,7 @@ namespace Zeus.Frontend.Angular
 
         public AngularService(string nomeTabela)
         {
-            this._classe = nomeTabela.TratarNomeTabela().ToLower();
+            _classe = nomeTabela.TratarNomeTabela().ToLower();
         }
 
         private StringBuilder GetById()

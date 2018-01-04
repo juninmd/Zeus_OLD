@@ -7,7 +7,6 @@ namespace Zeus.Linguagens.CSharp.Firebird.Query
 {
     public class CSharpFirebirdQuery : BaseFirebirdDAO
     {
-
         public CSharpFirebirdQuery(string nomeTabela) : base(nomeTabela)
         {
         }
@@ -24,7 +23,8 @@ namespace Zeus.Linguagens.CSharp.Firebird.Query
             var get = new StringBuilder();
             get.Append($"    	public IDataReader GetById(int ID){N}");
             get.Append($"    	{{{N}");
-            get.Append($"    	 	var sql = $\"SELECT * FROM {NomeTabela} WHERE {ListaAtributosTabela.First().FIELD_NAME} = {{ ID }}\";{N}");
+            get.Append(
+                $"    	 	var sql = $\"SELECT * FROM {NomeTabela} WHERE {ListaAtributosTabela.First().FIELD_NAME} = {{ ID }}\";{N}");
             get.Append($"    	 	return ExecuteReader(sql);{N}");
             get.Append($"    	}}{N}");
             return get;
@@ -46,12 +46,14 @@ namespace Zeus.Linguagens.CSharp.Firebird.Query
             var get = new StringBuilder();
             get.Append($"    	public void Insert({NomeTabela.ToFirstCharToUpper()}Model entidade){N}");
             get.Append($"    	{{{N}");
-            get.Append($"    	 	var sql = $\"INSERT INTO {NomeTabela} ({string.Join(",", ListaAtributosTabela.Select(q=> q.FIELD_NAME))}) VALUES\"{N}");
+            get.Append(
+                $"    	 	var sql = $\"INSERT INTO {NomeTabela} ({string.Join(",", ListaAtributosTabela.Select(q => q.FIELD_NAME))}) VALUES\"{N}");
             get.Append(AddParams());
             get.Append($"    	 	ExecuteNonResult(sql); {N}");
             get.Append($"    	}}{N}");
             return get;
         }
+
         private StringBuilder AddParams()
         {
             var param = new StringBuilder();
@@ -60,10 +62,8 @@ namespace Zeus.Linguagens.CSharp.Firebird.Query
                 return param;
 
             param.Append($"    		+$\"('{{entidade.{ListaAtributosTabela[0].FIELD_NAME}}}',\"{N}");
-            for (int i = 1; i < count - 1; i++)
-            {
+            for (var i = 1; i < count - 1; i++)
                 param.Append($"    		+$\"'{{entidade.{ListaAtributosTabela[i].FIELD_NAME}}}',\"{N}");
-            }
             param.Append($"    		+$\"'{{entidade.{ListaAtributosTabela[count - 1].FIELD_NAME}}}')\";{N}");
             return param;
         }
@@ -75,11 +75,13 @@ namespace Zeus.Linguagens.CSharp.Firebird.Query
             get.Append($"    	{{{N}");
             get.Append($"    	 	var sql = $\"UPDATE {NomeTabela} SET \" {N}");
             get.Append(UpdateParams());
-            get.Append($"    	 	+$\"WHERE {ListaAtributosTabela.First().FIELD_NAME} = {{ entidade.{ListaAtributosTabela.First().FIELD_NAME}}}\"; {N}");
+            get.Append(
+                $"    	 	+$\"WHERE {ListaAtributosTabela.First().FIELD_NAME} = {{ entidade.{ListaAtributosTabela.First().FIELD_NAME}}}\"; {N}");
             get.Append($"    	 	ExecuteNonResult(sql); {N}");
             get.Append($"    	}}{N}");
             return get;
         }
+
         private StringBuilder UpdateParams()
         {
             var param = new StringBuilder();
@@ -87,11 +89,13 @@ namespace Zeus.Linguagens.CSharp.Firebird.Query
             if (count == 0)
                 return param;
 
-            for (int i = 0; i < count - 1; i++)
-            {
-                param.Append($"    		+$\"{ListaAtributosTabela[i].FIELD_NAME} = '{{entidade.{ListaAtributosTabela[i].FIELD_NAME}}}',\"" + N);
-            }
-            param.Append($"    		+$\"{ListaAtributosTabela[count - 1].FIELD_NAME} = '{{entidade.{ListaAtributosTabela[count - 1].FIELD_NAME}}}' \"" + N);
+            for (var i = 0; i < count - 1; i++)
+                param.Append(
+                    $"    		+$\"{ListaAtributosTabela[i].FIELD_NAME} = '{{entidade.{ListaAtributosTabela[i].FIELD_NAME}}}',\"" +
+                    N);
+            param.Append(
+                $"    		+$\"{ListaAtributosTabela[count - 1].FIELD_NAME} = '{{entidade.{ListaAtributosTabela[count - 1].FIELD_NAME}}}' \"" +
+                N);
             return param;
         }
 
@@ -100,7 +104,8 @@ namespace Zeus.Linguagens.CSharp.Firebird.Query
             var get = new StringBuilder();
             get.Append($"    	public void Delete(int ID){N}");
             get.Append($"    	{{{N}");
-            get.Append($"    	 	var sql = $\"DELETE FROM {NomeTabela} WHERE {ListaAtributosTabela.First().FIELD_NAME} = {{ ID }}\";{N}");
+            get.Append(
+                $"    	 	var sql = $\"DELETE FROM {NomeTabela} WHERE {ListaAtributosTabela.First().FIELD_NAME} = {{ ID }}\";{N}");
             get.Append($"    	 	ExecuteNonResult(sql); {N}");
             get.Append($"    	}}{N}");
             return get;

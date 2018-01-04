@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Text;
 using Zeus.Core;
 using Zeus.Linguagens.Base;
@@ -8,7 +7,7 @@ namespace Zeus.Linguagens.Node.SQL.Query
 {
     public class NodeSQLQuery : BaseMySqlDAO
     {
-        private string baseDb = ParamtersInput.ConnectionString.TratarNomeBase();
+        private readonly string baseDb = ParamtersInput.ConnectionString.TratarNomeBase();
 
         public NodeSQLQuery(string nomeTabela) : base(nomeTabela)
         {
@@ -18,7 +17,7 @@ namespace Zeus.Linguagens.Node.SQL.Query
         {
             var imports = new StringBuilder();
             imports.Append($"var mysql = require('./config/initMysql.js');{N}");
-            
+
             return imports;
         }
 
@@ -27,7 +26,8 @@ namespace Zeus.Linguagens.Node.SQL.Query
             var get = new StringBuilder();
             get.Append($"    getById: (id) => {{{N}");
             get.Append($"        return new Promise((resolve, reject) => {{{N}");
-            get.Append($"            mysql.executeString({baseDb}, \"SELECT * FROM {NomeTabela.ToLower()} WHERE {ListaAtributosTabela.First().COLUMN_NAME} =  \"+id,{N}");
+            get.Append(
+                $"            mysql.executeString({baseDb}, \"SELECT * FROM {NomeTabela.ToLower()} WHERE {ListaAtributosTabela.First().COLUMN_NAME} =  \"+id,{N}");
             get.Append($"                (err, result) => err ? reject(err) : resolve(result));{N}");
             get.Append($"        }});{N}");
             get.Append($"    }},{N}");
@@ -51,7 +51,8 @@ namespace Zeus.Linguagens.Node.SQL.Query
             var get = new StringBuilder();
             get.Append($"    insert: (body) => {{ {N}");
             get.Append($"        return new Promise((resolve, reject) => {{{N}");
-            get.Append($"            mysql.execute({baseDb}, \"INSERT INTO {NomeTabela.ToLower()} SET ?\", {parametrosQuery(false)},{N}");
+            get.Append(
+                $"            mysql.execute({baseDb}, \"INSERT INTO {NomeTabela.ToLower()} SET ?\", {parametrosQuery(false)},{N}");
             get.Append($"                (err, result) => err ? reject(err) : resolve(result));{N}");
             get.Append($"        }});{N}");
             get.Append($"    }},{N}");
@@ -60,22 +61,24 @@ namespace Zeus.Linguagens.Node.SQL.Query
 
         private StringBuilder Update()
         {
-
             var get = new StringBuilder();
             get.Append($"    update: (body) => {{ {N}");
             get.Append($"        return new Promise((resolve, reject) => {{{N}");
-            get.Append($"            mysql.execute({baseDb}, \"UPDATE {NomeTabela.ToLower()} SET ? WHERE {ListaAtributosTabela.First().COLUMN_NAME} =\" + body.{ListaAtributosTabela.First().COLUMN_NAME}, {parametrosQuery(true)},{N}");
+            get.Append(
+                $"            mysql.execute({baseDb}, \"UPDATE {NomeTabela.ToLower()} SET ? WHERE {ListaAtributosTabela.First().COLUMN_NAME} =\" + body.{ListaAtributosTabela.First().COLUMN_NAME}, {parametrosQuery(true)},{N}");
             get.Append($"                (err, result) => err ? reject(err) : resolve(result));{N}");
             get.Append($"        }});{N}");
             get.Append($"    }},{N}");
             return get;
         }
+
         private StringBuilder Delete()
         {
             var get = new StringBuilder();
             get.Append($"    delete: (id) => {{ {N}");
             get.Append($"        return new Promise((resolve, reject) => {{{N}");
-            get.Append($"            mysql.executeString({baseDb}, \"DELETE FROM {NomeTabela.ToLower()} WHERE {ListaAtributosTabela.First().COLUMN_NAME} =\" + id,{N}");
+            get.Append(
+                $"            mysql.executeString({baseDb}, \"DELETE FROM {NomeTabela.ToLower()} WHERE {ListaAtributosTabela.First().COLUMN_NAME} =\" + id,{N}");
             get.Append($"                (err, result) => err ? reject(err) : resolve(result));{N}");
             get.Append($"        }});{N}");
             get.Append($"    }},{N}");
@@ -101,10 +104,12 @@ namespace Zeus.Linguagens.Node.SQL.Query
             if (full == false)
             {
                 var semit = ListaAtributosTabela.Where(x => x.COLUMN_NAME != ListaAtributosTabela.First().COLUMN_NAME);
-                return "{ " + String.Join(", ", semit.Select(e => e.COLUMN_NAME + ": " + "body." + e.COLUMN_NAME)) + " }";
-
+                return "{ " + string.Join(", ", semit.Select(e => e.COLUMN_NAME + ": " + "body." + e.COLUMN_NAME)) +
+                       " }";
             }
-            return "{ " + String.Join(", ", ListaAtributosTabela.Select(e => e.COLUMN_NAME + ": " + "body." + e.COLUMN_NAME)) + " }";
+
+            return "{ " + string.Join(", ",
+                       ListaAtributosTabela.Select(e => e.COLUMN_NAME + ": " + "body." + e.COLUMN_NAME)) + " }";
         }
     }
 }

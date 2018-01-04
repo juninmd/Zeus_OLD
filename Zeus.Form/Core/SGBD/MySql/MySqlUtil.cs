@@ -4,7 +4,8 @@
     {
         public static string TratarNomeMySql(this string nome)
         {
-            return nome.Split('.')[1].Replace("[", "").Replace("]", ""); ;
+            return nome.Split('.')[1].Replace("[", "").Replace("]", "");
+            ;
         }
     }
 }

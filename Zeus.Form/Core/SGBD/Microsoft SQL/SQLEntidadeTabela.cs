@@ -13,16 +13,13 @@
         public string COMMENTS { get; set; }
 
         /// <summary>
-        /// Para descobrir a precisão do campo. EX: NUMBER(9,*);
+        ///     Para descobrir a precisão do campo. EX: NUMBER(9,*);
         /// </summary>
         public decimal? NUMERIC_PRECISION { get; set; }
 
         /// <summary>
-        ///  Para descobrir a precisão do campo. EX: NUMBER(*,2);
+        ///     Para descobrir a precisão do campo. EX: NUMBER(*,2);
         /// </summary>
         public int? NUMERIC_SCALE { get; set; }
-
-
-
     }
 }

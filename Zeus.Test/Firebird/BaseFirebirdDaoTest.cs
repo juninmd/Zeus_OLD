@@ -7,13 +7,8 @@ using Zeus.Middleware;
 namespace Zeus.Test.Firebird
 {
     [TestClass]
-    public class FirebirdDaoTest : BaseFirebirdTest
+    public class BaseFirebirdDaoTest : BaseFirebirdTest
     {
-        public FirebirdDaoTest()
-        {
-            ParamtersInput.Procedure = false;
-        }
-
         [TestMethod]
         public void GenerateCSharp()
         {

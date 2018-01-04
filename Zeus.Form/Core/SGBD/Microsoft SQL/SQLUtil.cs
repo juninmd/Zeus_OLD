@@ -8,6 +8,7 @@ namespace Zeus.Core.SGBD.Microsoft_SQL
         {
             return nome.Contains("[") ? nome.Split('.')[1].Replace("[", "").Replace("]", "") : nome;
         }
+
         public static string TratarNomeSQLDatabase()
         {
             return ParamtersInput.ConnectionString.Split(';')

@@ -11,7 +11,7 @@ namespace Zeus.Linguagens.Node
 
         public NodeRoutes(string nomeTabela)
         {
-            this._classe = nomeTabela.TratarNomeTabela().ToLower();
+            _classe = nomeTabela.TratarNomeTabela().ToLower();
         }
 
         public StringBuilder GerarClasse()

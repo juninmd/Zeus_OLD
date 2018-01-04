@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Net;
 
 namespace Zeus.Core.SGBD.MySql
 {
@@ -7,10 +8,7 @@ namespace Zeus.Core.SGBD.MySql
         public RequestMessage<List<string>> ConnectaSQL()
         {
             var ping = Ping();
-            if (!ping.IsError)
-            {
-                ping.Content = new MySqlTables().ListaDataBases();
-            }
+            if (!ping.IsError) ping.Content = new MySqlTables().ListaDataBases();
             return ping;
         }
 
@@ -20,17 +18,19 @@ namespace Zeus.Core.SGBD.MySql
             OpenConnection();
 
             using (var r = ExecuteReader())
+            {
                 if (r.Read())
-                {
                     return new RequestMessage<List<string>>
                     {
-                        StatusCode = System.Net.HttpStatusCode.OK,
+                        StatusCode = HttpStatusCode.OK,
                         Message = "Conexão com MYSQL efetuada com sucesso!"
                     };
-                };
+            }
+
+            ;
             return new RequestMessage<List<string>>
             {
-                StatusCode = System.Net.HttpStatusCode.InternalServerError,
+                StatusCode = HttpStatusCode.InternalServerError,
                 Message = "Não foi possível connectar!"
             };
         }

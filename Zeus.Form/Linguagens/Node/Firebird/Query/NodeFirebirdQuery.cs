@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Text;
 using Zeus.Linguagens.Base;
 
@@ -29,7 +28,8 @@ namespace Zeus.Linguagens.Node.Firebird.Query
         {
             var get = new StringBuilder();
             get.Append($"        getById: (id) => {{{N}");
-            get.Append($"                return Firebird.executeString(`SELECT * FROM {NomeTabela.ToLower()} WHERE {ListaAtributosTabela.First().FIELD_NAME} = ${{id}}`);{N}");
+            get.Append(
+                $"                return Firebird.executeString(`SELECT * FROM {NomeTabela.ToLower()} WHERE {ListaAtributosTabela.First().FIELD_NAME} = ${{id}}`);{N}");
             get.Append($"        }},{N}");
             return get;
         }
@@ -47,25 +47,28 @@ namespace Zeus.Linguagens.Node.Firebird.Query
         {
             var get = new StringBuilder();
             get.Append($"        insert: (body) => {{ {N}");
-            get.Append($"                return Firebird.executeObject(`INSERT INTO {NomeTabela.ToLower()} SET ?`, {parametrosQuery(false)});{N}");
+            get.Append(
+                $"                return Firebird.executeObject(`INSERT INTO {NomeTabela.ToLower()} SET ?`, {parametrosQuery(false)});{N}");
             get.Append($"        }},{N}");
             return get;
         }
 
         private StringBuilder Update()
         {
-
             var get = new StringBuilder();
             get.Append($"        update: (body) => {{ {N}");
-            get.Append($"                return Firebird.executeObject(`UPDATE {NomeTabela.ToLower()} SET ? WHERE {ListaAtributosTabela.First().FIELD_NAME} = ${{body.{ListaAtributosTabela.First().FIELD_NAME}}}`, {parametrosQuery(true)});{N}");
+            get.Append(
+                $"                return Firebird.executeObject(`UPDATE {NomeTabela.ToLower()} SET ? WHERE {ListaAtributosTabela.First().FIELD_NAME} = ${{body.{ListaAtributosTabela.First().FIELD_NAME}}}`, {parametrosQuery(true)});{N}");
             get.Append($"        }},{N}");
             return get;
         }
+
         private StringBuilder Delete()
         {
             var get = new StringBuilder();
             get.Append($"        delete: (id) => {{ {N}");
-            get.Append($"                return Firebird.executeString(`DELETE FROM {NomeTabela.ToLower()} WHERE {ListaAtributosTabela.First().FIELD_NAME} = ${{id}}`);{N}");
+            get.Append(
+                $"                return Firebird.executeString(`DELETE FROM {NomeTabela.ToLower()} WHERE {ListaAtributosTabela.First().FIELD_NAME} = ${{id}}`);{N}");
             get.Append($"        }},{N}");
             return get;
         }
@@ -89,10 +92,11 @@ namespace Zeus.Linguagens.Node.Firebird.Query
             if (full == false)
             {
                 var semit = ListaAtributosTabela.Where(x => x.FIELD_NAME != ListaAtributosTabela.First().FIELD_NAME);
-                return "{ " + String.Join(", ", semit.Select(e => e.FIELD_NAME + ": " + "body." + e.FIELD_NAME)) + " }";
-
+                return "{ " + string.Join(", ", semit.Select(e => e.FIELD_NAME + ": " + "body." + e.FIELD_NAME)) + " }";
             }
-            return "{ " + String.Join(", ", ListaAtributosTabela.Select(e => e.FIELD_NAME + ": " + "body." + e.FIELD_NAME)) + " }";
+
+            return "{ " + string.Join(", ",
+                       ListaAtributosTabela.Select(e => e.FIELD_NAME + ": " + "body." + e.FIELD_NAME)) + " }";
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 using Zeus.Core;
 using Zeus.Core.SGBD.Oracle.Batch;
 
@@ -10,7 +11,8 @@ namespace Zeus.Middleware
         {
             var dataInicial = DateTime.Now;
             var init = Init();
-            init.TechnicalMessage = ($"Tempo de processamento: {(DateTime.Now - dataInicial).Seconds}s - Tabelas: {ParamtersInput.NomeTabelas.Count}");
+            init.TechnicalMessage =
+                $"Tempo de processamento: {(DateTime.Now - dataInicial).Seconds}s - Tabelas: {ParamtersInput.NomeTabelas.Count}";
             return init;
         }
 
@@ -19,25 +21,25 @@ namespace Zeus.Middleware
             switch (ParamtersInput.SGBD)
             {
                 case 1:
-                    {
-                        return new OracleOrquestradorBatch().Oracle();
-                    }
+                {
+                    return new OracleOrquestradorBatch().Oracle();
+                }
                 case 2:
+                {
+                    return new RequestMessage<string>
                     {
-                        return new RequestMessage<string>()
-                        {
-                            Message = "Não foi desenvolvido para esse SGBD!",
-                            StatusCode = System.Net.HttpStatusCode.BadRequest
-                        };
-                    }
+                        Message = "Não foi desenvolvido para esse SGBD!",
+                        StatusCode = HttpStatusCode.BadRequest
+                    };
+                }
                 default:
+                {
+                    return new RequestMessage<string>
                     {
-                        return new RequestMessage<string>()
-                        {
-                            Message = "Não foi desenvolvido para esse SGBD!",
-                            StatusCode = System.Net.HttpStatusCode.BadRequest
-                        };
-                    }
+                        Message = "Não foi desenvolvido para esse SGBD!",
+                        StatusCode = HttpStatusCode.BadRequest
+                    };
+                }
             }
         }
     }

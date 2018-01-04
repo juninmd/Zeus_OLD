@@ -6,21 +6,19 @@ namespace Zeus.Core.SGBD.Oracle.Batch
     {
         public RequestMessage<string> Package(string source, bool body)
         {
-            BeginNewStatement($"select count(*) as contagem from user_source where name = '{source}' and TYPE = '{(body ? "PACKAGE BODY" : "PACKAGE")}' ");
+            BeginNewStatement(
+                $"select count(*) as contagem from user_source where name = '{source}' and TYPE = '{(body ? "PACKAGE BODY" : "PACKAGE")}' ");
             OpenConnection();
 
             var retorno = ExecuteQueryString();
 
             decimal valor = 0;
 
-            if (retorno.Read())
-            {
-                valor = retorno.GetValueOrDefault<decimal>("contagem");
-            }
+            if (retorno.Read()) valor = retorno.GetValueOrDefault<decimal>("contagem");
 
             EndTransaction(true);
 
-            return new RequestMessage<string>()
+            return new RequestMessage<string>
             {
                 StatusCode = valor == 0 ? HttpStatusCode.OK : HttpStatusCode.BadGateway
             };
@@ -35,19 +33,14 @@ namespace Zeus.Core.SGBD.Oracle.Batch
 
             decimal valor = 0;
 
-            if (retorno.Read())
-            {
-                valor = retorno.GetValueOrDefault<decimal>("contagem");
-            }
+            if (retorno.Read()) valor = retorno.GetValueOrDefault<decimal>("contagem");
 
             EndTransaction(true);
 
-            return new RequestMessage<string>()
+            return new RequestMessage<string>
             {
                 StatusCode = valor == 0 ? HttpStatusCode.OK : HttpStatusCode.BadGateway
             };
         }
-
-
     }
 }

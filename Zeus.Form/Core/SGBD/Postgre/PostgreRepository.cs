@@ -14,7 +14,7 @@ namespace Zeus.Core.SGBD.Postgre
             try
             {
                 OpenConnection();
-                NpgsqlCommand cmd = new NpgsqlCommand(query, _connection);
+                var cmd = new NpgsqlCommand(query, _connection);
                 cmd.ExecuteNonQuery();
                 if (closeAfterExecution)
                     _connection.Close();
@@ -31,10 +31,10 @@ namespace Zeus.Core.SGBD.Postgre
             try
             {
                 OpenConnection();
-                NpgsqlCommand cmd = new NpgsqlCommand(query, _connection);
-                NpgsqlDataReader dr = cmd.ExecuteReader(closeAfterExecution
-                        ? CommandBehavior.CloseConnection
-                        : CommandBehavior.Default);
+                var cmd = new NpgsqlCommand(query, _connection);
+                var dr = cmd.ExecuteReader(closeAfterExecution
+                    ? CommandBehavior.CloseConnection
+                    : CommandBehavior.Default);
 
                 return dr;
             }
@@ -56,15 +56,18 @@ namespace Zeus.Core.SGBD.Postgre
                 _connection = new NpgsqlConnection(ParamtersInput.ConnectionString);
 
             if (_connection.State == ConnectionState.Broken && _connection.State == ConnectionState.Closed)
-                throw new Exception("Falha na conexão com o banco de dados:" + _connection.State + _connection.ConnectionString);
+                throw new Exception("Falha na conexão com o banco de dados:" + _connection.State +
+                                    _connection.ConnectionString);
 
             if (_connection.State != ConnectionState.Open)
                 _connection.Open();
         }
     }
+
     public static class NullSafeGetter
     {
-        public static T GetValueOrDefault<T>(this IDataRecord r, string columnName, [CallerFilePath]string sourceFilePath = "")
+        public static T GetValueOrDefault<T>(this IDataRecord r, string columnName,
+            [CallerFilePath] string sourceFilePath = "")
         {
             try
             {
@@ -72,18 +75,17 @@ namespace Zeus.Core.SGBD.Postgre
             }
             catch (Exception ex) when (ex.Message == "Unable to find specified column in result set")
             {
-                throw new Exception($"{ex.Message}\nNão foi possível encontrar o paramêtro: [{columnName}]\nClasse: {sourceFilePath}");
+                throw new Exception(
+                    $"{ex.Message}\nNão foi possível encontrar o paramêtro: [{columnName}]\nClasse: {sourceFilePath}");
             }
             catch (Exception ex)
             {
                 if (default(T) == null)
-                {
-                    throw new Exception($"{ex.Message}\nFalha ao converter parametro: [{columnName}] onde deveria ser: {r[columnName].GetType().Name}\nClasse: {sourceFilePath}");
-
-                }
-                throw new Exception($"{ex.Message}\nFalha ao converter parametro: [{columnName }], para o tipo: {default(T)?.GetType().Name} / Onde deveria ser: {r[columnName].GetType().Name}\nClasse: {sourceFilePath}");
+                    throw new Exception(
+                        $"{ex.Message}\nFalha ao converter parametro: [{columnName}] onde deveria ser: {r[columnName].GetType().Name}\nClasse: {sourceFilePath}");
+                throw new Exception(
+                    $"{ex.Message}\nFalha ao converter parametro: [{columnName}], para o tipo: {default(T)?.GetType().Name} / Onde deveria ser: {r[columnName].GetType().Name}\nClasse: {sourceFilePath}");
             }
         }
-
     }
 }

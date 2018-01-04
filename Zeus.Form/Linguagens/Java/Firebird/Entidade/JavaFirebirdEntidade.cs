@@ -10,18 +10,18 @@ namespace Zeus.Linguagens.Java.Firebird.Entidade
 {
     public class JavaFirebirdEntidade : BaseFirebirdDAO
     {
+        public JavaFirebirdEntidade(string nomeTabela) : base(nomeTabela)
+        {
+        }
+
         private StringBuilder Imports(List<FirebirdEntidadeTabela> entidadeTabela)
         {
             var imports = new StringBuilder();
             if (entidadeTabela.FirstOrDefault(q => q.FIELD_NAME == "date") != null)
-            {
                 imports.Append($"import java.util.Date;{N}");
-            }
             if (entidadeTabela.FirstOrDefault(q => q.FIELD_NAME == "long") != null)
-            {
                 imports.Append($"import java.math.BigDecimal;{N}");
-            }
-            
+
             imports.Append($"{N}");
 
             return imports;
@@ -32,9 +32,7 @@ namespace Zeus.Linguagens.Java.Firebird.Entidade
             var atributosHeader = new StringBuilder();
 
             foreach (var att in entidadeTabela)
-            {
                 atributosHeader.Append($"	private {JavaTypesFirebird.GetTypeAtribute(att)} {att.FIELD_NAME};{N}");
-            }
             atributosHeader.Append($"{N}");
             return atributosHeader;
         }
@@ -50,22 +48,24 @@ namespace Zeus.Linguagens.Java.Firebird.Entidade
                 atributoBody.Append($"	 * @return {N}");
                 atributoBody.Append($"	 * @Descrição {att.COLUMN_COMMENT} {N}");
                 atributoBody.Append($"	 */{N}");
-                atributoBody.Append($"	public {JavaTypesFirebird.GetTypeAtribute(att)} get{att.FIELD_NAME.ToFirstCharToUpper()}() {{{N}");
+                atributoBody.Append(
+                    $"	public {JavaTypesFirebird.GetTypeAtribute(att)} get{att.FIELD_NAME.ToFirstCharToUpper()}() {{{N}");
                 atributoBody.Append($"		return {att.FIELD_NAME};{N}");
                 atributoBody.Append($"	}}{N}");
                 atributoBody.Append($"{N}");
 
-                atributoBody.Append($"	public void set{att.FIELD_NAME.ToFirstCharToUpper()}({JavaTypesFirebird.GetTypeAtribute(att)} {att.FIELD_NAME}) {{{N}");
+                atributoBody.Append(
+                    $"	public void set{att.FIELD_NAME.ToFirstCharToUpper()}({JavaTypesFirebird.GetTypeAtribute(att)} {att.FIELD_NAME}) {{{N}");
                 atributoBody.Append($"		this.{att.FIELD_NAME} = {att.FIELD_NAME};{N}");
                 atributoBody.Append($"	}}{N}");
                 atributoBody.Append($"{N}");
             }
+
             return atributoBody;
         }
 
         public string GerarBody()
         {
-
             var classe = new StringBuilder();
             classe.Append($"package model;{N}{N}");
 
@@ -76,10 +76,6 @@ namespace Zeus.Linguagens.Java.Firebird.Entidade
             classe.Append("}" + Environment.NewLine);
 
             return classe.ToString();
-        }
-
-        public JavaFirebirdEntidade(string nomeTabela) : base(nomeTabela)
-        {
         }
     }
 }

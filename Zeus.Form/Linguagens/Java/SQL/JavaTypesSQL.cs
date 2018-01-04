@@ -4,7 +4,6 @@ namespace Zeus.Linguagens.Java.SQL
 {
     public static class JavaTypesSQL
     {
-
         public static string GetTypeAtribute(SQLEntidadeTabela prop)
         {
             switch (prop.DATA_TYPE)
@@ -12,9 +11,9 @@ namespace Zeus.Linguagens.Java.SQL
                 case "date":
                     return "Date";
                 case "int":
-                    {
-                        return "int";
-                    }
+                {
+                    return "int";
+                }
 
                 default:
                     return "String";

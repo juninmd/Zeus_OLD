@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Net;
 using System.Windows.Forms;
 using Zeus.Core;
@@ -11,45 +10,39 @@ namespace Zeus.Middleware
         public RequestMessage<string> ValidateInput(FolderBrowserDialog salvar, bool isProcedure = false)
         {
             if (!ParamtersInput.NomeTabelas.Any())
-            {
-                return new RequestMessage<string>()
+                return new RequestMessage<string>
                 {
                     Message = "Selecione uma tabela",
-                    StatusCode = System.Net.HttpStatusCode.InternalServerError
+                    StatusCode = HttpStatusCode.InternalServerError
                 };
-            }
 
-            if ((ParamtersInput.SGBD == 3 || ParamtersInput.SGBD == 5) && String.IsNullOrEmpty(ParamtersInput.DataBase))
-            {
-                return new RequestMessage<string>()
+            if ((ParamtersInput.SGBD == 3 || ParamtersInput.SGBD == 5) && string.IsNullOrEmpty(ParamtersInput.DataBase))
+                return new RequestMessage<string>
                 {
                     Message = "Selecione uma database",
-                    StatusCode = System.Net.HttpStatusCode.InternalServerError
+                    StatusCode = HttpStatusCode.InternalServerError
                 };
-            }
 
             if (ParamtersInput.Linguagem == 0 && !isProcedure)
-            {
-                return new RequestMessage<string>()
+                return new RequestMessage<string>
                 {
                     Message = "Selecione uma linguagem",
-                    StatusCode = System.Net.HttpStatusCode.InternalServerError
+                    StatusCode = HttpStatusCode.InternalServerError
                 };
-            }
 
-            if (String.IsNullOrEmpty(ParamtersInput.SelectedPath))
+            if (string.IsNullOrEmpty(ParamtersInput.SelectedPath))
             {
                 var funcao = salvar.ShowDialog();
                 if (funcao != DialogResult.OK)
-                    return new RequestMessage<string>()
+                    return new RequestMessage<string>
                     {
                         Message = "Processamento cancelado!",
-                        StatusCode = System.Net.HttpStatusCode.BadRequest
+                        StatusCode = HttpStatusCode.BadRequest
                     };
                 ParamtersInput.SelectedPath = salvar.SelectedPath + "\\";
             }
 
-            return new RequestMessage<string> { StatusCode = HttpStatusCode.OK };
+            return new RequestMessage<string> {StatusCode = HttpStatusCode.OK};
         }
     }
 }

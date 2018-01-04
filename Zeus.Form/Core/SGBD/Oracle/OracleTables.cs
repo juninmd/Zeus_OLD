@@ -12,36 +12,37 @@ namespace Zeus.Core.SGBD.Oracle
             var lista = new List<string>();
 
             using (var r = ExecuteReader())
+            {
                 while (r.Read())
-                {
                     lista.Add(r.GetValueOrDefault<string>("table_name"));
-                };
+            }
+
+            ;
             return lista;
         }
 
         public List<OracleEntidadeTabela> ListarAtributos(string nomeTabela)
         {
-
             BeginNewStatement("SELECT A.COLUMN_NAME, " +
-                               "A.DATA_TYPE, " +
-                               "A.CHAR_LENGTH, " +
-                               "A.NULLABLE, " +
-                               "A.DATA_PRECISION, " +
-                               "A.DATA_SCALE, " +
-                               "B.COMMENTS " +
-                               "FROM USER_TAB_COLS A, " +
-                               "USER_COL_COMMENTS B " +
-                               $"WHERE A.TABLE_NAME = '{nomeTabela}' " +
-                               "AND A.COLUMN_NAME = B.COLUMN_NAME " +
-                               "AND B.TABLE_NAME = A.TABLE_NAME ");
+                              "A.DATA_TYPE, " +
+                              "A.CHAR_LENGTH, " +
+                              "A.NULLABLE, " +
+                              "A.DATA_PRECISION, " +
+                              "A.DATA_SCALE, " +
+                              "B.COMMENTS " +
+                              "FROM USER_TAB_COLS A, " +
+                              "USER_COL_COMMENTS B " +
+                              $"WHERE A.TABLE_NAME = '{nomeTabela}' " +
+                              "AND A.COLUMN_NAME = B.COLUMN_NAME " +
+                              "AND B.TABLE_NAME = A.TABLE_NAME ");
 
             OpenConnection();
 
             var lista = new List<OracleEntidadeTabela>();
 
             using (var r = ExecuteReader())
+            {
                 while (r.Read())
-                {
                     lista.Add(new OracleEntidadeTabela
                     {
                         COLUMN_NAME = r.GetValueOrDefault<string>("COLUMN_NAME"),
@@ -50,14 +51,13 @@ namespace Zeus.Core.SGBD.Oracle
                         DATA_PRECISION = r.GetValueOrDefault<decimal?>("DATA_PRECISION"),
                         DATA_SCALE = r.GetValueOrDefault<decimal?>("DATA_SCALE"),
                         NULLABLE = r.GetValueOrDefault<string>("NULLABLE"),
-                        COMMENTS = r.GetValueOrDefault<string>("COMMENTS"),
+                        COMMENTS = r.GetValueOrDefault<string>("COMMENTS")
                     });
-                };
-            
+            }
+
+            ;
+
             return lista;
         }
-
-
-
     }
 }

@@ -10,8 +10,8 @@ namespace Zeus.Core.SGBD.Microsoft_SQL.Procedure.Verbos
         private string N => Environment.NewLine;
 
         /// <summary>
-        /// Adiciona no header da procedure o comando para dropar caso exista a procedure -
-        /// Também adicionar o sumário
+        ///     Adiciona no header da procedure o comando para dropar caso exista a procedure -
+        ///     Também adicionar o sumário
         /// </summary>
         /// <param name="nomeProcedure"></param>
         /// <param name="nomeTabela"></param>
@@ -27,14 +27,13 @@ namespace Zeus.Core.SGBD.Microsoft_SQL.Procedure.Verbos
             desc.Append("GO" + N + N + N + N);
             return desc;
         }
+
         private StringBuilder Paramters(List<SQLEntidadeTabela> parametro)
         {
             var count = parametro.Count;
             var desc = new StringBuilder();
-            for (int i = 0; i < count - 1; i++)
-            {
+            for (var i = 0; i < count - 1; i++)
                 desc.Append($"	@{parametro[i].COLUMN_NAME}        {parametro[i].DATA_TYPE},{N}");
-            }
             desc.Append($"	@{parametro[count - 1].COLUMN_NAME}        {parametro[count - 1].DATA_TYPE}{N}");
             return desc;
         }

@@ -6,6 +6,7 @@
         {
             return aceitaNull == "Y";
         }
+
         public static string GetTypeAtribute(string tipoAttr, string aceitaNull)
         {
             switch (tipoAttr)

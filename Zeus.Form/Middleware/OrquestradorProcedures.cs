@@ -12,7 +12,8 @@ namespace Zeus.Middleware
             var dataInicial = DateTime.Now;
             var init = new ChamadaProceduresBase().Orquestrar();
             var dataFinal = DateTime.Now;
-            Util.Status($"Tempo de processamento: {(dataFinal - dataInicial).Seconds}s - Tabelas: {ParamtersInput.NomeTabelas.Count}");
+            Util.Status(
+                $"Tempo de processamento: {(dataFinal - dataInicial).Seconds}s - Tabelas: {ParamtersInput.NomeTabelas.Count}");
             return init;
         }
     }

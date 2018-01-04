@@ -10,8 +10,8 @@ namespace Zeus.Core.SGBD.Postgre.Procedure.Verbos
         private string N => Environment.NewLine;
 
         /// <summary>
-        /// Adiciona no header da procedure o comando para dropar caso exista a procedure -
-        /// Também adicionar o sumário
+        ///     Adiciona no header da procedure o comando para dropar caso exista a procedure -
+        ///     Também adicionar o sumário
         /// </summary>
         /// <param name="nomeProcedure"></param>
         /// <param name="nomeTabela"></param>
@@ -27,6 +27,7 @@ namespace Zeus.Core.SGBD.Postgre.Procedure.Verbos
             desc.Append("	END$$" + N + N);
             return desc;
         }
+
         private StringBuilder Paramters(List<PostgreEntidadeTabela> parametro)
         {
             return new PostgreParametros().GenerateParams(parametro, true);

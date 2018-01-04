@@ -6,18 +6,22 @@ namespace Zeus.Core.SGBD.MySql
     {
         public List<string> ListaTabelas(string database)
         {
-            BeginNewStatement($"select * from information_schema.tables where table_schema = \"{database}\" order by table_name");
+            BeginNewStatement(
+                $"select * from information_schema.tables where table_schema = \"{database}\" order by table_name");
             OpenConnection();
 
             var lista = new List<string>();
 
             using (var r = ExecuteReader())
+            {
                 while (r.Read())
-                {
                     lista.Add(r.GetValueOrDefault<string>("TABLE_NAME"));
-                };
+            }
+
+            ;
             return lista;
         }
+
         public List<string> ListaDataBases()
         {
             BeginNewStatement("show databases");
@@ -26,24 +30,27 @@ namespace Zeus.Core.SGBD.MySql
             var lista = new List<string>();
 
             using (var r = ExecuteReader())
+            {
                 while (r.Read())
-                {
                     lista.Add(r.GetValueOrDefault<string>("Database"));
-                };
+            }
+
+            ;
             return lista;
         }
 
         public List<MySqlEntidadeTabela> ListarAtributos(string nomeTabela)
         {
-            BeginNewStatement($"SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = '{ParamtersInput.DataBase}' AND TABLE_NAME = '{nomeTabela}';");
+            BeginNewStatement(
+                $"SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = '{ParamtersInput.DataBase}' AND TABLE_NAME = '{nomeTabela}';");
 
             OpenConnection();
 
             var lista = new List<MySqlEntidadeTabela>();
 
             using (var r = ExecuteReader())
+            {
                 while (r.Read())
-                {
                     lista.Add(new MySqlEntidadeTabela
                     {
                         TABLE_CATALOG = r.GetValueOrDefault<string>("TABLE_CATALOG"),
@@ -54,12 +61,14 @@ namespace Zeus.Core.SGBD.MySql
                         COLUMN_DEFAULT = r.GetValueOrDefault<string>("COLUMN_DEFAULT"),
                         IS_NULLABLE = r.GetValueOrDefault<string>("IS_NULLABLE"),
                         DATA_TYPE = r.GetValueOrDefault<string>("DATA_TYPE"),
-                      //  CHARACTER_MAXIMUN_LENGTH = r.GetInt32(r.GetOrdinal("CHARACTER_MAXIMUN_LENGTH")),
-                       // CHARACTER_OCTET_LENGTH = r.GetValueOrDefault<int?>("CHARACTER_OCTET_LENGTH"),
-                 //       NUMERIC_PRECISION = r.GetInt32(r.GetOrdinal("NUMERIC_PRECISION")),
-                        COLUMN_COMMENT = r.GetValueOrDefault<string>("COLUMN_COMMENT"),
+                        //  CHARACTER_MAXIMUN_LENGTH = r.GetInt32(r.GetOrdinal("CHARACTER_MAXIMUN_LENGTH")),
+                        // CHARACTER_OCTET_LENGTH = r.GetValueOrDefault<int?>("CHARACTER_OCTET_LENGTH"),
+                        //       NUMERIC_PRECISION = r.GetInt32(r.GetOrdinal("NUMERIC_PRECISION")),
+                        COLUMN_COMMENT = r.GetValueOrDefault<string>("COLUMN_COMMENT")
                     });
-                };
+            }
+
+            ;
 
             return lista;
         }

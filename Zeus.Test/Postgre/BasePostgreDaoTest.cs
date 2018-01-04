@@ -4,16 +4,11 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Zeus.Core;
 using Zeus.Middleware;
 
-namespace Zeus.Test.Oracle
+namespace Zeus.Test.Postgre
 {
     [TestClass]
-    public class OracleDaoTest : BaseOracleTest
+    public class BasePostgreDaoTest : BasePostgreTest
     {
-        public OracleDaoTest()
-        {
-            ParamtersInput.Procedure = false;
-        }
-
         [TestMethod]
         public void GenerateCSharp()
         {

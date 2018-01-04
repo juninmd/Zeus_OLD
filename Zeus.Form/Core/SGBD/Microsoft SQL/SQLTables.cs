@@ -6,16 +6,20 @@ namespace Zeus.Core.SGBD.Microsoft_SQL
     {
         public List<string> ListaTabelas()
         {
-            BeginNewStatement("SELECT TABLE_NAME, TABLE_SCHEMA FROM information_schema.tables WHERE TABLE_TYPE = 'BASE TABLE' order by table_name");
+            BeginNewStatement(
+                "SELECT TABLE_NAME, TABLE_SCHEMA FROM information_schema.tables WHERE TABLE_TYPE = 'BASE TABLE' order by table_name");
             OpenConnection();
 
             var lista = new List<string>();
 
             using (var r = ExecuteReader())
+            {
                 while (r.Read())
-                {
-                    lista.Add($"[{r.GetValueOrDefault<string>("TABLE_SCHEMA")}].[{r.GetValueOrDefault<string>("TABLE_NAME")}]");
-                };
+                    lista.Add(
+                        $"[{r.GetValueOrDefault<string>("TABLE_SCHEMA")}].[{r.GetValueOrDefault<string>("TABLE_NAME")}]");
+            }
+
+            ;
             return lista;
         }
 
@@ -32,8 +36,8 @@ namespace Zeus.Core.SGBD.Microsoft_SQL
             var lista = new List<SQLEntidadeTabela>();
 
             using (var r = ExecuteReader())
+            {
                 while (r.Read())
-                {
                     lista.Add(new SQLEntidadeTabela
                     {
                         COLUMN_NAME = r.GetValueOrDefault<string>("COLUMN_NAME"),
@@ -42,9 +46,11 @@ namespace Zeus.Core.SGBD.Microsoft_SQL
                         NUMERIC_PRECISION = r.GetValueOrDefault<byte?>("NUMERIC_PRECISION"),
                         NUMERIC_SCALE = r.GetValueOrDefault<int?>("NUMERIC_SCALE"),
                         IS_NULLABLE = r.GetValueOrDefault<string>("IS_NULLABLE") == "YES",
-                        COMMENTS = "",
+                        COMMENTS = ""
                     });
-                };
+            }
+
+            ;
 
             return lista;
         }

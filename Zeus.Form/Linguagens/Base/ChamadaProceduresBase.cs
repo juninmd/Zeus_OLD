@@ -15,14 +15,14 @@ namespace Zeus.Linguagens.Base
     public class ChamadaProceduresBase
     {
         /// <summary>
-        /// TODO: Melhorar
+        ///     TODO: Melhorar
         /// </summary>
         /// <returns></returns>
         public RequestMessage<string> Orquestrar()
         {
             try
             {
-                int max = ParamtersInput.NomeTabelas.Count;
+                var max = ParamtersInput.NomeTabelas.Count;
                 var i = 0;
                 var unificar = new StringBuilder();
                 var unificarHeader = new StringBuilder();
@@ -30,16 +30,15 @@ namespace Zeus.Linguagens.Base
                 foreach (var nomeTabela in ParamtersInput.NomeTabelas)
                 {
                     i++;
-                    Util.Barra((int)((((decimal)i / max) * 100)));
+                    Util.Barra((int) ((decimal) i / max * 100));
                     Util.Status($"Processando tabela: {nomeTabela}");
                     var body = Implementar(nomeTabela);
 
                     if (!ParamtersInput.UnificarOutput)
                     {
                         if (ParamtersInput.SGBD == 1)
-                        {
-                            File.WriteAllText($"{ParamtersInput.SelectedPath}{nomeTabela.TratarNomeSQL()}Header.sql", new OracleProcedure(nomeTabela).GerarPackageHeader().ToString());
-                        }
+                            File.WriteAllText($"{ParamtersInput.SelectedPath}{nomeTabela.TratarNomeSQL()}Header.sql",
+                                new OracleProcedure(nomeTabela).GerarPackageHeader().ToString());
                         File.WriteAllText($"{ParamtersInput.SelectedPath}{nomeTabela.TratarNomeSQL()}.sql", body);
                     }
                     else
@@ -49,7 +48,7 @@ namespace Zeus.Linguagens.Base
 
                         if (ParamtersInput.SGBD == 1)
                         {
-                            unificarHeader.Append(new OracleProcedure(nomeTabela).GerarPackageHeader().ToString());
+                            unificarHeader.Append(new OracleProcedure(nomeTabela).GerarPackageHeader());
                             unificarHeader.Append("\n\n");
                         }
                     }
@@ -57,12 +56,13 @@ namespace Zeus.Linguagens.Base
 
                 if (ParamtersInput.UnificarOutput)
                 {
-                    File.WriteAllText(ParamtersInput.SelectedPath + $"{ParamtersInput.DataBase ?? "Procedures"}.sql", unificar.ToString());
+                    File.WriteAllText(ParamtersInput.SelectedPath + $"{ParamtersInput.DataBase ?? "Procedures"}.sql",
+                        unificar.ToString());
 
                     if (ParamtersInput.SGBD == 1)
-                    {
-                        File.WriteAllText(ParamtersInput.SelectedPath + $"{ParamtersInput.DataBase ?? "Procedures"}Header.sql", unificarHeader.ToString());
-                    }
+                        File.WriteAllText(
+                            ParamtersInput.SelectedPath + $"{ParamtersInput.DataBase ?? "Procedures"}Header.sql",
+                            unificarHeader.ToString());
                 }
 
                 return new RequestMessage<string>
@@ -82,6 +82,7 @@ namespace Zeus.Linguagens.Base
                 };
             }
         }
+
         public string Implementar(string nomeTabela)
         {
             switch (ParamtersInput.SGBD)
@@ -94,9 +95,10 @@ namespace Zeus.Linguagens.Base
                     return new MySqlProcedure(nomeTabela).GerarBody();
                 case 4:
                     throw new NotImplementedException();
-                    //return new FirebirdProcedure(nomeTabela);
-                    //break;
+                //return new FirebirdProcedure(nomeTabela);
+                //break;
             }
+
             return new PostgreProcedure(nomeTabela).GerarBody();
         }
     }

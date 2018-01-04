@@ -17,7 +17,8 @@ namespace Zeus.Core.SGBD.Microsoft_SQL.Procedure.Comum
                 return param;
 
             param.Append($"	     DELETE FROM {nomeTabela}{N}");
-            param.Append($"               WHERE {listaAtributos.First().COLUMN_NAME} = @{listaAtributos.First().COLUMN_NAME}{N}{N}");
+            param.Append(
+                $"               WHERE {listaAtributos.First().COLUMN_NAME} = @{listaAtributos.First().COLUMN_NAME}{N}{N}");
             param.Append($"	     RETURN 0{N}");
             return param;
         }

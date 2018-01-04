@@ -5,13 +5,13 @@ using Zeus.Properties;
 
 namespace Zeus
 {
-    static class Program
+    internal static class Program
     {
         /// <summary>
-        /// The main entry point for the application.
+        ///     The main entry point for the application.
         /// </summary>
         [STAThread]
-        static void Main()
+        private static void Main()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
@@ -20,12 +20,10 @@ namespace Zeus
             if (Settings.Default.SkipWelcome)
                 Application.Run(new formWizard());
             else
-            {
                 Application.Run(new formWelcome());
-            }
         }
 
-        static void InitParamters()
+        private static void InitParamters()
         {
             ParamtersInput.Prefixos = new Prefixos
             {
