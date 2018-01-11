@@ -75,7 +75,10 @@
     <Compile Include="Postgre\PostgreDaoQueryTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SqlServer\BaseSqlServerTest.cs" />
-    <Compile Include="SqlServer\SqlServerDaoTest.cs" />
+    <Compile Include="SqlServer\BaseSqlServerDaoTest.cs" />
+    <Compile Include="SqlServer\SqlServerDaoProcedureTest.cs" />
+    <Compile Include="SqlServer\SqlServerDaoQueryTest.cs" />
+    <Compile Include="SqlServer\SqlServerEntityTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
