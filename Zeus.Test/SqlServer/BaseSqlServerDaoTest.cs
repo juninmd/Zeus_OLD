@@ -7,13 +7,8 @@ using Zeus.Middleware;
 namespace Zeus.Test.SqlServer
 {
     [TestClass]
-    public class SqlServerDaoTest : BaseSqlServerTest
+    public class BaseSqlServerDaoTest : BaseSqlServerTest
     {
-        public SqlServerDaoTest()
-        {
-            ParamtersInput.Procedure = false;
-        }
-
         [TestMethod]
         public void GenerateCSharp()
         {
