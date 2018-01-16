@@ -1,4 +1,6 @@
-﻿namespace Zeus.Core
+﻿using System.IO;
+
+namespace Zeus.Core
 {
     public enum OperationProcedure
     {
@@ -53,6 +55,14 @@
         public static string TratarNomeBase(this string nome)
         {
             return $"\"{nome.Split(';')[1].Split('=')[1]}\"";
+        }
+
+        public static string PathTemplate()
+        {
+            return File.ReadAllText(
+                Directory.GetCurrentDirectory()
+                .Replace("bin\\Debug", $"Templates\\{ParamtersInput.SGBD}\\{ParamtersInput.Linguagem}Dao{(ParamtersInput.Procedure ? 1 : 0)}.txt")
+                );
         }
     }
 }
