@@ -28,12 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("Teste");
             this.btnSalvar = new MaterialSkin.Controls.MaterialRaisedButton();
             this.listConnection = new MaterialSkin.Controls.MaterialListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnExcluir = new MaterialSkin.Controls.MaterialRaisedButton();
             this.txtConnectionString = new MaterialSkin.Controls.MaterialSingleLineTextField();
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // btnSalvar
@@ -63,8 +62,6 @@
             this.listConnection.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F);
             this.listConnection.FullRowSelect = true;
             this.listConnection.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            this.listConnection.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem2});
             this.listConnection.Location = new System.Drawing.Point(12, 149);
             this.listConnection.MouseLocation = new System.Drawing.Point(-1, -1);
             this.listConnection.MouseState = MaterialSkin.MouseState.OUT;
@@ -74,6 +71,12 @@
             this.listConnection.TabIndex = 17;
             this.listConnection.UseCompatibleStateImageBehavior = false;
             this.listConnection.View = System.Windows.Forms.View.Details;
+            this.listConnection.DoubleClick += new System.EventHandler(this.listConnection_DoubleClick);
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "Adicione sua connection String ;)";
+            this.columnHeader1.Width = 570;
             // 
             // btnExcluir
             // 
@@ -110,11 +113,6 @@
             this.txtConnectionString.TabIndex = 18;
             this.txtConnectionString.TabStop = false;
             this.txtConnectionString.UseSystemPasswordChar = false;
-            // 
-            // columnHeader1
-            // 
-            this.columnHeader1.Text = "Adicione sua connection String ;)";
-            this.columnHeader1.Width = 570;
             // 
             // formGridConnectionString
             // 

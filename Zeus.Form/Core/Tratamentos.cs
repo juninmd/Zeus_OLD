@@ -75,5 +75,16 @@ namespace Zeus.Core
                 .Replace("bin\\Debug", $"Templates\\{ParamtersInput.SGBD}\\{ParamtersInput.Linguagem}Dao{(ParamtersInput.Procedure ? 1 : 0)}.txt")
                 );
         }
+
+        public static string PathConnectionString()
+        {
+            var path = Directory.GetCurrentDirectory();
+            if (path.Contains("Test"))
+            {
+                path = path.Replace("Test", "Form");
+            }
+
+            return path.Replace("bin\\Debug", $"connectionStrings.txt");
+        }
     }
 }
