@@ -171,7 +171,6 @@
     <Compile Include="formWelcome.Designer.cs">
       <DependentUpon>formWelcome.cs</DependentUpon>
     </Compile>
-    <Compile Include="Frontend\Angular\AngularTypeService.cs" />
     <Compile Include="Linguagens\Base\BaseFirebirdDAO.cs" />
     <Compile Include="Linguagens\Base\BaseMySqlDAO.cs" />
     <Compile Include="Linguagens\Base\BasePostgreDAO.cs" />
@@ -225,10 +224,7 @@
     <Compile Include="Linguagens\Node\Firebird\Query\NodeFirebirdQuery.cs" />
     <Compile Include="Core\SGBD\MySql\MySqlConnectionStringModel.cs" />
     <Compile Include="Linguagens\Node\MySql\Procedure\NodeMySqlProcedure.cs" />
-    <Compile Include="Frontend\Angular\AngularService.cs" />
     <Compile Include="Linguagens\Node\MySql\Query\NodeMySqlQuery.cs" />
-    <Compile Include="Linguagens\Node\NodeRoutes.cs" />
-    <Compile Include="Linguagens\Node\NodeController.cs" />
     <Compile Include="Linguagens\Node\Oracle\Procedure\NodeOracleProcedure.cs" />
     <Compile Include="Linguagens\Node\Oracle\Query\NodeOracleQuery.cs" />
     <Compile Include="Linguagens\Node\Postgre\Procedure\NodePostgreProcedure.cs" />

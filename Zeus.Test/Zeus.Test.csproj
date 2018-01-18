@@ -51,7 +51,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseTest.cs" />
-    <Compile Include="EntidadeTest.cs" />
     <Compile Include="ConexaoPingTest.cs" />
     <Compile Include="Firebird\BaseFirebirdTest.cs" />
     <Compile Include="Firebird\BaseFirebirdDaoTest.cs" />

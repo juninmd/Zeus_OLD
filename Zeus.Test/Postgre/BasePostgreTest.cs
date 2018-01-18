@@ -1,21 +1,15 @@
 ﻿using System.Collections.Generic;
 using System.Configuration;
-using System.IO;
 using Zeus.Core;
 
 namespace Zeus.Test.Postgre
 {
-    public class BasePostgreTest
+    public class BasePostgreTest : BaseTest
     {
-        public BasePostgreTest()
+        public BasePostgreTest() : base(5)
         {
             ParamtersInput.ConnectionString = ConfigurationManager.AppSettings["pgConnect"];
             ParamtersInput.NomeTabelas = new List<string> {"teste"};
-            ParamtersInput.SelectedPath = Directory.GetCurrentDirectory() + "\\Test\\";
-            ParamtersInput.SGBD = 5;
-
-            if (!Directory.Exists(ParamtersInput.SelectedPath))
-                Directory.CreateDirectory(ParamtersInput.SelectedPath);
         }
     }
 }

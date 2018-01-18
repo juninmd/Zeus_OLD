@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 
 namespace Zeus.Core
 {
@@ -57,10 +58,20 @@ namespace Zeus.Core
             return $"\"{nome.Split(';')[1].Split('=')[1]}\"";
         }
 
+        /// <summary>
+        /// SGBD/Linguagem/Procedure
+        /// </summary>
+        /// <returns></returns>
         public static string PathTemplate()
         {
+            var path = Directory.GetCurrentDirectory();
+            if (path.Contains("Test"))
+            {
+                path = path.Replace("Test", "Form");
+            }
+
             return File.ReadAllText(
-                Directory.GetCurrentDirectory()
+                path
                 .Replace("bin\\Debug", $"Templates\\{ParamtersInput.SGBD}\\{ParamtersInput.Linguagem}Dao{(ParamtersInput.Procedure ? 1 : 0)}.txt")
                 );
         }
