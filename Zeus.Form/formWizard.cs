@@ -296,5 +296,27 @@ namespace Zeus
 
             Hide();
         }
+
+        private void btnLista_Click(object sender, EventArgs e)
+        {
+            var fc = Application.OpenForms["formGridConnectionString"];
+            if (fc == null)
+            {
+                new formGridConnectionString
+                {
+                    ConnectionString = txtConnectionString,
+
+                }.ShowDialog();
+            }
+            else
+            {
+                fc.Close();
+                new formGridConnectionString
+                {
+                    ConnectionString = txtConnectionString,
+
+                }.Show();
+            }
+        }
     }
 }

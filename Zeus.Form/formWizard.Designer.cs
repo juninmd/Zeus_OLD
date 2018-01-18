@@ -73,6 +73,7 @@
             this.materialTabSelector1 = new MaterialSkin.Controls.MaterialTabSelector();
             this.salvar = new System.Windows.Forms.FolderBrowserDialog();
             this.materialProgressBar1 = new MaterialSkin.Controls.MaterialProgressBar();
+            this.btnLista = new MaterialSkin.Controls.MaterialRaisedButton();
             this.tab.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -101,6 +102,7 @@
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.btnOpcoes);
+            this.tabPage1.Controls.Add(this.btnLista);
             this.tabPage1.Controls.Add(this.btnExemplo);
             this.tabPage1.Controls.Add(this.panel1);
             this.tabPage1.Controls.Add(this.materialLabel4);
@@ -727,6 +729,22 @@
             this.materialProgressBar1.Size = new System.Drawing.Size(642, 5);
             this.materialProgressBar1.TabIndex = 6;
             // 
+            // btnLista
+            // 
+            this.btnLista.AutoSize = true;
+            this.btnLista.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnLista.Depth = 0;
+            this.btnLista.Icon = null;
+            this.btnLista.Location = new System.Drawing.Point(419, 230);
+            this.btnLista.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnLista.Name = "btnLista";
+            this.btnLista.Primary = true;
+            this.btnLista.Size = new System.Drawing.Size(58, 36);
+            this.btnLista.TabIndex = 16;
+            this.btnLista.Text = "Lista";
+            this.btnLista.UseVisualStyleBackColor = true;
+            this.btnLista.Click += new System.EventHandler(this.btnLista_Click);
+            // 
             // formWizard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -805,5 +823,6 @@
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private MaterialSkin.Controls.MaterialListView materialListView1;
         private MaterialSkin.Controls.MaterialRaisedButton btnOpcoes;
+        private MaterialSkin.Controls.MaterialRaisedButton btnLista;
     }
 }

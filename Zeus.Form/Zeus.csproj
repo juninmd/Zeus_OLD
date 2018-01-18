@@ -153,11 +153,11 @@
     <Compile Include="Core\SGBD\Postgre\Procedure\Verbos\PostgreInsert.cs" />
     <Compile Include="Core\SGBD\Postgre\Procedure\Verbos\PostgreUpdate.cs" />
     <Compile Include="Core\Tratamentos.cs" />
-    <Compile Include="formTabelas.cs">
+    <Compile Include="formGridConnectionString.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="formTabelas.Designer.cs">
-      <DependentUpon>formTabelas.cs</DependentUpon>
+    <Compile Include="formGridConnectionString.Designer.cs">
+      <DependentUpon>formGridConnectionString.cs</DependentUpon>
     </Compile>
     <Compile Include="formConnectionString.cs">
       <SubType>Form</SubType>
@@ -255,13 +255,12 @@
     <EmbeddedResource Include="Core\NewProgressBar.resx">
       <DependentUpon>NewProgressBar.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="formTabelas.resx">
-      <DependentUpon>formTabelas.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="formConnectionString.resx">
       <DependentUpon>formConnectionString.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formGridConnectionString.resx">
+      <DependentUpon>formGridConnectionString.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="formWelcome.resx">
       <DependentUpon>formWelcome.cs</DependentUpon>
@@ -310,8 +309,36 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Content Include="Templates\1\1Dao0.txt" />
+    <Content Include="Templates\1\1Dao1.txt" />
+    <Content Include="Templates\1\2Dao0.txt" />
+    <Content Include="Templates\1\2Dao1.txt" />
+    <Content Include="Templates\1\3Dao0.txt" />
+    <Content Include="Templates\1\3Dao1.txt" />
+    <Content Include="Templates\2\1Dao0.txt" />
+    <Content Include="Templates\2\1Dao1.txt" />
+    <Content Include="Templates\2\2Dao0.txt" />
+    <Content Include="Templates\2\2Dao1.txt" />
+    <Content Include="Templates\2\3Dao0.txt" />
+    <Content Include="Templates\2\3Dao1.txt" />
+    <Content Include="Templates\3\1Dao0.txt" />
+    <Content Include="Templates\3\1Dao1.txt" />
+    <Content Include="Templates\3\2Dao0.txt" />
+    <Content Include="Templates\3\2Dao1.txt" />
     <Content Include="Templates\3\3Dao0.txt" />
     <Content Include="Templates\3\3Dao1.txt" />
+    <Content Include="Templates\4\1Dao0.txt" />
+    <Content Include="Templates\4\1Dao1.txt" />
+    <Content Include="Templates\4\2Dao0.txt" />
+    <Content Include="Templates\4\2Dao1.txt" />
+    <Content Include="Templates\4\3Dao0.txt" />
+    <Content Include="Templates\4\3Dao1.txt" />
+    <Content Include="Templates\5\1Dao0.txt" />
+    <Content Include="Templates\5\1Dao1.txt" />
+    <Content Include="Templates\5\2Dao0.txt" />
+    <Content Include="Templates\5\2Dao1.txt" />
+    <Content Include="Templates\5\3Dao0.txt" />
+    <Content Include="Templates\5\3Dao1.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
