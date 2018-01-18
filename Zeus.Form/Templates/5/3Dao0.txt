@@ -1,0 +1,25 @@
+﻿const mysql = require('jano-mysql')({{
+    host: '{0}',
+    user: '{1}',
+    database: '{2}',
+    password: '{3}',
+    port: {4}
+}});
+
+module.exports = {{
+    getById: (id) => {{
+        return mysql.executeString(`SELECT * FROM {5} WHERE {8} = ${{id}}`);
+    }},
+    getAll: () => {{
+        return mysql.executeString(`SELECT * FROM {5}`);
+    }},
+    insert: (body) => {{
+        return mysql.executeObject(`INSERT INTO {5} SET ?`, {6});
+    }},
+    update: (body) => {{
+        return mysql.executeObject(`UPDATE {5} SET ? WHERE id = ${{{8}}}`, {7});
+    }},
+    delete: (id) => {{
+        return mysql.executeString(`DELETE FROM {5} WHERE id = ${{{8}}}`);
+    }}
+}};
