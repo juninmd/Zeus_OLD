@@ -1,14 +1,9 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)"
-              GeneratedClassNamespace="Zeus.Properties" GeneratedClassName="Settings">
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Zeus.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
     <Setting Name="PrefixoPackage" Type="System.String" Scope="User">
       <Value Profile="(Default)">PROJ_PG_</Value>
-    </Setting>
-    <Setting Name="ConnectionStringDefault" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Server=localhost;Uid=mysql;Pwd=;Port=3306</Value>
     </Setting>
     <Setting Name="PrefixoTabela" Type="System.String" Scope="User">
       <Value Profile="(Default)">PROJ_T_</Value>
@@ -18,9 +13,6 @@
     </Setting>
     <Setting Name="PrefixoProcedure" Type="System.String" Scope="User">
       <Value Profile="(Default)">PROJ_SP_</Value>
-    </Setting>
-    <Setting Name="Destino" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
     </Setting>
     <Setting Name="SkipWelcome" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>

@@ -31,8 +31,6 @@ namespace Zeus
                 Procedure = Settings.Default.PrefixoProcedure ?? "",
                 Tabela = Settings.Default.PrefixoTabela ?? ""
             };
-
-            ParamtersInput.SelectedPath = Settings.Default.Destino ?? "";
         }
     }
 }

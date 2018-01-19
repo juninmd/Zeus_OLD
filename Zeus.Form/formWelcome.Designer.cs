@@ -41,7 +41,6 @@
             this.ddlUnificar = new MaterialSkin.Controls.MaterialCheckBox();
             this.materialLabel12 = new MaterialSkin.Controls.MaterialLabel();
             this.btnSalvar = new MaterialSkin.Controls.MaterialRaisedButton();
-            this.btnProcurar = new MaterialSkin.Controls.MaterialRaisedButton();
             this.txtPreFixoPackages = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.txtPrefixoTabela = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.materialLabel11 = new MaterialSkin.Controls.MaterialLabel();
@@ -49,9 +48,6 @@
             this.txtPreFixoProcedures = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.materialLabel9 = new MaterialSkin.Controls.MaterialLabel();
             this.materialLabel8 = new MaterialSkin.Controls.MaterialLabel();
-            this.materialLabel7 = new MaterialSkin.Controls.MaterialLabel();
-            this.materialLabel6 = new MaterialSkin.Controls.MaterialLabel();
-            this.txtDestino = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.materialLabel3 = new MaterialSkin.Controls.MaterialLabel();
             this.pictureBox9 = new System.Windows.Forms.PictureBox();
@@ -189,7 +185,6 @@
             this.tabPage4.Controls.Add(this.ddlUnificar);
             this.tabPage4.Controls.Add(this.materialLabel12);
             this.tabPage4.Controls.Add(this.btnSalvar);
-            this.tabPage4.Controls.Add(this.btnProcurar);
             this.tabPage4.Controls.Add(this.txtPreFixoPackages);
             this.tabPage4.Controls.Add(this.txtPrefixoTabela);
             this.tabPage4.Controls.Add(this.materialLabel11);
@@ -197,9 +192,6 @@
             this.tabPage4.Controls.Add(this.txtPreFixoProcedures);
             this.tabPage4.Controls.Add(this.materialLabel9);
             this.tabPage4.Controls.Add(this.materialLabel8);
-            this.tabPage4.Controls.Add(this.materialLabel7);
-            this.tabPage4.Controls.Add(this.materialLabel6);
-            this.tabPage4.Controls.Add(this.txtDestino);
             this.tabPage4.Location = new System.Drawing.Point(4, 20);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
@@ -214,7 +206,7 @@
             this.ddlUnificar.Depth = 0;
             this.ddlUnificar.Font = new System.Drawing.Font("Roboto", 10F);
             this.ddlUnificar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.ddlUnificar.Location = new System.Drawing.Point(18, 268);
+            this.ddlUnificar.Location = new System.Drawing.Point(8, 180);
             this.ddlUnificar.Margin = new System.Windows.Forms.Padding(0);
             this.ddlUnificar.MouseLocation = new System.Drawing.Point(-1, -1);
             this.ddlUnificar.MouseState = MaterialSkin.MouseState.HOVER;
@@ -231,7 +223,7 @@
             this.materialLabel12.Depth = 0;
             this.materialLabel12.Font = new System.Drawing.Font("Roboto", 11F);
             this.materialLabel12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel12.Location = new System.Drawing.Point(448, 145);
+            this.materialLabel12.Location = new System.Drawing.Point(438, 57);
             this.materialLabel12.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel12.Name = "materialLabel12";
             this.materialLabel12.Size = new System.Drawing.Size(195, 76);
@@ -245,7 +237,7 @@
             this.btnSalvar.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnSalvar.Depth = 0;
             this.btnSalvar.Icon = null;
-            this.btnSalvar.Location = new System.Drawing.Point(469, 233);
+            this.btnSalvar.Location = new System.Drawing.Point(490, 165);
             this.btnSalvar.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnSalvar.Name = "btnSalvar";
             this.btnSalvar.Primary = true;
@@ -255,27 +247,11 @@
             this.btnSalvar.UseVisualStyleBackColor = true;
             this.btnSalvar.Click += new System.EventHandler(this.btnSalvar_Click);
             // 
-            // btnProcurar
-            // 
-            this.btnProcurar.AutoSize = true;
-            this.btnProcurar.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnProcurar.Depth = 0;
-            this.btnProcurar.Icon = null;
-            this.btnProcurar.Location = new System.Drawing.Point(539, 52);
-            this.btnProcurar.MouseState = MaterialSkin.MouseState.HOVER;
-            this.btnProcurar.Name = "btnProcurar";
-            this.btnProcurar.Primary = true;
-            this.btnProcurar.Size = new System.Drawing.Size(92, 36);
-            this.btnProcurar.TabIndex = 9;
-            this.btnProcurar.Text = "Procurar";
-            this.btnProcurar.UseVisualStyleBackColor = true;
-            this.btnProcurar.Click += new System.EventHandler(this.btnProcurar_Click);
-            // 
             // txtPreFixoPackages
             // 
             this.txtPreFixoPackages.Depth = 0;
             this.txtPreFixoPackages.Hint = "";
-            this.txtPreFixoPackages.Location = new System.Drawing.Point(104, 233);
+            this.txtPreFixoPackages.Location = new System.Drawing.Point(94, 145);
             this.txtPreFixoPackages.MaxLength = 32767;
             this.txtPreFixoPackages.MouseState = MaterialSkin.MouseState.HOVER;
             this.txtPreFixoPackages.Name = "txtPreFixoPackages";
@@ -293,7 +269,7 @@
             // 
             this.txtPrefixoTabela.Depth = 0;
             this.txtPrefixoTabela.Hint = "";
-            this.txtPrefixoTabela.Location = new System.Drawing.Point(106, 188);
+            this.txtPrefixoTabela.Location = new System.Drawing.Point(96, 100);
             this.txtPrefixoTabela.MaxLength = 32767;
             this.txtPrefixoTabela.MouseState = MaterialSkin.MouseState.HOVER;
             this.txtPrefixoTabela.Name = "txtPrefixoTabela";
@@ -313,7 +289,7 @@
             this.materialLabel11.Depth = 0;
             this.materialLabel11.Font = new System.Drawing.Font("Roboto", 11F);
             this.materialLabel11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel11.Location = new System.Drawing.Point(19, 233);
+            this.materialLabel11.Location = new System.Drawing.Point(9, 145);
             this.materialLabel11.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel11.Name = "materialLabel11";
             this.materialLabel11.Size = new System.Drawing.Size(70, 19);
@@ -326,7 +302,7 @@
             this.materialLabel10.Depth = 0;
             this.materialLabel10.Font = new System.Drawing.Font("Roboto", 11F);
             this.materialLabel10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel10.Location = new System.Drawing.Point(19, 188);
+            this.materialLabel10.Location = new System.Drawing.Point(9, 100);
             this.materialLabel10.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel10.Name = "materialLabel10";
             this.materialLabel10.Size = new System.Drawing.Size(58, 19);
@@ -337,7 +313,7 @@
             // 
             this.txtPreFixoProcedures.Depth = 0;
             this.txtPreFixoProcedures.Hint = "";
-            this.txtPreFixoProcedures.Location = new System.Drawing.Point(106, 141);
+            this.txtPreFixoProcedures.Location = new System.Drawing.Point(96, 53);
             this.txtPreFixoProcedures.MaxLength = 32767;
             this.txtPreFixoProcedures.MouseState = MaterialSkin.MouseState.HOVER;
             this.txtPreFixoProcedures.Name = "txtPreFixoProcedures";
@@ -357,7 +333,7 @@
             this.materialLabel9.Depth = 0;
             this.materialLabel9.Font = new System.Drawing.Font("Roboto", 11F);
             this.materialLabel9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel9.Location = new System.Drawing.Point(19, 145);
+            this.materialLabel9.Location = new System.Drawing.Point(9, 57);
             this.materialLabel9.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel9.Name = "materialLabel9";
             this.materialLabel9.Size = new System.Drawing.Size(81, 19);
@@ -370,56 +346,12 @@
             this.materialLabel8.Depth = 0;
             this.materialLabel8.Font = new System.Drawing.Font("Roboto", 11F);
             this.materialLabel8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel8.Location = new System.Drawing.Point(19, 107);
+            this.materialLabel8.Location = new System.Drawing.Point(9, 19);
             this.materialLabel8.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel8.Name = "materialLabel8";
             this.materialLabel8.Size = new System.Drawing.Size(281, 19);
             this.materialLabel8.TabIndex = 12;
             this.materialLabel8.Text = "Pré-fixos de convenções da nomeclatura";
-            // 
-            // materialLabel7
-            // 
-            this.materialLabel7.AutoSize = true;
-            this.materialLabel7.Depth = 0;
-            this.materialLabel7.Font = new System.Drawing.Font("Roboto", 11F);
-            this.materialLabel7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel7.Location = new System.Drawing.Point(19, 21);
-            this.materialLabel7.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialLabel7.Name = "materialLabel7";
-            this.materialLabel7.Size = new System.Drawing.Size(156, 19);
-            this.materialLabel7.TabIndex = 11;
-            this.materialLabel7.Text = "Geração dos arquivos";
-            // 
-            // materialLabel6
-            // 
-            this.materialLabel6.AutoSize = true;
-            this.materialLabel6.Depth = 0;
-            this.materialLabel6.Font = new System.Drawing.Font("Roboto", 11F);
-            this.materialLabel6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel6.Location = new System.Drawing.Point(19, 56);
-            this.materialLabel6.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialLabel6.Name = "materialLabel6";
-            this.materialLabel6.Size = new System.Drawing.Size(79, 19);
-            this.materialLabel6.TabIndex = 10;
-            this.materialLabel6.Text = "Salvar em:";
-            // 
-            // txtDestino
-            // 
-            this.txtDestino.Depth = 0;
-            this.txtDestino.Hint = "";
-            this.txtDestino.Location = new System.Drawing.Point(104, 52);
-            this.txtDestino.MaxLength = 32767;
-            this.txtDestino.MouseState = MaterialSkin.MouseState.HOVER;
-            this.txtDestino.Name = "txtDestino";
-            this.txtDestino.PasswordChar = '\0';
-            this.txtDestino.ReadOnly = false;
-            this.txtDestino.SelectedText = "";
-            this.txtDestino.SelectionLength = 0;
-            this.txtDestino.SelectionStart = 0;
-            this.txtDestino.Size = new System.Drawing.Size(429, 23);
-            this.txtDestino.TabIndex = 8;
-            this.txtDestino.TabStop = false;
-            this.txtDestino.UseSystemPasswordChar = false;
             // 
             // tabPage3
             // 
@@ -686,7 +618,6 @@
         private MaterialSkin.Controls.MaterialCheckBox ddlUnificar;
         private MaterialSkin.Controls.MaterialLabel materialLabel12;
         private MaterialSkin.Controls.MaterialRaisedButton btnSalvar;
-        private MaterialSkin.Controls.MaterialRaisedButton btnProcurar;
         private MaterialSkin.Controls.MaterialSingleLineTextField txtPreFixoPackages;
         private MaterialSkin.Controls.MaterialSingleLineTextField txtPrefixoTabela;
         private MaterialSkin.Controls.MaterialLabel materialLabel11;
@@ -694,9 +625,6 @@
         private MaterialSkin.Controls.MaterialSingleLineTextField txtPreFixoProcedures;
         private MaterialSkin.Controls.MaterialLabel materialLabel9;
         private MaterialSkin.Controls.MaterialLabel materialLabel8;
-        private MaterialSkin.Controls.MaterialLabel materialLabel7;
-        private MaterialSkin.Controls.MaterialLabel materialLabel6;
-        private MaterialSkin.Controls.MaterialSingleLineTextField txtDestino;
         private System.Windows.Forms.TabPage tabPage5;
         private MaterialSkin.Controls.MaterialLabel materialLabel4;
         private MaterialSkin.Controls.MaterialLabel txtVersion;

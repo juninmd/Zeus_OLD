@@ -31,27 +31,11 @@ namespace Zeus
             Hide();
         }
 
-        private void btnProcurar_Click(object sender, EventArgs e)
-        {
-            var r = salvar.ShowDialog();
-            if (r == DialogResult.OK)
-            {
-                txtDestino.Text = salvar.SelectedPath + "\\";
-                ParamtersInput.SelectedPath = txtDestino.Text;
-            }
-            else
-            {
-                ParamtersInput.SelectedPath = null;
-                txtDestino.Text = "";
-            }
-        }
-
         private void btnSalvar_Click(object sender, EventArgs e)
         {
             Settings.Default.PrefixoPackage = txtPreFixoPackages.Text;
             Settings.Default.PrefixoProcedure = txtPreFixoProcedures.Text;
             Settings.Default.PrefixoTabela = txtPrefixoTabela.Text;
-            Settings.Default.Destino = txtDestino.Text;
             Settings.Default.UnificarOutput = ddlUnificar.Checked;
             Settings.Default.Save();
         }
@@ -64,7 +48,6 @@ namespace Zeus
             txtPreFixoProcedures.Text = Settings.Default.PrefixoProcedure;
             txtPrefixoTabela.Text = Settings.Default.PrefixoTabela;
             ddlUnificar.Checked = Settings.Default.UnificarOutput;
-            ParamtersInput.SelectedPath = txtDestino.Text = Settings.Default.Destino;
             ParamtersInput.UnificarOutput = ddlUnificar.Checked;
         }
 

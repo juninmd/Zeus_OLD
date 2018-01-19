@@ -132,20 +132,20 @@ namespace Zeus
                 case 1:
                 case 2:
                 case 4:
-                {
-                    ListaTabelas = connectionDb.Content;
-                    listTabelas.Items.AddRange(ListaTabelas.ToArray());
-                    listSchemas.Enabled = false;
-                    break;
-                }
+                    {
+                        ListaTabelas = connectionDb.Content;
+                        listTabelas.Items.AddRange(ListaTabelas.ToArray());
+                        listSchemas.Enabled = false;
+                        break;
+                    }
                 case 3:
-                {
-                    ListaTabelas = new List<string>();
-                    listSchemas.Items.AddRange(connectionDb.Content.ToArray());
-                    listSchemas.SelectedItem = ParamtersInput.DataBase ?? null;
-                    listSchemas.Enabled = true;
-                    break;
-                }
+                    {
+                        ListaTabelas = new List<string>();
+                        listSchemas.Items.AddRange(connectionDb.Content.ToArray());
+                        listSchemas.SelectedItem = ParamtersInput.DataBase ?? null;
+                        listSchemas.Enabled = true;
+                        break;
+                    }
             }
 
             lblTabelas.Text = ListaTabelas.Count > 0
@@ -317,6 +317,16 @@ namespace Zeus
 
                 }.Show();
             }
+        }
+
+        private void btnAbrir_Click(object sender, EventArgs e)
+        {
+            if (String.IsNullOrEmpty(ParamtersInput.SelectedPath))
+            {
+                MessageBox.Show("Você ainda não definiu um caminho");
+                return;
+            }
+            Process.Start(ParamtersInput.SelectedPath);
         }
     }
 }

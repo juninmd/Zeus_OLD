@@ -30,19 +30,16 @@ namespace Zeus.Middleware
                     StatusCode = HttpStatusCode.InternalServerError
                 };
 
-            if (string.IsNullOrEmpty(ParamtersInput.SelectedPath))
-            {
-                var funcao = salvar.ShowDialog();
-                if (funcao != DialogResult.OK)
-                    return new RequestMessage<string>
-                    {
-                        Message = "Processamento cancelado!",
-                        StatusCode = HttpStatusCode.BadRequest
-                    };
-                ParamtersInput.SelectedPath = salvar.SelectedPath + "\\";
-            }
+            var funcao = salvar.ShowDialog();
+            if (funcao != DialogResult.OK)
+                return new RequestMessage<string>
+                {
+                    Message = "Processamento cancelado!",
+                    StatusCode = HttpStatusCode.BadRequest
+                };
+            ParamtersInput.SelectedPath = salvar.SelectedPath + "\\";
 
-            return new RequestMessage<string> {StatusCode = HttpStatusCode.OK};
+            return new RequestMessage<string> { StatusCode = HttpStatusCode.OK };
         }
     }
 }
