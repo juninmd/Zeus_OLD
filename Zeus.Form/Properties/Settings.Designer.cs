@@ -37,18 +37,6 @@ namespace Zeus.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Server=localhost;Uid=mysql;Pwd=;Port=3306")]
-        public string ConnectionStringDefault {
-            get {
-                return ((string)(this["ConnectionStringDefault"]));
-            }
-            set {
-                this["ConnectionStringDefault"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("PROJ_T_")]
         public string PrefixoTabela {
             get {
@@ -80,18 +68,6 @@ namespace Zeus.Properties {
             }
             set {
                 this["PrefixoProcedure"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string Destino {
-            get {
-                return ((string)(this["Destino"]));
-            }
-            set {
-                this["Destino"] = value;
             }
         }
         

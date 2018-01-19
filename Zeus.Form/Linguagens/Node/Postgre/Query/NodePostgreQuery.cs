@@ -98,18 +98,5 @@ namespace Zeus.Linguagens.Node.Postgre.Query
             classe.Append($"}};{N}");
             return classe;
         }
-
-        private string parametrosQuery(bool full)
-        {
-            if (full == false)
-            {
-                var semit = ListaAtributosTabela.Where(x => x.COLUMN_NAME != ListaAtributosTabela.First().COLUMN_NAME);
-                return "{ " + string.Join(", ", semit.Select(e => e.COLUMN_NAME + ": " + "body." + e.COLUMN_NAME)) +
-                       " }";
-            }
-
-            return "{ " + string.Join(", ",
-                       ListaAtributosTabela.Select(e => e.COLUMN_NAME + ": " + "body." + e.COLUMN_NAME)) + " }";
-        }
     }
 }

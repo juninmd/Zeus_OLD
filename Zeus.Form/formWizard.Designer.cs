@@ -32,6 +32,7 @@
             this.tab = new MaterialSkin.Controls.MaterialTabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.btnOpcoes = new MaterialSkin.Controls.MaterialRaisedButton();
+            this.btnLista = new MaterialSkin.Controls.MaterialRaisedButton();
             this.btnExemplo = new MaterialSkin.Controls.MaterialRaisedButton();
             this.panel1 = new System.Windows.Forms.Panel();
             this.radioSGBD5 = new MaterialSkin.Controls.MaterialRadioButton();
@@ -73,7 +74,7 @@
             this.materialTabSelector1 = new MaterialSkin.Controls.MaterialTabSelector();
             this.salvar = new System.Windows.Forms.FolderBrowserDialog();
             this.materialProgressBar1 = new MaterialSkin.Controls.MaterialProgressBar();
-            this.btnLista = new MaterialSkin.Controls.MaterialRaisedButton();
+            this.btnAbrir = new MaterialSkin.Controls.MaterialRaisedButton();
             this.tab.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -134,6 +135,22 @@
             this.btnOpcoes.Text = "Tela Inicial";
             this.btnOpcoes.UseVisualStyleBackColor = true;
             this.btnOpcoes.Click += new System.EventHandler(this.btnOpcoes_Click);
+            // 
+            // btnLista
+            // 
+            this.btnLista.AutoSize = true;
+            this.btnLista.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnLista.Depth = 0;
+            this.btnLista.Icon = null;
+            this.btnLista.Location = new System.Drawing.Point(419, 230);
+            this.btnLista.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnLista.Name = "btnLista";
+            this.btnLista.Primary = true;
+            this.btnLista.Size = new System.Drawing.Size(58, 36);
+            this.btnLista.TabIndex = 16;
+            this.btnLista.Text = "Lista";
+            this.btnLista.UseVisualStyleBackColor = true;
+            this.btnLista.Click += new System.EventHandler(this.btnLista_Click);
             // 
             // btnExemplo
             // 
@@ -466,6 +483,7 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.btnAbrir);
             this.tabPage3.Controls.Add(this.materialListView1);
             this.tabPage3.Controls.Add(this.materialLabel6);
             this.tabPage3.Controls.Add(this.btnVoltarLinguagem);
@@ -532,7 +550,7 @@
             this.btnVoltarLinguagem.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnVoltarLinguagem.Depth = 0;
             this.btnVoltarLinguagem.Icon = null;
-            this.btnVoltarLinguagem.Location = new System.Drawing.Point(584, 219);
+            this.btnVoltarLinguagem.Location = new System.Drawing.Point(578, 208);
             this.btnVoltarLinguagem.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnVoltarLinguagem.Name = "btnVoltarLinguagem";
             this.btnVoltarLinguagem.Primary = true;
@@ -729,21 +747,21 @@
             this.materialProgressBar1.Size = new System.Drawing.Size(642, 5);
             this.materialProgressBar1.TabIndex = 6;
             // 
-            // btnLista
+            // btnAbrir
             // 
-            this.btnLista.AutoSize = true;
-            this.btnLista.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnLista.Depth = 0;
-            this.btnLista.Icon = null;
-            this.btnLista.Location = new System.Drawing.Point(419, 230);
-            this.btnLista.MouseState = MaterialSkin.MouseState.HOVER;
-            this.btnLista.Name = "btnLista";
-            this.btnLista.Primary = true;
-            this.btnLista.Size = new System.Drawing.Size(58, 36);
-            this.btnLista.TabIndex = 16;
-            this.btnLista.Text = "Lista";
-            this.btnLista.UseVisualStyleBackColor = true;
-            this.btnLista.Click += new System.EventHandler(this.btnLista_Click);
+            this.btnAbrir.AutoSize = true;
+            this.btnAbrir.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnAbrir.Depth = 0;
+            this.btnAbrir.Icon = null;
+            this.btnAbrir.Location = new System.Drawing.Point(465, 208);
+            this.btnAbrir.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnAbrir.Name = "btnAbrir";
+            this.btnAbrir.Primary = true;
+            this.btnAbrir.Size = new System.Drawing.Size(107, 36);
+            this.btnAbrir.TabIndex = 30;
+            this.btnAbrir.Text = "Abrir Pasta";
+            this.btnAbrir.UseVisualStyleBackColor = true;
+            this.btnAbrir.Click += new System.EventHandler(this.btnAbrir_Click);
             // 
             // formWizard
             // 
@@ -824,5 +842,6 @@
         private MaterialSkin.Controls.MaterialListView materialListView1;
         private MaterialSkin.Controls.MaterialRaisedButton btnOpcoes;
         private MaterialSkin.Controls.MaterialRaisedButton btnLista;
+        private MaterialSkin.Controls.MaterialRaisedButton btnAbrir;
     }
 }
