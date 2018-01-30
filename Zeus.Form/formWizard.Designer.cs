@@ -56,6 +56,7 @@
             this.btnChkTabela = new MaterialSkin.Controls.MaterialCheckBox();
             this.listTabelas = new System.Windows.Forms.ListBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.btnAbrir = new MaterialSkin.Controls.MaterialRaisedButton();
             this.materialListView1 = new MaterialSkin.Controls.MaterialListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.materialLabel6 = new MaterialSkin.Controls.MaterialLabel();
@@ -74,7 +75,6 @@
             this.materialTabSelector1 = new MaterialSkin.Controls.MaterialTabSelector();
             this.salvar = new System.Windows.Forms.FolderBrowserDialog();
             this.materialProgressBar1 = new MaterialSkin.Controls.MaterialProgressBar();
-            this.btnAbrir = new MaterialSkin.Controls.MaterialRaisedButton();
             this.tab.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -184,6 +184,7 @@
             // 
             this.radioSGBD5.AutoSize = true;
             this.radioSGBD5.Depth = 0;
+            this.radioSGBD5.Enabled = false;
             this.radioSGBD5.Font = new System.Drawing.Font("Roboto", 10F);
             this.radioSGBD5.Location = new System.Drawing.Point(245, 0);
             this.radioSGBD5.Margin = new System.Windows.Forms.Padding(0);
@@ -202,6 +203,7 @@
             // 
             this.radioSGBD4.AutoSize = true;
             this.radioSGBD4.Depth = 0;
+            this.radioSGBD4.Enabled = false;
             this.radioSGBD4.Font = new System.Drawing.Font("Roboto", 10F);
             this.radioSGBD4.Location = new System.Drawing.Point(114, 30);
             this.radioSGBD4.Margin = new System.Windows.Forms.Padding(0);
@@ -220,6 +222,7 @@
             // 
             this.radioSGBD2.AutoSize = true;
             this.radioSGBD2.Depth = 0;
+            this.radioSGBD2.Enabled = false;
             this.radioSGBD2.Font = new System.Drawing.Font("Roboto", 10F);
             this.radioSGBD2.Location = new System.Drawing.Point(114, 0);
             this.radioSGBD2.Margin = new System.Windows.Forms.Padding(0);
@@ -238,6 +241,7 @@
             // 
             this.radioSGBD1.AutoSize = true;
             this.radioSGBD1.Depth = 0;
+            this.radioSGBD1.Enabled = false;
             this.radioSGBD1.Font = new System.Drawing.Font("Roboto", 10F);
             this.radioSGBD1.Location = new System.Drawing.Point(0, 30);
             this.radioSGBD1.Margin = new System.Windows.Forms.Padding(0);
@@ -502,6 +506,22 @@
             this.tabPage3.Text = "Linguagens";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
+            // btnAbrir
+            // 
+            this.btnAbrir.AutoSize = true;
+            this.btnAbrir.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnAbrir.Depth = 0;
+            this.btnAbrir.Icon = null;
+            this.btnAbrir.Location = new System.Drawing.Point(465, 208);
+            this.btnAbrir.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnAbrir.Name = "btnAbrir";
+            this.btnAbrir.Primary = true;
+            this.btnAbrir.Size = new System.Drawing.Size(107, 36);
+            this.btnAbrir.TabIndex = 30;
+            this.btnAbrir.Text = "Abrir Pasta";
+            this.btnAbrir.UseVisualStyleBackColor = true;
+            this.btnAbrir.Click += new System.EventHandler(this.btnAbrir_Click);
+            // 
             // materialListView1
             // 
             this.materialListView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -579,6 +599,7 @@
             this.btnEntidade.AutoSize = true;
             this.btnEntidade.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnEntidade.Depth = 0;
+            this.btnEntidade.Enabled = false;
             this.btnEntidade.Icon = null;
             this.btnEntidade.Location = new System.Drawing.Point(519, 90);
             this.btnEntidade.MouseState = MaterialSkin.MouseState.HOVER;
@@ -676,6 +697,7 @@
             // 
             this.radioJava.AutoSize = true;
             this.radioJava.Depth = 0;
+            this.radioJava.Enabled = false;
             this.radioJava.Font = new System.Drawing.Font("Roboto", 10F);
             this.radioJava.Location = new System.Drawing.Point(238, 0);
             this.radioJava.Margin = new System.Windows.Forms.Padding(0);
@@ -694,6 +716,7 @@
             // 
             this.radioCsharp.AutoSize = true;
             this.radioCsharp.Depth = 0;
+            this.radioCsharp.Enabled = false;
             this.radioCsharp.Font = new System.Drawing.Font("Roboto", 10F);
             this.radioCsharp.Location = new System.Drawing.Point(177, 0);
             this.radioCsharp.Margin = new System.Windows.Forms.Padding(0);
@@ -746,22 +769,6 @@
             this.materialProgressBar1.Name = "materialProgressBar1";
             this.materialProgressBar1.Size = new System.Drawing.Size(642, 5);
             this.materialProgressBar1.TabIndex = 6;
-            // 
-            // btnAbrir
-            // 
-            this.btnAbrir.AutoSize = true;
-            this.btnAbrir.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnAbrir.Depth = 0;
-            this.btnAbrir.Icon = null;
-            this.btnAbrir.Location = new System.Drawing.Point(465, 208);
-            this.btnAbrir.MouseState = MaterialSkin.MouseState.HOVER;
-            this.btnAbrir.Name = "btnAbrir";
-            this.btnAbrir.Primary = true;
-            this.btnAbrir.Size = new System.Drawing.Size(107, 36);
-            this.btnAbrir.TabIndex = 30;
-            this.btnAbrir.Text = "Abrir Pasta";
-            this.btnAbrir.UseVisualStyleBackColor = true;
-            this.btnAbrir.Click += new System.EventHandler(this.btnAbrir_Click);
             // 
             // formWizard
             // 
