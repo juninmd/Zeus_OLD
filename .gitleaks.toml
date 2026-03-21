@@ -1,0 +1,214 @@
+[[allowlist]]
+description = "False positive: generic-api-key in Zeus.Form/app.config"
+rules = ["generic-api-key"]
+paths = ["Zeus.Form/app.config"]
+
+[[allowlist]]
+description = "False positive: generic-api-key in Zeus.Form/app.config"
+rules = ["generic-api-key"]
+paths = ["Zeus.Form/app.config"]
+
+[[allowlist]]
+description = "False positive: generic-api-key in Zeus.Form/app.config"
+rules = ["generic-api-key"]
+paths = ["Zeus.Form/app.config"]
+
+[[allowlist]]
+description = "False positive: generic-api-key in Zeus.Form/app.config"
+rules = ["generic-api-key"]
+paths = ["Zeus.Form/app.config"]
+
+[[allowlist]]
+description = "False positive: generic-api-key in Zeus.Form/formWizard.resx"
+rules = ["generic-api-key"]
+paths = ["Zeus.Form/formWizard.resx"]
+
+[[allowlist]]
+description = "False positive: generic-api-key in MapeadorDeEntidades.Form/formPrincipal.resx"
+rules = ["generic-api-key"]
+paths = ["MapeadorDeEntidades.Form/formPrincipal.resx"]
+
+[[allowlist]]
+description = "False positive: generic-api-key in MapeadorDeEntidades.Form/app.config"
+rules = ["generic-api-key"]
+paths = ["MapeadorDeEntidades.Form/app.config"]
+
+[[allowlist]]
+description = "False positive: generic-api-key in MapeadorDeEntidades.Form/app.config"
+rules = ["generic-api-key"]
+paths = ["MapeadorDeEntidades.Form/app.config"]
+
+[[allowlist]]
+description = "False positive: generic-api-key in MapeadorDeEntidades.Form/app.config"
+rules = ["generic-api-key"]
+paths = ["MapeadorDeEntidades.Form/app.config"]
+
+[[allowlist]]
+description = "False positive: generic-api-key in MapeadorDeEntidades.Form/app.config"
+rules = ["generic-api-key"]
+paths = ["MapeadorDeEntidades.Form/app.config"]
+
+[[allowlist]]
+description = "False positive: generic-api-key in MapeadorDeEntidades.Form/formPrincipal.resx"
+rules = ["generic-api-key"]
+paths = ["MapeadorDeEntidades.Form/formPrincipal.resx"]
+
+[[allowlist]]
+description = "False positive: generic-api-key in MapeadorDeEntidades.Form/formPrincipal.resx"
+rules = ["generic-api-key"]
+paths = ["MapeadorDeEntidades.Form/formPrincipal.resx"]
+
+[[allowlist]]
+description = "False positive: generic-api-key in MapeadorDeEntidades.Form/formPrincipal.resx"
+rules = ["generic-api-key"]
+paths = ["MapeadorDeEntidades.Form/formPrincipal.resx"]
+
+[[allowlist]]
+description = "False positive: generic-api-key in MapeadorDeEntidades.Form/formPrincipal.resx"
+rules = ["generic-api-key"]
+paths = ["MapeadorDeEntidades.Form/formPrincipal.resx"]
+
+[[allowlist]]
+description = "False positive: generic-api-key in MapeadorDeEntidades.Form/formPrincipal.resx"
+rules = ["generic-api-key"]
+paths = ["MapeadorDeEntidades.Form/formPrincipal.resx"]
+
+[[allowlist]]
+description = "False positive: generic-api-key in MapeadorDeEntidades.Form/formPrincipal.resx"
+rules = ["generic-api-key"]
+paths = ["MapeadorDeEntidades.Form/formPrincipal.resx"]
+
+[[allowlist]]
+description = "False positive: generic-api-key in MapeadorDeEntidades.Form/formPrincipal.resx"
+rules = ["generic-api-key"]
+paths = ["MapeadorDeEntidades.Form/formPrincipal.resx"]
+
+[[allowlist]]
+description = "False positive: generic-api-key in MapeadorDeEntidades.Form/formPrincipal.resx"
+rules = ["generic-api-key"]
+paths = ["MapeadorDeEntidades.Form/formPrincipal.resx"]
+
+[[allowlist]]
+description = "False positive: generic-api-key in MapeadorDeEntidades.Form/formPrincipal.resx"
+rules = ["generic-api-key"]
+paths = ["MapeadorDeEntidades.Form/formPrincipal.resx"]
+
+[[allowlist]]
+description = "False positive: generic-api-key in MapeadorDeEntidades.Form/formPrincipal.resx"
+rules = ["generic-api-key"]
+paths = ["MapeadorDeEntidades.Form/formPrincipal.resx"]
+
+[[allowlist]]
+description = "False positive: generic-api-key in MapeadorDeEntidades.Form/formPrincipal.resx"
+rules = ["generic-api-key"]
+paths = ["MapeadorDeEntidades.Form/formPrincipal.resx"]
+
+[[allowlist]]
+description = "False positive: generic-api-key in MapeadorDeEntidades.Form/formPrincipal.resx"
+rules = ["generic-api-key"]
+paths = ["MapeadorDeEntidades.Form/formPrincipal.resx"]
+
+[[allowlist]]
+description = "False positive: generic-api-key in MapeadorDeEntidades.Form/formPrincipal.resx"
+rules = ["generic-api-key"]
+paths = ["MapeadorDeEntidades.Form/formPrincipal.resx"]
+
+[[allowlist]]
+description = "False positive: generic-api-key in MapeadorDeEntidades.Form/formPrincipal.resx"
+rules = ["generic-api-key"]
+paths = ["MapeadorDeEntidades.Form/formPrincipal.resx"]
+
+[[allowlist]]
+description = "False positive: generic-api-key in MapeadorDeEntidades.Form/formPrincipal.resx"
+rules = ["generic-api-key"]
+paths = ["MapeadorDeEntidades.Form/formPrincipal.resx"]
+
+[[allowlist]]
+description = "False positive: generic-api-key in MapeadorDeEntidades.Form/formPrincipal.resx"
+rules = ["generic-api-key"]
+paths = ["MapeadorDeEntidades.Form/formPrincipal.resx"]
+
+[[allowlist]]
+description = "False positive: generic-api-key in MapeadorDeEntidades.Form/formPrincipal.resx"
+rules = ["generic-api-key"]
+paths = ["MapeadorDeEntidades.Form/formPrincipal.resx"]
+
+[[allowlist]]
+description = "False positive: generic-api-key in MapeadorDeEntidades.Form/formPrincipal.resx"
+rules = ["generic-api-key"]
+paths = ["MapeadorDeEntidades.Form/formPrincipal.resx"]
+
+[[allowlist]]
+description = "False positive: generic-api-key in MapeadorDeEntidades.Form/formPrincipal.resx"
+rules = ["generic-api-key"]
+paths = ["MapeadorDeEntidades.Form/formPrincipal.resx"]
+
+[[allowlist]]
+description = "False positive: generic-api-key in MapeadorDeEntidades.Form/formPrincipal.resx"
+rules = ["generic-api-key"]
+paths = ["MapeadorDeEntidades.Form/formPrincipal.resx"]
+
+[[allowlist]]
+description = "False positive: generic-api-key in MapeadorDeEntidades.Form/formPrincipal.resx"
+rules = ["generic-api-key"]
+paths = ["MapeadorDeEntidades.Form/formPrincipal.resx"]
+
+[[allowlist]]
+description = "False positive: generic-api-key in MapeadorDeEntidades.Form/formPrincipal.resx"
+rules = ["generic-api-key"]
+paths = ["MapeadorDeEntidades.Form/formPrincipal.resx"]
+
+[[allowlist]]
+description = "False positive: generic-api-key in MapeadorDeEntidades.Form/formPrincipal.resx"
+rules = ["generic-api-key"]
+paths = ["MapeadorDeEntidades.Form/formPrincipal.resx"]
+
+[[allowlist]]
+description = "False positive: generic-api-key in MapeadorDeEntidades.Form/formPrincipal.resx"
+rules = ["generic-api-key"]
+paths = ["MapeadorDeEntidades.Form/formPrincipal.resx"]
+
+[[allowlist]]
+description = "False positive: generic-api-key in MapeadorDeEntidades.Form/formPrincipal.resx"
+rules = ["generic-api-key"]
+paths = ["MapeadorDeEntidades.Form/formPrincipal.resx"]
+
+[[allowlist]]
+description = "False positive: generic-api-key in MapeadorDeEntidades.Form/formPrincipal.resx"
+rules = ["generic-api-key"]
+paths = ["MapeadorDeEntidades.Form/formPrincipal.resx"]
+
+[[allowlist]]
+description = "False positive: generic-api-key in MapeadorDeEntidades.Form/formPrincipal.resx"
+rules = ["generic-api-key"]
+paths = ["MapeadorDeEntidades.Form/formPrincipal.resx"]
+
+[[allowlist]]
+description = "False positive: generic-api-key in MapeadorDeEntidades.Form/formPrincipal.resx"
+rules = ["generic-api-key"]
+paths = ["MapeadorDeEntidades.Form/formPrincipal.resx"]
+
+[[allowlist]]
+description = "False positive: generic-api-key in MapeadorDeEntidades.Form/formPrincipal.resx"
+rules = ["generic-api-key"]
+paths = ["MapeadorDeEntidades.Form/formPrincipal.resx"]
+
+[[allowlist]]
+description = "False positive: generic-api-key in MapeadorDeEntidades.Form/formPrincipal.resx"
+rules = ["generic-api-key"]
+paths = ["MapeadorDeEntidades.Form/formPrincipal.resx"]
+
+[[allowlist]]
+description = "False positive: generic-api-key in MapeadorDeEntidades.Form/formPrincipal.resx"
+rules = ["generic-api-key"]
+paths = ["MapeadorDeEntidades.Form/formPrincipal.resx"]
+
+[[allowlist]]
+description = "False positive: generic-api-key in MapeadorDeEntidades.Form/formPrincipal.resx"
+rules = ["generic-api-key"]
+paths = ["MapeadorDeEntidades.Form/formPrincipal.resx"]
+
+[[allowlist]]
+description = "False positive: generic-api-key in MapeadorDeEntidades.Form/Core/NewProgressBar.resx"
+rules = ["generic-api-key"]
+paths = ["MapeadorDeEntidades.Form/Core/NewProgressBar.resx"]
